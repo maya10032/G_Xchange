@@ -72,4 +72,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## リンク集
 - [Googleスプレッドシート](https://drive.google.com/drive/u/0/folders/1-roOokKqeLLemFCi9_nUCXZB8nd9r2Mg)
 
-  [ユースケース図](https://www.figma.com/design/1FHDWPVVQIz17znMWBGoMA/UML-Use-Case-Diagram-(Community)?node-id=0-1&t=gJ14Ykkbc7scDHDc-1)
+- [ユースケース図](https://www.figma.com/design/1FHDWPVVQIz17znMWBGoMA/UML-Use-Case-Diagram-(Community)?node-id=0-1&t=gJ14Ykkbc7scDHDc-1)
