@@ -13,5 +13,7 @@
 
 ## リンク集
 - [Googleスプレッドシート](https://drive.google.com/drive/u/0/folders/1-roOokKqeLLemFCi9_nUCXZB8nd9r2Mg)
-
 - [ユースケース図](https://www.figma.com/design/1FHDWPVVQIz17znMWBGoMA/UML-Use-Case-Diagram-(Community)?node-id=0-1&t=gJ14Ykkbc7scDHDc-1)
+- [画面遷移図](https://drive.google.com/drive/u/0/folders/1e1iCd4vQCTLWEghUX0nqnbZSxMaCahZW)
+- [レイアウト図](https://www.figma.com/design/bkxQDsRZeRDQ3whOlcx0t2/EC%E3%82%B5%E3%82%A4%E3%83%88-%[…]%BC%E3%83%A0-(Community)?node-id=31-10850&t=yZlLkOZaj1gCeVxw-1)
+- [ER図](https://www.figma.com/design/hU6j3BKg3JRhjtxviCqQCu/ASSIGNMENT-2-ERD.dparks-(Community)?node-id=0-1&t=iYQ7k8CrwSr8UFMd-1)
