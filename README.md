@@ -13,5 +13,5 @@
 - [URLマッピング一覧](https://docs.google.com/spreadsheets/d/1y0lJ4_Cli_bPAPsbkgGsMGVLZdjui-6b/edit?gid=1173526636#gid=1173526636)
 
 ## 機能要件
-- １：ユーザ登録とログイン機能の実装
+１：ユーザ登録とログイン機能の実装
 - 
