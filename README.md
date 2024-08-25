@@ -1,5 +1,4 @@
 ## G_Xchange
-
 ![G_Xchange](https://img.shields.io/badge/Version-0.0.0-990000.svg)
 
 ## リンク集
@@ -12,3 +11,7 @@
 - [テーブル設計書](https://docs.google.com/spreadsheets/d/1sB0bkHo7bQcCjjboNBKfvzxNyTK-gV-x4ntMSb97Ydo/edit?gid=0#gid=0)
 - [クラス設計書](https://docs.google.com/spreadsheets/d/1-87RJE4FHaRmWMn16mwFAHAaWpDv8kcq/edit?gid=788228945#gid=788228945)
 - [URLマッピング一覧](https://docs.google.com/spreadsheets/d/1y0lJ4_Cli_bPAPsbkgGsMGVLZdjui-6b/edit?gid=1173526636#gid=1173526636)
+
+## 機能要件
+- １：ユーザ登録とログイン機能の実装
+- 
