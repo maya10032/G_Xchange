@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->id();
-            $table->string('item_name');
+            $table->increments('id');
+            $table->integer('category_id')->unsigned();
+            $table->string('item_name', 50);
+            $table->string('item_code', 50);
+            $table->integer('count_limit')->unsigned();
+            $table->string('item_image', 200)->nullable();
+            $table->text('message');
+            $table->integer('sales_price')->unsigned();
+            $table->integer('regular_price')->unsigned()->nullable();
             $table->timestamps();
         });
     }
