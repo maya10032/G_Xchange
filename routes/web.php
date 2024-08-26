@@ -14,3 +14,9 @@ Route::delete('/items/{item}', [ItemController::class, 'destroy']);
 Route::get('/items/{item}/edit', [ItemController::class, 'edit']);
 Route::put('/items/{item}', [ItemController::class, 'update']);
 Route::get('/items/{item}/show', [ItemController::class, 'show']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
