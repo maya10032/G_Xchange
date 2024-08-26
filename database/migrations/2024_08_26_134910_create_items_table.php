@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('item_name', 50);
             $table->string('item_code', 50);
             $table->integer('count_limit')->unsigned();
-            $table->string('item_image', 200)->nullable();
             $table->text('message');
             $table->integer('sales_price')->unsigned();
             $table->integer('regular_price')->unsigned()->nullable();
