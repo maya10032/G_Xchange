@@ -14,7 +14,7 @@ class ItemController extends Controller
     public function index()
     {
         $collection = Item::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(6);
-        return view('items', ['item' => $collection]);
+        return view('items', ['items' => $collection]);
     }
 
     /**
