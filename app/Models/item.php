@@ -15,9 +15,9 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'item_code',
-        'item_name',
         'category_id',
+        'item_name',
+        'item_code',
         'count_limit',
         'sales_price',
         'regular_price',

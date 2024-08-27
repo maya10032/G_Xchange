@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <!-- 1行で指定することも可能 -->
-@section('title', '商品一覧')
+@section('title', '商品詳細')
 
 @section('content')
     <table class="table table-bordered table-striped task-table table-hover">
@@ -15,16 +15,18 @@
         @endif
         <tbody>
             <h2>商品詳細ページです</h2>
-            @foreach ($items as $item)
-                <tr>
-                    <a href="{{ route('/items') }}">
-                        <td>{{ $item->item_name }}</td>
-                    </a>
+                {{-- <tr>
+                    <td>{{ $item->item_name }}</td>
                 </tr>
                 <tr>
                     <td>{{ $item->message }}</td>
-                </tr>
-            @endforeach
+                </tr> --}}
+                <div class="form-group col-xs-12">
+                    <div class="input-group mb-4">カテゴリー</div>
+                    <input class="form-control bg-light" disabled value="{{ $item->item_name }}">
+                    <input class="form-control bg-light" disabled value="{{ $item->regular_price }}">
+                    <P><input class="form-control bg-light" disabled value="{{ $item->sales_price }}">送料無料</P>
+                </div>
         </tbody>
         </tbody>
         {{-- <tfoot>

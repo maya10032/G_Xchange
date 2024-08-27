@@ -25,7 +25,7 @@ class AdminLoginController extends Controller
     {
         $request->authenticate();
         $request->session()->regenerate();
-        return redirect()->intended(route('admin.top'));
+        return redirect()->intended(route('admin.items.index'));
     }
 
     /**

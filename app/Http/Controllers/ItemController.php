@@ -26,10 +26,10 @@ class ItemController extends Controller
      *
      * @return void
      */
-    public function show(Request $id)
+    public function show($id)
     {
-        $item = Item::all()->find($id);
-        return view('items.show', ['items' => $item]);
+        $item = Item::findOrFail($id);
+        return view('items.show', ['item' => $item]);
     }
 
     /**
