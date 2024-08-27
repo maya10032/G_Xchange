@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class     //作ったシーダーファイルを登録する。
         ]);
+        $this->call([
+            ItemSeeder::class     //作ったシーダーファイルを登録する。
+        ]);
     }
 }
