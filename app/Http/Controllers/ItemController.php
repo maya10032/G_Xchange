@@ -17,6 +17,7 @@ class ItemController extends Controller
     public function index()
     {
         $collection = Item::all();
+        // \Debugbar::log($collection->toArray());
         return view('items.index', ['items' => $collection]);
     }
 
@@ -25,11 +26,11 @@ class ItemController extends Controller
      *
      * @return void
      */
-    // public function show()
-    // {
-    //     $item = Item::where('user_id', Auth::user()->id)->find($item_id);
-    //     return view('show', ['item' => $item]);
-    // }
+    public function show($id)
+    {
+        $item = Item::findOrFail($id);
+        return view('items.show', ['item' => $item]);
+    }
 
     /**
      * 新規追加フォーム表示

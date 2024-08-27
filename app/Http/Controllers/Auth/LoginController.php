@@ -25,6 +25,8 @@ class LoginController extends Controller
      *
      * @var string
      */
+<<<<<<< HEAD
+=======
     protected $redirectTo = '/items';
     // ログイン後のリダイレクト先を記述
     public function redirectPath()
@@ -33,6 +35,7 @@ class LoginController extends Controller
         // 例：
         return 'items/index';
     }
+>>>>>>> cc55a4963e35256545ae4d390d5f50d481f073d2
     protected $redirectTo = '/mypage/index';
 
     /**
