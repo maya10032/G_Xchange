@@ -14,10 +14,12 @@
             </div>
         @endif
         <tbody>
-            <h2>商品一覧ページです</h2>
+            <h2>商品詳細ページです</h2>
             @foreach ($items as $item)
                 <tr>
-                    <td><a href="/show">{{ $item->item_name }}</a></td>
+                    <a href="{{ route('/items') }}">
+                        <td>{{ $item->item_name }}</td>
+                    </a>
                 </tr>
                 <tr>
                     <td>{{ $item->message }}</td>
