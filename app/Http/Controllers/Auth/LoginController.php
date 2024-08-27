@@ -25,7 +25,14 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/index';
+    protected $redirectTo = '/items';
+    // ログイン後のリダイレクト先を記述
+    public function redirectPath()
+    {
+        // return 'リダイレクト先URL';
+        // 例：
+        return 'items/index';
+    }
 
     /**
      * Create a new controller instance.

@@ -17,7 +17,7 @@ class ItemController extends Controller
     public function index()
     {
         $collection = Item::all();
-        return view('items', ['items' => $collection]);
+        return view('items.index', ['items' => $collection]);
     }
 
     /**
