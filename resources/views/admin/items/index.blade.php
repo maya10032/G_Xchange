@@ -14,31 +14,35 @@
                 {{ session('update') }}
             </div>
         @endif
-        <tbody>
-            <h2>（管理者用）商品一覧ページ</h2>
-            <tr>
-                <th>商品ID</th>
-                <th>商品名</th>
-                <th>商品コード</th>
-                <th>商品カテゴリー</th>
-                <th>最大注文数</th>
-                <th>商品画像</th>
-                <th>販売価格</th>
-                <th></th>
-            </tr>
-            @foreach ($items as $item)
+        <h2>（管理者用）商品一覧ページ</h2>
+        <form method="POST" action="{{ route('admin.login.store') }}">
+            <tbody>
                 <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->item_name }}</td>
-                    <td>{{ $item->item_code }}</td>
-                    <td>{{ $item->category_id }}</td>
-                    <td>{{ $item->count_limit }}</td>
-                    <td>商品画像</td>
-                    <td>{{ $item->sales_price }}円</td>
-                    <td>編集</td>
+                    <th>商品ID</th>
+                    <th>商品名</th>
+                    <th>商品コード</th>
+                    <th>商品カテゴリー</th>
+                    <th>最大注文数</th>
+                    <th>商品画像</th>
+                    <th>販売価格</th>
+                    <th></th>
                 </tr>
-            @endforeach
-        </tbody>
+                @foreach ($items as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td><a href="{{ url('admin/items/' . $item->id . '/show') }}">{{ $item->item_name }}</a></td>
+                        <td>{{ $item->item_code }}</td>
+                        <td>{{ $item->category_id }}</td>
+                        <td>{{ $item->count_limit }}</td>
+                        <td>商品画像</td>
+                        <td>{{ $item->sales_price }}円</td>
+                        <td><button type="submit" class="btn btn-primary">
+                                編集
+                            </button></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </form>
     </table>
 
 
