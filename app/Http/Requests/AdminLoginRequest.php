@@ -24,9 +24,15 @@ class AdminLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
             'email' => 'required',
             'password' => 'required',
         ];
+    }
+
+    public function authenticate(): void
+    {
+        if (!Auth::guard('admin')->attempt($this->only('email', 'password'))) {
+            throw ValidationException::withMessages(['failed' => __('auth.failed')]);
+        }
     }
 }
