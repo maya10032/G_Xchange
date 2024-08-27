@@ -1,8 +1,9 @@
 @extends('layouts.app')
-<!-- 1行で指定することも可能 -->
+
 @section('title', '商品一覧')
 
 @section('content')
+
     <table class="table table-bordered table-striped task-table table-hover">
         @if (session('success'))
             <div class="alert alert-success text-center fw-bold">
@@ -32,6 +33,9 @@
             </tr>
         </tfoot> --}}
     </table>
+
+<h2>商品一覧ページです</h2>
+
 @endsection
 
 {{-- {{ Debugbar::log($items->toArray()) }} --}}

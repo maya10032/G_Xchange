@@ -33,6 +33,7 @@ class LoginController extends Controller
         // 例：
         return 'items/index';
     }
+    protected $redirectTo = '/mypage/index';
 
     /**
      * Create a new controller instance.
