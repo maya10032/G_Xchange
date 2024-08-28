@@ -4,15 +4,16 @@
 
 @section('content')
     <h2>商品詳細ページ</h2>
+    {{-- お気に入り通知 --}}
     @if (session('likeadd'))
-            <div class="alert alert-success text-center fw-bold">
-                {{ session('likeadd') }}
-            </div>
-        @elseif (session('likedelete'))
-            <div class="alert alert-info text-center fw-bold">
-                {{ session('likedelete') }}
-            </div>
-        @endif
+        <div class="alert alert-success text-center fw-bold">
+            {{ session('likeadd') }}
+        </div>
+    @elseif (session('likedelete'))
+        <div class="alert alert-info text-center fw-bold">
+            {{ session('likedelete') }}
+        </div>
+    @endif
     <tbody>
         <p>カテゴリー：{{ $item->category_id }}</p>
         <p>商品名：{{ $item->item_name }}</p>
@@ -32,16 +33,20 @@
                 <a href="{{ url('login/') }}">購入するにはログインしてください</a>
             </div>
         @else
-            <form action="{{ route('items.purchase', ['item' => $item->id]) }}" method="POST">
-                <div>
-                    数量：<input type="number" min="1" max="{{ $item->count_limit }}" name="count"
-                        value="{{ old('count') }}">
-                </div>
-                {{-- 会員の場合 --}}
-                <button><a href="{{ url('items/cart') }}">カートに追加</a></button>
+            {{-- 会員の場合 --}}
+            <form action="{{ url('/items/purchase', $item->id) }}" method="POST" class="form-horizontal">
                 @csrf
-                <input type="hidden" name="showMessage" value="1">
-                <button type="submit">購入する</button>
+                <div>
+                    数量：<input type="number" max="100" name="count" value="{{ old('count', 1) }}">
+                    {{-- 購入数のエラーメッセージの表示 --}}
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    @endif
+                </div>
+                <button type="button" onclick="window.location.href='{{ url('items/cart') }}'">カートに追加</a></button>
+                <button type="submit" name="item">購入する</button>
             </form>
             {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
             @if (Auth::user()->isLike($item->id))

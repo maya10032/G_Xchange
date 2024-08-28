@@ -8,7 +8,7 @@
             <div class="alert alert-success text-center fw-bold">
                 {{ session('success') }}
             </div>
-        @elseif (session('update')) 
+        @elseif (session('update'))
             <div class="alert alert-info text-center fw-bold">
                 {{ session('update') }}
             </div>
