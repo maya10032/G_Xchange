@@ -11,6 +11,16 @@ Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 // 商品
 Route::resource('items', App\Http\Controllers\ItemController::class);
 
+// ユーザログイン後のみアクセス可
+Route::middleware('auth')->group(function () {
+    // ？？？
+    Route::resource('items', App\Http\Controllers\ItemController::class);
+    // お気に入り
+    Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes.index');
+    Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');
+    Route::delete('/likes', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');
+});
+
 // 管理ログイン画面
 Route::get('/admin-login', [AdminLoginController::class, 'create'])->name('admin.login');
 Route::post('/admin-login', [AdminLoginController::class, 'store'])->name('admin.login.store'); // 管理ログイン
