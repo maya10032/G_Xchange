@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Validator;
 
-class ItemController extends Controller
+class OrderController extends Controller
 {
     /**
      * 一覧ページ作成
@@ -16,30 +14,16 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
-        return view('items.index', ['items' => $items]);
+        $orders = Order::all();
+        return view('orders.index', ['orders' => $orders]);
     }
 
     /**
-     * 商品詳細ページ表示
+     * 購入ボタン押下後、ordersテーブルにデータ追加
      *
+     * @param Request $request
      * @return void
      */
-    public function show(Item $item)
-    {
-        return view('items.show', ['item' => $item]);
-    }
-
-    /**
-     * 新規追加フォーム表示
-     *
-     * @return void
-     */
-    public function create()
-    {
-        return view('create');
-    }
-
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -66,7 +50,6 @@ class ItemController extends Controller
         $item->message       = $request->message;
         $item->save();
         $request->session()->flash('success', '商品を登録しました');
-
         $request->user()->items()->create($request->all()); // 既存
 
         if ($request->validate->fails()) {
@@ -79,15 +62,7 @@ class ItemController extends Controller
             $image->move($upPath, $imgName);
             $input['image'] = "$imgName";
         }
-
         return redirect(route('items.index')); // 既存
-
         return redirect('/');
     }
-
-    public function edit() {}
-
-    public function update() {}
-
-    public function destroy() {}
 }

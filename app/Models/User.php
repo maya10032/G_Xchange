@@ -47,15 +47,13 @@ class User extends Authenticatable
         ];
     }
 
-
     public function likeItems()
-{
-  return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
-}
+    {
+        return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
+    }
 
-public function isLike($id)
-{
-  return $this->likeItems()->where('items.id', $id)->exists();
-}
-
+    public function isLike($item_id)
+    {
+        return $this->likeItems()->where('items.id', $item_id)->exists();
+    }
 }

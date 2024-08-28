@@ -7,20 +7,22 @@ use Illuminate\Http\Request;
 class LikeController extends Controller
 {
     public function index()
-{
-  $items = \Auth::user()->likeItems()->orderBy('created_at', 'desc')->get();
-  return view('likes.index', ['items' => $items]);
-}
+    {
+        $items = \Auth::user()->likeItems()->orderBy('created_at', 'desc')->get();
+        return view('likes.index', ['items' => $items]);
+    }
 
-public function store(Request $request)
-{// 多対多専用の「attach」ヘルパーでレコードに追加
-  \Auth::user()->likeItems()->attach($request->item_id);
-  return back();
-}
+    public function store(Request $request)
+    {
+        \Auth::user()->likeItems()->attach($request->item_id);
+        $request->session()->flash('likeadd', 'お気に入りに追加しました');
+        return back();
+    }
 
-public function destroy(Request $request)
-{// 「detach」ではマッチする対象レコードを削除
-  \Auth::user()->likeItems()->detach($request->item_id);
-  return back();
-}
+    public function destroy(Request $request)
+    {
+        \Auth::user()->likeItems()->detach($request->item_id);
+        $request->session()->flash('likedelete', 'お気に入りを削除しました');
+        return back();
+    }
 }

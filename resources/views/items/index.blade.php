@@ -8,7 +8,7 @@
             <div class="alert alert-success text-center fw-bold">
                 {{ session('success') }}
             </div>
-        @elseif (session('update'))
+        @elseif (session('update')) 
             <div class="alert alert-info text-center fw-bold">
                 {{ session('update') }}
             </div>
@@ -17,7 +17,7 @@
             <h2>商品一覧ページです</h2>
             @foreach ($items as $item)
                 <tr>
-                    <td><a href="{{ url('items/' . $item->id . '/show') }}">{{ $item->item_name }}</a></td>
+                    <td><a href="{{ route('items.show', $item->id)  }}">{{ $item->item_name }}</a></td>
                 </tr>
                 <tr>
                     <td>{{ $item->message }}</td>
