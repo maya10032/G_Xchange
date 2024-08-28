@@ -17,7 +17,6 @@
             <h2>商品一覧ページです</h2>
             @foreach ($items as $item)
                 <tr>
-                    {{-- <td><a href="{{ route('items.show', ['id' => $item->id]) }}">{{ $item->item_name }}</a></td> --}}
                     <td><a href="{{ url('items/' . $item->id . '/show') }}">{{ $item->item_name }}</a></td>
                 </tr>
                 <tr>
@@ -25,14 +24,6 @@
                 </tr>
             @endforeach
         </tbody>
-        </tbody>
-        {{-- <tfoot>
-            <tr>
-                <td colspan="7" class="bg-light pb-0">
-                    {{ $items->links() }}
-                </td>
-            </tr>
-        </tfoot> --}}
     </table>
 @endsection
 

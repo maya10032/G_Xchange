@@ -16,11 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('item_name', 50);
             $table->string('item_code', 50);
-            $table->integer('count_limit');
-            $table->integer('sales_price');
-            $table->integer('regular_price');
+            $table->integer('count_limit')->index();
+            $table->integer('sales_price')->index();
+            $table->integer('regular_price')->index();
             $table->text('message');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

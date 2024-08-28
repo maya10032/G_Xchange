@@ -24,6 +24,11 @@ class Item extends Model
         'message'
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(ItemCategory::class, 'category_id');
+    }
+
     public function images()
     {
         return $this->belongsToMany(Image::class, 'item_images')->using(ItemImage::class);
