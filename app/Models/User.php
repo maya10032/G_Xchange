@@ -46,4 +46,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * ユーザーは多数の注文を持つ
+     *
+     * @return void
+     */
+    public function OrderItem()
+    {
+        return $this->belongsToMany(Item::class, 'orders')->withTimestamps();
+    }
+
+    public function isOrder($item_id)
+    {
+        return $this->likeBooks()->where('items.id', $item_id)->exists();
+    }
 }
