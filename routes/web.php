@@ -37,6 +37,8 @@ Route::get('/items/{item}/show/', [App\Http\Controllers\ItemController::class, '
 // 管理者側（商品一覧）
 Route::get('/admin/items', [App\Http\Controllers\Admin\ItemController::class, 'index'])->name('admin.items.index');
 Route::get('/admin/items/{item}/show', [App\Http\Controllers\Admin\ItemController::class, 'show']); // 商品詳細
+Route::get('/admin/items/{item}/cere', [App\Http\Controllers\Admin\ItemController::class, 'edit']); // 商品編集
+
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
