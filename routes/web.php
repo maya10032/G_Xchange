@@ -11,10 +11,11 @@ Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 // 商品
 Route::resource('items', App\Http\Controllers\ItemController::class);
 
+Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+// 購入内容確認画面表示
+Route::get('/items/purchase/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('purchase.show');
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
-    // ？？？
-    Route::resource('items', App\Http\Controllers\ItemController::class);
     // お気に入り
     Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes.index');// 表示
     Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');// 追加

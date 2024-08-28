@@ -15,12 +15,14 @@ class CartController extends Controller
     public function store(Request $request)
     {
         \Auth::user()->cartItems()->attach($request->item_id);
+        $request->session()->flash('cartadd', 'カートに追加しました');
         return back();
     }
 
     public function destroy(Request $request)
     {
         \Auth::user()->cartItems()->detach($request->item_id);
+        $request->session()->flash('likeadd', 'カートに追加しました');
         return back();
     }
 }
