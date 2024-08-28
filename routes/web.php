@@ -4,18 +4,12 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AdminLoginController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', function () {return view('items/index');});
-Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// ユーザ 商品一覧
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
+Route::get('/items/{item}/show/', [App\Http\Controllers\ItemController::class, 'show']); // 商品詳細
+
 
 // 管理ログイン画面
 Route::get('/admin-login', [AdminLoginController::class, 'create'])->name('admin.login');
@@ -28,9 +22,6 @@ Route::middleware('auth:admin')->group(function () {
     })->name('admin.items.index');
 });
 
-// ユーザ 商品一覧
-Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
-Route::get('/items/{item}/show/', [App\Http\Controllers\ItemController::class, 'show']); // 商品詳細
 
 // 管理者側（商品一覧）
 Route::get('/admin/items', [App\Http\Controllers\Admin\ItemController::class, 'index'])->name('admin.items.index');
@@ -38,5 +29,4 @@ Route::get('/admin/items/{item}/show', [App\Http\Controllers\Admin\ItemControlle
 Route::get('/admin/items/{item}/cere', [App\Http\Controllers\Admin\ItemController::class, 'edit']); // 商品編集
 
 
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
