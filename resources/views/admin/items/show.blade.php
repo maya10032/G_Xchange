@@ -39,7 +39,7 @@
             <input class="form-control bg-light" disabled value="{{ number_format($item->sales_price) }}円">
         </div>
     </div>
-    <button><a href="{{ url('admin/items/cere') }}">編集画面へ</a>
+    <button><a href="{{ url('admin/items/' . $item->id . '/cere') }}">編集画面へ</a>
         <form action="{{ url('admin/items/' . $item->id) }}" method="post">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
