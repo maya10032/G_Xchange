@@ -27,14 +27,6 @@
             </div>
         @else
             {{-- 会員の場合 --}}
-
-            {{-- <div>
-                <button><a href="{{ url('cart/index') }}">カートに追加</a></button>
-                <form action="{{ url('items/' . $item->id) }}" method="post">
-                    <button type="submit">購入する</button>
-                </form>
-            </div> --}}
-
             {{-- カートに追加済みかを確認(trueは登録済みであれば) --}}
             @if (Auth::user()->isCart($item->id))
                 <form action="{{ route('carts.destroy') }}" method="post">
