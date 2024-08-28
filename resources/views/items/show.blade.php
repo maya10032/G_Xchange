@@ -4,6 +4,15 @@
 
 @section('content')
     <h2>商品詳細ページ</h2>
+    @if (session('likeadd'))
+            <div class="alert alert-success text-center fw-bold">
+                {{ session('likeadd') }}
+            </div>
+        @elseif (session('likedelete'))
+            <div class="alert alert-info text-center fw-bold">
+                {{ session('likedelete') }}
+            </div>
+        @endif
     <tbody>
         <p>カテゴリー：{{ $item->category_id }}</p>
         <p>商品名：{{ $item->item_name }}</p>
@@ -34,7 +43,22 @@
                 <input type="hidden" name="showMessage" value="1">
                 <button type="submit">購入する</button>
             </form>
-            <button type="submit">お気に入りに追加</button>
+            {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
+            @if (Auth::user()->isLike($item->id))
+                <form action="{{ route('likes.destroy') }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                    <button>{{ __('like') . __('delete') }}</button>
+                </form>
+                {{-- 登録済みでなければ追加ボタンを表示 --}}
+            @else
+                <form action="{{ route('likes.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                    <button>{{ __('like') . __('create') }}</button>
+                </form>
+            @endif
         @endif
     </tbody>
     <a href="{{ url('/') }}">商品一覧に戻る</a>

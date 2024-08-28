@@ -27,4 +27,13 @@ class ItemController extends Controller
         $item = Item::findOrFail($id);
         return view('admin.items.show', ['item' => $item]);
     }
+
+    /**
+     * 商品編集画面を表示（管理者）
+     */
+    public function edit($id)
+    {
+        $item = Item::findOrFail($id);
+        return view('admin.items.cere', ['item' => $item]);
+    }
 }

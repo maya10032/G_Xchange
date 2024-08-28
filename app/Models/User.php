@@ -47,18 +47,13 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * ユーザーは多数の注文を持つ
-     *
-     * @return void
-     */
-    public function OrderItem()
+    public function likeItems()
     {
-        return $this->belongsToMany(Item::class, 'orders')->withTimestamps();
+        return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
     }
 
-    public function isOrder($item_id)
+    public function isLike($item_id)
     {
-        return $this->likeBooks()->where('items.id', $item_id)->exists();
+        return $this->likeItems()->where('items.id', $item_id)->exists();
     }
 }
