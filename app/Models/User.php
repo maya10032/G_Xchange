@@ -47,6 +47,11 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * お気に入り追加
+     *
+     *
+     */
     public function likeItems()
     {
         return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
@@ -55,5 +60,20 @@ class User extends Authenticatable
     public function isLike($item_id)
     {
         return $this->likeItems()->where('items.id', $item_id)->exists();
+    }
+
+    /**
+     * カート追加
+     *
+     *
+     */
+    public function CartItems()
+    {
+        return $this->belongsToMany(Item::class, 'carts')->withTimestamps();
+    }
+
+    public function isCart($item_id)
+    {
+        return $this->cartItems()->where('items.id', $item_id)->exists();
     }
 }

@@ -16,9 +16,13 @@ Route::middleware('auth')->group(function () {
     // ？？？
     Route::resource('items', App\Http\Controllers\ItemController::class);
     // お気に入り
-    Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes.index');
-    Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');
-    Route::delete('/likes', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');
+    Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes.index');// 表示
+    Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');// 追加
+    Route::delete('/likes', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');// 削除
+    // カート
+    Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
+    Route::post('/carts', [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
+    Route::delete('/carts', [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
 });
 
 // 管理ログイン画面

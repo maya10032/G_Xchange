@@ -27,33 +27,50 @@
             </div>
         @else
             {{-- 会員の場合 --}}
-            <div>
-                <button><a href="{{ url('admin/items/cere') }}">カートに追加</a></button>
+
+            {{-- <div>
+                <button><a href="{{ url('cart/index') }}">カートに追加</a></button>
                 <form action="{{ url('items/' . $item->id) }}" method="post">
                     <button type="submit">購入する</button>
                 </form>
-            </div>
-            {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
-            @if (Auth::user()->isLike($item->id))
-                <form action="{{ route('likes.destroy') }}" method="post">
+            </div> --}}
+
+            {{-- カートに追加済みかを確認(trueは登録済みであれば) --}}
+            @if (Auth::user()->isCart($item->id))
+                <form action="{{ route('carts.destroy') }}" method="post">
                     @csrf
                     @method('delete')
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <button>{{ __('like') . __('delete') }}</button>
+                    <button>{{ __('cart') . __('delete') }}</button>
                 </form>
                 {{-- 登録済みでなければ追加ボタンを表示 --}}
             @else
-                <form action="{{ route('likes.store') }}" method="post">
+                <form action="{{ route('carts.store') }}" method="post">
                     @csrf
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <button>{{ __('like') . __('create') }}</button>
+                    <button>{{ __('cart') . __('create') }}</button>
                 </form>
             @endif
-            <p class="text-xs text-gray-500 mt-3">{{ __('navlike') }}</p>
-            </div>
-            </div>
+            <p class="text-xs text-gray-500 mt-3">{{ __('navcart') }}</p>
+
+        {{-- お気に入りに追加済みかを確認(trueは登録済みであれば) --}}
+        @if (Auth::user()->isLike($item->id))
+            <form action="{{ route('likes.destroy') }}" method="post">
+                @csrf
+                @method('delete')
+                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                <button>{{ __('like') . __('delete') }}</button>
+            </form>
+            {{-- 登録済みでなければ追加ボタンを表示 --}}
+        @else
+            <form action="{{ route('likes.store') }}" method="post">
+                @csrf
+                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                <button>{{ __('like') . __('create') }}</button>
+            </form>
         @endif
-        </div>
+        <p class="text-xs text-gray-500 mt-3">{{ __('navlike') }}</p>
+        @endif
     </tbody>
     <a href="{{ url('/') }}">商品一覧に戻る</a>
 @endsection
