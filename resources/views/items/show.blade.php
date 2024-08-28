@@ -45,9 +45,25 @@
                         @endforeach
                     @endif
                 </div>
-                <button type="button" onclick="window.location.href='{{ url('items/cart') }}'">カートに追加</a></button>
                 <button type="submit" name="item">購入する</button>
             </form>
+            {{-- カートに追加済みかを確認(trueは登録済みであれば) --}}
+            @if (Auth::user()->isCart($item->id))
+                <form action="{{ route('cart.destroy') }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                    <button>{{ __('cart') . __('delete') }}</button>
+                </form>
+                {{-- 登録済みでなければ追加ボタンを表示 --}}
+            @else
+                <form action="{{ route('carts.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                    <button>{{ __('cart') . __('create') }}</button>
+                </form>
+            @endif
+
             {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
             @if (Auth::user()->isLike($item->id))
                 <form action="{{ route('likes.destroy') }}" method="post">
