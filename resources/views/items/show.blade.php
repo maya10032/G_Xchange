@@ -1,11 +1,10 @@
 @extends('layouts.app')
-<!-- 1行で指定することも可能 -->
+
 @section('title', '商品詳細')
 
 @section('content')
     <h2>商品詳細ページ</h2>
-    <tbody>
-        @if (session('likeadd'))
+    @if (session('likeadd'))
             <div class="alert alert-success text-center fw-bold">
                 {{ session('likeadd') }}
             </div>
@@ -14,25 +13,36 @@
                 {{ session('likedelete') }}
             </div>
         @endif
-        <div class="form-group col-xs-12">
-            <div class="input-group mb-4">カテゴリー</div>
-            <input class="form-control bg-light" disabled value="{{ $item->item_name }}">
-            <input class="form-control bg-light" disabled value="{{ $item->regular_price }}円">
-            <P><input class="form-control bg-light" disabled value="{{ $item->sales_price }} 円">送料無料</P>
-        </div>
+    <tbody>
+        <p>カテゴリー：{{ $item->category_id }}</p>
+        <p>商品名：{{ $item->item_name }}</p>
+        {{-- 割引していないとき --}}
+        @if ($item->regular_price === $item->sales_price)
+            {{ $item->regular_price }}円
+        @else
+            {{-- 割引中の表示 --}}
+            <strike>
+                <p>{{ $item->regular_price }}円</p>
+            </strike>
+            <p>{{ $item->sales_price }} 円 送料無料</p>
+        @endif
         {{-- 一般ユーザーの場合 --}}
         @if (auth()->guest())
             <div>
-                <button><a href="{{ url('login/') }}">購入するにはログインしてください</button>
+                <a href="{{ url('login/') }}">購入するにはログインしてください</a>
             </div>
         @else
-            {{-- 会員の場合 --}}
-            <div>
-                <button><a href="{{ url('admin/items/cere') }}">カートに追加</a></button>
-                <form action="{{ url('items/' . $item->id) }}" method="post">
-                    <button type="submit">購入する</button>
-                </form>
-            </div>
+            <form action="{{ route('items.purchase', ['item' => $item->id]) }}" method="POST">
+                <div>
+                    数量：<input type="number" min="1" max="{{ $item->count_limit }}" name="count"
+                        value="{{ old('count') }}">
+                </div>
+                {{-- 会員の場合 --}}
+                <button><a href="{{ url('items/cart') }}">カートに追加</a></button>
+                @csrf
+                <input type="hidden" name="showMessage" value="1">
+                <button type="submit">購入する</button>
+            </form>
             {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
             @if (Auth::user()->isLike($item->id))
                 <form action="{{ route('likes.destroy') }}" method="post">
@@ -49,11 +59,7 @@
                     <button>{{ __('like') . __('create') }}</button>
                 </form>
             @endif
-            <p class="text-xs text-gray-500 mt-3">{{ __('navlike') }}</p>
-            </div>
-            </div>
         @endif
-        </div>
     </tbody>
     <a href="{{ url('/') }}">商品一覧に戻る</a>
 @endsection

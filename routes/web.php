@@ -11,6 +11,9 @@ Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 // 商品
 Route::resource('items', App\Http\Controllers\ItemController::class);
 
+Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+// 購入内容確認画面表示
+Route::get('/items/purchase/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('purchase.show');
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
     // ？？？
