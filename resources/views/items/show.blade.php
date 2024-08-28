@@ -14,29 +14,23 @@
             </div>
         @endif
         <tbody>
-            <h2>商品詳細ページです</h2>
-                {{-- <tr>
-                    <td>{{ $item->item_name }}</td>
-                </tr>
-                <tr>
-                    <td>{{ $item->message }}</td>
-                </tr> --}}
+            <h2>商品詳細ページ</h2>
                 <div class="form-group col-xs-12">
                     <div class="input-group mb-4">カテゴリー</div>
                     <input class="form-control bg-light" disabled value="{{ $item->item_name }}">
-                    <input class="form-control bg-light" disabled value="{{ $item->regular_price }}">
-                    <P><input class="form-control bg-light" disabled value="{{ $item->sales_price }}">送料無料</P>
+                    <input class="form-control bg-light" disabled value="{{ $item->regular_price }}円">
+                    <P><input class="form-control bg-light" disabled value="{{ $item->sales_price }} 円">送料無料</P>
+                </div>
+                <div>
+                    <button><a href="{{ url('admin/items/cere') }}">カートに追加</a></button>
+                    <form action="{{ url('admin/items/' . $item->id) }}" method="post">
+                        <button type="submit">購入する</button>
+                        <button type="submit">お気に入りに追加</button>
+                    </form>
                 </div>
         </tbody>
-        </tbody>
-        {{-- <tfoot>
-            <tr>
-                <td colspan="7" class="bg-light pb-0">
-                    {{ $items->links() }}
-                </td>
-            </tr>
-        </tfoot> --}}
     </table>
+    <a href="{{ url('/') }}">商品一覧に戻る</a>
 @endsection
 
 {{-- {{ Debugbar::log($items->toArray()) }} --}}

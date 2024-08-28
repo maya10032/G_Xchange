@@ -30,8 +30,6 @@ Route::middleware('auth:admin')->group(function () {
 
 // ユーザ 商品一覧
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
-// ユーザ 商品詳細
-// Route::get('/show/{id}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
 Route::get('/items/{item}/show/', [App\Http\Controllers\ItemController::class, 'show']); // 商品詳細
 
 // 管理者側（商品一覧）
