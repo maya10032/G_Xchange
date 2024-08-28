@@ -3,21 +3,24 @@
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AdminLoginController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Auth::routes();
 
-// ユーザ 商品一覧
+// ユーザ・会員
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
-// 商品
 Route::resource('items', App\Http\Controllers\ItemController::class);
-
 Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
-// 購入内容確認画面表示
-Route::get('/items/purchase/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('purchase.show');
+
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
-    // ？？？
-    Route::resource('items', App\Http\Controllers\ItemController::class);
+    // 購入内容確認画面表示
+    Route::get('/items/purchase/{item}', [ItemController::class, 'showPurchase'])->name('items.purchase');
+    // 購入数引き継ぎ
+    Route::post('/items/purchase/{item}', [ItemController::class, 'confirmPurchase'])->name('items.purchase.confirm');
+    // 注文
+    Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/complete', [App\Http\Controllers\OrderController::class, 'complete'])->name('orders.complete');
     // お気に入り
     Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes.index');
     Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');

@@ -47,6 +47,9 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * お気に入り
+     */
     public function likeItems()
     {
         return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
