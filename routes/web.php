@@ -18,8 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/purchase/{item}', [ItemController::class, 'showPurchase'])->name('items.purchase');
     // 購入数引き継ぎ
     Route::post('/items/purchase/{item}', [ItemController::class, 'confirmPurchase'])->name('items.purchase.confirm');
-    // 注文
+    // 注文テーブルにデータ追加
     Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+    // 購入完了画面表示
     Route::get('/orders/complete', [App\Http\Controllers\OrderController::class, 'complete'])->name('orders.complete');
     // お気に入り
     Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes.index');
