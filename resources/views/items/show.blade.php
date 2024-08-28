@@ -4,6 +4,7 @@
 
 @section('content')
     <h2>商品詳細ページ</h2>
+    {{-- お気に入り通知 --}}
     @if (session('likeadd'))
         <div class="alert alert-success text-center fw-bold">
             {{ session('likeadd') }}
@@ -32,11 +33,20 @@
                 <a href="{{ url('login/') }}">購入するにはログインしてください</a>
             </div>
         @else
-            <div>
-                数量：<input type="number" min="1" max="{{ $item->count_limit }}" name="count"
-                    value="{{ old('count') }}">
-            </div>
             {{-- 会員の場合 --}}
+            <form action="{{ url('/items/purchase', $item->id) }}" method="POST" class="form-horizontal">
+                @csrf
+                <div>
+                    数量：<input type="number" max="100" name="count" value="{{ old('count', 1) }}">
+                    {{-- 購入数のエラーメッセージの表示 --}}
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    @endif
+                </div>
+                <button type="submit" name="item">購入する</button>
+            </form>
             {{-- カートに追加済みかを確認(trueは登録済みであれば) --}}
             @if (Auth::user()->isCart($item->id))
                 <form action="{{ route('cart.destroy') }}" method="post">
@@ -54,9 +64,7 @@
                 </form>
             @endif
 
-            <button type="submit">購入する</button>
-
-            {{-- お気に入りに追加済みかを確認(trueは登録済みであれば) --}}
+            {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
             @if (Auth::user()->isLike($item->id))
                 <form action="{{ route('likes.destroy') }}" method="post">
                     @csrf

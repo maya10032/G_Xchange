@@ -48,9 +48,13 @@ class User extends Authenticatable
     }
 
     /**
+<<<<<<< HEAD
      * お気に入り追加
      *
      *
+=======
+     * お気に入り
+>>>>>>> c668935e61842a0483291b34ad5f63e9980d15c3
      */
     public function likeItems()
     {
