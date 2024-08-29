@@ -10,7 +10,8 @@ Auth::routes();
 // ユーザ・会員
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
-Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+Route::get('/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+// Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
 // お問い合わせページ
 Route::get('/contact',         [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
 Route::post('/contact',         [App\Http\Controllers\ContactsController::class, 'post'])->name('contact.post');
@@ -18,13 +19,12 @@ Route::get('/contact/confirm', [App\Http\Controllers\ContactsController::class, 
 Route::post('/contact/confirm', [App\Http\Controllers\ContactsController::class, 'send'])->name('contact.send');
 Route::get('/contact/done',    [App\Http\Controllers\ContactsController::class, 'done'])->name('contact.done');
 
-
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
     // 購入内容確認画面表示
-    Route::get('/items/purchase/{item}', [ItemController::class, 'showPurchase'])->name('items.purchase');
-    // 購入数引き継ぎ
-    Route::post('/items/purchase/{item}', [ItemController::class, 'confirmPurchase'])->name('items.purchase.confirm');
+    Route::get('/purchase/{item}', [App\Http\Controllers\ItemController::class, 'purchase'])->name('items.purchase');
+    // 購入確認画面へのPOSTリクエストで数量引き継ぎ
+    Route::post('/purchase/{item}', [App\Http\Controllers\ItemController::class, 'purchaseConfirm'])->name('items.purchaseConfirm');
     // 注文
     Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/complete', [App\Http\Controllers\OrderController::class, 'complete'])->name('orders.complete');
@@ -33,8 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store'); // 追加
     Route::delete('/likes', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy'); // 削除
     // カートに追加
-    Route::post('/items/purchase/{item}', [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
-    // カート一覧表示のルートを追加
+    Route::post('/purchase/{item}', [App\Http\Controllers\CartController::class, 'handleAction'])->name('purchase.handle');
+    // Route::post('/cart/store/{item}', [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
+    // カート一覧表示
     Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
     // 購入履歴表示（マイページ）
     Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
@@ -57,4 +58,4 @@ Route::get('/admin/items/{item}/show', [App\Http\Controllers\Admin\ItemControlle
 Route::get('/admin/items/{item}/cere', [App\Http\Controllers\Admin\ItemController::class, 'edit']); // 商品編集
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

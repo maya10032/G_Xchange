@@ -38,22 +38,20 @@
             </div>
         @else
             {{-- 会員の場合 --}}
-            <form action="{{ url('/items/purchase', $item->id) }}" method="POST" class="form-horizontal">
+            <form action="{{ url('/purchase', $item->id) }}" method="POST" class="form-horizontal">
                 @csrf
                 <div>
-                    数量：<input type="number" max="100" name="count" value="{{ old('count', 1) }}">
+                    数量：<input type="number" name="count" min="1" max="$item->count_limit"
+                        value="{{ old('count', 1) }}">
                     {{-- 購入数のエラーメッセージの表示 --}}
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                        @endforeach
-                    @endif
+                    @foreach ($errors->all() as $error)
+                        <p>※{{ $error }}</p>
+                    @endforeach
                 </div>
                 <input type="hidden" name="item_id" value="{{ $item->id }}">
                 <button type="submit" name="action" value="cart">カートに追加</button>
-                <button type="submit" name="action" value="purchase">購入する</button>
+                <button type="submit" name="action" value="purchase">購入ページへ</button>
             </form>
-
             {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
             @if (Auth::user()->isLike($item->id))
                 <form action="{{ route('likes.destroy') }}" method="post">
