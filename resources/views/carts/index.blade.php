@@ -7,14 +7,25 @@
     @if ($carts->isEmpty())
         <p>カートに商品がありません。</p>
     @else
+        @php
+            $total = 0;
+        @endphp
         @foreach ($carts as $cart)
-            <ul>
-                <li>商品：{{ $cart->cart_name }}</li>
-                <li>数量：{{ $cart->count }} 個</li>
-                <li>金額：{{ $cart->sales_price * $cart->count }} 円</商品>
-                </li>
-            </ul>
+            @php
+                $subtotal = $cart->item->sales_price * $cart->count;
+                $total += $subtotal;
+            @endphp
+            <tbody>
+                <table>
+                    <tr>
+                        <td>商品名：<a href="{{ route('items.show', $cart->item->id) }}">{{ $cart->item->item_name }}</td>
+                        <td>数量：{{ $cart->count }} 個</td>
+                        <td>金額：{{ $subtotal }} 円</td>
+                    </tr>
+                </table>
+            </tbody>
         @endforeach
+        <h3>合計金額：{{ $total }} 円</h3>
         {{-- <a href="{{ route('purchase.confirm') }}">購入へ進む</a> --}}
     @endif
 @endsection

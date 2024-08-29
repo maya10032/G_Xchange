@@ -14,4 +14,14 @@ class Cart extends Model
         'item_id',
         'count'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }
