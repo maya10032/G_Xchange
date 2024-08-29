@@ -10,9 +10,11 @@ class CartController extends Controller
 
     public function index()
     {
-        // ログインユーザーのカートアイテムを取得
-        $carts = \Auth::user()->cartItems()->orderBy('created_at', 'desc')->get();
-        return view('carts.index', ['carts' => $carts]);
+        //cartsテーブルのデータ取得
+        $carts = Cart::with('item')
+            ->where('user_id', \Auth::user()->id)
+            ->get();
+        return view('carts.index', compact('carts'));
     }
 
     /**
