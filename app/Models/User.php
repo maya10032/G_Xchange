@@ -43,7 +43,7 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
     }
 
@@ -61,11 +61,9 @@ class User extends Authenticatable
     }
 
     /**
-     * カート追加
-     *
-     *
+     * カート
      */
-    public function CartItems()
+    public function cartItems()
     {
         return $this->belongsToMany(Item::class, 'carts')->withTimestamps();
     }

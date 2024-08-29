@@ -11,7 +11,7 @@
         <p>カテゴリー：{{ $item->category_id }}</p>
         <p>商品名：{{ $item->item_name }}</p>
         <p>商品説明：{{ $item->message }}</p>
-        <p>商品画像が入る予定</p>
+        <p>商品画像</p>
 
         {{-- 割引していないとき --}}
         @if ($item->regular_price === $item->sales_price)

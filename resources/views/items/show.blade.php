@@ -13,6 +13,10 @@
         <div class="alert alert-info text-center fw-bold">
             {{ session('likedelete') }}
         </div>
+    @elseif (session('cartadd'))
+        <div class="alert alert-info text-center fw-bold">
+            {{ session('cartadd') }}
+        </div>
     @endif
     <tbody>
         <p>カテゴリー：{{ $item->category_id }}</p>
@@ -45,24 +49,10 @@
                         @endforeach
                     @endif
                 </div>
-                <button type="submit" name="item">購入する</button>
+                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                <button type="submit" name="action" value="cart">カートに追加</button>
+                <button type="submit" name="action" value="purchase">購入する</button>
             </form>
-            {{-- カートに追加済みかを確認(trueは登録済みであれば) --}}
-            @if (Auth::user()->isCart($item->id))
-                <form action="{{ route('cart.destroy') }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <button>{{ __('cart') . __('delete') }}</button>
-                </form>
-                {{-- 登録済みでなければ追加ボタンを表示 --}}
-            @else
-                <form action="{{ route('carts.store') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <button>{{ __('cart') . __('create') }}</button>
-                </form>
-            @endif
 
             {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
             @if (Auth::user()->isLike($item->id))

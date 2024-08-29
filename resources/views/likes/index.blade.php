@@ -1,6 +1,11 @@
-<h1>お気に入り一覧画面</h1>
+@extends('layouts.app')
+
+@section('title', '商品詳細')
+
+@section('content')
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
+        <h1>お気に入り一覧画面</h1>
         <div class="flex flex-wrap -m-4">
             {{-- お気に入りが空だったら --}}
             @if (count($items) == 0)
@@ -41,3 +46,4 @@
         </div>
     </div>
 </section>
+@endsection
