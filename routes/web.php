@@ -22,13 +22,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/complete', [App\Http\Controllers\OrderController::class, 'complete'])->name('orders.complete');
     // お気に入り
-    Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes.index');// 表示
-    Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');// 追加
-    Route::delete('/likes', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');// 削除
-    // カート
+    Route::get('/likes', [App\Http\Controllers\LikeController::class, 'index'])->name('likes.index'); // 表示
+    Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store'); // 追加
+    Route::delete('/likes', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy'); // 削除
+    // カートに追加
+    Route::post('/items/purchase/{item}', [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
+    // カート一覧表示のルートを追加
     Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
-    Route::post('/carts', [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
-    Route::delete('/carts', [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
 });
 
 // 管理ログイン画面
