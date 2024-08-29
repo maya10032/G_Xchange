@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     /**
-     * 一覧ページ作成
+     * 購入履歴一覧ページ作成
      *
      * @return void
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('orders.index', ['orders' => $orders]);
+        $items = \Auth::user()->OrderItems()->orderBy('created_at', 'desc')->get();
+        return view('orders.index', ['items' => $items]);
     }
 
     /**

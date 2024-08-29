@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
     Route::post('/carts', [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
     Route::delete('/carts', [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
+    // 購入履歴表示（マイページ）
+    Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
 });
 
 // 管理ログイン画面

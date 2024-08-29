@@ -48,13 +48,7 @@ class User extends Authenticatable
     }
 
     /**
-<<<<<<< HEAD
-     * お気に入り追加
-     *
-     *
-=======
      * お気に入り
->>>>>>> c668935e61842a0483291b34ad5f63e9980d15c3
      */
     public function likeItems()
     {
@@ -79,5 +73,20 @@ class User extends Authenticatable
     public function isCart($item_id)
     {
         return $this->cartItems()->where('items.id', $item_id)->exists();
+    }
+
+    /**
+     * 購入履歴
+     *
+     *
+     */
+    public function OrderItems()
+    {
+        return $this->belongsToMany(Item::class, 'orders')->withTimestamps();
+    }
+
+    public function isOrder($item_id)
+    {
+        return $this->orderItems()->where('items.id', $item_id)->exists();
     }
 }
