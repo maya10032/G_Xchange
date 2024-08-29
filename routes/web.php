@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/items/purchase/{item}', [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
     // カート一覧表示のルートを追加
     Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
+    // 購入履歴表示（マイページ）
+    Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
 });
 
 // 管理ログイン画面

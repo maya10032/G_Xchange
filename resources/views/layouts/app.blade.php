@@ -57,6 +57,9 @@
                                 <a class="nav-link" href="{{ route('carts.index') }}">{{ __('cart') }}</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('orders.index') }}">{{ __('order') }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('likes.index') }}">{{ __('like') }}</a>
                             </li>
                             <li class="nav-item dropdown">
