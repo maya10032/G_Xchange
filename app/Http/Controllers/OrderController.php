@@ -3,33 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     /**
-     * 購入履歴一覧ページ作成
+     * 一覧ページ作成
      *
      * @return void
      */
     public function index()
     {
-        $items = \Auth::user()->OrderItems()->orderBy('created_at', 'desc')->get();
-        return view('orders.index', ['items' => $items]);
-    }
-
-
-    /**
-     * 購入履歴詳細ページ表示
-     *
-     * @return void
-     */
-    public function show(Item $item)
-    {
-        return view('orders.show', [
-            'item' => $item,
+        //odersテーブルのデータ取得
+        $orders = Order::with('item')
+        ->where('user_id', \Auth::user()->id)
+        ->get();
+        return view('orders.index', [
+            'orders' => $orders,
         ]);
     }
+
 
     /**
      * 購入ボタン押下後、ordersテーブルに登録

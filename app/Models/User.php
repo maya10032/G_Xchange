@@ -75,16 +75,9 @@ class User extends Authenticatable
 
     /**
      * 購入履歴
-     *
-     *
      */
-    public function OrderItems()
+    public function orders()
     {
-        return $this->belongsToMany(Item::class, 'orders')->withTimestamps();
-    }
-
-    public function isOrder($item_id)
-    {
-        return $this->orderItems()->where('items.id', $item_id)->exists();
+        return $this->hasMany('App\Models\Order');
     }
 }

@@ -11,6 +11,13 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
 Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+// お問い合わせページ
+Route::get('/contact',         [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
+Route::post('/contact',         [App\Http\Controllers\ContactsController::class, 'post'])->name('contact.post');
+Route::get('/contact/confirm', [App\Http\Controllers\ContactsController::class, 'confirm'])->name('contact.confirm');
+Route::post('/contact/confirm', [App\Http\Controllers\ContactsController::class, 'send'])->name('contact.send');
+Route::get('/contact/done',    [App\Http\Controllers\ContactsController::class, 'done'])->name('contact.done');
+
 
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
@@ -31,8 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
     // 購入履歴表示（マイページ）
     Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
-    Route::get('/orders/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('orders.show');// 詳細表示
-
 });
 
 // 管理ログイン画面
