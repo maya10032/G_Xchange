@@ -28,7 +28,10 @@
                                         <td>合計:{{ $order->item->sales_price * $order->count }}円</td>
                                     </tr>
                                     <tr>
-                                        {{-- <td><a href="{{ route('items.show', $item->id) }}">詳細</td> --}}
+                                            <td>
+                                                <button>詳細</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                 @endforeach
                             </tbody>

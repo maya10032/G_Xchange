@@ -37,6 +37,7 @@ return [
     'dimensions'           => ':attributeの画像サイズが不正です。',
     'distinct'             => '指定された:attributeは既に存在しています。',
     'email'                => ':attributeには正しい形式のメールアドレスを指定してください。',
+    'body'                => ':attributeは必須です。',
     'exists'               => '指定された:attributeは存在しません。',
     'file'                 => ':attributeにはファイルを指定してください。',
     'filled'               => ':attributeには空でない値を指定してください。',
@@ -113,13 +114,16 @@ return [
     */
 
     'attributes' => [
-        "name"             => "お名前",
         "phone"            => "電話番号",
         "address"          => "住所",
         "email Address"    => "メールアドレス",
         "password"         => "パスワード",
         "confirm Password" => "パスワード(確認用)",
         "remember Me"      => "ログイン状態を保存",
+        'name'             => '氏名',
+        'email'            => 'メールアドレス',
+        'title'            => 'お問い合わせ項目',
+        'body'             => 'お問い合わせ内容'
     ],
 
 ];
