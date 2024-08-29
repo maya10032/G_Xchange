@@ -28,7 +28,14 @@
                                         <td>合計:円</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="{{ route('items.show', $item->id) }}">詳細</td>
+                                        <form action="{{ route('orders.show, $order->id') }}" method="post">
+                                            <td>
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                                <button>詳細</button>
+                                            </td>
+                                        </form>
                                     </tr>
                                 @endforeach
                             </tbody>

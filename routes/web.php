@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
     // 購入履歴表示（マイページ）
     Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('orders.show');// 詳細表示
+
 });
 
 // 管理ログイン画面

@@ -18,6 +18,19 @@ class OrderController extends Controller
         return view('orders.index', ['items' => $items]);
     }
 
+
+    /**
+     * 購入履歴詳細ページ表示
+     *
+     * @return void
+     */
+    public function show(Item $item)
+    {
+        return view('orders.show', [
+            'item' => $item,
+        ]);
+    }
+
     /**
      * 購入ボタン押下後、ordersテーブルに登録
      *
@@ -53,5 +66,4 @@ class OrderController extends Controller
     {
         return view('orders.complete');
     }
-    
 }
