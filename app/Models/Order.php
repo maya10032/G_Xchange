@@ -16,7 +16,11 @@ class Order extends Model
     ];
     public function user()
     {
-        // お気に入りはユーザに属している
         return $this->belongsTo(User::class);
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
     }
 }

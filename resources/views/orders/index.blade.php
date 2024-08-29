@@ -19,19 +19,17 @@
                         <table>
                             <tbody>
                                 @foreach ($orders as $order)
-                                @foreach ($items as $item)
                                     <tr>
-                                        <td><a href="{{ route('items.show', $item->id) }}">{{ $item->item_name }}</td>
+                                        <td><a href="{{ route('items.show', $order->item->id) }}">{{ $order->item->item_name }}</td>
                                     </tr>
                                     <tr>
                                         <td>注文日:<span style="color: red">{{ $order->created_at }}</span></td>
                                         <td>注文番号:<span style="color: red">{{ $order->id }}</span></td>
-                                        <td>合計:{{ $item->sales_price * $order->count }}円</td>
+                                        <td>合計:{{ $order->item->sales_price * $order->count }}円</td>
                                     </tr>
                                     <tr>
                                         {{-- <td><a href="{{ route('items.show', $item->id) }}">詳細</td> --}}
                                     </tr>
-                                @endforeach
                                 @endforeach
                             </tbody>
                         </table>

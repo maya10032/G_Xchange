@@ -15,11 +15,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        $items = Item::all();
+        //odersテーブルのデータ取得
+        $orders = Order::with('item')
+        ->where('user_id', \Auth::user()->id)
+        ->get();
         return view('orders.index', [
             'orders' => $orders,
-            'items' => $items
         ]);
     }
 
