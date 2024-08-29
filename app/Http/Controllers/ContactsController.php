@@ -99,7 +99,7 @@ class ContactsController extends Controller
         }
 
         // フォームに入力されたメール宛てに送信処理
-        $mailer->to($input['email'])->send(new Contact());
+        $mailer->to($input['email'])->send(new Contact($input));
 
         // forgetでセッション変数を空にする
         $request->session()->forget('form_input');
