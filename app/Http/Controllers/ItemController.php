@@ -44,12 +44,10 @@ class ItemController extends Controller
 
     /**
      * 購入確認画面の表示
-     *
-     * @param Item $item
-     * @return void
      */
-    public function showPurchase(Item $item)
+    public function purchase(Item $item)
     {
+        // 購入内容確認画面を表示する処理
         return view('items.purchase', compact('item'));
     }
 
@@ -60,19 +58,11 @@ class ItemController extends Controller
      * @param Item $item
      * @return void
      */
-    public function confirmPurchase(Request $request, Item $item)
+    public function purchaseConfirm(Request $request, Item $item)
     {
-        // バリデーション
-        $request->validate([
-            'count' => 'required|integer|min:1|max:' . $item->count_limit,
-        ], [
-            'count.required' => '数量を入力してください。',
-            'count.integer'  => '数量は数字で入力してください。',
-            'count.min'      => '数量は1以上である必要があります。',
-            'count.max'      => '一度に購入できるのは ' . $item->count_limit . ' 個までです。',
-        ]);
-        // 入力値をビューに渡す
-        $count = $request->input('count');
+        // リクエストから 'count' の値を取得
+        $count = $request->input('count'); // リクエストから数量を取得
+        // ビューに $item と $count を渡す
         return view('items.purchase', compact('item', 'count'));
     }
 }

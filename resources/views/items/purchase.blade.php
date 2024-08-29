@@ -5,7 +5,6 @@
 @section('content')
     <h2>購入内容確認ページ</h2>
     <h2>※内容をご確認の上、購入するを押してください。</h2>
-
     <form action="{{ route('orders.store') }}" method="POST">
         @csrf
         <p>カテゴリー：{{ $item->category_id }}</p>
@@ -24,9 +23,9 @@
             <p>{{ $item->sales_price }} 円 送料無料</p>
         @endif
 
-        <p>数量：{{ $count ?? 1 }}</p>
+        <p>数量：{{ $count }}</p>
         <input type="hidden" name="item_id" value="{{ $item->id }}">
-        <input type="hidden" name="count" value="{{ $count ?? 1 }}">
+        <input type="hidden" name="count" value="{{ $count }}">
 
         <button type="submit">購入する</button>
     </form>

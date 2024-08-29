@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Item;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -17,8 +18,8 @@ class OrderController extends Controller
     {
         //odersテーブルのデータ取得
         $orders = Order::with('item')
-        ->where('user_id', \Auth::user()->id)
-        ->get();
+            ->where('user_id', \Auth::user()->id)
+            ->get();
         return view('orders.index', [
             'orders' => $orders,
         ]);
@@ -30,7 +31,7 @@ class OrderController extends Controller
      * @param Request $request
      * @return void
      */
-    public function store(Request $request)
+    public function store(Request $request, Item $item)
     {
         // バリデーションを追加
         $request->validate([
@@ -38,11 +39,8 @@ class OrderController extends Controller
             'count'   => 'required|integer|min:1',
         ]);
 
-        // 認証済みユーザー
-        $user = \Auth::user();
-
         $order = new Order;
-        $order->user_id = $user->id;
+        $order->user_id = Auth::id();
         $order->item_id = $request->item_id;
         $order->count   = $request->count;
         $order->save();
