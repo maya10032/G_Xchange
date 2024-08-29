@@ -25,6 +25,7 @@ class OrderController extends Controller
         ]);
     }
 
+
     /**
      * 購入ボタン押下後、ordersテーブルに登録
      *

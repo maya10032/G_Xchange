@@ -41,6 +41,9 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact"><i class="fa fa-wpforms"></i> お問い合わせ</a>
+                            </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -53,6 +56,9 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact"><i class="fa fa-wpforms"></i> お問い合わせ</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('carts.index') }}">{{ __('cart') }}</a>
                             </li>

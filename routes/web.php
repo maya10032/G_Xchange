@@ -11,6 +11,13 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
 Route::get('/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+// Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+// お問い合わせページ
+Route::get('/contact',         [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
+Route::post('/contact',         [App\Http\Controllers\ContactsController::class, 'post'])->name('contact.post');
+Route::get('/contact/confirm', [App\Http\Controllers\ContactsController::class, 'confirm'])->name('contact.confirm');
+Route::post('/contact/confirm', [App\Http\Controllers\ContactsController::class, 'send'])->name('contact.send');
+Route::get('/contact/done',    [App\Http\Controllers\ContactsController::class, 'done'])->name('contact.done');
 
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
