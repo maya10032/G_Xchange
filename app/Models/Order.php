@@ -14,4 +14,9 @@ class Order extends Model
         'item_id',
         'count'
     ];
+    public function user()
+    {
+        // お気に入りはユーザに属している
+        return $this->belongsTo(User::class);
+    }
 }

@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     /**
-     * 購入履歴一覧ページ作成
+     * 一覧ページ作成
      *
      * @return void
      */
     public function index()
     {
-        $items = \Auth::user()->OrderItems()->orderBy('created_at', 'desc')->get();
-        return view('orders.index', ['items' => $items]);
+        $orders = Order::all();
+        $items = Item::all();
+        return view('orders.index', [
+            'orders' => $orders,
+            'items' => $items
+        ]);
     }
 
     /**

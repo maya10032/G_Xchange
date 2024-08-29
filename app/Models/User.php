@@ -80,7 +80,7 @@ class User extends Authenticatable
      */
     public function OrderItems()
     {
-        return $this->belongsToMany(Item::class, 'orders')->withTimestamps();
+        return $this->belongsToMany(User::class, 'orders')->withTimestamps();
     }
 
     public function isOrder($item_id)
