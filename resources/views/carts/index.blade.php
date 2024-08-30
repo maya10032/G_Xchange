@@ -26,6 +26,6 @@
             </tbody>
         @endforeach
         <h3>合計金額：{{ $total }} 円</h3>
-        {{-- <a href="{{ route('purchase.confirm') }}">購入へ進む</a> --}}
+        <button type="submit">まとめて購入する</button>
     @endif
 @endsection
