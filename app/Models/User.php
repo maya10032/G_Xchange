@@ -73,7 +73,8 @@ class User extends Authenticatable
      */
     public function cartItems()
     {
-        return $this->belongsToMany(Item::class, 'carts')->withTimestamps();
+        // withPivotメソッドを使って、countカラムを取得
+        return $this->belongsToMany(Item::class, 'carts')->withPivot('count')->withTimestamps();
     }
 
     public function isCart($item_id)

@@ -39,12 +39,11 @@ class OrderController extends Controller
         if ($action === 'allbuy') {
             $user = Auth::user();
             $cartItems = $user->cartItems;
-
             foreach ($cartItems as $cartItem) {
                 Order::create([
                     'user_id' => $user->id,
                     'item_id' => $cartItem->id,
-                    'count' => $cartItem->pivot->count, // カートの数量を使用
+                    'count'   => $cartItem->pivot->count, // カートの数量を使用（中間テーブルのフィールドにアクセス）
                 ]);
             }
 
@@ -53,7 +52,6 @@ class OrderController extends Controller
 
             // 注文完了画面にリダイレクト
             return redirect()->route('orders.complete');
-
         } else {
             // バリデーションを追加
             $request->validate([
