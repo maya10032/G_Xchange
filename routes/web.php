@@ -41,7 +41,9 @@ Route::middleware('auth')->group(function () {
     // 購入履歴表示（マイページ）
     Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
     // 会員情報変更表示
-    Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user.index');
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 // 管理ログイン画面
