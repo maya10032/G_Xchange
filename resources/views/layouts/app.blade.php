@@ -42,6 +42,9 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> 商品一覧</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-wpforms"></i> お問い合わせ</a>
                             </li>
                             @if (Route::has('login'))
@@ -56,6 +59,12 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> 商品一覧</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user"><i class="fa fa-wpforms"></i> マイページ</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-wpforms"></i> お問い合わせ</a>
                             </li>
