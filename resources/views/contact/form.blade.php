@@ -8,7 +8,7 @@
         @include('common.errors')
     @endif --}}
 
-    <form method="post" action="{{ route('contact.post') }}">
+    <form method="post" action="{{ route('contact.post') }}" novalidate>
         <!-- ディレクティブでCSRFを指定 -->
         @csrf
 

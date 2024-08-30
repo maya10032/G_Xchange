@@ -21,15 +21,18 @@
     <tbody>
         <p>カテゴリー：{{ $item->category_id }}</p>
         <p>商品名：{{ $item->item_name }}</p>
+        @php
+            $taxRate = config('tax.rate'); // 税率10%
+        @endphp
         {{-- 割引していないとき --}}
         @if ($item->regular_price === $item->sales_price)
-            {{ $item->regular_price }}円
+            {{ number_format($item->regular_price * (1 + $taxRate)) }}円（税込）送料無料
         @else
             {{-- 割引中の表示 --}}
             <strike>
-                <p>{{ $item->regular_price }}円</p>
+                <p>{{ number_format($item->regular_price * (1 + $taxRate)) }}円</p>
             </strike>
-            <p>{{ $item->sales_price }} 円 送料無料</p>
+            <p>{{ number_format($item->sales_price * (1 + $taxRate)) }} 円（税込）送料無料</p>
         @endif
         {{-- 一般ユーザーの場合 --}}
         @if (auth()->guest())
