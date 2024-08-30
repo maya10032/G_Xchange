@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+    protected $taxRate = 0.1; // プロパティとして税率を定義
 
     public function index()
     {
@@ -17,7 +18,15 @@ class CartController extends Controller
             ->where('user_id', \Auth::user()->id)
             ->orderBy('created_at', 'DESC')
             ->get();
-        return view('carts.index', compact('carts'));
+
+        // 合計金額の計算
+        $total = $carts->reduce(function ($carry, $cart) {
+            $subtotal = $cart->item->sales_price * $cart->count;
+            $priceWithTax = $subtotal * (1 + $this->taxRate);
+            return $carry + $priceWithTax;
+        }, 0);
+
+        return view('carts.index', compact('carts', 'total'));
     }
 
     /**
@@ -85,7 +94,7 @@ class CartController extends Controller
         if ($cart) {
             // レコードを削除
             $cart->pivot->delete();
-            return redirect()->route('carts.index')->with('success', 'カートから商品を削除しました。');
+            return redirect()->route('carts.index')->with('deleted', 'カートから商品を削除しました。');
         }
     }
 }

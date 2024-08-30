@@ -9,21 +9,30 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    protected $taxRate = 0.1; // プロパティとして税率を定義
+
     /**
      * 一覧ページ作成
      *
      * @return void
      */
-    public function index()
+    public function index(Item $item)
     {
         //odersテーブルのデータ取得、新しい順で表示
         $orders = Order::with('item')
             ->where('user_id', \Auth::user()->id)
             ->orderBy('created_at', 'DESC')
             ->get();
-        return view('orders.index', [
-            'orders' => $orders,
-        ]);
+
+        // 小計合計の計算
+        $ordersWithTax = $orders->map(function ($order) {
+            // 小計（税込み）を計算
+            $subtotal = $order->item->sales_price * $order->count;
+            $order->priceWithTax = $subtotal * (1 + $this->taxRate);
+            return $order;
+        });
+
+        return view('orders.index', compact('orders', 'ordersWithTax'));
     }
 
 

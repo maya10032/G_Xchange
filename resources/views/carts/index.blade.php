@@ -8,37 +8,38 @@
         <p>カートに商品がありません。</p>
     @else
         <tbody>
-            @if (session('success'))
+            @if (session('deleted'))
                 <div class="alert alert-info text-center fw-bold">
-                    {{ session('success') }}
+                    {{ session('deleted') }}
                 </div>
             @endif
-            @php
-                $total = 0;
-            @endphp
-            @foreach ($carts as $cart)
-                @php
-                    $subtotal = $cart->item->sales_price * $cart->count; // 小計
-                    $taxRate = config('tax.rate'); // 税率10%
-                    $priceWithTax = $subtotal * (1 + $taxRate); // 小計税込み
-                    $total += $priceWithTax; // 合計
-                @endphp
-                <table>
+            <table>
+                <thead>
                     <tr>
-                        <td>商品名：<a href="{{ route('items.show', $cart->item->id) }}">{{ $cart->item->item_name }}</td>
-                        <td>数量：{{ $cart->count }} 個</td>
-                        <td>金額：{{ number_format($priceWithTax) }} 円（税込）</td>
-                        <td>
-                            <form action="{{ route('carts.destroy', $cart->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <input type="hidden" name="item_id" value="{{ $cart->item->id }}">
-                                <button>{{ __('delete') }}</button>
-                            </form>
-                        </td>
+                        <th>商品名</th>
+                        <th>数量</th>
+                        <th>小計</th>
+                        <th></th>
                     </tr>
-                </table>
-            @endforeach
+                </thead>
+                <tbody>
+                    @foreach ($carts as $cart)
+                        <tr>
+                            <td><a href="{{ route('items.show', $cart->item->id) }}">{{ $cart->item->item_name }}</td>
+                            <td>{{ $cart->count }} 個</td>
+                            <td>{{ number_format($cart->item->sales_price * $cart->count * (1 + config('tax.rate', 0.1))) }}
+                                円（税込）</td>
+                            <td>
+                                <form action="{{ route('carts.destroy', $cart->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit">{{ __('delete') }}</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
             <h3>合計金額：{{ number_format($total) }} 円（税込）</h3>
             <form action="{{ route('orders.store') }}" method="POST">
                 @csrf
