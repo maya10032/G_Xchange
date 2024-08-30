@@ -9,6 +9,9 @@ use Validator;
 
 class ItemController extends Controller
 {
+
+    protected $taxRate = 0.1; // プロパティとして税率を定義
+
     /**
      * 一覧ページ作成
      *
@@ -17,7 +20,7 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('items.index', ['items' => $items]);
+        return view('items.index', compact('items'));
     }
 
     /**
@@ -27,9 +30,10 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('items.show', [
-            'item' => $item,
-        ]);
+        // 通常価格と割引価格を計算
+        $regularPriceWithTax = $item->regular_price * (1 + $this->taxRate);
+        $salesPriceWithTax = $item->sales_price * (1 + $this->taxRate);
+        return view('items.show', compact('item', 'regularPriceWithTax', 'salesPriceWithTax'));
     }
 
     /**
