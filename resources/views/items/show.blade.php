@@ -46,6 +46,7 @@
                 <div>
                     数量：<input type="number" name="count" min="1" max="$item->count_limit"
                         value="{{ old('count', 1) }}">
+                    <p>※一度に購入できるのは{{ $item->count_limit }}個までです。</p>
                     {{-- 購入数のエラーメッセージの表示 --}}
                     @foreach ($errors->all() as $error)
                         <p>※{{ $error }}</p>

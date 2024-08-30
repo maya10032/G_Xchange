@@ -16,9 +16,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //odersテーブルのデータ取得
+        //odersテーブルのデータ取得、新しい順で表示
         $orders = Order::with('item')
             ->where('user_id', \Auth::user()->id)
+            ->orderBy('created_at', 'DESC')
             ->get();
         return view('orders.index', [
             'orders' => $orders,
@@ -34,19 +35,40 @@ class OrderController extends Controller
      */
     public function store(Request $request, Item $item)
     {
-        // バリデーションを追加
-        $request->validate([
-            'item_id' => 'required|exists:items,id',
-            'count'   => 'required|integer|min:1',
-        ]);
+        $action = $request->input('action');
+        if ($action === 'allbuy') {
+            $user = Auth::user();
+            $cartItems = $user->cartItems;
 
-        $order = new Order;
-        $order->user_id = Auth::id();
-        $order->item_id = $request->item_id;
-        $order->count   = $request->count;
-        $order->save();
-        // 注文完了画面にリダイレクト
-        return redirect()->route('orders.complete');
+            foreach ($cartItems as $cartItem) {
+                Order::create([
+                    'user_id' => $user->id,
+                    'item_id' => $cartItem->id,
+                    'count' => $cartItem->pivot->count, // カートの数量を使用
+                ]);
+            }
+
+            // カートを空にする
+            $user->cartItems()->detach();
+
+            // 注文完了画面にリダイレクト
+            return redirect()->route('orders.complete');
+
+        } else {
+            // バリデーションを追加
+            $request->validate([
+                'item_id' => 'required|exists:items,id',
+                'count'   => 'required|integer|min:1',
+            ]);
+
+            $order = new Order;
+            $order->user_id = Auth::id();
+            $order->item_id = $request->item_id;
+            $order->count   = $request->count;
+            $order->save();
+            // 注文完了画面にリダイレクト
+            return redirect()->route('orders.complete');
+        }
     }
 
     /**

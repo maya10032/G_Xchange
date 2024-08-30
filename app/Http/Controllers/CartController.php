@@ -15,11 +15,15 @@ class CartController extends Controller
         //cartsテーブルのデータ取得
         $carts = Cart::with('item')
             ->where('user_id', \Auth::user()->id)
+            ->orderBy('created_at', 'DESC')
             ->get();
         return view('carts.index', compact('carts'));
     }
 
-    public function handleAction(Request $request, Item $item)
+    /**
+     * 同じ
+     */
+    public function store(Request $request, Item $item)
     {
         // バリデーション
         $request->validate([
@@ -29,27 +33,44 @@ class CartController extends Controller
             'count.required' => '数量を入力してください。',
             'count.integer'  => '数量は数字で入力してください。',
             'count.min'      => '数量は1以上である必要があります。',
-            'count.max'      => '一度に購入できるのは ' . $item->count_limit . ' 個までです。',
+            'count.max'      => '一度に購入できる数を超えています。',
         ]);
 
         $action = $request->input('action');
 
         if ($action === 'cart') {
-            // カートに追加する処理
-            $cart          = new Cart;
-            $cart->user_id = Auth::id();
-            $cart->item_id = $request->item_id;
-            $cart->count   = $request->count;
-            $cart->save();
+            $user = auth()->user(); // ログインしているユーザーを取得
+            $item_id = $request->input('item_id');
+            $count = $request->input('count');
 
-            $request->session()->flash('cartadd', 'カートに商品を追加しました');
-            return back();
+            // 既にカートに同じ商品があるか確認
+            $existingCart = Cart::where('user_id', $user->id)
+                ->where('item_id', $item_id)
+                ->first();
+
+            if ($existingCart) {
+                // 既存のカートがあれば数量を増加
+                $existingCart->count += $count;
+                $existingCart->save();
+                $request->session()->flash('cartadd', 'カートに商品を追加しました');
+                return back();
+            } else {
+                // カートに新しいアイテムを追加
+                Cart::create([
+                    'user_id' => $user->id,
+                    'item_id' => $item_id,
+                    'count' => $count,
+                ]);
+                $request->session()->flash('cartadd', 'カートに商品を追加しました');
+                return back();
+            }
         } elseif ($action === 'purchase') {
             // 購入ページへのリダイレクト
             $count = $request->input('count');
             return view('items.purchase', compact('item', 'count'));
         }
     }
+
     /**
      * カートの商品削除
      *
