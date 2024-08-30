@@ -39,7 +39,7 @@ class ContactsController extends Controller
     function post(Request $request): object
     {
         // onlyで入力値のキーと値を取得
-        $input = $request->only($this->contactItems);
+        $input     = $request->only($this->contactItems);
 
         $validator = Validator::make($input, $this->validator);
 

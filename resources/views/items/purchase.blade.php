@@ -13,14 +13,17 @@
         <p>商品画像</p>
 
         {{-- 割引していないとき --}}
+        @php
+            $taxRate = config('tax.rate'); // 税率10%
+        @endphp
         @if ($item->regular_price === $item->sales_price)
-            <p>{{ $item->regular_price }}円</p>
+            <p>{{ number_format($item->regular_price * (1 + $taxRate)) }}円</p>
         @else
             {{-- 割引中の表示 --}}
             <strike>
-                <p>{{ $item->regular_price }}円</p>
+                <p>{{ number_format($item->regular_price * (1 + $taxRate)) }}円</p>
             </strike>
-            <p>{{ $item->sales_price }} 円 送料無料</p>
+            <p>{{ number_format($item->sales_price * (1 + $taxRate)) }} 円 送料無料</p>
         @endif
 
         <p>数量：{{ $count }}</p>

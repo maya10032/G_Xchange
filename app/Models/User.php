@@ -61,19 +61,6 @@ class User extends Authenticatable
     }
 
     /**
-     * カート
-     */
-    public function cartItems()
-    {
-        return $this->belongsToMany(Item::class, 'carts')->withTimestamps();
-    }
-
-    public function isCart($item_id)
-    {
-        return $this->cartItems()->where('items.id', $item_id)->exists();
-    }
-
-    /**
      * 購入履歴
      */
     public function orders()
@@ -84,8 +71,13 @@ class User extends Authenticatable
     /**
      * カート
      */
-    public function carts()
+    public function cartItems()
     {
-        return $this->hasMany('App\Models\Cart');
+        return $this->belongsToMany(Item::class, 'carts')->withTimestamps();
+    }
+
+    public function isCart($item_id)
+    {
+        return $this->cartItems()->where('items.id', $item_id)->exists();
     }
 }
