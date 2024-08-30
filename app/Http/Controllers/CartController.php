@@ -47,8 +47,24 @@ class CartController extends Controller
         } elseif ($action === 'purchase') {
             // 購入ページへのリダイレクト
             $count = $request->input('count');
-            // return redirect()->route('items.purchase', ['item' => $item->id]);
             return view('items.purchase', compact('item', 'count'));
+        }
+    }
+    /**
+     * カートの商品削除
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function destroy($id)
+    {
+        // cartsテーブルのIDでレコードを取得
+        $cart = auth()->user()->cartItems()->wherePivot('id', $id)->first();
+
+        if ($cart) {
+            // レコードを削除
+            $cart->pivot->delete();
+            return redirect()->route('carts.index')->with('success', 'カートから商品を削除しました。');
         }
     }
 }
