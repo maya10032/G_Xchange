@@ -19,7 +19,7 @@
             @foreach ($carts as $cart)
                 @php
                     $subtotal = $cart->item->sales_price * $cart->count; // 小計
-                    $taxRate = config('tax.rate');  // 税率10%
+                    $taxRate = config('tax.rate'); // 税率10%
                     $priceWithTax = $subtotal * (1 + $taxRate); // 小計税込み
                     $total += $priceWithTax; // 合計
                 @endphp
@@ -40,7 +40,10 @@
                 </table>
             @endforeach
             <h3>合計金額：{{ number_format($total) }} 円（税込）</h3>
-            <button type="submit">まとめて購入する</button>
+            <form action="{{ route('orders.store') }}" method="POST">
+                @csrf
+                <button type="submit" name="action" value="allbuy">まとめて購入する</button>
+            </form>
         </tbody>
     @endif
 @endsection

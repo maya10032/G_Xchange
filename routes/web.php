@@ -33,9 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store'); // 追加
     Route::delete('/likes', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy'); // 削除
     // カートに追加
-    Route::post('/purchase/{item}', [App\Http\Controllers\CartController::class, 'handleAction'])->name('purchase.handle');
+    Route::post('/purchase/{item}', [App\Http\Controllers\CartController::class, 'store'])->name('purchase.store');
     // カート一覧表示
     Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
+    // まとめて購入
+    Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
     // カートの商品削除
     Route::delete('/carts/{id}', [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
     // 購入履歴表示（マイページ）
