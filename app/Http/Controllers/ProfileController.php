@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -28,6 +29,13 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
+        $user = $request->user();
+        // 現在のパスワードと一致するか確認
+        if (!Hash::check($request->password, $user->password)) {
+            // return redirect()->back()->with('say', '現在のパスワードが間違っています。');
+            $request->session()->flash('ConfirmPassword', 'パスワードが違います');
+            return back();
+        }
 
         if ($request->user()->isDirty('name')) {
             $request->user()->name_verified_at = null;
@@ -40,7 +48,7 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
-
+        $request->session()->flash('update', '保存しました');
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 

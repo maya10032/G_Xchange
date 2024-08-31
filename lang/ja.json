@@ -40,6 +40,11 @@
     "order":    "購入履歴",
     "noorder":  "購入履歴が見つかりません",
 
-    "item_name":  "商品名"
+    "item_name":  "商品名",
+
+    "profile":  "会員情報変更",
+    "withdrawal":  "退会"
+
+
 
     }
