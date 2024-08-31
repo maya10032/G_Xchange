@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    use HasFactory;
+
+    protected $fillable = ['item_id', 'image_path'];
+
     public function item()
     {
         // 1つのアイテムに属する
