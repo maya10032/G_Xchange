@@ -29,6 +29,16 @@ class ItemController extends Controller
     }
 
     /**
+     * 商品新規追加フォーム表示
+     *
+     * @return void
+     */
+    public function create()
+    {
+        return view('admin.items.create');
+    }
+
+    /**
      * 商品編集画面を表示（管理者）
      */
     public function edit($id)

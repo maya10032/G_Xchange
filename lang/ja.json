@@ -40,6 +40,14 @@
     "order":    "購入履歴",
     "noorder":  "購入履歴が見つかりません",
 
-    "item_name":  "商品名"
+    "item_list":  "商品一覧",
+    "item_name":  "商品名",
+    "new_item":  "新規商品登録",
+
+
+
+    "admin_Login":  "管理者ログイン",
+    "admin_Register":  "管理者新規登録",
+    "admin_Logout":  "ログアウト"
 
     }
