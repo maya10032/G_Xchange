@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\Auth\RegisterController;
+use App\Http\Controllers\Admin\ItemController as AdminItemController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\AdminLoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -10,7 +12,8 @@ Auth::routes();
 // ユーザ・会員
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
-Route::get('/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+// Route::get('/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
 // Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
 // お問い合わせページ
 Route::get('/contact',         [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
@@ -48,21 +51,21 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// 管理ログイン画面
-Route::get('/admin-login', [AdminLoginController::class, 'create'])->name('admin.login');
-Route::post('/admin-login', [AdminLoginController::class, 'store'])->name('admin.login.store'); // 管理ログイン
-Route::delete('/admin-login', [AdminLoginController::class, 'destroy'])->name('admin.login.destroy');
-// 管理ログイン後のみアクセス可
-Route::middleware('auth:admin')->group(function () {
-    Route::get('/admin.items.index', function () {
-        return view('admin.items.index');
-    })->name('admin.items.index');
+// 管理ログイン・新規登録
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('register', [RegisterController::class, 'register']);
 });
 
-// 管理者側（商品一覧）
-Route::get('/admin/items', [App\Http\Controllers\Admin\ItemController::class, 'index'])->name('admin.items.index');
-Route::get('/admin/items/{item}/show', [App\Http\Controllers\Admin\ItemController::class, 'show']); // 商品詳細
-Route::get('/admin/items/{item}/cere', [App\Http\Controllers\Admin\ItemController::class, 'edit']); // 商品編集
-
-
+// 管理者ログイン後のみアクセス可
+Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
+    // 管理者側（商品一覧）
+    Route::get('items', [App\Http\Controllers\Admin\ItemController::class, 'index'])->name('items.index');
+    Route::get('items/create', [App\Http\Controllers\Admin\ItemController::class, 'create'])->name('items.create');
+    Route::get('items/{item}/show', [App\Http\Controllers\Admin\ItemController::class, 'show'])->name('items.show');
+    Route::get('items/{item}/edit', [App\Http\Controllers\Admin\ItemController::class, 'edit'])->name('items.edit');
+});
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

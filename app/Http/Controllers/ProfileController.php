@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Validator;
@@ -35,6 +36,7 @@ class ProfileController extends Controller
             // return redirect()->back()->with('say', '現在のパスワードが間違っています。');
             $request->session()->flash('ConfirmPassword', 'パスワードが違います');
             return back();
+            return redirect()->back()->with('say', '現在のパスワードが間違っています。');
         }
 
         if ($request->user()->isDirty('name')) {

@@ -37,37 +37,41 @@
                 <a href="{{ url('login/') }}">購入するにはログインしてください</a>
             </div>
         @else
-            {{-- 会員の場合 --}}
-            <form action="{{ url('/purchase', $item->id) }}" method="POST" class="form-horizontal">
-                @csrf
-                <div>
-                    数量：<input type="number" name="count" min="1" max="$item->count_limit"
-                        value="{{ old('count', 1) }}">
-                    <p>※一度に購入できるのは{{ $item->count_limit }}個までです。</p>
-                    {{-- 購入数のエラーメッセージの表示 --}}
-                    @foreach ($errors->all() as $error)
-                        <p>※{{ $error }}</p>
-                    @endforeach
-                </div>
-                <input type="hidden" name="item_id" value="{{ $item->id }}">
-                <button type="submit" name="action" value="cart">カートに追加</button>
-                <button type="submit" name="action" value="purchase">購入ページへ</button>
-            </form>
-            {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
-            @if (Auth::user()->isLike($item->id))
-                <form action="{{ route('likes.destroy') }}" method="post">
+            @if ($item->is_active)
+                {{-- 会員の場合 --}}
+                <form action="{{ url('/purchase', $item->id) }}" method="POST" class="form-horizontal">
                     @csrf
-                    @method('delete')
+                    <div>
+                        数量：<input type="number" name="count" min="1" max="$item->count_limit"
+                            value="{{ old('count', 1) }}">
+                        <p>※一度に購入できるのは{{ $item->count_limit }}個までです。</p>
+                        {{-- 購入数のエラーメッセージの表示 --}}
+                        @foreach ($errors->all() as $error)
+                            <p>※{{ $error }}</p>
+                        @endforeach
+                    </div>
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <button>{{ __('like') . __('delete') }}</button>
+                    <button type="submit" name="action" value="cart">カートに追加</button>
+                    <button type="submit" name="action" value="purchase">購入ページへ</button>
                 </form>
-                {{-- 登録済みでなければ追加ボタンを表示 --}}
+                {{-- お気に入りが追加済みかを確認(trueは登録済みであれば) --}}
+                @if (Auth::user()->isLike($item->id))
+                    <form action="{{ route('likes.destroy') }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                        <button>{{ __('like') . __('delete') }}</button>
+                    </form>
+                    {{-- 登録済みでなければ追加ボタンを表示 --}}
+                @else
+                    <form action="{{ route('likes.store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                        <button>{{ __('like') . __('create') }}</button>
+                    </form>
+                @endif
             @else
-                <form action="{{ route('likes.store') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="item_id" value="{{ $item->id }}">
-                    <button>{{ __('like') . __('create') }}</button>
-                </form>
+            <h2>現在販売していません</h2>
             @endif
         @endif
         <a href="{{ url('/') }}">商品一覧に戻る</a>

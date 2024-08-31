@@ -18,8 +18,14 @@
                     <tr>
                         <th>注文番号：</th>
                         <td style="color: red">{{ $order->id }}</td>
-                        <th>商品名：</th>
-                        <td><a href="{{ route('items.show', $order->item->id) }}">{{ $order->item->item_name }}
+                        <td>
+                            @if ($order->item->is_active)
+                                <a href="{{ route('items.show', $order->item->id) }}">{{ $order->item->item_name }}</a>
+                            @else
+                                <a href="{{ route('items.show', $order->item->id) }}">{{ $order->item->item_name }}</a> <span
+                                    class="text-danger">（現在販売していません）</span>
+                            @endif
+                        </td>
                         <th>注文日：</th>
                         <td style="color: red">{{ $order->created_at }}</td>
                         <th>数量：</th>
