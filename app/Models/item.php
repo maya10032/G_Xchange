@@ -24,4 +24,13 @@ class Item extends Model
         'message'
     ];
 
+    public function images()
+    {
+        return $this->hasMany(Image::class); // 複数の画像と関連付け（今回は最大４枚）
+    }
+
+    public function thumbnail()
+    {
+        return $this->hasOne(Image::class)->where('is_thumbnail', true); // サムネイル画像のみ取得
+    }
 }

@@ -19,7 +19,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        // 販売中がtrueの商品だけ表示
+        $items = Item::where('is_active', true)->get();
         return view('items.index', compact('items'));
     }
 
