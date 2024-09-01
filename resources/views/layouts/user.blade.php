@@ -42,19 +42,22 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> 商品一覧</a>
+                            <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/contact"><i class="fa fa-wpforms"></i> お問い合わせ</a>
+                            <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i> {{ __('contact') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('carts.index') }}">{{ __('cart') }}</a>
+                            <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart"></i>
+                                {{ __('cart') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('orders.index') }}">{{ __('order') }}</a>
+                            <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-history"></i>
+                                {{ __('order') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('likes.index') }}">{{ __('like') }}</a>
+                            <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart-o"></i>
+                                {{ __('like') }}</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -65,8 +68,8 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('ja.Logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -92,7 +95,7 @@
                     <a class="nav-link" href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('profile.edit') }}">{{ __('withdrawal') }}</a>
+                    <a class="nav-link" href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
                 </li>
             </ul>
             @yield('content')

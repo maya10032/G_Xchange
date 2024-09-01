@@ -81,6 +81,4 @@ class User extends Authenticatable
     {
         return $this->cartItems()->where('items.id', $item_id)->exists();
     }
-
-
 }

@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up()
 {
+    if (!Schema::hasTable('users')) {
     Schema::table('users', function (Blueprint $table) {
         $table->timestamp('name_verified_at')->nullable();
     });
+}
 }
 
 public function down()
