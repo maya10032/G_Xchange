@@ -38,11 +38,6 @@ class CartController extends Controller
         $request->validate([
             'item_id' => 'required|exists:items,id',
             'count'   => 'required|integer|min:1|max:' . $item->count_limit,
-        ], [
-            'count.required' => '数量を入力してください。',
-            'count.integer'  => '数量は数字で入力してください。',
-            'count.min'      => '数量は1以上である必要があります。',
-            'count.max'      => '一度に購入できる数を超えています。',
         ]);
 
         $action = $request->input('action');

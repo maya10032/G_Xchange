@@ -26,7 +26,7 @@ class Item extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class); // 複数の画像と関連付け（今回は最大４枚）
+        return $this->belongsToMany(Image::class, 'Item_images')->using(ItemImage::class);
     }
 
     public function thumbnail()
