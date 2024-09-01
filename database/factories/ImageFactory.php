@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
@@ -24,7 +24,7 @@ class ImageFactory extends Factory
         }
         return [
             // アップロード時のサイズは固定
-            'img_path' => $this->faker->image(storage_path('app/public/images'), 320, 240, null, false)
+            'img_path' => $this->faker->image(storage_path('app/public/images'), 100, 100, null, false)
         ];
     }
 }

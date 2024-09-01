@@ -9,11 +9,11 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['item_id', 'image_path'];
+    protected $fillable = ['img_path'];
 
-    public function item()
+    public function items()
     {
         // 1つのアイテムに属する
-        return $this->belongsTo(Item::class);
+        return $this->belongsToMany(Item::class, 'item_images');
     }
 }

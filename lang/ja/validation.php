@@ -37,7 +37,7 @@ return [
     'dimensions'           => ':attributeの画像サイズが不正です。',
     'distinct'             => '指定された:attributeは既に存在しています。',
     'email'                => ':attributeには正しい形式のメールアドレスを指定してください。',
-    'body'                => ':attributeは必須です。',
+    'body'                 => ':attributeは必須です。',
     'exists'               => '指定された:attributeは存在しません。',
     'file'                 => ':attributeにはファイルを指定してください。',
     'filled'               => ':attributeには空でない値を指定してください。',
@@ -100,6 +100,54 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'count' => [
+            'max'      => '一度に購入できる数を超えています。',
+        ],
+        'item_code' => [
+            'required' => '商品コードは必須です。',
+            'max'      => '商品コードは50文字以内で入力してください。',
+        ],
+        'item_name' => [
+            'required' => '商品名は必須です。',
+            'max'      => '商品名は50文字以内で入力してください。',
+        ],
+        'count_limit' => [
+            'required' => '最大注文数は必須です。',
+            'integer'  => '最大注文数は数値で入力してください。',
+            'min'      => '最大注文数は1以上である必要があります。',
+        ],
+        'sales_price' => [
+            'required' => '販売価格は必須です。',
+            'integer'  => '販売価格は数値で入力してください。',
+            'min'      => '販売価格は1以上である必要があります。',
+        ],
+        'regular_price' => [
+            'integer'  => '通常価格は数値で入力してください。',
+            'min'      => '通常価格は1以上である必要があります。',
+        ],
+        'message' => [
+            'required' => '商品説明は必須です。',
+            'max'      => '商品説明は500文字以内で入力してください。',
+        ],
+        'images' => [
+            'required' => '画像は必須です。',
+            'array'    => '画像は配列として送信してください。',
+            'min'      => '画像は1枚以上選択してください。',
+            'max'      => '画像は最大4枚まで選択できます。',
+            'image'    => '画像ファイルを選択してください。',
+            'mimes'    => 'JPEG, PNG, JPG, GIF, SVG形式の画像ファイルを選択してください。',
+            'max'      => '画像ファイルのサイズは2MB以下である必要があります。',
+        ],
+        'images.*' => [
+            'image'    => 'アップロードされたファイルは画像形式である必要があります。',
+            'mimes'    => '画像はjpeg, png, jpg, gif, svg形式でアップロードしてください。',
+            'max'      => '各画像のサイズは2MB以下にしてください。',
+        ],
+        'thumbnail' => [
+            'required' => 'サムネイル画像を選択してください。',
+            'integer'  => 'サムネイルの選択が正しくありません。',
+            'between'  => 'サムネイルは0から3の間で選択してください。',
+        ],
     ],
 
     /*
@@ -123,7 +171,18 @@ return [
         'name'             => '氏名',
         'email'            => 'メールアドレス',
         'title'            => 'お問い合わせ項目',
-        'body'             => 'お問い合わせ内容'
+        'body'             => 'お問い合わせ内容',
+        'item_code'        => '商品コード',
+        'item_name'        => '商品名',
+        'category_id'      => 'カテゴリー',
+        'count_limit'      => '最大注文数',
+        'sales_price'      => '販売価格',
+        'regular_price'    => '通常価格',
+        'message'          => '商品説明',
+        'images'           => '画像',
+        'thumbnail'        => 'サムネイル',
+        'item_id'          => '商品ID',
+        'count'            => '数量'
     ],
 
 ];

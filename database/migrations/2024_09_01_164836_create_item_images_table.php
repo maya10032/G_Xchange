@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('item_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained()->onDelete('cascade'); // itemsテーブルと紐づけ
-            $table->string('image_path'); // 画像のパス
-            $table->boolean('is_thumbnail')->default(false); // サムネイルかどうかのフラグ
+            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');
+            $table->foreignId('image_id')->constrained('images')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('item_images');
     }
 };
