@@ -8,7 +8,7 @@
     <form action="{{ route('admin.items.post') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
         <table class="table">
-            <tr>
+            {{-- <tr>
                 <td>商品コード ※必須</td>
                 <td>
                     <input type="text" class="form-control @error('item_code') is-invalid @enderror" id="item_code"
@@ -69,7 +69,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </td>
-            </tr>
+            </tr> --}}
             <tr>
                 <td>画像をアップロード (最大4枚) ※必須
                     <div>※画像は100x100ピクセルで表示されます</div>
@@ -88,7 +88,7 @@
                     </div>
                     {{-- 画像アップロードフォーム --}}
                     <input type="file" class="form-control @error('images') is-invalid @enderror" id="images"
-                        name="images[]" multiple accept="image/*">
+                        name="images[]" multiple accept="image/*" value="{{ old('file_paths') }}">
                     {{-- サムネイル画像(thumbnail)を保存、0で最初の画像を指定 --}}
                     <input type="hidden" id="thumbnail" name="thumbnail" value="0">
                     @if ($errors->any())
@@ -102,7 +102,7 @@
                     @endif
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td>商品説明 ※必須</td>
                 <td>
                     <textarea name="message" class="form-control @error('message') is-invalid @enderror" rows="10">
@@ -112,7 +112,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </td>
-            </tr>
+            </tr> --}}
         </table>
         <button type="submit" class="btn btn-primary">登録内容確認</button>
     </form>

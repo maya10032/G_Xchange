@@ -43,11 +43,11 @@ class ItemController extends Controller
         // セッションから入力データを取得
         $item_data = $request->session()->get('item_data', []);
         // カテゴリーを取得
-        $categories = Category::all();
+        // $categories = Category::all();
         // ビューにデータを渡す
         return view('admin.items.create', [
             'item_data'  => $item_data,
-            'categories' => $categories,
+            // 'categories' => $categories,
         ]);
     }
 
@@ -59,13 +59,13 @@ class ItemController extends Controller
     {
         // バリデーション
         $validated = $request->validate([
-            'item_code'     => 'required|string|max:255',
-            'item_name'     => 'required|string|max:255',
-            'category_id'   => 'required',
-            'count_limit'   => 'required|integer',
-            'sales_price'   => 'required|integer',
-            'regular_price' => 'integer',
-            'message'       => 'required|nullable|string',
+            // 'item_code'     => 'required|string|max:255',
+            // 'item_name'     => 'required|string|max:255',
+            // 'category_id'   => 'required',
+            // 'count_limit'   => 'required|integer',
+            // 'sales_price'   => 'required|integer',
+            // 'regular_price' => 'integer',
+            // 'message'       => 'required|nullable|string',
             'images'        => 'required|array|min:1|max:4',
             'images.*'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'thumbnail'     => 'required|integer|between:0,3',
@@ -86,8 +86,8 @@ class ItemController extends Controller
         unset($sessionData['images']);
         $request->session()->put('item_data', $sessionData);
 
-        $categories = Category::all();
-        $request->session()->put('categories', $categories);
+        // $categories = Category::all();
+        // $request->session()->put('categories', $categories);
 
         return redirect()->action([ItemController::class, 'confirm']);
     }
@@ -102,20 +102,25 @@ class ItemController extends Controller
     {
         // セッションから値を取り出す
         $filePaths  = $request->session()->get('file_paths', []);
-        $input      = $request->session()->get('item_data');
-        $categories = Category::all();
+        $input      = $request->session()->get('item_data', []);
+        if (!$input) {
+            return redirect()->route('admin.items.create')->with('error', '無効なアクセスです');
+        }
+
+        $filePaths = $input['file_paths'] ?? [];
+        // $categories = Category::all();
 
         // 税込み価格の計算
-        $regularPriceWithTax = $input['regular_price'] * (1 + $this->taxRate);
-        $salesPriceWithTax = $input['sales_price'] * (1 + $this->taxRate);
+        // $regularPriceWithTax = $input['regular_price'] * (1 + $this->taxRate);
+        // $salesPriceWithTax = $input['sales_price'] * (1 + $this->taxRate);
 
         // セッションに値が無ければフォームに戻す
         return view('admin.items.confirm', [
             'filePaths'  => $filePaths,
             'item_data'  => $input,
-            'categories' => $categories,
-            'regularPriceWithTax' => $regularPriceWithTax,
-            'salesPriceWithTax' => $salesPriceWithTax,
+            // 'categories' => $categories,
+            // 'regularPriceWithTax' => $regularPriceWithTax,
+            // 'salesPriceWithTax' => $salesPriceWithTax,
         ]);
     }
 
@@ -126,8 +131,9 @@ class ItemController extends Controller
     {
         // 戻るボタン押下でフォームに戻る
         if ($request->input('back') == 'back') {
-            return redirect('/admin/items/create')
-                ->withInput();
+            $request->session()->put('file_paths', $request->input('file_paths', []));
+            return redirect()->route('admin.items.create')
+                ->withInput($request->except('file_paths'));
         }
         // セッションからデータを取得
         $input = $request->session()->get('item_data');
@@ -135,16 +141,16 @@ class ItemController extends Controller
             return redirect()->route('admin.items.create')->with('error', '無効なアクセスです。');
         }
         // 商品の登録
-        $item = Item::create([
-            'category_id'   => $input['category_id'],
-            'item_name'     => $input['item_name'],
-            'item_code'     => $input['item_code'],
-            'count_limit'   => $input['count_limit'],
-            'sales_price'   => $input['sales_price'],
-            'regular_price' => $input['regular_price'],
-            'message'       => $input['message'],
-            'is_active'     => $request->input('is_active', 1),
-        ]);
+        // $item = Item::create([
+        //     'category_id'   => $input['category_id'],
+        //     'item_name'     => $input['item_name'],
+        //     'item_code'     => $input['item_code'],
+        //     'count_limit'   => $input['count_limit'],
+        //     'sales_price'   => $input['sales_price'],
+        //     'regular_price' => $input['regular_price'],
+        //     'message'       => $input['message'],
+        //     'is_active'     => $request->input('is_active', 1),
+        // ]);
 
         $filePaths = $request->input('file_paths', []);
         if (empty($filePaths)) {
@@ -163,7 +169,7 @@ class ItemController extends Controller
         // `item_images` テーブルに商品と画像の関連付けを保存
         foreach ($imageIds as $imageId) {
             ItemImage::create([
-                'item_id'   => $item->id,
+                // 'item_id'   => $item->id,
                 'image_id'  => $imageId,
             ]);
         }
