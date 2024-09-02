@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("images"); // input name="images"の要素を取得
     const preview    = document.getElementById("preview"); // preview表示するところ
 
+    console.log(imageInput); // null でないか確認
+    console.log(preview); // null でないか確認
+
     // ファイル選択をされたとき
     imageInput.addEventListener("change", function () {
         // preview初期化

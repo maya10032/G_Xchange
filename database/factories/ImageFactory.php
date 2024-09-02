@@ -24,7 +24,7 @@ class ImageFactory extends Factory
         }
         return [
             // アップロード時のサイズは固定
-            'img_path' => $this->faker->image(storage_path('app/public/images'), 100, 100, null, false)
+            'img_path' => $this->faker->image(storage_path('app/public/images'), 200, 200, null, false)
         ];
     }
 }
