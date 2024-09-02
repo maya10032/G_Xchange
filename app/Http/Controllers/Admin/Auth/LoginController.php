@@ -34,8 +34,12 @@ class LoginController extends Controller
 
         if (Auth::guard('admin')->attempt($request->only('email', 'password'), $request->filled('remember'))) {
             return redirect()->intended(route('admin.items.index'));
+        }
+
+        if (Auth::guard('admin')->check()) {
+            $adminName = Auth::guard('admin')->user()->name;
         } else {
-            return redirect()->route('admin.login')->with('error', 'ログインに失敗しました。');
+            return redirect()->route('admin.login');
         }
 
         throw ValidationException::withMessages([
