@@ -7,8 +7,6 @@ use App\Models\Image;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class ItemController extends Controller
@@ -31,8 +29,18 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all(); // 全商品を取得
-        return view('admin.items.index', compact('items'));
+        $items = Item::with('category')->get(); // itemsの全商品、カテゴリーを取得
+        $itemsWithTax = $items->map(function ($item) {
+            $item->subtotal = $item->sales_price * (1 + $this->taxRate); // 税込み価格
+            // is_active が 0 の場合は '販売停止中'
+            if ($item->is_active === 0) {
+                $item->state = '販売停止中';
+            } else {
+                $item->state = '販売中';
+            }
+            return $item;
+        });
+        return view('admin.items.index', compact('items', 'itemsWithTax'));
     }
 
     /**
@@ -54,7 +62,6 @@ class ItemController extends Controller
 
         // カテゴリーを取得
         $categories = Category::all();
-        // ビューにデータを渡す
         return view('admin.items.create', [
             'categories' => $categories,
         ]);

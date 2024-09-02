@@ -20,14 +20,11 @@ class OrderController extends Controller
     {
         //odersテーブルのデータ取得、新しい順で表示
         $orders = Order::with('items')
-            // ->where('user_id', \Auth::user()->id)
             ->orderBy('created_at', 'DESC')
             ->get();
 
         // 小計合計の計算
         $ordersWithTax = $orders->map(function ($order) {
-            // 小計（税込み）を計算
-            // $order->item->sales_price * $order->count;
             $subtotal = $order->items->sales_price * $order->count;
             $order->priceWithTax = $subtotal * (1 + $this->taxRate);
             $order->salesWithTax = $order->items->sales_price * (1 + $this->taxRate);
