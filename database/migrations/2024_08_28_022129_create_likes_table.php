@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('likes')) {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->index();
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->unique(['user_id', 'item_id']);
         });
     }
-
+    }
     /**
      * Reverse the migrations.
      */
