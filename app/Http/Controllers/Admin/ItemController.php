@@ -13,8 +13,7 @@ use Validator;
 
 class ItemController extends Controller
 {
-    private  $taxRate = 0.1; // プロパティとして税率を定義
-    private $formItems = ["item_code", "item_name", "category_id", "count_limit", "sales_price", "regular_price", "message", "files"];
+    private $taxRate = 0.1; // プロパティとして税率を定義
     private $validator = [
         'item_code'     => 'required|string|max:255',
         'item_name'     => 'required|string|max:255',
@@ -23,8 +22,8 @@ class ItemController extends Controller
         'sales_price'   => 'required|integer',
         'regular_price' => 'integer',
         'message'       => 'required|nullable|string',
-        'files'         => 'array|min:1|max:4',
-        'files.*'       => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // 'files.*'       => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // 'files'         => 'required|array|min:1|max:4'
     ];
 
     /**
@@ -105,15 +104,11 @@ class ItemController extends Controller
         $input = $request->session()->get("form_input");
         // カテゴリーを取得
         $categories = Category::all();
-        //戻るボタンが押された時
-        if ($request->has("back")) {
-            return redirect()->route("admin.items.create")
-                ->withInput($input);
-        }
         //セッションに値が無い時はフォームに戻る
         if (!$input) {
             return redirect()->route("admin.items.create");
         }
+
         return view("admin.items.confirm", [
             "input" => $input,
             "categories" => $categories,
@@ -127,6 +122,11 @@ class ItemController extends Controller
     {
         // セッションから値を取り出す
         $input = $request->session()->get("form_input");
+        //戻るボタンが押された時
+        if ($request->input('action') === 'back') {
+            return redirect()->route("admin.items.create")
+                ->withInput($input);
+        }
         // 不正なアクセス
         if (!$input) {
             return redirect()->route("admin.items.create");
@@ -139,6 +139,11 @@ class ItemController extends Controller
                 $image = Image::create(['img_path' => $filePath]);
                 $item->images()->attach($image->id);
             }
+        }
+        // サムネイルの設定
+        if (isset($input['thumbnail'])) {
+            $item->thumbnail = $input['thumbnail'];
+            $item->save();
         }
         // セッションをクリア
         $request->session()->forget("form_input");

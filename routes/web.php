@@ -67,6 +67,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 const ADMIN_ITEM_PATH = App\Http\Controllers\Admin\ItemController::class;
 
+// 管理者ログイン画面
+Route::get('/admin', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login']);
 // 管理者ログイン後のみアクセス可
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
     // 管理者側（商品一覧）
