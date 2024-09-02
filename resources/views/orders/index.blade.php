@@ -19,10 +19,10 @@
                         <th>注文番号：</th>
                         <td style="color: red">{{ $order->id }}</td>
                         <td>
-                            @if ($order->item->is_active)
-                                <a href="{{ route('items.show', $order->item->id) }}">{{ $order->item->item_name }}</a>
+                            @if ($order->items->is_active)
+                                <a href="{{ route('items.show', $order->items->id) }}">{{ $order->items->item_name }}</a>
                             @else
-                                <a href="{{ route('items.show', $order->item->id) }}">{{ $order->item->item_name }}</a> <span
+                                <a href="{{ route('items.show', $order->items->id) }}">{{ $order->items->item_name }}</a> <span
                                     class="text-danger">（現在販売していません）</span>
                             @endif
                         </td>
@@ -33,7 +33,7 @@
                         <th>合計金額：</th>
                         <td style="color: red">
                             {{ number_format($order->priceWithTax) }}円</td>
-                        <td><button>詳細</button></td>
+                        <td><button><a href="{{ route('orders.show', $order->id) }}">詳細</button></td>
                     </tr>
                 @endforeach
             </tbody>
