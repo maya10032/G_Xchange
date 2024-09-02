@@ -15,12 +15,13 @@ Route::resource('items', App\Http\Controllers\ItemController::class);
 // Route::get('/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
 Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
 // Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
+const CONTACT_PATH = App\Http\Controllers\ContactsController::class;
 // お問い合わせページ
-Route::get('/contact',          [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
-Route::post('/contact',         [App\Http\Controllers\ContactsController::class, 'post'])->name('contact.post');
-Route::get('/contact/confirm',  [App\Http\Controllers\ContactsController::class, 'confirm'])->name('contact.confirm');
-Route::post('/contact/confirm', [App\Http\Controllers\ContactsController::class, 'send'])->name('contact.send');
-Route::get('/contact/done',     [App\Http\Controllers\ContactsController::class, 'done'])->name('contact.done');
+Route::get('/contact',          [CONTACT_PATH, 'show'])->name('contact.show');
+Route::post('/contact',         [CONTACT_PATH, 'post'])->name('contact.post');
+Route::get('/contact/confirm',  [CONTACT_PATH, 'confirm'])->name('contact.confirm');
+Route::post('/contact/confirm', [CONTACT_PATH, 'send'])->name('contact.send');
+Route::get('/contact/done',     [CONTACT_PATH, 'done'])->name('contact.done');
 
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
@@ -63,15 +64,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('register', [RegisterController::class, 'register']);
 });
 
+const ADMIN_ITEM_PATH = App\Http\Controllers\Admin\ItemController::class;
+
 // 管理者ログイン後のみアクセス可
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
     // 管理者側（商品一覧）
-    Route::get('items',             [App\Http\Controllers\Admin\ItemController::class, 'index'])->name('items.index');
-    Route::post('items',            [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('items.store');
-    Route::get('items/create',      [App\Http\Controllers\Admin\ItemController::class, 'create'])->name('items.create');
-    Route::post('items/post',       [App\Http\Controllers\Admin\ItemController::class, 'post'])->name('items.post');
-    Route::get('items/confirm',     [App\Http\Controllers\Admin\ItemController::class, 'confirm'])->name('items.confirm');
-    Route::get('items/{item}/show', [App\Http\Controllers\Admin\ItemController::class, 'show'])->name('items.show');
-    Route::get('items/{item}/edit', [App\Http\Controllers\Admin\ItemController::class, 'edit'])->name('items.edit');
+    Route::get('items',             [ADMIN_ITEM_PATH, 'index'])->name('items.index');
+    Route::post('items',            [ADMIN_ITEM_PATH, 'store'])->name('items.store');
+    Route::get('items/create',      [ADMIN_ITEM_PATH, 'create'])->name('items.create');
+    Route::post('items/create',     [ADMIN_ITEM_PATH, 'post'])->name('items.post');
+    Route::get('items/confirm',     [ADMIN_ITEM_PATH, 'confirm'])->name('items.confirm');
+    Route::post('items/confirm',    [ADMIN_ITEM_PATH, 'store'])->name('items.store');
+    Route::get('items/{item}/show', [ADMIN_ITEM_PATH, 'show'])->name('items.show');
+    Route::get('items/{item}/edit', [ADMIN_ITEM_PATH, 'edit'])->name('items.edit');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

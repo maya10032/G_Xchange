@@ -5,8 +5,11 @@
     <a href="{{ url('admin/items') }}">商品一覧</a> ＞<a href="{{ url('admin/items/create') }}">新規商品登録</a>
 
     <h2>確認画面</h2>
-    <form action="{{ route('admin.items.store') }}" method="POST">
+    <form action="{{ route('admin.items.store') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
+        @foreach ($filePaths as $path)
+            <input type="hidden" name="file_paths[]" value="{{ $path }}">
+        @endforeach
         @if (session('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
@@ -31,22 +34,21 @@
             </tr>
             <tr>
                 <td>販売価格</td>
-                <td>{{ $item_data['sales_price'] }}</td>
+                <td>{{ number_format($salesPriceWithTax) }}円</td>
             </tr>
             <tr>
                 <td>通常価格</td>
-                <td>{{ $item_data['regular_price'] }}</td>
+                <td>{{ number_format($regularPriceWithTax) }}円</td>
             </tr>
             <tr>
-                <td>画像</td>
+                <td>商品画像</td>
                 <td>
-                    @foreach ($item_data['file_paths'] as $index => $filePath)
-                        <div>
-                            <img src="{{ asset('storage/' . $filePath) }}" alt="Image {{ $index }}">
-                            @if ($index == $item_data['thumbnail'])
-                                <span>サムネイル</span>
-                            @endif
-                        </div>
+                    @foreach ($item_data['file_paths'] as $index => $path)
+                        <img src="{{ asset('storage/' . $path) }}" alt="Image {{ $index }}" width="200"
+                            height="200">
+                        @if ($index == $item_data['thumbnail'])
+                            <span>サムネイル</span>
+                        @endif
                     @endforeach
                 </td>
             </tr>
@@ -56,6 +58,6 @@
             </tr>
         </table>
         <button type="submit" class="btn btn-primary">登録</button>
-        <a href="{{ route('admin.items.create') }}" class="btn btn-secondary">戻る</a>
+        <button type="submit" class="btn btn-primary" name="back" value="back">戻る</button>
     </form>
 @endsection
