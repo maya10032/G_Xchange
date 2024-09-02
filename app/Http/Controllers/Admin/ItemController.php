@@ -13,6 +13,8 @@ use Validator;
 
 class ItemController extends Controller
 {
+    protected $taxRate = 0.1; // プロパティとして税率を定義
+
     /**
      * 商品一覧を表示（管理者）
      */
@@ -36,12 +38,17 @@ class ItemController extends Controller
      *
      * @return void
      */
-    public function create()
+    public function create(Request $request)
     {
-        // カテゴリーデータを取得
+        // セッションから入力データを取得
+        $item_data = $request->session()->get('item_data', []);
+        // カテゴリーを取得
         $categories = Category::all();
-        $item = Item::all();
-        return view('admin.items.create', compact('item', 'categories'));
+        // ビューにデータを渡す
+        return view('admin.items.create', [
+            'item_data'  => $item_data,
+            'categories' => $categories,
+        ]);
     }
 
 
@@ -64,8 +71,6 @@ class ItemController extends Controller
             'thumbnail'     => 'required|integer|between:0,3',
         ]);
 
-        $categories = Category::all();
-
         // ファイルパスを保存する配列
         $filePaths = [];
         if ($request->hasFile('images')) {
@@ -79,17 +84,16 @@ class ItemController extends Controller
         $sessionData = array_merge($validated, ['file_paths' => $filePaths]);
         // 'UploadedFile' オブジェクトを削除して保存
         unset($sessionData['images']);
-        // セッションに保存
         $request->session()->put('item_data', $sessionData);
-        // 確認画面にリダイレクト
-        return view('admin.items.confirm', [
-            'item_data'  => $sessionData,
-            'categories' => $categories,
-        ]);
+
+        $categories = Category::all();
+        $request->session()->put('categories', $categories);
+
+        return redirect()->action([ItemController::class, 'confirm']);
     }
 
     /**
-     * 入力内容表示
+     * 新規登録確認画面
      *
      * @param Request $request
      * @return void
@@ -97,21 +101,34 @@ class ItemController extends Controller
     public function confirm(Request $request)
     {
         // セッションから値を取り出す
-        $input = $request->session()->get('item_data');
+        $filePaths  = $request->session()->get('file_paths', []);
+        $input      = $request->session()->get('item_data');
         $categories = Category::all();
+
+        // 税込み価格の計算
+        $regularPriceWithTax = $input['regular_price'] * (1 + $this->taxRate);
+        $salesPriceWithTax = $input['sales_price'] * (1 + $this->taxRate);
+
         // セッションに値が無ければフォームに戻す
         return view('admin.items.confirm', [
+            'filePaths'  => $filePaths,
             'item_data'  => $input,
             'categories' => $categories,
+            'regularPriceWithTax' => $regularPriceWithTax,
+            'salesPriceWithTax' => $salesPriceWithTax,
         ]);
     }
-
 
     /**
      * 登録処理
      */
     public function store(Request $request)
     {
+        // 戻るボタン押下でフォームに戻る
+        if ($request->input('back') == 'back') {
+            return redirect('/admin/items/create')
+                ->withInput();
+        }
         // セッションからデータを取得
         $input = $request->session()->get('item_data');
         if (!$input) {
@@ -128,16 +145,32 @@ class ItemController extends Controller
             'message'       => $input['message'],
             'is_active'     => $request->input('is_active', 1),
         ]);
-        // 画像の保存
-        foreach ($input['file_paths'] as $index => $path) {
-            $item->images()->create([
-                'path'         => $path,
-                'is_thumbnail' => $index == $input['thumbnail'],
+
+        $filePaths = $request->input('file_paths', []);
+        if (empty($filePaths)) {
+            return redirect()->back()->with('error', '画像が選択されていません。');
+        }
+
+        $imageIds = [];
+        foreach ($filePaths as $filePath) {
+            // 画像パスから画像レコードを作成
+            $imageRecord = Image::create([
+                'img_path' => $filePath,
+            ]);
+            $imageIds[] = $imageRecord->id;
+        }
+
+        // `item_images` テーブルに商品と画像の関連付けを保存
+        foreach ($imageIds as $imageId) {
+            ItemImage::create([
+                'item_id'   => $item->id,
+                'image_id'  => $imageId,
             ]);
         }
+
         // セッションデータのクリア
         $request->session()->forget('item_data');
-        return redirect()->route('admin.items.index')->with('success', '商品が作成されました。');
+        return redirect()->route('admin.items.index')->with('attention', '商品が作成されました。');
     }
 
 

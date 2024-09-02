@@ -3,14 +3,10 @@
 @section('title', '商品一覧画面')
 
 @section('content')
-<a href="{{ url('admin/items') }}">商品一覧</a>
-    @if (session('success'))
-        <div class="alert alert-success text-center fw-bold">
-            {{ session('success') }}
-        </div>
-    @elseif (session('update'))
-        <div class="alert alert-info text-center fw-bold">
-            {{ session('update') }}
+    <a href="{{ url('admin/items') }}">商品一覧</a>
+    @if (session('attention'))
+        <div class="alert alert-danger">
+            {{ session('attention') }}
         </div>
     @endif
     <h2>（管理者）商品一覧ページ</h2>
