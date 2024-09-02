@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("images"); // input name="images"の要素を取得
-    const preview = document.getElementById("preview"); // preview表示するところ
+    const preview    = document.getElementById("preview"); // preview表示するところ
 
     // ファイル選択をされたとき
     imageInput.addEventListener("change", function () {
@@ -18,10 +18,15 @@ document.addEventListener("DOMContentLoaded", function () {
             // 読み込みが成功した際に走るイベント。eには読み込んだ値が入っている。
             reader.onload = function (e) {
                 const img = document.createElement("img");
-                img.src = e.target.result; // プレビュー表示用
-                img.style.width = "100px"; // プレビュー画像のサイズ
+                img.src               = e.target.result; // プレビュー表示用
+                img.style.width       = "100px"; // プレビュー画像のサイズ
+                img.style.height      = "100px"; // プレビュー画像のサイズ
                 img.style.marginRight = "10px"; // 画像の間隔
                 preview.appendChild(img);
+            };
+
+            reader.onerror = function () {
+                console.error('ファイル読み込み中にエラーが発生しました。');
             };
 
             // URLに変換
