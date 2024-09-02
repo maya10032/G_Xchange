@@ -74,7 +74,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::get('items/create',      [ADMIN_ITEM_PATH, 'create'])->name('items.create');
     Route::post('items/create',     [ADMIN_ITEM_PATH, 'post'])->name('items.post');
     Route::get('items/confirm',     [ADMIN_ITEM_PATH, 'confirm'])->name('items.confirm');
-    Route::post('items/confirm',    [ADMIN_ITEM_PATH, 'store'])->name('items.store');
+    Route::post('items/store',      [ADMIN_ITEM_PATH, 'store'])->name('items.store');
+    // Route::get('items/confirm',     [ADMIN_ITEM_PATH, 'confirm'])->name('items.confirm');
+    // Route::post('items/confirm',    [ADMIN_ITEM_PATH, 'store'])->name('items.store');
     Route::get('items/{item}/show', [ADMIN_ITEM_PATH, 'show'])->name('items.show');
     Route::get('items/{item}/edit', [ADMIN_ITEM_PATH, 'edit'])->name('items.edit');
 });

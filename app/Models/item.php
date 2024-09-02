@@ -26,7 +26,7 @@ class Item extends Model
 
     public function images()
     {
-        return $this->belongsToMany(Image::class, 'Item_images')->using(ItemImage::class);
+        return $this->belongsToMany(Image::class, 'item_images')->using(ItemImage::class);
     }
 
     public function thumbnail()
