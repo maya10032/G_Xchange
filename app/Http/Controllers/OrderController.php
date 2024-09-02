@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function index(Item $item)
     {
         //odersテーブルのデータ取得、新しい順で表示
-        $orders = Order::with('item')
+        $orders = Order::with('items')
             ->where('user_id', \Auth::user()->id)
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -27,12 +27,26 @@ class OrderController extends Controller
         // 小計合計の計算
         $ordersWithTax = $orders->map(function ($order) {
             // 小計（税込み）を計算
-            $subtotal = $order->item->sales_price * $order->count;
+            $subtotal = $order->items->sales_price * $order->count;
             $order->priceWithTax = $subtotal * (1 + $this->taxRate);
             return $order;
         });
 
         return view('orders.index', compact('orders', 'ordersWithTax'));
+    }
+
+    /**
+     * 商品詳細ページ表示
+     *
+     * @return void
+     */
+    public function show($id)
+    {
+        // 注文IDに基づいて注文を取得
+        $order = Order::with(['user', 'items', 'categorys', 'item_images'])->findOrFail($id);
+        $subtotal = ($order->items->sales_price * $order->count) * (1 + $this->taxRate);
+        // ビューにデータを渡す
+        return view('orders.show', compact('order', 'subtotal'));
     }
 
 

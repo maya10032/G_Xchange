@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('likes')) {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('img_path');
             $table->timestamps();
         });
+    }
     }
 
     /**

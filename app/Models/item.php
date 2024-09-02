@@ -33,4 +33,8 @@ class Item extends Model
     {
         return $this->hasOne(Image::class)->where('is_thumbnail', true); // サムネイル画像のみ取得
     }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class); // 中間テーブルがある場合 }
+    }
 }

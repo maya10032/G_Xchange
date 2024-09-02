@@ -19,7 +19,17 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function item()
+    public function items()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
+
+    public function categorys()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
+
+    public function item_images()
     {
         return $this->belongsTo(Item::class, 'item_id');
     }

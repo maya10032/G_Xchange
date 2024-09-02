@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/carts/{id}', [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
     // 購入履歴表示（マイページ）
     Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}/show', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
     // 会員情報変更表示
     Route::get('/profile',    [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile',  [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
@@ -77,5 +78,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::post('items/confirm',    [ADMIN_ITEM_PATH, 'store'])->name('items.store');
     Route::get('items/{item}/show', [ADMIN_ITEM_PATH, 'show'])->name('items.show');
     Route::get('items/{item}/edit', [ADMIN_ITEM_PATH, 'edit'])->name('items.edit');
+    // 受注管理表示
+    Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{id}/show', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
