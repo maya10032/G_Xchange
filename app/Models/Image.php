@@ -11,9 +11,4 @@ class Image extends Model
 
     protected $fillable = ['img_path'];
 
-    public function items()
-    {
-        // 1つのアイテムに属する
-        return $this->belongsToMany(Item::class, 'item_images');
-    }
 }
