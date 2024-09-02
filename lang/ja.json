@@ -40,6 +40,7 @@
     "order": "購入履歴",
     "noorder": "購入履歴が見つかりません",
 
+<<<<<<< HEAD
     "item_name": "商品名",
     "new_item": "新規商品登録",
     "item_list": "商品一覧",
@@ -53,3 +54,17 @@
 
     "contact":  "お問い合わせ"
     }
+=======
+    "item_name":  "商品名",
+    "new_item":  "新規商品登録",
+    "item_list":  "商品一覧",
+
+    "profile": "会員情報変更",
+    "withdrawal": "退会",
+    "contact":  "お問い合わせ"
+
+    "admin_Login": "管理者ログイン",
+    "admin_Register": "管理者新規登録",
+    "admin_Logout": "ログアウト"
+}
+>>>>>>> 09738b7e055620cc51abf3fa496ce9b8db5c7d03
