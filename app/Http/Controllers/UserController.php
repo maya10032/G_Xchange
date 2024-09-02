@@ -18,6 +18,6 @@ class UserController extends Controller
         $user = \Auth::user(); // 現在のログインユーザーを取得
         $user->delete(); // ユーザーを削除
         $request->session()->flash('withdrawal', '退会');
-        return view('items.show');
+        return view('auth.register');
     }
 }

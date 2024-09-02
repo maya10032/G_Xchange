@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('likes')) {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->constrained()->onDelete('cascade'); // itemsテーブルと紐づけ
-            $table->string('image_path'); // 画像のパス
-            $table->boolean('is_thumbnail')->default(false); // サムネイルかどうかのフラグ
+            $table->string('img_path');
             $table->timestamps();
         });
+    }
     }
 
     /**
