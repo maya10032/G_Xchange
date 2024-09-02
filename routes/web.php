@@ -50,6 +50,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile',    [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile',  [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+    // 退会
+    Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index'); // 退会画面表示
+    Route::delete('/users', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy'); // ユーザ削除
 });
 
 // 管理ログイン・新規登録
