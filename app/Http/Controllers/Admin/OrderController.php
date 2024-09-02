@@ -20,7 +20,6 @@ class OrderController extends Controller
     {
         //odersテーブルのデータ取得、新しい順で表示
         $orders = Order::with('items')
-            // ->where('user_id', \Auth::user()->id)
             ->orderBy('created_at', 'DESC')
             ->get();
 

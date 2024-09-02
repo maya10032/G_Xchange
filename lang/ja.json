@@ -52,5 +52,6 @@
     "admin_Register": "管理者新規登録",
     "admin_Logout": "ログアウト",
 
-    "order_Management": "受注管理"
+    "order_Management": "受注管理",
+    "user_Management": "ユーザ管理"
 }
