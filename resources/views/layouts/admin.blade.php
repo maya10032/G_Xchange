@@ -41,19 +41,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('admin.login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.login') }}">{{ __('admin_Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('admin.register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.register') }}">{{ __('admin_Register') }}</a>
-                                </li>
-                            @endif
-                        @else
+                        @if (Auth::guard('admin')->check())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.items.index') }}">{{ __('item_list') }}</a>
                             </li>
@@ -88,7 +76,17 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.login') }}">{{ __('admin_Login') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                    href="{{ route('admin.register') }}">{{ __('admin_Register') }}</a>
+                            </li>
+                        @endif
+
                     </ul>
                 </div>
             </div>

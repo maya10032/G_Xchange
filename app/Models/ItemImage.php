@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Database\Eloquent\Model;
 
-class ItemImage extends Model
+class ItemImage extends Pivot
 {
-    protected $fillable = ['item_id', 'image_id'];
+    //
 }
