@@ -4,6 +4,16 @@
 
 @section('content')
     <h2>ユーザ管理一覧画面</h2>
+    @if (session('userupdate'))
+    <div class="alert alert-info text-center fw-bold">
+        {{ session('userupdate') }}
+    </div>
+@endif
+    @if (session('userdelete'))
+    <div class="alert alert-info text-center fw-bold">
+        {{ session('userdelete') }}
+    </div>
+@endif
     {{-- 購入履歴が空だったら --}}
 @if (count($users) == 0)
         <div class="flex items-center justify-center w-full absolute inset-0">
@@ -33,7 +43,7 @@
                         <td>{{ $user->address }}</td>
                         <td>{{ $user->email }}</td>
                         <td><button><a href="{{ route('admin.users.show', $user->id) }}">編集</button></td>
-                        <td><button><a href="{{ route('admin.users.show', $user->id) }}">削除</button></td>
+                        <td><button><a href="{{ route('admin.users.edit', $user->id) }}">削除</button></td>
                     </tr>
                 @endforeach
             </tbody>

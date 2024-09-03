@@ -86,5 +86,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     // ユーザ管理表示
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('/users/{id}/show', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
+    Route::patch('/users/{id}/update',  [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
+    Route::get('/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
+    Route::delete('/users/{id}/destroy', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

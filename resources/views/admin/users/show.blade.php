@@ -10,16 +10,10 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">会員情報変更画面</div>
-                    @if (session('update'))
-                        <div class="alert alert-info text-center fw-bold">
-                            {{ session('update') }}
-                        </div>
-                    @endif
-
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}">
+                        <form method="POST" action="{{ route('admin.users.update', $user->id) }}">
                             @csrf
-                            @method('PATCH')
+                            @method('patch')
 
                             <div class="row mb-3">
                                 <label for="id" class="col-md-4 col-form-label text-md-end">会員ID</label>
