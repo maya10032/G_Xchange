@@ -73,4 +73,5 @@ class ItemController extends Controller
         // ビューに $item と $count を渡す
         return view('items.purchase', compact('item', 'count'));
     }
+    
 }
