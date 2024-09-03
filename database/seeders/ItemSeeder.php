@@ -92,6 +92,7 @@ class ItemSeeder extends Seeder
 
                 // アイテムと画像を関連付け
                 $item->images()->attach($image->id);
+                
             }
         }
     }
