@@ -52,6 +52,9 @@
                                 <a class="nav-link" href="{{ route('admin.orders.index') }}">{{ __('order_Management') }}</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __('user_Management') }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('likes.index') }}">{{ __('like') }}</a>
                             </li>
                             <li class="nav-item dropdown">
