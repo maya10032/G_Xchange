@@ -43,7 +43,7 @@
                         <td>{{ $user->address }}</td>
                         <td>{{ $user->email }}</td>
                         <td><button><a href="{{ route('admin.users.show', $user->id) }}">編集</button></td>
-                        <td><button><a href="{{ route('admin.users.edit', $user->id) }}">削除</button></td>
+                        <td><button><a href="{{ route('admin.users.edit', $user->id) }}">詳細</button></td>
                     </tr>
                 @endforeach
             </tbody>

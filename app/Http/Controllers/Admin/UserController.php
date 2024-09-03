@@ -43,9 +43,12 @@ class UserController extends Controller
     /**
      * ユーザ更新画面を表示（管理者）
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request, $id): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        // 指定されたIDのユーザを取得
+        $user = User::findOrFail($id);
+        // リクエストからのデータをユーザに反映
+        $user->fill($request->validated());
         // $user = $request->user();
 
         // if ($request->user()->isDirty('name')) {
@@ -58,7 +61,7 @@ class UserController extends Controller
         //     $request->user()->email_verified_at = null;
         // }
 
-        $request->user()->save();
+        $user->save();
         $request->session()->flash('userupdate', 'ユーザ情報を更新しました');
         return Redirect::route('admin.users.index')->with('status', 'profile-updated');
     }
@@ -68,28 +71,11 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $action = $request->input('action');
-
-        if ($action === 'update') {
             $user = User::findOrFail($id);
-            return view('admin.users.show', compact('user'));
-
-        } elseif ($action === 'destroy') {
-            $user = $request->user();
-
-            // Auth::logout();
-
             $user->delete();
 
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
             $request->session()->flash('userdelete', 'ユーザ情報を削除しました');
-            return Redirect::to('admin.users.index');
-        }
+            return Redirect::route('admin.users.index')->with('status', 'profile-updated');
     }
 
     protected function validator(array $data)

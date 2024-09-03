@@ -1,20 +1,21 @@
 @extends('layouts.admin')
 
-@section('title', '会員情報削除')
+@section('title', '会員情報詳細')
 
 @section('content')
-    <h1>会員情報削除</h1>
+    <h1>会員情報詳細</h1>
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">会員情報削除画面</div>
+                    <div class="card-header">会員情報詳細画面</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}">
+                        <form id="delete-form" method="POST" action="{{ route('admin.users.destroy', $user->id) }}">
                             @csrf
                             @method('patch')
+                            @method('delete')
 
                             <div class="row mb-3">
                                 <label for="id" class="col-md-4 col-form-label text-md-end">会員ID</label>
@@ -57,10 +58,7 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" name="action" value="update">
-                                        編集
-                                    </button>
-                                    <button type="submit" class="btn btn-primary" name="action" value="destroy">
+                                    <button type="submit" onclick="deleteuser()" class="btn btn-primary" name="action" value="destroy">
                                         削除
                                     </button>
                                 </div>
@@ -75,3 +73,12 @@
 
     </form>
 @endsection
+
+<script>
+    // 削除確認用のダイアログ表示
+    const deleteuser = () => {
+        event.preventDefault()
+        confirm('本当に削除しますか？') ? document.querySelector('#delete-form').submit() : ''
+    }
+</script>
+
