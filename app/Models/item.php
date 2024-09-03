@@ -37,4 +37,9 @@ class Item extends Model
     {
         return $this->belongsToMany(Order::class); // 中間テーブルがある場合 }
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

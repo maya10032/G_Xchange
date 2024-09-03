@@ -50,11 +50,22 @@
                 </td>
             </tr>
             <tr>
+                <td>サムネイル</td>
+                <td>
+                    @if (isset($input['thumbnail']) && isset($input['file_paths'][$input['thumbnail']]))
+                        <img src="{{ asset('storage/images/' . $input['file_paths'][$input['thumbnail']]) }}"
+                            alt="サムネイル" style="width: 100px;">
+                    @else
+                        なし
+                    @endif
+                </td>
+            </tr>
+            <tr>
                 <td>商品説明</td>
                 <td>{{ $input['message'] }}</td>
             </tr>
         </table>
         <button type="submit" class="btn btn-primary">登録</button>
-        <button type="submit" class="btn btn-primary" name="back" value="back">戻る</button>
+        <button type="submit" class="btn btn-primary" name="action" value="back">戻る</button>
     </form>
 @endsection

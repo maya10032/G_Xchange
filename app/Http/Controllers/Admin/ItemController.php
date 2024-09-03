@@ -7,14 +7,11 @@ use App\Models\Image;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class ItemController extends Controller
 {
-    private  $taxRate = 0.1; // プロパティとして税率を定義
-    private $formItems = ["item_code", "item_name", "category_id", "count_limit", "sales_price", "regular_price", "message", "files"];
+    private $taxRate = 0.1; // プロパティとして税率を定義
     private $validator = [
         'item_code'     => 'required|string|max:255',
         'item_name'     => 'required|string|max:255',
@@ -23,8 +20,8 @@ class ItemController extends Controller
         'sales_price'   => 'required|integer',
         'regular_price' => 'integer',
         'message'       => 'required|nullable|string',
-        'files'         => 'array|min:1|max:4',
-        'files.*'       => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // 'files.*'       => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // 'files'         => 'required|array|min:1|max:4'
     ];
 
     /**
@@ -32,8 +29,18 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all(); // 全商品を取得
-        return view('admin.items.index', compact('items'));
+        $items = Item::with('category')->get(); // itemsの全商品、カテゴリーを取得
+        $itemsWithTax = $items->map(function ($item) {
+            $item->subtotal = $item->sales_price * (1 + $this->taxRate); // 税込み価格
+            // is_active が 0 の場合は '販売停止中'
+            if ($item->is_active === 0) {
+                $item->state = '販売停止中';
+            } else {
+                $item->state = '販売中';
+            }
+            return $item;
+        });
+        return view('admin.items.index', compact('items', 'itemsWithTax'));
     }
 
     /**
@@ -55,7 +62,6 @@ class ItemController extends Controller
 
         // カテゴリーを取得
         $categories = Category::all();
-        // ビューにデータを渡す
         return view('admin.items.create', [
             'categories' => $categories,
         ]);
@@ -105,15 +111,11 @@ class ItemController extends Controller
         $input = $request->session()->get("form_input");
         // カテゴリーを取得
         $categories = Category::all();
-        //戻るボタンが押された時
-        if ($request->has("back")) {
-            return redirect()->route("admin.items.create")
-                ->withInput($input);
-        }
         //セッションに値が無い時はフォームに戻る
         if (!$input) {
             return redirect()->route("admin.items.create");
         }
+
         return view("admin.items.confirm", [
             "input" => $input,
             "categories" => $categories,
@@ -127,6 +129,11 @@ class ItemController extends Controller
     {
         // セッションから値を取り出す
         $input = $request->session()->get("form_input");
+        //戻るボタンが押された時
+        if ($request->input('action') === 'back') {
+            return redirect()->route("admin.items.create")
+                ->withInput($input);
+        }
         // 不正なアクセス
         if (!$input) {
             return redirect()->route("admin.items.create");
@@ -139,6 +146,11 @@ class ItemController extends Controller
                 $image = Image::create(['img_path' => $filePath]);
                 $item->images()->attach($image->id);
             }
+        }
+        // サムネイルの設定
+        if (isset($input['thumbnail'])) {
+            $item->thumbnail = $input['thumbnail'];
+            $item->save();
         }
         // セッションをクリア
         $request->session()->forget("form_input");
