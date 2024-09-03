@@ -3,36 +3,39 @@
 @section('title', '商品一覧')
 
 @section('content')
-    <table class="table table-bordered table-striped task-table table-hover">
-        @if (session('success'))
-            <div class="alert alert-success text-center fw-bold">
-                {{ session('success') }}
+<h2>商品一覧</h2>
+    <div class="row row-cols- row-cols-sm-2 row-cols-md-4 g-4">
+        @foreach ($items as $item)
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img alt="ecommerce" class="object-cover object-center w-full h-full block"
+                        src="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}" alt="サムネイル"
+                        style="width: 100%; height: 225px;">
+                    <div class="card-body" style="height: 220px;">
+                        <h4 class="text-gray-900 title-font text-lg font-medium" onclick="window.location='{{ route('items.show', $item->id) }}'">{{ $item->item_name }}</h4>
+                        <p class="card-text text-truncate">{{ $item->message }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="position-absolute bottom-0 start-0 m-2">
+                                @if ($item->tax_regular_prices === $item->tax_sales_prices)
+                                    <p>{{ number_format($item->tax_sales_prices) }}円（税込）送料無料</p>
+                                @else
+                                    {{-- 割引中の表示 --}}
+                                    <p class="h5" style="margin: 0; line-height: 1.2;"><del>{{ number_format($item->tax_regular_prices) }}円</del></p>
+                                    <p class="h5 text-danger fw-bold">{{ number_format($item->tax_sales_prices) }} 円（税込）送料無料</p>
+                                @endif
+                            </div>
+                            <small class="text-body-secondary"></small>
+                        </div>
+                    </div>
+                </div>
             </div>
-        @elseif (session('update'))
-            <div class="alert alert-info text-center fw-bold">
-                {{ session('update') }}
-            </div>
-        @endif
-        <tbody>
-            @foreach ($items as $item)
-                <tr>
-                    <td>{{ $item->item_code }}</td>
-                    <td>{{ $item->item_name }}</td>
-                    <td>
-                        <img src="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}" alt="サムネイル"
-                            style="width: 100px;">
-                    </td>
-                    <td>{{ $item->sales_price }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+        @endforeach
+    </div>
     <footer>
-        <tr>
-            <td colspan="7" class="bg-light pb-0">
-                {{ $items->links() }}
-            </td>
-        </tr>
+        <div class="d-flex justify-content-center my-4">
+            {{ $items->links() }}
+        </div>
     </footer>
 @endsection
 {{ Debugbar::log($items->toArray()) }}
