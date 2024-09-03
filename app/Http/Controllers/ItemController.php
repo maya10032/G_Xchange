@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -20,7 +21,9 @@ class ItemController extends Controller
     public function index()
     {
         // 販売中がtrueの商品だけ表示
-        $items = Item::where('is_active', true)->get();
+        // $items = Item::where('is_active', true)->get();
+        $items = Item::where('is_active', true)->with('images')->get();
+        // dd($items);
         return view('items.index', compact('items'));
     }
 
