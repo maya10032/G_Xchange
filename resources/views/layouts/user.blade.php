@@ -83,7 +83,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 container">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('orders.index') }}">{{ __('order') }}</a>
