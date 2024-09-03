@@ -21,7 +21,10 @@ class Item extends Model
         'count_limit',
         'sales_price',
         'regular_price',
-        'message'
+        'message',
+        'is_active',
+        'humbnail',
+        'created_at'
     ];
 
     public function images()
