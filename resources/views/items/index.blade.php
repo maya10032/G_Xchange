@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('title', '商品一覧')
 
@@ -14,22 +14,25 @@
             </div>
         @endif
         <tbody>
-            <h2>商品一覧ページです</h2>
             @foreach ($items as $item)
-                @foreach ($item->images as $image)
-                    <tr>
-                        <td><a href="{{ route('items.show', $item->id) }}">{{ $item->item_name }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>{{ $item->message }}</td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ Storage::url('images/' . $image['img_path']) }}" style="width: 150px; height: auto;"></td>
-                    </tr>
-                @endforeach
+                <tr>
+                    <td>{{ $item->item_code }}</td>
+                    <td>{{ $item->item_name }}</td>
+                    <td>
+                        <img src="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}" alt="サムネイル"
+                            style="width: 100px;">
+                    </td>
+                    <td>{{ $item->sales_price }}</td>
+                </tr>
             @endforeach
         </tbody>
     </table>
+    <footer>
+        <tr>
+            <td colspan="7" class="bg-light pb-0">
+                {{ $items->links() }}
+            </td>
+        </tr>
+    </footer>
 @endsection
-
-{{-- {{ Debugbar::log($items->toArray()) }} --}}
+{{ Debugbar::log($items->toArray()) }}

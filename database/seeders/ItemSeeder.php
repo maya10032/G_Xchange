@@ -84,15 +84,12 @@ class ItemSeeder extends Seeder
 
             foreach ($selectedImages as $randomImage) {
                 $imageName = basename($randomImage);
-
                 // Imageモデルのレコードを作成
                 $image = Image::create([
                     'img_path' => $imageName,
                 ]);
-
                 // アイテムと画像を関連付け
                 $item->images()->attach($image->id);
-                
             }
         }
     }
