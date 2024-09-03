@@ -54,5 +54,6 @@
 
     "order_Management": "受注管理",
     "user_Management": "ユーザ管理",
-    "nouser": "ユーザが見つかりません"
+    "nouser": "ユーザが見つかりません",
+    "search": "検索"
 }
