@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    protected $taxRate = 0.1; // プロパティとして税率を定義
-
     /**
      * 一覧ページ作成
      *
@@ -19,16 +17,15 @@ class OrderController extends Controller
     public function index(Item $item)
     {
         //odersテーブルのデータ取得、新しい順で表示
-        $orders = Order::with('items')
-            ->where('user_id', \Auth::user()->id)
+        $orders = Order::where('user_id', \Auth::user()->id)
+            ->with('item', 'category')
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate(10);
 
         // 小計合計の計算
         $ordersWithTax = $orders->map(function ($order) {
-            // 小計（税込み）を計算
-            $subtotal = $order->items->sales_price * $order->count;
-            $order->priceWithTax = $subtotal * (1 + $this->taxRate);
+            // 小計（税込み）を計算（Itemモデルで計算引き継ぎ）
+            $subtotal = $order->item->tax_sales_prices * $order->count;
             return $order;
         });
 
@@ -43,12 +40,11 @@ class OrderController extends Controller
     public function show($id)
     {
         // 注文IDに基づいて注文を取得
-        $order = Order::with(['user', 'items', 'categorys', 'item_images'])->findOrFail($id);
-        $subtotal = ($order->items->sales_price * $order->count) * (1 + $this->taxRate);
+        $order = Order::with(['user', 'item', 'category', 'item_images'])->findOrFail($id);
+        $subtotal = $order->item->tax_sales_prices * $order->count;
         // ビューにデータを渡す
         return view('orders.show', compact('order', 'subtotal'));
     }
-
 
     /**
      * 購入ボタン押下後、ordersテーブルに登録

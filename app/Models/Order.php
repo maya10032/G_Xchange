@@ -19,14 +19,14 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function items()
+    public function item()
     {
-        return $this->belongsTo(Item::class, 'item_id');
+        return $this->belongsTo(Item::class);
     }
 
-    public function categorys()
+    public function category()
     {
-        return $this->belongsTo(Item::class, 'item_id');
+        return $this->belongsTo(Item::class, 'category_id');
     }
 
     public function item_images()
