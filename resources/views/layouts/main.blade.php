@@ -17,20 +17,13 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
-        footer .nav-link:hover {
-            text-decoration: underline;
-        }
-
-        .navbar-nav .nav-link:hover {
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
+        
     </style>
 </head>
 
@@ -48,14 +41,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}</a>
@@ -160,7 +146,8 @@
         </div>
         <div class="container" style="width: 50%;">
             <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2 border-success" type="search" placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search">
+                <input class="form-control me-2 border-success" type="search" placeholder="商品名、カテゴリ、ブランドなど"
+                    aria-label="Search">
                 <button class="btn btn-outline-success" style="width: 80px;"
                     type="submit">{{ __('search') }}</button>
             </form>
