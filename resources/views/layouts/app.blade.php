@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -120,7 +122,6 @@
             @yield('content')
         </main>
     </div>
-
     <footer class=" bg-white shadow-sm  expand-mdz text-gray-600 mt-auto  text-center">
         <div class=" container flex flex-wrap md:pl-20 -mb-10 md:mt-10 mt-10 md:text-left text-center ">
             <div class="row py-4 p-5">
@@ -182,6 +183,7 @@
             <p class="text-white text-center">© 2024 {{ config('app.name', 'Laravel') }}.inc</p>
         </div>
     </footer>
+
 
 </body>
 
