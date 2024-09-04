@@ -14,8 +14,11 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -88,37 +91,36 @@
         </nav>
 
         {{-- <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);"> --}}
-        <main style="min-height: calc(100vh - 100px);">
-            <div class="mx-auto" style="width: 600px;">
-                <ul class="nav nav-pills nav-justified py-5">
-                    <span class="border border-1 m-2">
-                        <li class="nav-item px-3">
-                            <a class="nav-link link-dark link-offset-2"
-                                href="{{ route('orders.index') }}">{{ __('order') }}</a>
-                        </li>
-                    </span>
-                    <span class="border border-1 m-2">
-                        <li class="nav-item px-3">
-                            <a class="nav-link link-dark link-offset-2"
-                                href="{{ route('likes.index') }}">{{ __('like') }}</a>
-                        </li>
-                    </span>
-                    <span class="border border-1 m-2">
-                        <li class="nav-item px-3">
-                            <a class="nav-link link-dark link-offset-2"
-                                href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
-                        </li>
-                    </span>
-                    <span class="border border-1 m-2">
-                        <li class="nav-item px-3">
-                            <a class="nav-link link-dark link-offset-2"
-                                href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
-                        </li>
-                    </span>
-                </ul>
-            </div>
+        <div class="mx-auto" style="width: 600px;">
+            <ul class="nav nav-pills nav-justified py-5">
+                <span class="border border-1 m-2">
+                    <li class="nav-item px-3">
+                        <a class="nav-link link-dark link-offset-2"
+                            href="{{ route('orders.index') }}">{{ __('order') }}</a>
+                    </li>
+                </span>
+                <span class="border border-1 m-2">
+                    <li class="nav-item px-3">
+                        <a class="nav-link link-dark link-offset-2"
+                            href="{{ route('likes.index') }}">{{ __('like') }}</a>
+                    </li>
+                </span>
+                <span class="border border-1 m-2">
+                    <li class="nav-item px-3">
+                        <a class="nav-link link-dark link-offset-2"
+                            href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
+                    </li>
+                </span>
+                <span class="border border-1 m-2">
+                    <li class="nav-item px-3">
+                        <a class="nav-link link-dark link-offset-2"
+                            href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
+                    </li>
+                </span>
+            </ul>
+        </div>
+        <main>
             @yield('content')
-
         </main>
     </div>
 

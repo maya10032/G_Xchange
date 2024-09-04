@@ -366,3 +366,23 @@ footer .nav-link:hover {
     overflow: hidden;
     margin-bottom: 0;
 }
+
+/* 購入履歴 */
+.btn.hover-effect {
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+.btn.hover-effect:hover {
+    background-color: #5a6268; /* ホバー時の背景色（例: ダークグレー） */
+    color: #fff; /* ホバー時の文字色 */
+    text-decoration: underline; /* ホバー時に下線を表示 */
+}
+.item-title {
+    text-decoration: none; /* デフォルトで下線を消す */
+    color: inherit; /* 色を継承 */
+}
+
+.item-title:hover {
+    color: rgba(0, 0, 0, 0.7); /* ホバー時に文字色を少し薄くする */
+    text-decoration: underline; /* ホバー時に下線を表示 */
+}

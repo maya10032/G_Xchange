@@ -12,9 +12,9 @@
         <div class="input-group mb-4">
             <div class="input-group-text">商品画像が入る？ {{ $order->item_images->is_thumbnail }}</div>
             <div class="input-group-text">
-                カテゴリー名：{{ $order->categorys->category_id }} <br>
-                商品名：{{ $order->items->item_name }} <br><br>
-                {{ number_format($order->items->sales_price) }}円 × {{ $order->count }} <br>
+                カテゴリー名：{{ $order->item->category->category_name }} <br>
+                商品名：{{ $order->item->item_name }} <br><br>
+                {{ number_format($order->item->sales_price) }}円 × {{ $order->count }} <br>
             </div>
         </div>
     </div>
