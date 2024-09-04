@@ -150,11 +150,40 @@
                 <button class="btn btn-outline-success" style="width: 80px;" type="submit">{{ __('search') }}</button>
             </form>
         </div>
-        <main class="py-4 container">
+        <main class="container py-1 sticky-top" style="min-height: calc(100vh - 100px);">
             @yield('content')
         </main>
     </div>
 
+    <footer class=" bg-white shadow-sm  expand-mdz text-gray-600 mt-auto  text-center">
+        <div class=" container flex flex-wrap md:pl-20 -mb-10 md:mt-10 mt-10 md:text-left text-center ">
+            <div class="row py-4 p-5">
+                <div class="col-3">
+                <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                    <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
+                </p>
+                </div>
+                <div class="col-3">
+                <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                    <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
+                </p>
+                </div>
+                <div class="col-3">
+                <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                    <a class="nav-link" href="{{ route('login') }}">  {{ __('Login') }} > </a>
+                </p>
+                </div>
+                <div class="col-3">
+                <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                    <a class="nav-link" href="{{ route('register') }}">  {{ __('Register') }} > </a>
+                </p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-black py-3">
+            <p class="text-white text-center">© 2024 {{ config('app.name', 'Laravel') }}.inc</p>
+        </div>
+    </footer>
 </body>
 
 </html>
