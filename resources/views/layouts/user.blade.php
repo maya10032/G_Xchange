@@ -90,7 +90,7 @@
         <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
             <div class="mx-auto" style="width: 600px;">
             <ul class="nav nav-pills nav-justified py-5">
-                <span class="border border-1 m-2">
+                <span class="border border-1 m-2 ">
                     <li class="nav-item px-3">
                         <a class="nav-link link-dark link-offset-2" href="{{ route('orders.index') }}">{{ __('order') }}</a>
                     </li>
@@ -145,11 +145,6 @@
                         <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
                     </p>
                 </div>
-                <div class="col-2">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('logout') }}"> {{ __('ja.Logout') }} > </a>
-                    </p>
-                </div>
             </div>
         </div>
         <div class="bg-black py-3">
@@ -159,3 +154,10 @@
 </body>
 
 </html>
+<head>
+    <style>
+        span:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
