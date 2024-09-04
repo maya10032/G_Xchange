@@ -45,4 +45,18 @@ class Item extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getTaxSalesPricesAttribute ()
+    {
+        $taxRate = 0.1; // 税率10%
+        return round($this->sales_price * (1 + $taxRate));
+        // $item->tax_sales_pricesでとれるようになる
+    }
+
+    public function getTaxRegularPricesAttribute ()
+    {
+        $taxRate = 0.1; // 税率10%
+        return round($this->regular_price * (1 + $taxRate));
+        // $item->tax_regular_pricesでとれるようになる
+    }
 }

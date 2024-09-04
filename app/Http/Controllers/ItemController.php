@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Category;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,9 +23,9 @@ class ItemController extends Controller
     {
         // 販売中がtrueの商品だけ表示
         $items = Item::where('is_active', true)
-            ->with('images')
+            ->with('images', 'category')
             ->orderBy('created_at', 'DESC')
-            ->paginate(10);
+            ->paginate(12);
             // ->get();
         return view('items.index', compact('items'));
     }
