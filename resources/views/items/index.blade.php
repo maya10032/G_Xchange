@@ -38,4 +38,4 @@
         </div>
     </footer>
 @endsection
-{{-- {{ Debugbar::log($items->toArray()) }} --}}
+{{ Debugbar::log($items->toArray()) }}
