@@ -22,9 +22,6 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -94,8 +91,8 @@
                                                     document.getElementById('logout-form').submit();">
                                         {{ __('ja.Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+
                                         @csrf
                                     </form>
                                 </div>
@@ -160,26 +157,58 @@
     <footer class=" bg-white shadow-sm  expand-mdz text-gray-600 mt-auto  text-center">
         <div class=" container flex flex-wrap md:pl-20 -mb-10 md:mt-10 mt-10 md:text-left text-center ">
             <div class="row py-4 p-5">
-                <div class="col-3">
+                @guest
+                    <div class="col-3">
+                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                            <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
+                        </p>
+                    </div>
+                    <div class="col-3">
+                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                            <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
+                        </p>
+                    </div>
+                    @if (Route::has('login'))
+                        <div class="col-3">
+                            <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                                <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }} > </a>
+                            </p>
+                        </div>
+                    @endif
+                    @if (Route::has('register'))
+                        <div class="col-3">
+                            <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                                <a class="nav-link" href="register"> {{ __('Register') }} > </a>
+                            </p>
+                        </div>
+                    @endif
+                @else
+                <div class="col-2">
                     <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
                         <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
                     </p>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('orders.index') }}"> {{ __('order') }} > </a>
+                    </p>
+                </div>
+                <div class="col-2">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('likes.index') }}"> {{ __('like') }} > </a>
+                    </p>
+                </div>
+                <div class="col-2">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('profile.edit') }}"> {{ __('profile') }} > </a>
+                    </p>
+                </div>
+                <div class="col-2">
                     <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
                         <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
                     </p>
                 </div>
-                <div class="col-3">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }} > </a>
-                    </p>
-                </div>
-                <div class="col-3">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('register') }}"> {{ __('Register') }} > </a>
-                    </p>
-                </div>
+                @endguest
             </div>
         </div>
         <div class="bg-black py-3">
