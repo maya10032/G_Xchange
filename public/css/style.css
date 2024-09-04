@@ -308,7 +308,7 @@ footer .nav-link:hover {
 
 @media (min-width: 1024px) {
     .contact4 .contact-box {
-        padding: 80px 30px 80px 0px;
+        padding: 20px 30px 30px 0px;
     }
 }
 
@@ -329,7 +329,8 @@ footer .nav-link:hover {
 /* マップの高さ調整 */
 .contact4 iframe {
     height: 100%;
-    max-height: 538px;
+    max-height: 590px;
+    padding: 10px 0px 10px 0px;
 }
 
 /* メイン商品一覧ページ */
