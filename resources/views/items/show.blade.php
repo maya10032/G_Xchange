@@ -21,13 +21,13 @@
             </div>
         @endif
 
-        <div class="mb-4 d-flex flex-wrap">
+        <div class="mb-2 d-flex flex-wrap">
             <!-- 画像を左側に配置 -->
             <div class="d-flex flex-wrap" style="max-width: 400px;">
                 @foreach ($item->images as $image)
-                    <div class="col-6 mb-3">
+                    <div class="col-6 p-1">
                         <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="Image"
-                            class="img-fluid rounded" style="height: 150px; object-fit: cover;">
+                            class="img-fluid rounded" style="height: 200px; object-fit: cover;">
                     </div>
                 @endforeach
             </div>
@@ -60,34 +60,47 @@
                                     <p class="mb-2">※{{ $error }}</p>
                                 @endforeach
                             </div>
-                            <div class="d-grid gap-2 col-6">
-                            <button type="submit" name="action" value="cart" class="btn btn-secondary mb-2" style="font-size: 1.25rem;">カートに追加</button>
-                            <button type="submit" name="action" value="purchase" class="btn btn-danger mb-2" style="font-size: 1.25rem;">購入ページへ</button>
-                        </div>
+                            <div class="d-grid gap-2 col-4">
+                                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                <button type="submit" name="action" value="cart" class="btn btn-secondary mb-2"
+                                    style="font-size: 1.25rem;">カートに追加</button>
+                                <button type="submit" name="action" value="purchase" class="btn btn-danger mb-2"
+                                    style="font-size: 1.25rem;">購入ページへ</button>
+                            </div>
                         </form>
 
                         @if (Auth::user()->isLike($item->id))
                             <form action="{{ route('likes.destroy') }}" method="post" class="mt-2">
                                 @csrf
                                 @method('delete')
-                                <input type="hidden" name="item_id" value="{{ $item->id }}">
-                                <button class="btn btn-warning" style="font-size: 1.25rem;">{{ __('like') . __('delete') }}</button>
+                                <div class="d-grid gap-2 col-4">
+                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                    <button class="btn btn-outline-danger" style="font-size: 1.25rem;"><i
+                                            class="fa fa-heart-o"></i> {{ __('like') . __('delete') }}</button>
+                                </div>
                             </form>
                         @else
                             <form action="{{ route('likes.store') }}" method="post" class="mt-2">
                                 @csrf
-                                <input type="hidden" name="item_id" value="{{ $item->id }}">
-                                <button class="btn btn-info" style="font-size: 1.25rem;">{{ __('like') . __('create') }}</button>
+                                <div class="d-grid gap-2 col-4">
+                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                    <button class="btn btn-outline-danger" style="font-size: 1.25rem;"><i
+                                            class="fa fa-heart-o"></i> {{ __('like') . __('create') }}</button>
+                                </div>
                             </form>
                         @endif
                     @else
                         <h3 class="text-danger mt-4" style="font-size: 1.75rem;">現在販売していません</h3>
                     @endif
-                @endif
+                    @endif
+                </div>
             </div>
-        </div>
 
-        <p style="font-size: 1.25rem;"><small class="text-muted">商品説明：{{ $item->message }}</small></p>
-        <a href="{{ url('/') }}" style="font-size: 1.25rem;">商品一覧に戻る</a>
-    </div>
+            <h3 class="mb-3" style="font-size: 1.75rem;">商品説明：</h3>
+            <p>{{ $item->message }}</p>
+            {{-- <div class="pull-right mt-4">
+                <a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                    href="{{ url('/') }}" style="font-size: 1.25rem;">商品一覧に戻る ＞</a>
+            </div> --}}
+        </div>
 @endsection
