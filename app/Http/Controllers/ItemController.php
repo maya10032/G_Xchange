@@ -25,7 +25,7 @@ class ItemController extends Controller
         $items = Item::where('is_active', true)
             ->with('images', 'category')
             ->orderBy('created_at', 'DESC')
-            ->paginate(12);
+            ->paginate(16);
             // ->get();
         return view('items.index', compact('items'));
     }
