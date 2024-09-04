@@ -45,10 +45,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 d-flex align-items-center mt-3">
-                                    <button type="submit" name="back" class="btn btn-secondary text-light  px-3 py-2">
+                                    <button type="submit" name="back" class="btn btn-secondary text-light px-3 py-2 hover-effect">
                                         フォームに戻る
                                     </button>
-                                    <button type="submit" class="btn bg-dark text-light  px-3 py-2" style="margin-left: 10px;">
+                                    <button type="submit" class="btn bg-dark text-light  px-3 py-2 hover-effect" style="margin-left: 10px;">
                                         送信する
                                     </button>
                                 </div>

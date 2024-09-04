@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="col-lg-12 d-flex align-items-center mt-2">
                                     <button type="submit"
-                                        class="btn bg-dark text-light  px-3 py-2"><span>確認画面へ</span></button>
+                                        class="btn bg-dark text-light  px-3 py-2 hover-effect"><span>確認画面へ</span></button>
                                 </div>
                             </div>
                         </form>

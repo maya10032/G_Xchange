@@ -306,6 +306,11 @@ footer .nav-link:hover {
     margin: 0;
 }
 
+/* ボタン */
+.hover-effect:hover {
+    opacity: 0.8; /* ホバー時にボタンを薄くする */
+}
+
 @media (min-width: 1024px) {
     .contact4 .contact-box {
         padding: 20px 30px 30px 0px;
