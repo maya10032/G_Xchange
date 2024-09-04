@@ -122,7 +122,7 @@
         </main>
     </div>
 
-    <footer class=" bg-white shadow-sm  expand-mdz text-gray-600 mt-auto  text-center">
+    <footer class=" bg-white shadow-sm expand-mdz text-gray-600 mt-auto  text-center">
         <div class=" container flex flex-wrap md:pl-20 -mb-10 md:mt-10 mt-10 md:text-left text-center ">
             <div class="row py-4 p-5 .justify-content-center">
                 <div class="col-2">
