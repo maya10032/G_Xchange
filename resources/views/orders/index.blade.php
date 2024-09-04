@@ -48,7 +48,7 @@
                                     数量：{{ $order->count }}
                                 </div>
                                 <div>
-                                    小計：{{ number_format($order->priceWithTax) }}円
+                                    合計：{{ number_format($order->subtotal) }}円
                                 </div>
                             </div>
                             <div class="d-flex justify-content-start mt-auto">
