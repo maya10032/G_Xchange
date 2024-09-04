@@ -21,6 +21,17 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        footer .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        .navbar-nav .nav-link:hover {
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,13 +65,15 @@
                             </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">
+                                        <i class="fa fa-sign-in me-1"></i>{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}"> {{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                        <i class="fa fa-user-plus me-1"></i>{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -86,7 +99,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    <i class="fa fa-user-circle me-1"></i>{{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -110,7 +123,8 @@
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
             </div>
@@ -146,11 +160,12 @@
         </div>
         <div class="container" style="width: 50%;">
             <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" style="width: 80px;" type="submit">{{ __('search') }}</button>
+                <input class="form-control me-2 border-success" type="search" placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search">
+                <button class="btn btn-outline-success" style="width: 80px;"
+                    type="submit">{{ __('search') }}</button>
             </form>
         </div>
-        <main class="container py-1 sticky-top" style="min-height: calc(100vh - 100px);">
+        <main>
             @yield('content')
         </main>
     </div>

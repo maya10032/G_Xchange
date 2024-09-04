@@ -19,6 +19,13 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        footer .nav-link:hover {
+            text-decoration: underline;
+            /* Add underline on hover */
+        }
+    </style>
 </head>
 
 <body>
@@ -53,13 +60,15 @@
                             </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">
+                                        <i class="fa fa-sign-in me-1"></i> {{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="register"> {{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                        <i class="fa fa-user-plus me-1"></i>{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -86,7 +95,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    <i class="fa fa-user-circle me-1"></i>{{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -106,7 +115,8 @@
                 </div>
             </div>
         </nav>
-        <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
+        {{-- <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);"> --}}
+        <main>
             @yield('content')
         </main>
     </div>
