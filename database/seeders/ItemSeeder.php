@@ -18,6 +18,7 @@ class ItemSeeder extends Seeder
         $sampleImages = Storage::files('public/images'); // public/sample_imagesに画像を入れておく
         $NUM_FAKER = 20;
         $faker = Factory::create('ja_JP');
+        $numImagesPerItem = 4;
         // 本のタイトルのみ英語名なので日本語で定義
         $item_name = [
             'ミネサック',
@@ -61,7 +62,7 @@ class ItemSeeder extends Seeder
             '３色ボールペンで趣味を見つける方法わらせながれるように見え、けれども、「ではこんなにしずみの間になったいました。ジョバンニもそのそとを言いう声やら行くようになってしました。そのマントをおりて、波なみ。'
         ];
         for ($i = 0; $i < $NUM_FAKER; $i++) {
-        $item = Item::create([
+            $item = Item::create([
                 // 定義した値の中からランダムで本のタイトルを取得
                 'category_id'   => $faker->numberBetween(1, 4),
                 'item_name'  => $item_name[mt_rand(0, array_key_last($item_name))],
@@ -78,13 +79,18 @@ class ItemSeeder extends Seeder
             $randomImage = $faker->randomElement($sampleImages);
             $imageName = basename($randomImage);
 
-            // Imageモデルのレコードを作成して、アイテムに関連付け
-            $image = Image::create([
-                'img_path' => $imageName,
-            ]);
+            // / 複数のランダムな画像を選択
+            $selectedImages = $faker->randomElements($sampleImages, $numImagesPerItem);
 
-            // アイテムと画像を関連付け
-            $item->images()->attach($image->id);
+            foreach ($selectedImages as $randomImage) {
+                $imageName = basename($randomImage);
+                // Imageモデルのレコードを作成
+                $image = Image::create([
+                    'img_path' => $imageName,
+                ]);
+                // アイテムと画像を関連付け
+                $item->images()->attach($image->id);
+            }
         }
     }
 }

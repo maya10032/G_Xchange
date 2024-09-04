@@ -14,8 +14,6 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -48,8 +46,7 @@
                                 <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contact.show') }}"><i class="fa fa-envelope-o"></i>
-                                    {{ __('contact') }}</a>
+                                <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i> {{ __('contact') }}</a>
                             </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -64,8 +61,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i>
-                                    {{ __('item_list') }}</a>
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i>
@@ -106,6 +102,32 @@
                 </div>
             </div>
         </nav>
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1725006709387-d820b307a1f2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1724908549265-06972c22ca37?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        class="d-block w-100" style="height: 300px; object-fit: cover;" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1721020693392-e447ac5f52ee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        class="d-block w-100" style="height: 300px; object-fit: cover;" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
         <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
             @yield('content')
         </main>
@@ -140,7 +162,6 @@
             <p class="text-white text-center">© 2024 {{ config('app.name', 'Laravel') }}.inc</p>
         </div>
     </footer>
-
 </body>
 
 </html>

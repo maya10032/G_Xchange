@@ -21,9 +21,11 @@ class ItemController extends Controller
     public function index()
     {
         // 販売中がtrueの商品だけ表示
-        // $items = Item::where('is_active', true)->get();
-        $items = Item::where('is_active', true)->with('images')->get();
-        // dd($items);
+        $items = Item::where('is_active', true)
+            ->with('images')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+            // ->get();
         return view('items.index', compact('items'));
     }
 
