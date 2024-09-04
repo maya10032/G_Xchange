@@ -1,4 +1,13 @@
 @charset "UTF-8";
+/* カート */
+.delete-link:hover {
+    color: red !important; /* ホバー時に文字を赤く */
+}
+
+.text-muted {
+    margin-right: 5px; /* 縦線と削除の間の間隔を調整 */
+}
+
 /* フッター */
 footer .nav-link:hover {
     text-decoration: underline;
