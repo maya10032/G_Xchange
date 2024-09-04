@@ -60,8 +60,10 @@
                                     <p class="mb-2">※{{ $error }}</p>
                                 @endforeach
                             </div>
+                            <div class="d-grid gap-2 col-6">
                             <button type="submit" name="action" value="cart" class="btn btn-secondary mb-2" style="font-size: 1.25rem;">カートに追加</button>
                             <button type="submit" name="action" value="purchase" class="btn btn-danger mb-2" style="font-size: 1.25rem;">購入ページへ</button>
+                        </div>
                         </form>
 
                         @if (Auth::user()->isLike($item->id))
