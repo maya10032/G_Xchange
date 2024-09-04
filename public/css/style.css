@@ -170,3 +170,12 @@
 .search-form button {
     margin-left: 8px;
 }
+
+.hover-effect:hover {
+    opacity: 0.8; /* Card becomes slightly transparent on hover */
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+.card-body h4:hover {
+    text-decoration: underline; /* Underline on hover to indicate link */
+}
