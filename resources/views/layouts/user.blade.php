@@ -88,7 +88,7 @@
         </nav>
 
         {{-- <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);"> --}}
-        <main>
+        <main style="min-height: calc(100vh - 100px);">
             <div class="mx-auto" style="width: 600px;">
                 <ul class="nav nav-pills nav-justified py-5">
                     <span class="border border-1 m-2">
@@ -124,25 +124,30 @@
 
     <footer class=" bg-white shadow-sm  expand-mdz text-gray-600 mt-auto  text-center">
         <div class=" container flex flex-wrap md:pl-20 -mb-10 md:mt-10 mt-10 md:text-left text-center ">
-            <div class="row py-4 p-5">
-                <div class="col-3">
+            <div class="row py-4 p-5 .justify-content-center">
+                <div class="col-2">
                     <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
                         <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
                     </p>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('orders.index') }}"> {{ __('order') }} > </a>
+                    </p>
+                </div>
+                <div class="col-2">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('likes.index') }}"> {{ __('like') }} > </a>
+                    </p>
+                </div>
+                <div class="col-2">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('profile.edit') }}"> {{ __('profile') }} > </a>
+                    </p>
+                </div>
+                <div class="col-2">
                     <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
                         <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
-                    </p>
-                </div>
-                <div class="col-3">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }} > </a>
-                    </p>
-                </div>
-                <div class="col-3">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('register') }}"> {{ __('Register') }} > </a>
                     </p>
                 </div>
             </div>
@@ -154,3 +159,8 @@
 </body>
 
 </html>
+<style>
+    span:hover {
+        background-color: #f0f0f0;
+    }
+</style>
