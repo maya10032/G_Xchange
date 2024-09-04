@@ -14,6 +14,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -42,10 +44,12 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}</a>
+                            <a class="nav-link" href="/"><i class="fa fa-wpforms"></i>
+                                {{ __('item_list') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i> {{ __('contact') }}</a>
+                            <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i>
+                                {{ __('contact') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart"></i>
@@ -83,24 +87,65 @@
             </div>
         </nav>
 
-        <main class="py-4 container">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('orders.index') }}">{{ __('order') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('likes.index') }}">{{ __('like') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
-                </li>
+        <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
+            <div class="mx-auto" style="width: 600px;">
+            <ul class="nav nav-pills nav-justified py-5">
+                <span class="border border-1 m-2">
+                    <li class="nav-item px-3">
+                        <a class="nav-link link-dark link-offset-2" href="{{ route('orders.index') }}">{{ __('order') }}</a>
+                    </li>
+                </span>
+                <span class="border border-1 m-2">
+                    <li class="nav-item px-3">
+                        <a class="nav-link link-dark link-offset-2" href="{{ route('likes.index') }}">{{ __('like') }}</a>
+                    </li>
+                </span>
+                <span class="border border-1 m-2">
+                    <li class="nav-item px-3">
+                        <a class="nav-link link-dark link-offset-2" href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
+                    </li>
+                </span>
+                <span class="border border-1 m-2">
+                    <li class="nav-item px-3">
+                        <a class="nav-link link-dark link-offset-2" href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
+                    </li>
+                </span>
             </ul>
+            </div>
             @yield('content')
+
         </main>
     </div>
+
+    <footer class=" bg-white shadow-sm  expand-mdz text-gray-600 mt-auto  text-center">
+        <div class=" container flex flex-wrap md:pl-20 -mb-10 md:mt-10 mt-10 md:text-left text-center ">
+            <div class="row py-4 p-5">
+                <div class="col-3">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
+                    </p>
+                </div>
+                <div class="col-3">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
+                    </p>
+                </div>
+                <div class="col-3">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }} > </a>
+                    </p>
+                </div>
+                <div class="col-3">
+                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                        <a class="nav-link" href="{{ route('register') }}"> {{ __('Register') }} > </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-black py-3">
+            <p class="text-white text-center">© 2024 {{ config('app.name', 'Laravel') }}.inc</p>
+        </div>
+    </footer>
 </body>
 
 </html>

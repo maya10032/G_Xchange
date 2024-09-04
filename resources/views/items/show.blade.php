@@ -19,6 +19,11 @@
         </div>
     @endif
     <tbody>
+        @foreach ($item->images as $image)
+            <td><img src="{{ asset('storage/images/' . $item->images->first()->img_path) }}" alt="Image"
+                    style="width: 150px; height: auto;">
+            </td>
+        @endforeach
         <p>カテゴリー：{{ $item->category_id }}</p>
         <p>商品名：{{ $item->item_name }}</p>
         {{-- 割引していないとき --}}
@@ -71,7 +76,7 @@
                     </form>
                 @endif
             @else
-            <h2>現在販売していません</h2>
+                <h2>現在販売していません</h2>
             @endif
         @endif
         <a href="{{ url('/') }}">商品一覧に戻る</a>

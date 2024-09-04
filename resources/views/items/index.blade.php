@@ -43,6 +43,7 @@
         </div>
     </footer>
 @endsection
+
 {{ Debugbar::log($items->toArray()) }}
 <style>
     .hover-effect:hover {
@@ -76,3 +77,4 @@
         margin-bottom: 0;
     }
 </style>
+
