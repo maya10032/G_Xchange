@@ -16,18 +16,47 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        .nav-pills-custom {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+        }
+
+        .nav-pills-custom .nav-item {
+            flex: 1;
+        }
+
+        .nav-pills-custom .nav-link {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .nav-pills-custom .nav-link {
+            border: none;
+            border-radius: 0;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+
+        .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ url('/') }}" style="display: flex; align-items: center; padding: 0;">
+                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}" style="max-height: 50px; margin: 0;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -36,11 +65,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -90,26 +114,24 @@
 
         <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
             <nav>
-                <div class="mx-auto" style="width: 100%;">
-                    <ul class="nav nav-pills nav-justified py-4">
-                        <li class="nav-item border m-2">
-                            <a class="nav-link link-dark link-offset-2"
-                                href="{{ route('orders.index') }}">{{ __('order') }}</a>
-                        </li>
-                        <li class="nav-item border m-2">
-                            <a class="nav-link link-dark link-offset-2"
-                                href="{{ route('likes.index') }}">{{ __('like') }}</a>
-                        </li>
-                        <li class="nav-item border m-2">
-                            <a class="nav-link link-dark link-offset-2"
-                                href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
-                        </li>
-                        <li class="nav-item border m-2">
-                            <a class="nav-link link-dark link-offset-2"
-                                href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="nav nav-pills nav-pills-custom py-2 mb-2">
+                    <li class="nav-item border">
+                        <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('orders.index') ? 'active' : '' }}"
+                            href="{{ route('orders.index') }}">{{ __('order') }}</a>
+                    </li>
+                    <li class="nav-item border">
+                        <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('likes.index') ? 'active' : '' }}"
+                            href="{{ route('likes.index') }}">{{ __('like') }}</a>
+                    </li>
+                    <li class="nav-item border">
+                        <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('profile.edit') ? 'active' : '' }}"
+                            href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
+                    </li>
+                    <li class="nav-item border">
+                        <a class="nav-link link-dark link-offset-2"
+                            href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
+                    </li>
+                </ul>
             </nav>
             @yield('content')
 

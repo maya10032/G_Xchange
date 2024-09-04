@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="col-lg-6 contact-box mb-4 mb-md-0">
                     <div class="container">
-                        <h1 class="title font-weight-light mt-2">お問い合わせ</h1>
+                        <h1 class="title font-weight-light mt-2"><i class="fas fa-envelope" style="color: #007bff; margin-right: 8px;"></i>お問い合わせ</h1>
                         <form method="post" action="{{ route('contact.post') }}" novalidate>
                             @csrf
                             <div class="row">
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group row mt-2">
-                                        <label for="radio" class="col-sm-3 col-form-label ">お問い合わせ<br>項目：</label>
+                                        <label for="radio" class="col-sm-3 col-form-label ">お問い合わせ項目：</label>
                                         <div class="col-sm-9 d-flex flex-wrap radio-group">
                                             <div class="form-check mr-3">
                                                 <input class="form-check-input" type="radio" name="radio" value="商品について"
