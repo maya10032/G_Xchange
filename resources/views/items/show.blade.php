@@ -3,22 +3,22 @@
 @section('title', '商品詳細')
 
 @section('content')
-    <h2>商品詳細ページ</h2>
-    {{-- お気に入り通知 --}}
-    @if (session('likeadd'))
-        <div class="alert alert-success text-center fw-bold">
-            {{ session('likeadd') }}
-        </div>
-    @elseif (session('likedelete'))
-        <div class="alert alert-info text-center fw-bold">
-            {{ session('likedelete') }}
-        </div>
-    @elseif (session('cartadd'))
-        <div class="alert alert-info text-center fw-bold">
-            {{ session('cartadd') }}
-        </div>
-    @endif
-    <tbody>
+    <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
+        <h2>商品詳細ページ</h2>
+        {{-- お気に入り通知 --}}
+        @if (session('likeadd'))
+            <div class="alert alert-success text-center fw-bold">
+                {{ session('likeadd') }}
+            </div>
+        @elseif (session('likedelete'))
+            <div class="alert alert-info text-center fw-bold">
+                {{ session('likedelete') }}
+            </div>
+        @elseif (session('cartadd'))
+            <div class="alert alert-info text-center fw-bold">
+                {{ session('cartadd') }}
+            </div>
+        @endif
         @foreach ($item->images as $image)
             <td><img src="{{ asset('storage/images/' . $item->images->first()->img_path) }}" alt="Image"
                     style="width: 150px; height: auto;">
@@ -80,7 +80,7 @@
             @endif
         @endif
         <a href="{{ url('/') }}">商品一覧に戻る</a>
-    </tbody>
+    </div>
 @endsection
 
 {{-- {{ Debugbar::log($items->toArray()) }} --}}

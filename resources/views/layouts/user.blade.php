@@ -87,30 +87,35 @@
             </div>
         </nav>
 
-        <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
+        {{-- <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);"> --}}
+        <main>
             <div class="mx-auto" style="width: 600px;">
-            <ul class="nav nav-pills nav-justified py-5">
-                <span class="border border-1 m-2">
-                    <li class="nav-item px-3">
-                        <a class="nav-link link-dark link-offset-2" href="{{ route('orders.index') }}">{{ __('order') }}</a>
-                    </li>
-                </span>
-                <span class="border border-1 m-2">
-                    <li class="nav-item px-3">
-                        <a class="nav-link link-dark link-offset-2" href="{{ route('likes.index') }}">{{ __('like') }}</a>
-                    </li>
-                </span>
-                <span class="border border-1 m-2">
-                    <li class="nav-item px-3">
-                        <a class="nav-link link-dark link-offset-2" href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
-                    </li>
-                </span>
-                <span class="border border-1 m-2">
-                    <li class="nav-item px-3">
-                        <a class="nav-link link-dark link-offset-2" href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
-                    </li>
-                </span>
-            </ul>
+                <ul class="nav nav-pills nav-justified py-5">
+                    <span class="border border-1 m-2">
+                        <li class="nav-item px-3">
+                            <a class="nav-link link-dark link-offset-2"
+                                href="{{ route('orders.index') }}">{{ __('order') }}</a>
+                        </li>
+                    </span>
+                    <span class="border border-1 m-2">
+                        <li class="nav-item px-3">
+                            <a class="nav-link link-dark link-offset-2"
+                                href="{{ route('likes.index') }}">{{ __('like') }}</a>
+                        </li>
+                    </span>
+                    <span class="border border-1 m-2">
+                        <li class="nav-item px-3">
+                            <a class="nav-link link-dark link-offset-2"
+                                href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
+                        </li>
+                    </span>
+                    <span class="border border-1 m-2">
+                        <li class="nav-item px-3">
+                            <a class="nav-link link-dark link-offset-2"
+                                href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
+                        </li>
+                    </span>
+                </ul>
             </div>
             @yield('content')
 
