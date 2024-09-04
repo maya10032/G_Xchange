@@ -47,35 +47,3 @@
 @endsection
 
 {{ Debugbar::log($items->toArray()) }}
-<style>
-    .hover-effect:hover {
-        opacity: 0.5;
-        /* Card becomes slightly transparent on hover */
-        transition: opacity 0.3s;
-        /* Smooth transition */
-    }
-
-    .card-body h4:hover {
-        text-decoration: underline;
-        /* Underline on hover to indicate link */
-    }
-
-    .bd-mode-toggle {
-        z-index: 1500;
-    }
-
-    .card-body {
-        height: 220px;
-    }
-
-    .card-body h4 {
-        cursor: pointer;
-        margin: 0;
-    }
-
-    .card-body p.card-text {
-        max-height: 4.5em;
-        overflow: hidden;
-        margin-bottom: 0;
-    }
-</style>

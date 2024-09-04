@@ -1,4 +1,44 @@
 @charset "UTF-8";
+/* フッター */
+footer .nav-link:hover {
+    text-decoration: underline;
+}
+
+.navbar-nav .nav-link:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+/* 商品一覧 */
+.hover-effect:hover {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.card-body h4:hover {
+    text-decoration: underline;
+}
+
+.bd-mode-toggle {
+    z-index: 1500;
+}
+
+.card-body {
+    height: 220px;
+}
+
+.card-body h4 {
+    cursor: pointer;
+    margin: 0;
+}
+
+.card-body p.card-text {
+    max-height: 4.5em;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+/* その他 */
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -178,4 +218,145 @@
 
 .card-body h4:hover {
     text-decoration: underline; /* Underline on hover to indicate link */
+}
+
+/* 問い合わせページ */
+@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
+
+.contact4 {
+    font-family: "Montserrat", sans-serif;
+    color: #000000;
+    font-weight: 300;
+    position: relative;
+    padding-bottom: 0px;
+}
+
+.contact4 h1,
+.contact4 h2,
+.contact4 h3,
+.contact4 h4,
+.contact4 h5,
+.contact4 h6 {
+    color: #3e4555;
+}
+
+.contact4 .font-weight-medium {
+    font-weight: 500;
+}
+
+.contact4 .form-control {
+    background: #ffffff; /* 入力ボックスの背景を白に設定 */
+    border: 2px solid #adb5bd; /* ボックスのボーダーを黒に設定 */
+    color: #000000;
+    margin-left: 30px;
+}
+
+.contact4 .form-control:focus {
+    border-color: #000000;
+}
+
+.contact4 input::-webkit-input-placeholder,
+.contact4 textarea::-webkit-input-placeholder {
+    color: #000000;
+}
+
+.contact4 input:-ms-input-placeholder,
+.contact4 textarea:-ms-input-placeholder {
+    color: #000000;
+}
+
+.contact4 input::placeholder,
+.contact4 textarea::placeholder {
+    color: #dcdcdd;
+}
+
+.contact4 .right-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+.contact4.bg-info {
+    background-color: #f0f0f0 !important;
+}
+
+.contact4 .text-inverse {
+    color: #000000 !important;
+}
+
+
+.form-group .radio-group {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 1px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group .radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+.form-group .radio-group label {
+    margin: 0;
+}
+
+@media (min-width: 1024px) {
+    .contact4 .contact-box {
+        padding: 80px 30px 80px 0px;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact4 .contact-box {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .contact4 .right-image {
+        position: relative;
+        bottom: -95px;
+    }
+}
+
+/* マップの高さ調整 */
+.contact4 iframe {
+    height: 100%;
+    max-height: 538px;
+}
+
+/* メイン商品一覧ページ */
+.hover-effect:hover {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.card-body h4:hover {
+    text-decoration: underline;
+}
+
+.bd-mode-toggle {
+    z-index: 1500;
+}
+
+.card-body {
+    height: 220px;
+}
+
+.card-body h4 {
+    cursor: pointer;
+    margin: 0;
+}
+
+.card-body p.card-text {
+    max-height: 4.5em;
+    overflow: hidden;
+    margin-bottom: 0;
 }
