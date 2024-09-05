@@ -69,9 +69,10 @@
     </div>
     </nav>
 
-    <div class="d-flex ">
-        <!-- サイドバー -->
-        <nav class="sidebar navbar navbar-expand-md navbar-light shadow-sm flex-column ">
+    @auth('admin')
+    <!-- サイドバー -->
+    <div class="d-flex" style="min-height: 100vh;">
+    <nav class="sidebar navbar navbar-expand-md navbar-light shadow-sm flex-column" style="height: 90vh; position: sticky; top: 0;">
             <div class="container">
 
                 <!-- サイドバーの内容 -->
@@ -112,22 +113,22 @@
                                     </form>
                                 </div>
                             </li>
-                        @else
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.login') }}">{{ __('admin_Login') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"
                                     href="{{ route('admin.register') }}">{{ __('admin_Register') }}</a>
-                            </li>
+                            </li> --}}
                         @endif
                     </ul>
                 </div>
             </div>
         </nav>
 
+        @endauth
         {{-- <main class="py-4 container"> --}}
-        <main>
+        <main class="py-4 container">
             <div class="content p-4" style="flex-grow: 1;">
                 @yield('content')
             </div>
