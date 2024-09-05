@@ -3,10 +3,18 @@
 @section('title', '購入完了')
 
 @section('content')
-    <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-
-        <h2>購入完了画面</h2>
-        <h3>ご購入ありがとうございました。</h3>
-        <a href="{{ url('/') }}">商品一覧へ戻る</a>
-    </main>
-    @endsection
+    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <img src="{{ asset('images/purchase.jpg') }}" class="bd-placeholder-img card-img-top " style="object-fit: cover;"
+            width="100%" height="400px" alt="Sample Image">
+        <div class="carousel-caption text-start text-dark">
+            <h1><strong>ご購入ありがとうございました。</strong></h1>
+            <h4><strong>商品ご到着までしばらくお待ちください。</strong></h4>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+        <button type="submit" class="btn bg-dark text-light  px-5 py-2 hover-effect">
+            <a href="{{ url('/') }}" style="color: inherit; text-decoration: none;">商品一覧へ戻る</a>
+        </button>
+    </div>
+    </div>
+@endsection
