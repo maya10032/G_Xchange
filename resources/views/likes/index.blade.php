@@ -3,6 +3,7 @@
 @section('title', '商品詳細')
 
 @section('content')
+<main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-24 mx-auto">
             <h1>お気に入り一覧画面</h1>
@@ -15,35 +16,33 @@
                         </h2>
                     </div>
                 @else
-                    <tbody>
-                        @if (session('likedelete'))
-                            <div class="alert alert-info text-center fw-bold">
-                                {{ session('likedelete') }}
-                            </div>
-                        @endif
-                        <div class="w-full mx-auto overflow-auto">
-                            <table class="table-auto w-full text-left whitespace-no-wrap">
-                                <tbody>
-                                    @foreach ($items as $item)
-                                        <tr>
-                                            <td><a href="{{ route('items.show', $item->id) }}">{{ $item->item_name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <form action="{{ route('likes.destroy') }}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
-                                                    <button>{{ __('like') . __('delete') }}</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                    @if (session('likedelete'))
+                        <div class="alert alert-info text-center fw-bold">
+                            {{ session('likedelete') }}
                         </div>
+                    @endif
+                    <div class="w-full mx-auto overflow-auto">
+                        <table class="table-auto w-full text-left whitespace-no-wrap">
+                            @foreach ($items as $item)
+                                <tr>
+                                    <td><a href="{{ route('items.show', $item->id) }}">{{ $item->item_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <form action="{{ route('likes.destroy') }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                            <button>{{ __('like') . __('delete') }}</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
                 @endif
             </div>
         </div>
     </section>
+</main>
 @endsection

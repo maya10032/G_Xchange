@@ -17,6 +17,7 @@ class Category extends Model
     protected $fillable = [
         'id',
         'category_name',
+        'category_id',
     ];
 
     public function items()

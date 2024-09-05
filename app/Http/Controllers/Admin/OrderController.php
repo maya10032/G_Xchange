@@ -9,8 +9,6 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
-    protected $taxRate = 0.1; // プロパティとして税率を定義
-
     /**
      * 受注管理一覧ページ作成
      *
@@ -19,16 +17,13 @@ class OrderController extends Controller
     public function index(Item $item)
     {
         //odersテーブルのデータ取得、新しい順で表示
-        $orders = Order::with('items')
+        $orders = Order::with('item')
             ->orderBy('created_at', 'DESC')
             ->get();
 
         // 小計合計の計算
         $ordersWithTax = $orders->map(function ($order) {
-            $subtotal = $order->items->sales_price * $order->count;
-            $order->priceWithTax = $subtotal * (1 + $this->taxRate);
-            $order->salesWithTax = $order->items->sales_price * (1 + $this->taxRate);
-
+            $order->subtotal = $order->item->tax_sales_prices * $order->count;
             return $order;
         });
 
@@ -43,8 +38,8 @@ class OrderController extends Controller
     public function show($id)
     {
         // 注文IDに基づいて注文を取得
-        $order = Order::with(['user', 'items', 'categorys', 'item_images'])->findOrFail($id);
-        $subtotal = ($order->items->sales_price * $order->count) * (1 + $this->taxRate);
+        $order = Order::with(['user', 'item', 'category', 'item_images'])->findOrFail($id);
+        $subtotal = $order->item->tax_sales_prices * $order->count;
         // ビューにデータを渡す
         return view('admin.orders.show', compact('order', 'subtotal'));
     }
