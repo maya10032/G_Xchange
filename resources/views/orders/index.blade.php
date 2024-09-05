@@ -51,9 +51,9 @@
                                     合計：{{ number_format($order->subtotal) }}円
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-start mt-auto">
+                            <div class="d-flex text-body-secondary">
                                 <a href="{{ route('orders.show', $order->id) }}"
-                                    class="btn btn-secondary text-light px-4 py-2 hover-effect">詳細</a>
+                                    class="btn btn-secondary text-light px-3 py-2 hover-effect">詳細</a>
                             </div>
                         </div>
                     </div>

@@ -22,14 +22,24 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    <style>
+        .navbar-expand-md {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            background-color: #D2B48C !important;
+
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}" style="display: flex; align-items: center; padding: 0;">
-                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}" style="max-height: 50px; margin: 0;">
+                <a class="navbar-brand" href="{{ url('/') }}"
+                    style="display: flex; align-items: center; padding: 0;">
+                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}"
+                        style="max-height: 50px; margin: 0;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -183,31 +193,31 @@
                         </div>
                     @endif
                 @else
-                <div class="col-2">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
-                    </p>
-                </div>
-                <div class="col-2">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('orders.index') }}"> {{ __('order') }} > </a>
-                    </p>
-                </div>
-                <div class="col-2">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('likes.index') }}"> {{ __('like') }} > </a>
-                    </p>
-                </div>
-                <div class="col-2">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('profile.edit') }}"> {{ __('profile') }} > </a>
-                    </p>
-                </div>
-                <div class="col-2">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
-                    </p>
-                </div>
+                    <div class="col-2">
+                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                            <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
+                        </p>
+                    </div>
+                    <div class="col-2">
+                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                            <a class="nav-link" href="{{ route('orders.index') }}"> {{ __('order') }} > </a>
+                        </p>
+                    </div>
+                    <div class="col-2">
+                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                            <a class="nav-link" href="{{ route('likes.index') }}"> {{ __('like') }} > </a>
+                        </p>
+                    </div>
+                    <div class="col-2">
+                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                            <a class="nav-link" href="{{ route('profile.edit') }}"> {{ __('profile') }} > </a>
+                        </p>
+                    </div>
+                    <div class="col-2">
+                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
+                            <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
+                        </p>
+                    </div>
                 @endguest
             </div>
         </div>

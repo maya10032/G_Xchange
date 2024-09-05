@@ -1,4 +1,21 @@
 @charset "UTF-8";
+
+.title--border {
+    padding: 1rem 1rem;
+    border-left: 3px solid #006eb0;
+}
+
+
+
+cheat {
+    color: red;
+    color: #3e4555;
+    color: #5a6268;
+    color: #721c24;
+    color: #f5c6cb;
+    color: #f8d7da;
+}
+
 /* カート */
 .delete-link:hover {
     color: red !important; /* ホバー時に文字を赤く */
@@ -256,22 +273,22 @@ footer .nav-link:hover {
 .contact4 .form-control {
     background: #ffffff; /* 入力ボックスの背景を白に設定 */
     border: 2px solid #adb5bd; /* ボックスのボーダーを黒に設定 */
-    color: #000000;
+    color: #3e4555;
     margin-left: 30px;
 }
 
 .contact4 .form-control:focus {
-    border-color: #000000;
+    border-color: #3e4555;
 }
 
 .contact4 input::-webkit-input-placeholder,
 .contact4 textarea::-webkit-input-placeholder {
-    color: #000000;
+    color: #3e4555;
 }
 
 .contact4 input:-ms-input-placeholder,
 .contact4 textarea:-ms-input-placeholder {
-    color: #000000;
+    color: #3e4555;
 }
 
 .contact4 input::placeholder,

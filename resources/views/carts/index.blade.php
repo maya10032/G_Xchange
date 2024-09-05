@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-        <h2>マイページ / カート一覧</h2>
+        <h2 class="title--border">マイページ / カート一覧</h2>
         @if ($carts->isEmpty())
             <p>カートに商品がありません。</p>
         @else

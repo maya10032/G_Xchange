@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-        <h2>商品一覧</h2>
+        <h2 class="fw-bold title--border">商品一覧</h2>
         <div class="row row-cols- row-cols-sm-2 row-cols-md-4 g-4">
             @foreach ($items as $item)
                 <div class="col">

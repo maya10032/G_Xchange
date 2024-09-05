@@ -45,9 +45,11 @@
         }
 
         .nav-link.active {
-            background-color: #007bff;
-            color: white;
+            background-color: #CC6633 !important;
+            color: white !important;
         }
+
+        
     </style>
 </head>
 
@@ -55,8 +57,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}" style="display: flex; align-items: center; padding: 0;">
-                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}" style="max-height: 50px; margin: 0;">
+                <a class="navbar-brand" href="{{ url('/') }}"
+                    style="display: flex; align-items: center; padding: 0;">
+                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}"
+                        style="max-height: 50px; margin: 0;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -112,27 +116,31 @@
             </div>
         </nav>
 
+        <nav class="py-1 container">
+            <ul class="nav nav-pills nav-pills-custom py-2 mb-2">
+                <li class="nav-item border">
+                    <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('orders.index') ? 'active' : '' }}"
+                        href="{{ route('orders.index') }}">{{ __('order') }}</a>
+                </li>
+                <li class="nav-item border">
+                    <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('carts.index') ? 'active' : '' }}"
+                        href="{{ route('carts.index') }}">{{ __('cart') }}</a>
+                </li>
+                <li class="nav-item border">
+                    <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('likes.index') ? 'active' : '' }}"
+                        href="{{ route('likes.index') }}">{{ __('like') }}</a>
+                </li>
+                <li class="nav-item border">
+                    <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('profile.edit') ? 'active' : '' }}"
+                        href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
+                </li>
+                <li class="nav-item border">
+                    <a class="nav-link link-dark link-offset-2"
+                        href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
+                </li>
+            </ul>
+        </nav>
         <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-            <nav>
-                <ul class="nav nav-pills nav-pills-custom py-2 mb-2">
-                    <li class="nav-item border">
-                        <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('orders.index') ? 'active' : '' }}"
-                            href="{{ route('orders.index') }}">{{ __('order') }}</a>
-                    </li>
-                    <li class="nav-item border">
-                        <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('likes.index') ? 'active' : '' }}"
-                            href="{{ route('likes.index') }}">{{ __('like') }}</a>
-                    </li>
-                    <li class="nav-item border">
-                        <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('profile.edit') ? 'active' : '' }}"
-                            href="{{ route('profile.edit') }}">{{ __('profile') }}</a>
-                    </li>
-                    <li class="nav-item border">
-                        <a class="nav-link link-dark link-offset-2"
-                            href="{{ route('users.index') }}">{{ __('withdrawal') }}</a>
-                    </li>
-                </ul>
-            </nav>
             @yield('content')
 
         </main>

@@ -10,14 +10,24 @@
             <h1><strong>本当に退会しますか？</strong></h1>
         </div>
     </div>
-    <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
-        <form action="{{ route('users.destroy') }}" method="post">
-            @csrf
-            @method('delete')
-            <input type="hidden" name="user_id">
-            <button type="submit" class="btn bg-danger text-light px-5 py-2 mb-4 hover-effect w-100">
-                退会する
-            </button>
-        </form>
+    <div class="py-5 container ms-auto sticky-top" style="min-height: calc(30vh - 30px); width: 400px;">
+        <div class="d-flex">
+                <div class="d-grid gap-1 col-6 align-items-center">
+                    <form action="{{ route('users.destroy') }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <input type="hidden" name="user_id">
+                        <button type="submit" class="btn bg-danger text-light px-5 py-2 mb-4 hover-effect">
+                            退会する
+                        </button>
+                    </form>
+                </div>
+                <div class="d-grid gap-1 col-6 align-items-center">
+                    <botton>
+                        <a href="{{ route('orders.index') }}"
+                            class="btn btn-secondary text-light px-5 py-2 mb-4 hover-effect">キャンセル</a>
+                    </botton>
+                </div>
+        </div>
     </div>
 @endsection
