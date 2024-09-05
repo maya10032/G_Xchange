@@ -29,9 +29,9 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('orders.store') }}" method="POST">
+            <form action="{{ route('orders.store') }}" method="POST" style="flex: 1;">
                 @csrf
-                <div class="ms-auto" style="flex: 1; font-size: 1.25rem;">
+                <div style="flex: 1; font-size: 1.25rem;">
                     <p class="mb-2"><small class="text-muted">{{ $item->category->category_name }}</small></p>
                     <h3 class="mb-3" style="font-size: 1.75rem; word-break: break-word;">{{ $item->item_name }}</h3>
                     @if ($item->tax_regular_prices === $item->sales_price)
