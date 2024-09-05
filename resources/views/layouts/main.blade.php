@@ -52,19 +52,19 @@
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
-                                    <p>goods</p>
+                                    <small>goods</small>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i> {{ __('contact') }}
-                                    <p>contact</p>
+                                    <small>contact</small>
                                 </a>
                             </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">
                                         <i class="fa fa-sign-in me-1"></i>{{ __('Login') }}
-                                        <p>Login</p>
+                                        <small>Login</small>
                                     </a>
                                 </li>
                             @endif
@@ -73,38 +73,38 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">
                                         <i class="fa fa-user-plus me-1"></i>{{ __('Register') }}
-                                        <p>sign up</p>
+                                        <small>sign up</small>
                                     </a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
-                                    <p>goods</p>
+                                    <small>goods</small>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i>
                                     {{ __('contact') }}
-                                    <p>contact</p>
+                                    <small>contact</small>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart"></i>
                                     {{ __('cart') }}
-                                    <p>cart</p>
+                                    <small>cart</small>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-history"></i>
                                     {{ __('order') }}
-                                    <p>history</p>
+                                    <small>history</small>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart-o"></i>
                                     {{ __('like') }}
-                                    <p>favorite</p>
+                                    <small>favorite</small>
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
@@ -112,7 +112,7 @@
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa fa-user-circle me-1"></i>{{ Auth::user()->name }}
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

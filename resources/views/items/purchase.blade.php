@@ -4,7 +4,8 @@
 
 @section('content')
     <div class="py-5 container sticky-top" style="min-height: calc(180vh - 180px);">
-        <h2 class="text-danger fw-bold text-center p-1">※内容をご確認の上、購入するを押してください。</h2>
+        <h2 class="title--border">商品詳細 / 購入確認
+        <span class="text-danger fw-bold text-center ms-5">※内容をご確認の上、購入するを押してください。</span></h2>
         <div class="d-flex">
             <div class="d-flex flex-column me-2 mb-0 reduce-margin" style="flex: 1.4;">
                 {{-- サムネイルとその他の画像を横並びにするためにd-flexを使用 --}}
@@ -41,7 +42,7 @@
                             style="font-size: 1.5rem;">{{ number_format($item->tax_regular_prices) }}円
                             <span class="badge bg-danger ms-2" style="position: relative; top: -5px;">SALE</span>
                         </strike>
-                        <p class="h3 text-danger fw-bold mb-3">{{ number_format($item->tax_sales_prices * $count) }} 円（税込）送料無料</p>
+                        <p class="h4 text-danger fw-bold mb-3">{{ number_format($item->tax_sales_prices * $count) }} 円（税込）送料無料</p>
                     @endif
                     @if ($item->is_active)
                         <div class="mb-3" style="font-size: 1.25rem;">
