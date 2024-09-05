@@ -25,7 +25,7 @@ class OrderController extends Controller
         // 小計合計の計算
         $ordersWithTax = $orders->map(function ($order) {
             // 小計（税込み）を計算（Itemモデルで計算引き継ぎ）
-            $subtotal = $order->item->tax_sales_prices * $order->count;
+            $order->subtotal = $order->item->tax_sales_prices * $order->count;
             return $order;
         });
 

@@ -3,12 +3,13 @@
 @section('title', 'お問い合わせ入力フォーム')
 
 @section('content')
-    <div class="bg-info contact4 overflow-hidden position-relative">
-        <div class="row no-gutters">
-            <div class="container">
-                <div class="col-lg-6 contact-box mb-4 mb-md-0">
+    <div class="py-3 container sticky-top" style="min-height: calc(100vh - 100px);">
+        <div class="d-flex">
+            <div class="d-flex flex-column me-2 mb-2 reduce-margin" style="flex: 1;">
+                <div class="ms-auto" style="flex: 1;">
                     <div class="container">
-                        <h1 class="title font-weight-light mt-2">お問い合わせ</h1>
+                        <h1 class="title font-weight-light mt-2"><i class="fas fa-envelope"
+                                style="color: #f8a1a8; margin-right: 8px;"></i>お問い合わせ</h1>
                         <form method="post" action="{{ route('contact.post') }}" novalidate>
                             @csrf
                             <div class="row">
@@ -41,28 +42,29 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <div class="form-group row mt-2">
-                                        <label for="radio" class="col-sm-3 col-form-label ">お問い合わせ<br>項目：</label>
-                                        <div class="col-sm-9 d-flex flex-wrap radio-group">
-                                            <div class="form-check mr-3">
-                                                <input class="form-check-input" type="radio" name="radio" value="商品について"
+                                    <div class="form-group row mt-1">
+                                        <label for="radio" class="col-sm-3 col-form-label d-block">お問い合わせ項目：</label>
+                                        <div class="col-sm-9 d-flex flex-wrap radio-group inline">
+                                            <div class="form-check mr-3" style="font-size: 0.9em">
+                                                <input class="form-check-input" type="radio" id="item" name="radio"
+                                                    value="商品について"
                                                     {{ old('radio', '商品について') === '商品について' ? 'checked' : '' }}>
-                                                <label class="form-check-label " for="item">商品について</label>
+                                                <label class="form-check-label" for="item">商品について</label>
                                             </div>
-                                            <div class="form-check mr-3">
-                                                <input class="form-check-input" type="radio" name="radio" value="配送について"
-                                                    {{ old('radio') === '配送について' ? 'checked' : '' }}>
-                                                <label class="form-check-label " for="delivery">配送について</label>
+                                            <div class="form-check mr-3" style="font-size: 0.9em">
+                                                <input class="form-check-input" type="radio" id="delivery" name="radio"
+                                                    value="配送について" {{ old('radio') === '配送について' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="delivery">配送について</label>
                                             </div>
-                                            <div class="form-check mr-3">
-                                                <input class="form-check-input" type="radio" name="radio"
+                                            <div class="form-check mr-3" style="font-size: 0.9em">
+                                                <input class="form-check-input" type="radio" id="payment" name="radio"
                                                     value="お支払いについて" {{ old('radio') === 'お支払いについて' ? 'checked' : '' }}>
-                                                <label class="form-check-label " for="payment">お支払いについて</label>
+                                                <label class="form-check-label" for="payment">お支払いについて</label>
                                             </div>
-                                            <div class="form-check mr-3">
-                                                <input class="form-check-input" type="radio" name="radio" value="その他"
-                                                    {{ old('radio') === 'その他' ? 'checked' : '' }}>
-                                                <label class="form-check-label " for="others">その他</label>
+                                            <div class="form-check mr-3" style="font-size: 0.9em">
+                                                <input class="form-check-input" type="radio" id="others" name="radio"
+                                                    value="その他" {{ old('radio') === 'その他' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="others">その他</label>
                                             </div>
                                         </div>
                                     </div>
@@ -79,9 +81,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 d-flex align-items-center mt-2">
+                                <div class="col-lg-12 d-flex align-items-center mt-4">
                                     <button type="submit"
-                                        class="btn bg-dark text-light  px-3 py-2 hover-effect"><span>確認画面へ</span></button>
+                                        class="btn bg-danger text-light px-5 py-2 hover-effect"><span>確認画面へ</span></button>
                                 </div>
                             </div>
                         </form>

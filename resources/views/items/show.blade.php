@@ -46,10 +46,10 @@
                 @if ($item->regular_price === $item->sales_price)
                     <p class="mb-3">{{ number_format($salesPriceWithTax) }}円（税込）送料無料</p>
                 @else
-                    <strike class="d-block mb-3" style="font-size: 1.5rem;">{{ number_format($regularPriceWithTax) }}円
+                    <strike class="d-block mb-3" style="font-size: 1.5rem;">{{ number_format($item->tax_regular_prices) }}円
                         <span class="badge bg-danger ms-2" style="position: relative; top: -5px;">SALE</span>
                     </strike>
-                    <p class="h4 text-danger fw-bold mb-3">{{ number_format($salesPriceWithTax) }} 円（税込）送料無料</p>
+                    <p class="h4 text-danger fw-bold mb-3">{{ number_format($item->tax_sales_prices) }} 円（税込）送料無料</p>
                 @endif
                 @if (auth()->guest())
                     <div>
@@ -57,7 +57,7 @@
                     </div>
                 @else
                     @if ($item->is_active)
-                        <form action="{{ url('/purchase', $item->id) }}" method="POST">
+                        <form action="{{ url('/purchase', $item->id) }}" method="POST" novalidate>
                             @csrf
                             <div class="mb-3">
                                 数量：<input type="number" name="count" min="1" max="{{ $item->count_limit }}"

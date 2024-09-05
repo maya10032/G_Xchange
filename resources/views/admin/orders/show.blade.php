@@ -9,9 +9,9 @@
         <p class="me-3">注文日: {{ $order->created_at }}</p>
     </div>
     <h3 class="p-3 mb-2 bg-body-secondary">配送情報</h3>
-    <div class="p-5 mb-4 mt-4 border-bottom border-top border-secondary-subtle">
+    <div class="p-5 my-4 border-bottom border-top border-secondary-subtle">
         <div class="form-group col-xs-12">
-            <div class="input-group mb-4">
+            <div class="input-group">
                 <div class="mb-2 me-3" style="max-height: 465px;">
                     <img src="{{ asset('storage/images/' . $order->item->images[$order->item->thumbnail]->img_path) }}"
                         alt="Thumbnail" class="img-fluid rounded"
@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div class="px-5">
+    <div class="px-5 mb-5">
         <p>名前: {{ $order->user->name }}</p>
         <p>電話番号: {{ $order->user->phone }}</p>
         <p>メール: {{ $order->user->email }}</p>
@@ -35,7 +35,7 @@
     </div>
     <h3 class="p-3 mb-2 bg-body-secondary">お支払い金額</h3>
     <div class="my-2 border-bottom border-secondary-subtle">
-        <div class="px-5">
+        <div class="px-5 d-flex justify-content-between align-items-end">
             <table class="table table-borderless w-25">
                 <tr>
                     <td>数量:</td>
@@ -51,14 +51,14 @@
                 </tr>
                 <tr>
                     <td>小計（税込）:</td>
-                    <td class="text-end">{{ $order->item->tax_sales_prices }}円</td>
-                </tr>
-                <tr>
-                    <td>合計（税込）:</td>
-                    <td class="h4 text-danger fw-bold text-end">{{ number_format($subtotal) }}円</td>
+                    <td class="text-end">{{ number_format($subtotal) }}円</td>
                 </tr>
             </table>
+            <p class="text-end me-5 mb-0">合計（税込）:
+                <span class="text-danger fw-bold" style="font-size: 2.75rem;">{{ number_format($subtotal) }}円</span>
+            </p>
         </div>
+    </div>
     </div>
     <p class="text-end m-3">
         <a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"

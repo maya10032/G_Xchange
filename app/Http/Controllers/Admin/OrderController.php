@@ -43,4 +43,4 @@ class OrderController extends Controller
         // ビューにデータを渡す
         return view('admin.orders.show', compact('order', 'subtotal'));
     }
-}
+}   

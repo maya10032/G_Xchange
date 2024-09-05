@@ -9,21 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    protected $taxRate = 0.1; // プロパティとして税率を定義
+    // protected $taxRate = 0.1; // プロパティとして税率を定義
 
     public function index()
     {
         //cartsテーブルのデータ取得
-        $carts = Cart::with('item')
+        $carts = Cart::with('item', 'category')
             ->where('user_id', \Auth::user()->id)
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate(5);
 
         // 合計金額の計算
         $total = $carts->reduce(function ($carry, $cart) {
-            $subtotal = $cart->item->sales_price * $cart->count;
-            $priceWithTax = $subtotal * (1 + $this->taxRate);
-            return $carry + $priceWithTax;
+            $cart->subtotal = $cart->item->tax_sales_prices * $cart->count;
+            return $carry + $cart->subtotal;
         }, 0);
 
         return view('carts.index', compact('carts', 'total'));

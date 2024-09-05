@@ -9,7 +9,7 @@ class LikeController extends Controller
 {
     public function index()
     {
-        $items = \Auth::user()->likeItems()->orderBy('created_at', 'desc')->get();
+        $items = \Auth::user()->likeItems()->orderBy('created_at', 'desc')->paginate(10);
         return view('likes.index', ['items' => $items]);
     }
 
