@@ -3,7 +3,7 @@
 @section('title', 'お問い合わせ内容確認画面')
 
 @section('content')
-    <div class="bg-info contact4 overflow-hidden position-relative">
+    <div class="py-5 container sticky-top" style="min-height: calc(100vh - 100px);">
         <div class="row no-gutters ">
             <div class="container">
                 <div class="col-lg-6 contact-box mb-4 mb-md-0 container">
@@ -45,10 +45,12 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 d-flex align-items-center mt-3">
-                                    <button type="submit" name="back" class="btn btn-secondary text-light px-3 py-2 hover-effect">
+                                    <button type="submit" name="back"
+                                        class="btn btn-secondary text-light px-3 py-2 hover-effect">
                                         フォームに戻る
                                     </button>
-                                    <button type="submit" class="btn bg-dark text-light  px-3 py-2 hover-effect" style="margin-left: 10px;">
+                                    <button type="submit" class="btn bg-dark text-light  px-3 py-2 hover-effect"
+                                        style="margin-left: 10px;">
                                         送信する
                                     </button>
                                 </div>

@@ -37,10 +37,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        // 通常価格と割引価格を計算
-        $regularPriceWithTax = $item->regular_price * (1 + $this->taxRate);
-        $salesPriceWithTax = $item->sales_price * (1 + $this->taxRate);
-        return view('items.show', compact('item', 'regularPriceWithTax', 'salesPriceWithTax'));
+        return view('items.show', compact('item'));
     }
 
     /**
