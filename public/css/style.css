@@ -25,6 +25,8 @@ cheat {
     color: #721c24;
     color: #f5c6cb;
     color: #f8d7da;
+    color: #CC6633;
+    color: #D2B48C;
 }
 
 /* カート */
@@ -39,6 +41,10 @@ cheat {
 /* フッター */
 footer .nav-link:hover {
     text-decoration: underline;
+}
+
+.footer-policy {
+    background-color: #3e4555;
 }
 
 .navbar-nav .nav-link:hover {
@@ -434,7 +440,7 @@ footer .nav-link:hover {
 
 .nav-link:hover {
     text-decoration: underline; /* ホバー時に下線を表示 */
-    opacity: 0.8; /* ホバー時に少し薄くする */
+    opacity: 0.9; /* ホバー時に少し薄くする */
 }
 
 .nav-link small {
