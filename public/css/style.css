@@ -70,6 +70,35 @@ cheat {
     color: white !important;
 }
 
+/* マイページ バナー */
+#sec {
+    padding: 0;
+    word-wrap: break-word;
+  }
+
+  #sec ul {
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    list-style: none;
+    border: none;
+    padding-bottom: 30px;
+  }
+
+  #sec ul li {
+    width: 320px;
+    height: 150px;
+    transition: box-shadow 0.3s;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  #sec ul li:hover {
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+
 /* カート */
 .delete-link:hover {
     color: red !important; /* ホバー時に文字を赤く */
@@ -93,6 +122,7 @@ footer .nav-link:hover {
     transition: opacity 0.3s;
     text-decoration: none;
     background: linear-gradient(#ffffff 55%, #FF4F50 100%);
+
 }
 
 /* 商品一覧 */
