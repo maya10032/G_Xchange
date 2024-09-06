@@ -26,9 +26,9 @@
         .navbar-expand-md {
             font-family: 'Caveat', cursive;
             font-size: 18px;
-            background-color: #D2B48C !important;
-
+            /* background-color: #D2B48C !important; */
         }
+
     </style>
 </head>
 
@@ -168,9 +168,9 @@
         </div>
         <div class="container" style="width: 50%;">
             <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2 border-success" type="search" placeholder="商品名、カテゴリ、ブランドなど"
+                <input class="form-control me-2 border-secondary" type="search" placeholder="商品名、カテゴリ、ブランドなど"
                     aria-label="Search">
-                <button class="btn btn-outline-success" style="width: 80px;"
+                <button class="btn btn-secondary btn-secondary" style="width: 80px;"
                     type="submit">{{ __('search') }}</button>
             </form>
         </div>
@@ -179,64 +179,47 @@
         </main>
     </div>
 
-    <footer class=" bg-white shadow-sm  expand-mdz text-gray-600 mt-auto  text-center">
-        <div class=" container flex flex-wrap md:pl-20 -mb-10 md:mt-10 mt-10 md:text-left text-center ">
-            <div class="row py-4 p-5">
-                @guest
-                    <div class="col-3">
-                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                            <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
-                        </p>
+    <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
+        <div class="container" style="width: 1200px;">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex text-body-secondary mb-">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="{{url('/company/companyprofile')}}" class="text-white hover-effect">会社概要</a>
                     </div>
-                    <div class="col-3">
-                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                            <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
-                        </p>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">採用情報</a>
                     </div>
-                    @if (Route::has('login'))
-                        <div class="col-3">
-                            <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                                <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }} > </a>
-                            </p>
-                        </div>
-                    @endif
-                    @if (Route::has('register'))
-                        <div class="col-3">
-                            <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                                <a class="nav-link" href="register"> {{ __('Register') }} > </a>
-                            </p>
-                        </div>
-                    @endif
-                @else
-                    <div class="col-2">
-                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                            <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
-                        </p>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">利用規約</a>
                     </div>
-                    <div class="col-2">
-                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                            <a class="nav-link" href="{{ route('orders.index') }}"> {{ __('order') }} > </a>
-                        </p>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">プライバシー規約</a>
                     </div>
-                    <div class="col-2">
-                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                            <a class="nav-link" href="{{ route('likes.index') }}"> {{ __('like') }} > </a>
-                        </p>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">特定商取引法に基づく表示</a>
                     </div>
-                    <div class="col-2">
-                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                            <a class="nav-link" href="{{ route('profile.edit') }}"> {{ __('profile') }} > </a>
-                        </p>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">資金決済法に基づく表示</a>
                     </div>
-                    <div class="col-2">
-                        <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                            <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
-                        </p>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">法令順守と犯罪抑止のために</a>
                     </div>
-                @endguest
+                </div>
             </div>
         </div>
-        <div class="bg-black py-3">
+        <div>
             <p class="text-white text-center">© 2024 {{ config('app.name', 'Laravel') }}.inc</p>
         </div>
     </footer>
