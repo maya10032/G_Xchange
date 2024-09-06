@@ -5,7 +5,7 @@
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(80vh - 80px);">
         <h2 class="fw-bold title--border">商品一覧</h2>
-        <div class="row row-cols- row-cols-sm-2 row-cols-md-4 g-3">
+        <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3">
             @foreach ($items as $item)
                 <div class="col">
                     <div class="card shadow-sm hover-effect">
@@ -40,8 +40,8 @@
                 </div>
             @endforeach
         </div>
-        <div class="d-flex justify-content-center my-4">
-            {{ $items->links() }}
+        <div class="d-flex justify-content-center my-2">
+            {{ $items->links('pagination::default') }}
         </div>
     </div>
 @endsection

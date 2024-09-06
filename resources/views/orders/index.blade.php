@@ -60,7 +60,7 @@
                 </div>
             @endforeach
             <div class="d-flex justify-content-center my-4">
-                {{ $orders->links() }}
+                {{ $orders->links('pagination::default') }}
             </div>
         @endif
     </div>

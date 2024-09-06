@@ -60,7 +60,6 @@
                                     </a>
                                 </li>
                             @endif
-
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">
@@ -99,7 +98,6 @@
                                     <small>favorite</small>
                                 </a>
                             </li>
-
                         @endguest
                     </ul>
                 </div>
@@ -174,52 +172,73 @@
         <main>
             @yield('content')
         </main>
-    </div>
 
-    <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
-        <div class="container" style="width: 1200px;">
-            <div class="d-flex justify-content-between">
-                <div class="d-flex text-body-secondary mb-">
-                    <div class="me-1 text-white text-center py-3">
-                        <a href="{{ url('/company/companyprofile') }}" class="text-white hover-effect">会社概要</a>
+        <div id="sec">
+            <ul>
+                <li>
+                    <img src="{{ asset('images/banner_child.jpg') }}" style="object-fit: cover;" width="320px"
+                        height="150px" alt="Sample Image">
+                </li>
+                <li>
+                    <img src="{{ asset('images/banner_sale.jpg') }}" style="object-fit: cover;" width="320px"
+                        height="150px" alt="Sample Image">
+                </li>
+                <li>
+                    <img src="{{ asset('images/banner_click.jpg') }}" style="object-fit: cover;" width="320px"
+                        height="150px" alt="Sample Image">
+                </li>
+                <li>
+                    <img src="{{ asset('images/creen.jpg') }}" style="object-fit: cover;" width="320px"
+                        height="150px" alt="Sample Image">
+                </li>
+            </ul>
+        </div>
+
+        <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
+            <div class="container" style="width: 1200px;">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex text-body-secondary mb-">
+                        <div class="me-1 text-white text-center py-3">
+                            <a href="{{ url('/company/companyprofile') }}" class="text-white hover-effect">会社概要</a>
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex text-body-secondary mb-2">
-                    <div class="me-1 text-white text-center py-3">
-                        <a href="" class="text-white hover-effect">採用情報</a>
+                    <div class="d-flex text-body-secondary mb-2">
+                        <div class="me-1 text-white text-center py-3">
+                            <a href="" class="text-white hover-effect">採用情報</a>
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex text-body-secondary mb-2">
-                    <div class="me-1 text-white text-center py-3">
-                        <a href="" class="text-white hover-effect">利用規約</a>
+                    <div class="d-flex text-body-secondary mb-2">
+                        <div class="me-1 text-white text-center py-3">
+                            <a href="" class="text-white hover-effect">利用規約</a>
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex text-body-secondary mb-2">
-                    <div class="me-1 text-white text-center py-3">
-                        <a href="" class="text-white hover-effect">プライバシー規約</a>
+                    <div class="d-flex text-body-secondary mb-2">
+                        <div class="me-1 text-white text-center py-3">
+                            <a href="" class="text-white hover-effect">プライバシー規約</a>
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex text-body-secondary mb-2">
-                    <div class="me-1 text-white text-center py-3">
-                        <a href="" class="text-white hover-effect">特定商取引法に基づく表示</a>
+                    <div class="d-flex text-body-secondary mb-2">
+                        <div class="me-1 text-white text-center py-3">
+                            <a href="" class="text-white hover-effect">特定商取引法に基づく表示</a>
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex text-body-secondary mb-2">
-                    <div class="me-1 text-white text-center py-3">
-                        <a href="" class="text-white hover-effect">資金決済法に基づく表示</a>
+                    <div class="d-flex text-body-secondary mb-2">
+                        <div class="me-1 text-white text-center py-3">
+                            <a href="" class="text-white hover-effect">資金決済法に基づく表示</a>
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex text-body-secondary mb-2">
-                    <div class="me-1 text-white text-center py-3">
-                        <a href="" class="text-white hover-effect">法令順守と犯罪抑止のために</a>
+                    <div class="d-flex text-body-secondary mb-2">
+                        <div class="me-1 text-white text-center py-3">
+                            <a href="" class="text-white hover-effect">法令順守と犯罪抑止のために</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <p class="text-white text-center">© 2024 {{ config('app.name', 'Laravel') }}.inc</p>
-        </div>
-    </footer>
+            <div>
+                <p class="text-white text-center">© 2024 {{ config('app.name', 'Laravel') }}.inc</p>
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>

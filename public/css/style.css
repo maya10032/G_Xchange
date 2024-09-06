@@ -7,13 +7,15 @@ cheat {
     color: #721c24;
     color: #f5c6cb;
     color: #f8d7da;
-    color: #CC6633;
-    color: #D2B48C;
+    color: #cc6633;
+    color: #d2b48c;
 }
 
 .title--border {
     padding: 1rem 1rem;
     border-left: 8px solid #CC6633;
+    border-left: 8px solid #8b4513;
+
 }
 
 /* ヘッダーナビ */
@@ -32,7 +34,7 @@ cheat {
 
 /* ヘッダーユーザーアイコン */
 .user-aicon {
-    margin:0;
+    margin: 0;
     font-size: 20px;
     text-decoration: none;
     padding: 0;
@@ -71,6 +73,35 @@ cheat {
     color: white !important;
 }
 
+/* マイページ バナー */
+#sec {
+    padding: 0;
+    word-wrap: break-word;
+  }
+
+  #sec ul {
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    list-style: none;
+    border: none;
+    padding-bottom: 30px;
+  }
+
+  #sec ul li {
+    width: 320px;
+    height: 150px;
+    transition: box-shadow 0.3s;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  #sec ul li:hover {
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+
 /* カート */
 .delete-link:hover {
     color: red !important; /* ホバー時に文字を赤く */
@@ -93,7 +124,6 @@ footer .nav-link:hover {
     opacity: 0.7;
     transition: opacity 0.3s;
     text-decoration: none;
-    border-bottom: solid 3px #cc6633;
     background: linear-gradient(#ffffff 85%, #cc6633 100%);
 }
 
@@ -507,3 +537,42 @@ ul {
 li {
     list-style: none;
 }
+
+/* ページネーション */
+.paginationWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 38px;
+    margin-bottom: 40px;
+}
+
+.paginationWrap ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.paginationWrap ul.pagination li {
+    display: inline;
+    margin-right: 4px;
+}
+
+.paginationWrap ul.pagination li a {
+    color: #2f3859;
+    padding: 8px 14px;
+    text-decoration: none;
+}
+
+.paginationWrap ul.pagination li a.active {
+    background-color: #3e4555;
+    color: white;
+    border-radius: 40px;
+    width: 38px;
+    height: 38px;
+}
+
+.paginationWrap ul.pagination li a:hover:not(.active) {
+    background-color: #e1e7f0;
+    border-radius: 40px;
+}
+

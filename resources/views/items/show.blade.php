@@ -127,7 +127,7 @@
                                 <a href="{{ route('items.show', $relatedItem->id) }}" class="btn btn-secondary text-light hover-effect">詳細を見る</a>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 @endforeach
             </div>
         </div>
