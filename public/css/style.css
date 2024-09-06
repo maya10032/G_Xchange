@@ -14,7 +14,6 @@ cheat {
 .title--border {
     padding: 1rem 1rem;
     border-left: 8px solid #CC6633;
-    border-left: 8px solid #8b4513;
 }
 
 /* ヘッダーナビ */
@@ -122,7 +121,8 @@ footer .nav-link:hover {
     opacity: 0.7;
     transition: opacity 0.3s;
     text-decoration: none;
-    background: linear-gradient(#ffffff 85%, #cc6633 100%);
+    background: linear-gradient(#ffffff 55%, #FF4F50 100%);
+
 }
 
 /* 商品一覧 */
@@ -513,7 +513,7 @@ footer .nav-link:hover {
 }
 
 .nav-link:hover {
-    text-decoration: underline; /* ホバー時に下線を表示 */
+    text-decoration: none; /* ホバー時に下線を表示 */
     opacity: 0.9; /* ホバー時に少し薄くする */
 }
 

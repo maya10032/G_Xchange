@@ -38,12 +38,12 @@ class ItemController extends Controller
     public function show(Item $item)
     {
         // 同じカテゴリーの他の商品をランダムで4件取得、現在の商品は除外
-        $relatedItems = Item::where('category_id', $item->category_id)
+        $randomItems = Item::where('category_id', $item->category_id)
             ->where('id', '!=', $item->id)
             ->inRandomOrder()
             ->take(4)
             ->get();
-        return view('items.show', compact('item', 'relatedItems'));
+        return view('items.show', compact('item', 'randomItems'));
     }
 
     /**
@@ -62,7 +62,7 @@ class ItemController extends Controller
     public function purchase(Item $item)
     {
         // 購入内容確認画面を表示する処理
-        return view('items.purchase', compact('item'));
+        return view('items.purchase', compact('item', 'randomItems'));
     }
 
     /**

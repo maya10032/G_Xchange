@@ -25,7 +25,7 @@
                     <div class="mb-2 me-3" style="max-height: 465px;">
                         <img src="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}"
                             alt="Thumbnail" class="img-fluid rounded"
-                            style="width: 465px; height: auto; object-fit: cover; max-height: 465px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                            style="width: 460px; height: 460px; object-fit: cover; max-height: 465px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
                     </div>
                     {{-- その他の3つの画像を縦一列に配置 --}}
                     <div class="d-flex flex-column">
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="ms-auto" style="flex: 1; font-size: 1.25rem;">
-                <p class="mb-2"><small class="text-muted">{{ $item->category->category_name }}</small></p>
+                <p class="mb-2"><small class="text-muted"><i class="fa fa-tag" aria-hidden="true"></i> {{ $item->category->category_name }}</small></p>
                 <h3 class="mb-3" style="font-size: 1.75rem; word-break: break-word;">{{ $item->item_name }}</h3>
                 @if ($item->regular_price === $item->sales_price)
                     <p class="mb-3">{{ number_format($salesPriceWithTax) }}円（税込）送料無料</p>
@@ -114,17 +114,17 @@
         <div class="mt-5">
             <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-tags" aria-hidden="true"></i> 同じカテゴリーの商品</h3>
             <div class="row">
-                @foreach ($relatedItems as $relatedItem)
+                @foreach ($randomItems as $randomItem)
                     <div class="col-md-3">
                         <div class="card shadow-sm hover-effect">
-                            <img src="{{ asset('storage/images/' . $relatedItem->images[$relatedItem->thumbnail]->img_path) }}"
-                                alt="{{ $relatedItem->item_name }}" class="card-img-top"
+                            <img src="{{ asset('storage/images/' . $randomItem->images[$randomItem->thumbnail]->img_path) }}"
+                                alt="{{ $randomItem->item_name }}" class="card-img-top"
                                 style="height: 150px; object-fit: cover;">
                             <div class="card-body">
-                                <h4 class="card-title" style="font-size: 1rem;">{{ $relatedItem->item_name }}</h4>
-                                <p class="card-text">{{ number_format($relatedItem->tax_sales_prices) }}円（税込）</p>
-                                <p class="text-truncate">{{ $relatedItem->message }}</p>
-                                <a href="{{ route('items.show', $relatedItem->id) }}" class="btn btn-secondary text-light hover-effect">詳細を見る</a>
+                                <h4 class="card-title" style="font-size: 1rem;">{{ $randomItem->item_name }}</h4>
+                                <p class="card-text">{{ number_format($randomItem->tax_sales_prices) }}円（税込）</p>
+                                <p class="text-truncate">{{ $randomItem->message }}</p>
+                                <a href="{{ route('items.show', $randomItem->id) }}" class="btn btn-secondary text-light hover-effect">詳細を見る</a>
                             </div>
                         </div>
                     </div>

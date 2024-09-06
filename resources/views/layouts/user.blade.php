@@ -28,7 +28,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"
                     style="display: flex; align-items: center; padding: 0;">
@@ -42,39 +42,76 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/"><i class="fa fa-wpforms"></i>
-                                {{ __('item_list') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i>
-                                {{ __('contact') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart"></i>
-                                {{ __('cart') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-history"></i>
-                                {{ __('order') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart-o"></i>
-                                {{ __('like') }}</a>
-                        </li>
+                    <ul class="navbar-nav ms-auto header-nav-custom">
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
+                                    <small>goods</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i> {{ __('contact') }}
+                                    <small>contact</small>
+                                </a>
+                            </li>
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">
+                                        <i class="fa fa-sign-in me-1"></i>{{ __('Login') }}
+                                        <small>Login</small>
+                                    </a>
+                                </li>
+                            @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                        <i class="fa fa-user-plus me-1"></i>{{ __('Register') }}
+                                        <small>sign up</small>
+                                    </a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
+                                    <small>goods</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i>
+                                    {{ __('contact') }}
+                                    <small>contact</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart"></i>
+                                    {{ __('cart') }}
+                                    <small>cart</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-history"></i>
+                                    {{ __('order') }}
+                                    <small>history</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart"></i>
+                                    {{ __('like') }}
+                                    <small>favorite</small>
+                                </a>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
-            <ul class="user-aicon me-auto">
+            <ul class="user-aicon me-auto header-nav-custom">
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button"
+                    <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                         {{ Auth::user()->name }}
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -87,7 +124,6 @@
                 </li>
             </ul>
         </nav>
-
         <nav class="py-1 container">
             <ul class="nav nav-pills nav-pills-custom py-2 mb-2">
                 <li class="nav-item border">
