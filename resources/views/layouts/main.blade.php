@@ -48,7 +48,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i> {{ __('contact') }}
+                                <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i> {{ __('contact') }}
                                     <small>contact</small>
                                 </a>
                             </li>
@@ -75,7 +75,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i>
+                                <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i>
                                     {{ __('contact') }}
                                     <small>contact</small>
                                 </a>
@@ -93,7 +93,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart-o"></i>
+                                <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart"></i>
                                     {{ __('like') }}
                                     <small>favorite</small>
                                 </a>

@@ -13,6 +13,7 @@ cheat {
 
 .title--border {
     padding: 1rem 1rem;
+    border-left: 8px solid #CC6633;
     border-left: 8px solid #8b4513;
 }
 
@@ -93,6 +94,7 @@ footer .nav-link:hover {
     transition: opacity 0.3s;
     text-decoration: none;
     border-bottom: solid 3px #cc6633;
+    background: linear-gradient(#ffffff 85%, #cc6633 100%);
 }
 
 /* 商品一覧 */
