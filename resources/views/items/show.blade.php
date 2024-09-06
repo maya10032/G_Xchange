@@ -3,7 +3,7 @@
 @section('title', '商品詳細')
 
 @section('content')
-<div class="py-5 container sticky-top" style="min-height: calc(180vh - 180px);">
+    <div class="py-5 container sticky-top" style="min-height: calc(180vh - 180px);">
         @if (session('likeadd'))
             <div class="alert alert-success text-center fw-bold" style="font-size: 1.25rem;">
                 {{ session('likeadd') }}
@@ -18,7 +18,7 @@
             </div>
         @endif
         <div class="d-flex">
-            <div class="d-flex flex-column me-2 mb-0 reduce-margin" style="flex: 1.4;">
+            <div class="d-flex flex-column me-2 mb-0 reduce-margin" style="flex: 1.1;">
                 {{-- サムネイルとその他の画像を横並びにするためにd-flexを使用 --}}
                 <div class="d-flex">
                     {{-- サムネイル画像 --}}
@@ -33,7 +33,8 @@
                             @if ($index !== $item->thumbnail)
                                 <div class="mb-2">
                                     <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="Image"
-                                        class="img-fluid rounded" style="width: 148px; height: 148px; object-fit: cover; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                                        class="img-fluid rounded"
+                                        style="width: 148px; height: 148px; object-fit: cover; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
                                 </div>
                             @endif
                         @endforeach
@@ -53,18 +54,19 @@
                 @endif
                 @if (auth()->guest())
                     <div>
-                        <a href="{{ url('login/') }}" class="btn btn-secondary" style="font-size: 1.25rem;">購入するにはログインしてください</a>
+                        <a href="{{ url('login/') }}" class="btn btn-secondary"
+                            style="font-size: 1.25rem;">購入するにはログインしてください</a>
                     </div>
                 @else
                     @if ($item->is_active)
                         <form action="{{ url('/purchase', $item->id) }}" method="POST" novalidate>
                             @csrf
-                            <div  class="mb-3" style="font-size: 1.25rem;">
+                            <div class="mb-3" style="font-size: 1.25rem;">
                                 数量：<input type="number" name="count" min="1" max="{{ $item->count_limit }}"
-                                    value="{{ old('count', 1) }}" >
+                                    value="{{ old('count', 1) }}">
                                 <small>　（一度に購入できるのは{{ $item->count_limit }}個までです。）</small>
                                 @foreach ($errors->all() as $error)
-                                    <p  class="h4 text-danger fw-bold m-3">※{{ $error }}</p>
+                                    <p class="h4 text-danger fw-bold m-3">※{{ $error }}</p>
                                 @endforeach
                             </div>
                             <div class="d-grid gap-1 col-6 align-items-center">
@@ -106,8 +108,28 @@
             </div>
         </div>
         <div class="mt-4" style="font-size: 1.25rem; text-align: left; max-width: 550px;">
-            <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-shopping-bag"></i>　商品説明</h3>
+            <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-shopping-bag"></i> 商品説明</h3>
             <p>{{ $item->message }}</p>
+        </div>
+        <div class="mt-5">
+            <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-tags" aria-hidden="true"></i> 同じカテゴリーの商品</h3>
+            <div class="row">
+                @foreach ($relatedItems as $relatedItem)
+                    <div class="col-md-3">
+                        <div class="card shadow-sm hover-effect">
+                            <img src="{{ asset('storage/images/' . $relatedItem->images[$relatedItem->thumbnail]->img_path) }}"
+                                alt="{{ $relatedItem->item_name }}" class="card-img-top"
+                                style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-size: 1rem;">{{ $relatedItem->item_name }}</h4>
+                                <p class="card-text">{{ number_format($relatedItem->tax_sales_prices) }}円（税込）</p>
+                                <p class="text-truncate">{{ $relatedItem->message }}</p>
+                                <a href="{{ route('items.show', $relatedItem->id) }}" class="btn btn-secondary text-light hover-effect">詳細を見る</a>
+                            </div>
+                        </div>
+                    </div> 
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

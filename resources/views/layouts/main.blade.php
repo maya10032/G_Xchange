@@ -23,6 +23,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
@@ -98,25 +99,30 @@
                                     <small>favorite</small>
                                 </a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fa fa-user-circle me-1"></i>{{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                        {{ __('ja.Logout') }}</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+
                         @endguest
                     </ul>
                 </div>
             </div>
+            <ul class="user-aicon me-auto header-nav-custom">
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            {{ __('ja.Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            </ul>
         </nav>
         <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-bs-theme="light">
             <div class="carousel-indicators">
@@ -175,7 +181,7 @@
             <div class="d-flex justify-content-between">
                 <div class="d-flex text-body-secondary mb-">
                     <div class="me-1 text-white text-center py-3">
-                        <a href="{{url('/company/companyprofile')}}" class="text-white hover-effect">会社概要</a>
+                        <a href="{{ url('/company/companyprofile') }}" class="text-white hover-effect">会社概要</a>
                     </div>
                 </div>
                 <div class="d-flex text-body-secondary mb-2">
