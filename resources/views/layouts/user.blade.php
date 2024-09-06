@@ -116,7 +116,7 @@
         <nav class="py-1 container">
             <ul class="nav nav-pills nav-pills-custom py-2 mb-2">
                 <li class="nav-item border">
-                    <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('orders.index') ? 'active' : '' }}"
+                    <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('orders.index', 'orders.show') ? 'active' : '' }}"
                         href="{{ route('orders.index') }}">{{ __('order') }}</a>
                 </li>
                 <li class="nav-item border">

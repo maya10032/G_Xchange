@@ -3,7 +3,7 @@
 @section('title', '購入商品詳細')
 
 @section('content')
-    <h2>購入商品詳細</h2>
+    <h2 class="title--border">マイページ / 購入履歴 / 購入商品詳細</h2>
 
     <div class="d-flex">
         <p class="me-3">注文番号: {{ $order->id }}</p>
@@ -61,13 +61,11 @@
         </div>
     </div>
     </div>
-    <form action="{{ url('/purchase', $order->item_id) }}" method="POST" class="form-horizontal">
         <div class="d-grid gap-2 col-6 mx-auto m-3">
             <button type="submit" name="action" value="purchase" class="btn btn-danger btn-lg"
-                style="font-size: 1.25rem;">再注文</button>
+                style="font-size: 1.25rem;"><a href="{{ route('items.show', $order->item_id) }}" style="color: inherit; text-decoration: none;">再注文</a></button>
         </div>
-    </form>
-    <p class="text-end m-3">
+    <p class="text-center m-3">
         <a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
             href="{{ url('orders/') }}">購入履歴一覧へ戻る</a>
     </p>
