@@ -7,13 +7,14 @@ cheat {
     color: #721c24;
     color: #f5c6cb;
     color: #f8d7da;
-    color: #CC6633;
-    color: #D2B48C;
+    color: #cc6633;
+    color: #d2b48c;
 }
 
 .title--border {
     padding: 1rem 1rem;
     border-left: 8px solid #CC6633;
+    border-left: 8px solid #8b4513;
 }
 
 /* ヘッダーナビ */
@@ -29,10 +30,9 @@ cheat {
     width: 170px;
 }
 
-
 /* ヘッダーユーザーアイコン */
 .user-aicon {
-    margin:0;
+    margin: 0;
     font-size: 20px;
     text-decoration: none;
     padding: 0;
@@ -506,4 +506,42 @@ ul {
 
 li {
     list-style: none;
+}
+
+/* ページネーション */
+.paginationWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 38px;
+    margin-bottom: 40px;
+}
+
+.paginationWrap ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.paginationWrap ul.pagination li {
+    display: inline;
+    margin-right: 4px;
+}
+
+.paginationWrap ul.pagination li a {
+    color: #2f3859;
+    padding: 8px 14px;
+    text-decoration: none;
+}
+
+.paginationWrap ul.pagination li a.active {
+    background-color: #3e4555;
+    color: white;
+    border-radius: 40px;
+    width: 38px;
+    height: 38px;
+}
+
+.paginationWrap ul.pagination li a:hover:not(.active) {
+    background-color: #e1e7f0;
+    border-radius: 40px;
 }
