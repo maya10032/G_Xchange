@@ -23,6 +23,8 @@ Route::get('/contact/confirm',  [CONTACT_PATH, 'confirm'])->name('contact.confir
 Route::post('/contact/confirm', [CONTACT_PATH, 'send'])->name('contact.send');
 Route::get('/contact/done',     [CONTACT_PATH, 'done'])->name('contact.done');
 
+Route::get('/company/companyprofile', [UserController::class, 'index'])->name('user.index');
+
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
     // 購入内容確認画面表示
