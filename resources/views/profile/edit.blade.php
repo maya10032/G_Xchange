@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-        <h2>マイページ / 会員情報変更</h2>
+        <h2 class="title--border">マイページ / 会員情報変更</h2>
         <div class="row justify-content-center">
             <div class="py-2">
                 <div class="card" style="min-height: calc(80vh - 80px);">

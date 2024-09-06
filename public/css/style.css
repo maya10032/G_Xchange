@@ -7,8 +7,40 @@ cheat {
     color: #721c24;
     color: #f5c6cb;
     color: #f8d7da;
-    color: #CC6633;
-    color: #D2B48C;
+    color: #cc6633;
+    color: #d2b48c;
+}
+
+/* ヘッダーナビ */
+.header-nav-custom {
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    /* width: 90%; */
+}
+
+.header-nav-custom .nav-item {
+    flex: 1;
+    width: 170px;
+}
+
+/* ヘッダーユーザーアイコン */
+.user-aicon {
+    margin:0;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 0;
+}
+
+.user-aicon .user-link {
+    padding: 0;
+    text-decoration: none;
+    color: #3e4555;
+}
+
+.title--border {
+    padding: 1rem 1rem;
+    border-left: 8px solid #8b4513;
 }
 
 /* マイページナビ */
@@ -34,10 +66,9 @@ cheat {
 }
 
 .nav-link.active {
-    background-color: #D2B48C !important;
+    background-color: #d2b48c !important;
     color: white !important;
 }
-
 
 .title--border {
     padding: 1rem 1rem;
@@ -65,6 +96,8 @@ footer .nav-link:hover {
 .navbar-nav .nav-link:hover {
     opacity: 0.7;
     transition: opacity 0.3s;
+    text-decoration: none;
+    border-bottom: solid 3px #cc6633;
 }
 
 /* 商品一覧 */
@@ -447,6 +480,7 @@ footer .nav-link:hover {
 /* マイページナビ */
 .nav-justified .nav-item {
     flex: 1; /* 各アイテムを均等に分割 */
+    list-style-type: none;
 }
 
 .nav-link {
@@ -458,9 +492,21 @@ footer .nav-link:hover {
     opacity: 0.9; /* ホバー時に少し薄くする */
 }
 
+.nav-link small {
+    display: block;
+}
+
 /* 商品詳細 */
 .btn-outline-danger:hover {
     background-color: #f8d7da; /* 薄ピンクの背景色 */
     border-color: #f5c6cb; /* ボーダーも薄ピンクに */
     color: #721c24; /* ボタンのテキスト色（通常の色に合わせて） */
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style: none;
 }
