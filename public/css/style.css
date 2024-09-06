@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-.title--border {
-    padding: 1rem 1rem;
-    border-left: 3px solid #006eb0;
-}
-
 cheat {
     color: red;
     color: #3e4555;
@@ -14,6 +9,39 @@ cheat {
     color: #f8d7da;
     color: #CC6633;
     color: #D2B48C;
+}
+
+/* マイページナビ */
+.nav-pills-custom {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.nav-pills-custom .nav-item {
+    flex: 1;
+}
+
+.nav-pills-custom .nav-link {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.nav-pills-custom .nav-link {
+    border: none;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    background-color: #D2B48C !important;
+    color: white !important;
+}
+
+
+.title--border {
+    padding: 1rem 1rem;
+    border-left: 3px solid #006eb0;
 }
 
 /* カート */
