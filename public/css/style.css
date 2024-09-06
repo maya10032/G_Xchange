@@ -7,18 +7,13 @@ cheat {
     color: #721c24;
     color: #f5c6cb;
     color: #f8d7da;
-<<<<<<< HEAD
     color: #cc6633;
     color: #d2b48c;
-=======
-    color: #CC6633;
-    color: #D2B48C;
 }
 
 .title--border {
     padding: 1rem 1rem;
     border-left: 8px solid #8b4513;
->>>>>>> 8ece27bd83710a014959925c796dd3f1b1ed96e1
 }
 
 /* ヘッダーナビ */
@@ -34,10 +29,9 @@ cheat {
     width: 170px;
 }
 
-<<<<<<< HEAD
 /* ヘッダーユーザーアイコン */
 .user-aicon {
-    margin:0;
+    margin: 0;
     font-size: 20px;
     text-decoration: none;
     padding: 0;
@@ -49,13 +43,6 @@ cheat {
     color: #3e4555;
 }
 
-.title--border {
-    padding: 1rem 1rem;
-    border-left: 8px solid #8b4513;
-}
-
-=======
->>>>>>> 8ece27bd83710a014959925c796dd3f1b1ed96e1
 /* マイページナビ */
 .nav-pills-custom {
     display: flex;
@@ -81,11 +68,6 @@ cheat {
 .nav-link.active {
     background-color: #d2b48c !important;
     color: white !important;
-}
-
-.title--border {
-    padding: 1rem 1rem;
-    border-left: 3px solid #006eb0;
 }
 
 /* カート */
@@ -522,4 +504,42 @@ ul {
 
 li {
     list-style: none;
+}
+
+/* ページネーション */
+.paginationWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 38px;
+    margin-bottom: 40px;
+}
+
+.paginationWrap ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.paginationWrap ul.pagination li {
+    display: inline;
+    margin-right: 4px;
+}
+
+.paginationWrap ul.pagination li a {
+    color: #2f3859;
+    padding: 8px 14px;
+    text-decoration: none;
+}
+
+.paginationWrap ul.pagination li a.active {
+    background-color: #3e4555;
+    color: white;
+    border-radius: 40px;
+    width: 38px;
+    height: 38px;
+}
+
+.paginationWrap ul.pagination li a:hover:not(.active) {
+    background-color: #e1e7f0;
+    border-radius: 40px;
 }
