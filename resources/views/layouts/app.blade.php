@@ -100,29 +100,30 @@
                                     <small>favorite</small>
                                 </a>
                             </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-            <ul class="user-aicon me-auto header-nav-custom">
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        {{ Auth::user()->name }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            {{ __('ja.Logout') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+
+                        </ul>
                     </div>
-                </li>
-            </ul>
+                </div>
+                <ul class="user-aicon me-auto header-nav-custom">
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('ja.Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            @endguest
         </nav>
         {{-- <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);"> --}}
         <main>
