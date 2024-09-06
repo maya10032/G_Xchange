@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+cheat {
+    color: red;
+    color: #3e4555;
+    color: #5a6268;
+    color: #721c24;
+    color: #f5c6cb;
+    color: #f8d7da;
+    color: #CC6633;
+    color: #D2B48C;
+}
+
+.title--border {
+    padding: 1rem 1rem;
+    border-left: 8px solid #8b4513;
+}
+
 /* ヘッダーナビ */
 .header-nav-custom {
     font-size: 20px;
@@ -13,20 +29,37 @@
     width: 170px;
 }
 
-.title--border {
-    padding: 1rem 1rem;
-    border-left: 8px solid #8b4513;
+/* マイページナビ */
+.nav-pills-custom {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
 }
 
-cheat {
-    color: red;
-    color: #3e4555;
-    color: #5a6268;
-    color: #721c24;
-    color: #f5c6cb;
-    color: #f8d7da;
-    color: #CC6633;
-    color: #D2B48C;
+.nav-pills-custom .nav-item {
+    flex: 1;
+}
+
+.nav-pills-custom .nav-link {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.nav-pills-custom .nav-link {
+    border: none;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    background-color: #D2B48C !important;
+    color: white !important;
+}
+
+
+.title--border {
+    padding: 1rem 1rem;
+    border-left: 3px solid #006eb0;
 }
 
 /* カート */

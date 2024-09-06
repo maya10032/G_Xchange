@@ -22,32 +22,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
-        .nav-pills-custom {
-            display: flex;
-            justify-content: space-between;
-            padding: 0;
-        }
 
-        .nav-pills-custom .nav-item {
-            flex: 1;
-        }
-
-        .nav-pills-custom .nav-link {
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .nav-pills-custom .nav-link {
-            border: none;
-            border-radius: 0;
-            padding: 10px 15px;
-            text-decoration: none;
-        }
-
-        .nav-link.active {
-            background-color: #CC6633 !important;
-            color: white !important;
-        }
     </style>
 </head>
 
@@ -143,32 +118,47 @@
         </main>
     </div>
 
-    <footer class=" bg-white shadow-sm  expand-mdz text-gray-600 mt-auto  text-center">
-        <div class=" container flex flex-wrap md:pl-20 -mb-10 md:mt-10 mt-10 md:text-left text-center ">
-            <div class="row py-4 p-5">
-                <div class="col-3">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('items.index') }}"> {{ __('item_list') }} > </a>
-                    </p>
+    <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
+        <div class="container" style="width: 1200px;">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex text-body-secondary mb-">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="{{ url('/company/companyprofile') }}" class="text-white hover-effect">会社概要</a>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('contact.show') }}"> {{ __('contact') }} > </a>
-                    </p>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">採用情報</a>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('login') }}"> {{ __('Login') }} > </a>
-                    </p>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">利用規約</a>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <p class="title-font font-medium text-gray-600 tracking-widest text-sm mb-3">
-                        <a class="nav-link" href="{{ route('register') }}"> {{ __('Register') }} > </a>
-                    </p>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">プライバシー規約</a>
+                    </div>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">特定商取引法に基づく表示</a>
+                    </div>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">資金決済法に基づく表示</a>
+                    </div>
+                </div>
+                <div class="d-flex text-body-secondary mb-2">
+                    <div class="me-1 text-white text-center py-3">
+                        <a href="" class="text-white hover-effect">法令順守と犯罪抑止のために</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="bg-black py-3">
+        <div>
             <p class="text-white text-center">© 2024 {{ config('app.name', 'Laravel') }}.inc</p>
         </div>
     </footer>
