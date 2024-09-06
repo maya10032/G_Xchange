@@ -173,6 +173,27 @@
             @yield('content')
         </main>
 
+        <div id="sec">
+            <ul>
+                <li>
+                    <img src="{{ asset('images/banner_child.jpg') }}" style="object-fit: cover;" width="320px"
+                        height="150px" alt="Sample Image">
+                </li>
+                <li>
+                    <img src="{{ asset('images/banner_sale.jpg') }}" style="object-fit: cover;" width="320px"
+                        height="150px" alt="Sample Image">
+                </li>
+                <li>
+                    <img src="{{ asset('images/banner_click.jpg') }}" style="object-fit: cover;" width="320px"
+                        height="150px" alt="Sample Image">
+                </li>
+                <li>
+                    <img src="{{ asset('images/creen.jpg') }}" style="object-fit: cover;" width="320px"
+                        height="150px" alt="Sample Image">
+                </li>
+            </ul>
+        </div>
+
         <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
             <div class="container" style="width: 1200px;">
                 <div class="d-flex justify-content-between">

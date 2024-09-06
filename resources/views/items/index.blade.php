@@ -40,7 +40,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="d-flex justify-content-center my-4">
+        <div class="d-flex justify-content-center my-2">
             {{ $items->links('pagination::default') }}
         </div>
     </div>
