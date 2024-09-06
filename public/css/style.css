@@ -7,6 +7,10 @@ cheat {
     color: #721c24;
     color: #f5c6cb;
     color: #f8d7da;
+<<<<<<< HEAD
+    color: #cc6633;
+    color: #d2b48c;
+=======
     color: #CC6633;
     color: #D2B48C;
 }
@@ -14,6 +18,7 @@ cheat {
 .title--border {
     padding: 1rem 1rem;
     border-left: 8px solid #8b4513;
+>>>>>>> 8ece27bd83710a014959925c796dd3f1b1ed96e1
 }
 
 /* ヘッダーナビ */
@@ -29,6 +34,28 @@ cheat {
     width: 170px;
 }
 
+<<<<<<< HEAD
+/* ヘッダーユーザーアイコン */
+.user-aicon {
+    margin:0;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 0;
+}
+
+.user-aicon .user-link {
+    padding: 0;
+    text-decoration: none;
+    color: #3e4555;
+}
+
+.title--border {
+    padding: 1rem 1rem;
+    border-left: 8px solid #8b4513;
+}
+
+=======
+>>>>>>> 8ece27bd83710a014959925c796dd3f1b1ed96e1
 /* マイページナビ */
 .nav-pills-custom {
     display: flex;
@@ -52,10 +79,9 @@ cheat {
 }
 
 .nav-link.active {
-    background-color: #D2B48C !important;
+    background-color: #d2b48c !important;
     color: white !important;
 }
-
 
 .title--border {
     padding: 1rem 1rem;
@@ -83,6 +109,8 @@ footer .nav-link:hover {
 .navbar-nav .nav-link:hover {
     opacity: 0.7;
     transition: opacity 0.3s;
+    text-decoration: none;
+    border-bottom: solid 3px #cc6633;
 }
 
 /* 商品一覧 */
@@ -465,6 +493,7 @@ footer .nav-link:hover {
 /* マイページナビ */
 .nav-justified .nav-item {
     flex: 1; /* 各アイテムを均等に分割 */
+    list-style-type: none;
 }
 
 .nav-link {
@@ -485,4 +514,12 @@ footer .nav-link:hover {
     background-color: #f8d7da; /* 薄ピンクの背景色 */
     border-color: #f5c6cb; /* ボーダーも薄ピンクに */
     color: #721c24; /* ボタンのテキスト色（通常の色に合わせて） */
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style: none;
 }

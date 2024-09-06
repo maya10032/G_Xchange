@@ -26,7 +26,7 @@ class ItemController extends Controller
             ->with('images', 'category')
             ->orderBy('created_at', 'DESC')
             ->paginate(16);
-            // ->get();
+        // ->get();
         return view('items.index', compact('items'));
     }
 
@@ -37,7 +37,13 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('items.show', compact('item'));
+        // 同じカテゴリーの他の商品をランダムで4件取得、現在の商品は除外
+        $relatedItems = Item::where('category_id', $item->category_id)
+            ->where('id', '!=', $item->id)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+        return view('items.show', compact('item', 'relatedItems'));
     }
 
     /**
@@ -73,6 +79,4 @@ class ItemController extends Controller
         // ビューに $item と $count を渡す
         return view('items.purchase', compact('item', 'count'));
     }
-
-
 }
