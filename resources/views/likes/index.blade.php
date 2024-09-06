@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-        <h2>マイページ / お気に入り</h2>
+        <h2 class="title--border">マイページ / お気に入り</h2>
         {{-- お気に入りが空だったら --}}
         @if (count($items) == 0)
             <div class="flex items-center justify-center w-full absolute inset-0">

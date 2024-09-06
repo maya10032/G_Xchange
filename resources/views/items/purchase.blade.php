@@ -4,8 +4,7 @@
 
 @section('content')
     <div class="py-5 container sticky-top" style="min-height: calc(180vh - 180px);">
-        <h2 class="title--border">商品詳細 / 購入確認
-        <span class="text-danger fw-bold text-center ms-5">※内容をご確認の上、購入するを押してください。</span></h2>
+        <h2><span class="text-danger fw-bold text-center ms-5">※内容をご確認の上、購入するを押してください。</span></h2>
         <div class="d-flex">
             <div class="d-flex flex-column me-2 mb-0 reduce-margin" style="flex: 1.4;">
                 {{-- サムネイルとその他の画像を横並びにするためにd-flexを使用 --}}

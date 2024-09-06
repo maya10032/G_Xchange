@@ -22,16 +22,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <style>
-        .navbar-expand-md {
-            font-family: 'Caveat', cursive;
-            font-size: 18px;
-            /* background-color: #D2B48C !important; */
-        }
-
-    </style>
 </head>
-
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -48,7 +39,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto header-nav-custom">
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}

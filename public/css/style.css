@@ -11,6 +11,24 @@ cheat {
     color: #D2B48C;
 }
 
+.title--border {
+    padding: 1rem 1rem;
+    border-left: 8px solid #8b4513;
+}
+
+/* ヘッダーナビ */
+.header-nav-custom {
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    /* width: 90%; */
+}
+
+.header-nav-custom .nav-item {
+    flex: 1;
+    width: 170px;
+}
+
 /* マイページナビ */
 .nav-pills-custom {
     display: flex;
@@ -456,6 +474,10 @@ footer .nav-link:hover {
 .nav-link:hover {
     text-decoration: underline; /* ホバー時に下線を表示 */
     opacity: 0.9; /* ホバー時に少し薄くする */
+}
+
+.nav-link small {
+    display: block;
 }
 
 /* 商品詳細 */
