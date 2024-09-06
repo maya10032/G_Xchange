@@ -7,8 +7,18 @@ cheat {
     color: #721c24;
     color: #f5c6cb;
     color: #f8d7da;
+<<<<<<< HEAD
     color: #cc6633;
     color: #d2b48c;
+=======
+    color: #CC6633;
+    color: #D2B48C;
+}
+
+.title--border {
+    padding: 1rem 1rem;
+    border-left: 8px solid #8b4513;
+>>>>>>> 8ece27bd83710a014959925c796dd3f1b1ed96e1
 }
 
 /* ヘッダーナビ */
@@ -24,6 +34,7 @@ cheat {
     width: 170px;
 }
 
+<<<<<<< HEAD
 /* ヘッダーユーザーアイコン */
 .user-aicon {
     margin:0;
@@ -43,6 +54,8 @@ cheat {
     border-left: 8px solid #8b4513;
 }
 
+=======
+>>>>>>> 8ece27bd83710a014959925c796dd3f1b1ed96e1
 /* マイページナビ */
 .nav-pills-custom {
     display: flex;
