@@ -51,58 +51,73 @@
                     <ul class="navbar-nav ms-auto">
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}</a>
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
+                                    <small>goods</small>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i> {{ __('contact') }}</a>
+                                <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i> {{ __('contact') }}
+                                    <small>contact</small>
+                                </a>
                             </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">
-                                        <i class="fa fa-sign-in me-1"></i>{{ __('Login') }}</a>
+                                        <i class="fa fa-sign-in me-1"></i>{{ __('Login') }}
+                                        <small>Login</small>
+                                    </a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">
-                                        <i class="fa fa-user-plus me-1"></i>{{ __('Register') }}</a>
+                                        <i class="fa fa-user-plus me-1"></i>{{ __('Register') }}
+                                        <small>sign up</small>
+                                    </a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}</a>
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
+                                    <small>goods</small>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-envelope-o"></i>
-                                    {{ __('contact') }}</a>
+                                    {{ __('contact') }}
+                                    <small>contact</small>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart"></i>
-                                    {{ __('cart') }}</a>
+                                    {{ __('cart') }}
+                                    <small>cart</small>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-history"></i>
-                                    {{ __('order') }}</a>
+                                    {{ __('order') }}
+                                    <small>history</small>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart-o"></i>
-                                    {{ __('like') }}</a>
+                                    {{ __('like') }}
+                                    <small>favorite</small>
+                                </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa fa-user-circle me-1"></i>{{ Auth::user()->name }}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('ja.Logout') }}
-                                    </a>
+                                        {{ __('ja.Logout') }}</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-
                                         @csrf
                                     </form>
                                 </div>

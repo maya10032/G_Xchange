@@ -3,7 +3,8 @@
 @section('title', '商品詳細')
 
 @section('content')
-    <div class="py-5 container sticky-top" style="min-height: calc(180vh - 180px);">
+<div class="py-5 container sticky-top" style="min-height: calc(180vh - 180px);">
+        <h2 class="title--border">商品一覧 / 商品詳細</h2>
         @if (session('likeadd'))
             <div class="alert alert-success text-center fw-bold" style="font-size: 1.25rem;">
                 {{ session('likeadd') }}
@@ -41,8 +42,8 @@
                 </div>
             </div>
             <div class="ms-auto" style="flex: 1; font-size: 1.25rem;">
-                <h3 class="mb-3" style="font-size: 1.75rem; word-break: break-word;">{{ $item->item_name }}</h3>
                 <p class="mb-2"><small class="text-muted">{{ $item->category->category_name }}</small></p>
+                <h3 class="mb-3" style="font-size: 1.75rem; word-break: break-word;">{{ $item->item_name }}</h3>
                 @if ($item->regular_price === $item->sales_price)
                     <p class="mb-3">{{ number_format($salesPriceWithTax) }}円（税込）送料無料</p>
                 @else
@@ -59,12 +60,12 @@
                     @if ($item->is_active)
                         <form action="{{ url('/purchase', $item->id) }}" method="POST" novalidate>
                             @csrf
-                            <div class="mb-3">
+                            <div  class="mb-3" style="font-size: 1.25rem;">
                                 数量：<input type="number" name="count" min="1" max="{{ $item->count_limit }}"
-                                    value="{{ old('count', 1) }}" style="font-size: 1.25rem;">
-                                <p class="mb-2">※一度に購入できるのは{{ $item->count_limit }}個までです。</p>
+                                    value="{{ old('count', 1) }}" >
+                                <small>　（一度に購入できるのは{{ $item->count_limit }}個までです。）</small>
                                 @foreach ($errors->all() as $error)
-                                    <p class="mb-2">※{{ $error }}</p>
+                                    <p  class="h4 text-danger fw-bold m-3">※{{ $error }}</p>
                                 @endforeach
                             </div>
                             <div class="d-grid gap-1 col-6 align-items-center">
@@ -102,7 +103,7 @@
             </div>
         </div>
         <div class="mt-4" style="font-size: 1.25rem; text-align: left; max-width: 550px;">
-            <h3 class="mb-3" style="font-size: 1.75rem;">商品説明</h3>
+            <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-shopping-bag"></i>　商品説明</h3>
             <p>{{ $item->message }}</p>
         </div>
     </div>
