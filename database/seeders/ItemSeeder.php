@@ -19,7 +19,6 @@ class ItemSeeder extends Seeder
         $NUM_FAKER = 20;
         $faker = Factory::create('ja_JP');
         $numImagesPerItem = 4;
-        // 本のタイトルのみ英語名なので日本語で定義
         $item_name = [
             'ミネサック',
             '冷蔵庫収納エッグボックス',
