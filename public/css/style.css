@@ -122,7 +122,7 @@ footer .nav-link:hover {
     opacity: 0.7;
     transition: opacity 0.3s;
     text-decoration: none;
-    background: linear-gradient(#ffffff 55%, #ff4f50 100%);
+    background: linear-gradient(#ffffff 55%, #d2b48c 100%);
 }
 
 /* 商品一覧 */
