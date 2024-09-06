@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="py-5 container sticky-top" style="min-height: calc(180vh - 180px);">
-        <h2 class="title--border">商品一覧 / 商品詳細</h2>
         @if (session('likeadd'))
             <div class="alert alert-success text-center fw-bold" style="font-size: 1.25rem;">
                 {{ session('likeadd') }}
@@ -92,7 +91,7 @@
                                 <div class="d-grid gap-2 col-6 align-items-center">
                                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                                     <button class="btn btn-outline-danger" style="font-size: 1.25rem;"><i
-                                            class="fa fa-heart-o"></i> {{ __('like') . __('create') }}</button>
+                                            class="fa fa-heart"></i> {{ __('like') . __('create') }}</button>
                                 </div>
                             </form>
                         @endif
@@ -100,6 +99,10 @@
                         <h3 class="text-danger mt-4" style="font-size: 1.75rem;">現在販売していません</h3>
                     @endif
                 @endif
+                <p class="mt-3">
+                    <a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                        href="{{ url('/') }}">商品一覧へ戻る</a>
+                </p>
             </div>
         </div>
         <div class="mt-4" style="font-size: 1.25rem; text-align: left; max-width: 550px;">
