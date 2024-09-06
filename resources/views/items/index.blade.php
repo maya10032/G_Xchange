@@ -4,7 +4,17 @@
 
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(80vh - 80px);">
-        <h2 class="fw-bold title--border">商品一覧</h2>
+        <div class="d-flex">
+            <h2 class="fw-bold title--border">商品一覧</h2>
+            <div class="container" style="width: 50%;">
+                <form class="d-flex mt-3" role="search">
+                    <input class="form-control me-2 border-secondary" type="search" placeholder="商品名、カテゴリ、ブランドなど"
+                        aria-label="Search">
+                    <button class="btn btn-secondary btn-secondary" style="width: 80px;"
+                        type="submit">{{ __('search') }}</button>
+                </form>
+            </div>
+        </div>
         <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3">
             @foreach ($items as $item)
                 <div class="col">

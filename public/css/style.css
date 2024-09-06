@@ -13,8 +13,7 @@ cheat {
 
 .title--border {
     padding: 1rem 1rem;
-    border-left: 8px solid #CC6633;
-    border-left: 8px solid #8b4513;
+    border-left: 8px solid #cc6633;
 }
 
 /* ヘッダーナビ */
@@ -75,9 +74,9 @@ cheat {
 #sec {
     padding: 0;
     word-wrap: break-word;
-  }
+}
 
-  #sec ul {
+#sec ul {
     margin: 0;
     display: flex;
     flex-flow: row wrap;
@@ -85,20 +84,21 @@ cheat {
     list-style: none;
     border: none;
     padding-bottom: 30px;
-  }
+}
 
-  #sec ul li {
+#sec ul li {
     width: 320px;
     height: 150px;
     transition: box-shadow 0.3s;
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
-  }
+}
 
-  #sec ul li:hover {
-    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  }
+#sec ul li:hover {
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+        0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
 
 /* カート */
 .delete-link:hover {
@@ -122,7 +122,7 @@ footer .nav-link:hover {
     opacity: 0.7;
     transition: opacity 0.3s;
     text-decoration: none;
-    background: linear-gradient(#ffffff 85%, #cc6633 100%);
+    background: linear-gradient(#ffffff 55%, #ff4f50 100%);
 }
 
 /* 商品一覧 */
@@ -514,7 +514,7 @@ footer .nav-link:hover {
 }
 
 .nav-link:hover {
-    text-decoration: underline; /* ホバー時に下線を表示 */
+    text-decoration: none; /* ホバー時に下線を表示 */
     opacity: 0.9; /* ホバー時に少し薄くする */
 }
 
