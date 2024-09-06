@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-        <h2>マイページ / 購入履歴</h2>
+        <h2 class="title--border">マイページ / 購入履歴</h2>
         {{-- 購入履歴が空だったら --}}
         @if (count($orders) == 0)
             <div class="d-flex align-items-center justify-content-center w-100" style="height: 100%;">
