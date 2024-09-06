@@ -100,6 +100,11 @@
                                         {{ __('cart') }}
                                         <small>cart</small>
                                     </a>
+                                    <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            99+
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-history"></i>
