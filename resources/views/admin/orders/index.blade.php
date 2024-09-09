@@ -33,7 +33,6 @@
         </div>
     </div>
     <table class="table table-bordered table-striped task-table table-hover">
-        <thead>
             <tr>
                 <th>注文番号</th>
                 <th>注文日</th>
@@ -42,9 +41,8 @@
                 <th>数量</th>
                 <th>販売価格</th>
                 <th>合計金額</th>
+                <th></th>
             </tr>
-        </thead>
-        <tbody>
             @foreach ($ordersWithTax as $order)
                 <tr>
                     <td>{{ $order->id }}</td>
@@ -66,7 +64,6 @@
                                 class="fa fa-search" aria-hidden="true"></i> 詳細</td>
                 </tr>
             @endforeach
-        </tbody>
     </table>
     <div class="d-flex justify-content-center my-2">
         {{ $orders->links() }}

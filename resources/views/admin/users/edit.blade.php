@@ -4,71 +4,47 @@
 
 @section('content')
     <h2 class="py-2 admin">ユーザ情報詳細</h2>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">ユーザ情報詳細画面</div>
-
-                    <div class="card-body">
-                        <form id="delete-form" method="POST" action="{{ route('admin.users.destroy', $user->id) }}">
-                            @csrf
-                            @method('patch')
-                            @method('delete')
-
-                            <div class="row mb-3">
-                                <label for="id" class="col-md-4 col-form-label text-md-end">ユーザID</label>
-                                <div class="col-md-6">
-                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->id }}">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->name }}">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="phone"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->phone }}">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="address"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->address }}">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-                                <div class="col-md-6">
-                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->email }}">
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" onclick="deleteuser()" class="btn btn-danger px-5" name="action" value="destroy">
-                                        削除
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <p class="text-center my-3"><a href="{{ url('admin/users/') }}">ユーザ一覧へ戻る</a></p>
-            </div>
-        </div>
+    {{-- @php
+    echo '<pre>'; // 表示を見やすく整形する
+    var_dump($user); // user変数を一覧表示する
+    echo '<pre>';
+  @endphp --}}
+    <table class="table table-bordered table-striped task-table table-hover">
+        <tr>
+            <th>注文番号</th>
+            <th>注文日</th>
+            <th>商品名</th>
+            <th>商品画像</th>
+            <th>数量</th>
+            <th>販売価格</th>
+            <th>合計金額</th>
+            <th></th>
+        </tr>
+        @foreach ($orders as $order)
+            <tr>
+                <td>{{ $order->id }}</td>
+                <td>{{ $order->created_at }}</td>
+                <td>
+                    @if ($order->item->is_active)
+                        {{ $order->item->item_name }}
+                    @else
+                        {{ $order->item->item_name }} <span class="text-danger">（販売停止中）</span>
+                    @endif
+                </td>
+                <td><img src="{{ asset('storage/images/' . $order->item->images->first()->img_path) }}"
+                        alt="{{ $order->item->item_name }}" style="width: 100px; height: 100px;"></td>
+                <td>{{ $order->count }}個</td>
+                <td>{{ number_format($order->item->tax_sales_prices) }}円</td>
+                <td>
+                    {{ number_format($order->subtotal) }}円</td>
+                <td><a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-primary me-2"><i class="fa fa-search"
+                            aria-hidden="true"></i> 詳細</td>
+            </tr>
+        @endforeach
+    </table>
+    <p class="text-center my-3"><a href="{{ url('admin/users/') }}">ユーザ一覧へ戻る</a></p>
+    </div>
+    </div>
     </div>
 
     </form>
