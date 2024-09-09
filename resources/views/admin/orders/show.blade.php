@@ -3,7 +3,13 @@
 @section('title', '受注商品詳細')
 
 @section('content')
-    <h2>受注商品詳細</h2>
+    <topnav>
+        <ul>
+            <li><a class="current" href="{{ url('admin/orders') }}">受注管理</a></li>
+            <li><a class="current" href="{{ route('admin.orders.show', ['id' => $order->id]) }}">受注商品詳細</a></li>
+        </ul>
+    </topnav>
+    <h2 class="py-2 admin">受注商品詳細</h2>
     <div class="d-flex">
         <p class="me-3">注文番号: {{ $order->id }}</p>
         <p class="me-3">注文日: {{ $order->created_at }}</p>
@@ -15,7 +21,7 @@
                 <div class="mb-2 me-3" style="max-height: 465px;">
                     <img src="{{ asset('storage/images/' . $order->item->images[$order->item->thumbnail]->img_path) }}"
                         alt="Thumbnail" class="img-fluid rounded"
-                        style="width: 265px; height: auto; object-fit: cover; max-height: 465px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                        style="width: 265px; height: 265px; object-fit: cover; max-height: 465px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
                 </div>
                 <div class="flex-grow-1 ms-3 w-25">
                     <p>カテゴリー名：{{ $order->item->category->category_name }}</p>

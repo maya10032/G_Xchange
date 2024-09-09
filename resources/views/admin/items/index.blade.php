@@ -16,9 +16,9 @@
     <h2 class="py-2 admin">商品一覧ページ</h2>
     <div class="container mb-2" style="width: 100%;">
         <div class="d-flex justify-content-end mt-3">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2 border-secondary" style="width: 600px;" type="search"
-                    placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search">
+            <form class="d-flex" role="search" method="GET" action="{{ route('admin.items.search') }}">
+                <input class="form-control me-2 border-secondary" style="width: 600px;" type="search" name="search"
+                    placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search" value="{{ old('search', $search ?? '') }}">
                 <button class="btn btn-secondary" style="width: 80px;" type="submit">{{ __('search') }}</button>
             </form>
             <div class="ms-3">
@@ -32,6 +32,9 @@
             </div>
         </div>
     </div>
+    @if (isset($query))
+        <h3>検索結果: "{{ $query }}"</h3>
+    @endif
     <table class="table table-bordered table-striped task-table table-hover">
         <tr>
             <th>商品ID</th>
@@ -43,6 +46,7 @@
             <th>販売価格</th>
             <th>通常価格</th>
             <th>販売状況</th>
+            <th></th>
             <th></th>
         </tr>
         @foreach ($itemsWithTax as $item)
@@ -57,14 +61,19 @@
                 <td>{{ number_format($item->subtotal) }}円</td>
                 <td>{{ number_format($item->regtotal) }}円</td>
                 <td class="{{ $item->state === '販売停止中' ? 'text-danger' : '' }}">{{ $item->state }}</td>
-                <td class="d-flex align-items-center" style="height: 120px;">
-                    <a href="{{ route('admin.items.edit', ['item' => $item->id]) }}" class="btn btn-secondary me-2">編集</a>
+                <td>
+                    <a href="{{ route('admin.items.edit', ['item' => $item->id]) }}"><i class="fas fa-pencil-alt icon-large" aria-hidden="true"></i></a>
+                </td>
+                <td>
                     <form action="{{ route('admin.items.destroy', ['item' => $item->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
                     </form>
                 </td>
+
             </tr>
         @endforeach
     </table>

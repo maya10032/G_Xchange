@@ -19,7 +19,7 @@ class OrderController extends Controller
         //odersテーブルのデータ取得、新しい順で表示
         $orders = Order::with('item')
             ->orderBy('created_at', 'DESC')
-            ->get();
+            ->paginate(10);
 
         // 小計合計の計算
         $ordersWithTax = $orders->map(function ($order) {
@@ -43,4 +43,4 @@ class OrderController extends Controller
         // ビューにデータを渡す
         return view('admin.orders.show', compact('order', 'subtotal'));
     }
-}   
+}

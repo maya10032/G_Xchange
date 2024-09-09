@@ -2,9 +2,13 @@
 
 @section('title', '登録内容確認')
 @section('content')
-    <a href="{{ url('admin/items') }}">商品一覧</a> ＞<a href="{{ url('admin/items/create') }}">新規商品登録</a>
-
-    <h2>確認画面</h2>
+    <topnav>
+        <ul>
+            <li><a class="current" href="{{ url('admin/items/create') }}">新規商品登録</a></li>
+            <li><a class="current" href="{{ url('admin/items/confirm') }}">確認画面</a></li>
+        </ul>
+    </topnav>
+    <h2 class="py-2 admin">確認画面</h2>
     <form action="{{ route('admin.items.store') }}" method="POST" novalidate>
         @csrf
         <table class="table">
@@ -19,14 +23,11 @@
             <tr>
                 <td>カテゴリー</td>
                 <td>
-                    <select name="category_id" id="category_id" class="form-control">
-                        @foreach ($categories as $category)
-                            <option
-                                value="{{ $category->id }}"{{ old('category_id', $item_data['category_id'] ?? '') == $category->id ? 'selected' : '' }}>
-                                {{ $category->category_name }}
-                            </option>
-                        @endforeach
-                    </select>
+                    @foreach ($categories as $category)
+                        @if ($input['category_id'] == $category->id)
+                            {{ $category->category_name }}
+                        @endif
+                    @endforeach
                 </td>
             </tr>
             <tr>
@@ -65,7 +66,7 @@
                 <td>{{ $input['message'] }}</td>
             </tr>
         </table>
-        <button type="submit" class="btn btn-primary">登録</button>
-        <button type="submit" class="btn btn-primary" name="action" value="back">戻る</button>
+        <button type="submit" class="btn btn-danger">登録</button>
+        <button type="submit" class="btn btn-secondary" name="action" value="back">戻る</button>
     </form>
 @endsection

@@ -15,11 +15,16 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
+        .icon-large {
+            font-size: 20px;
+        }
+
         .btn {
             border-radius: 0.5rem;
             /* 角を丸くする */
@@ -120,7 +125,7 @@
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}"
+                <a class="navbar-brand" href="{{ url('/admin/items') }}"
                     style="display: flex; align-items: center; padding: 0;">
                     <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}"
                         style="max-height: 50px; margin: 0;">
@@ -175,6 +180,9 @@
                                 </li>
                                 <li class="nav-item list-group-item">
                                     <a class="nav-link" href="{{ route('admin.items.create') }}">{{ __('new_item') }}</a>
+                                </li>
+                                <li class="nav-item list-group-item">
+                                    <a class="nav-link" href="{{ route('admin.categories.index') }}">{{ __('new_category') }}</a>
                                 </li>
                                 <li class="nav-item list-group-item">
                                     <a class="nav-link"

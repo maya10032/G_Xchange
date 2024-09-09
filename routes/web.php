@@ -86,6 +86,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::get('items/{item}/edit', [ADMIN_ITEM_PATH, 'edit'])->name('items.edit');
     Route::put('items/{id}',        [ADMIN_ITEM_PATH, 'update'])->name('items.update');
     Route::delete('/items/{item}',  [ADMIN_ITEM_PATH, 'destroy'])->name('items.destroy');
+    Route::get('/items/search',     [ADMIN_ITEM_PATH, 'search'])->name('items.search');
+    // カテゴリー
+    Route::get('/categories',   [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
     // 受注管理表示
     Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}/show', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');

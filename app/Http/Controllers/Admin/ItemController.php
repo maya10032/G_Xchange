@@ -41,6 +41,7 @@ class ItemController extends Controller
             }
             return $item;
         });
+
         return view('admin.items.index', compact('items', 'itemsWithTax'));
     }
 
@@ -243,5 +244,30 @@ class ItemController extends Controller
         $item->delete();
         // リダイレクト
         return redirect()->route('admin.items.index')->with('attention', '商品が削除されました。');
+    }
+
+    /**
+     * 検索機能
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+
+        $items = Item::where('item_name', 'LIKE', "%{$query}%")
+            ->orWhereHas('category', function ($q) use ($query) {
+                $q->where('category_name', 'LIKE', "%{$query}%");
+            })
+            ->paginate(10);
+        $itemsWithTax = $items->map(function ($item) {
+            $item->subtotal = $item->tax_sales_prices;
+            $item->regtotal = $item->tax_regular_prices;
+            $item->state = $item->is_active === 0 ? '販売停止中' : '販売中';
+            return $item;
+        });
+
+        return view('admin.items.index', compact('items', 'itemsWithTax', 'query'));
     }
 }
