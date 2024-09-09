@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
-@section('title', '会員情報詳細')
+@section('title', 'ユーザ情報詳細')
 
 @section('content')
-    <h1>会員情報詳細</h1>
+    <h1>ユーザ情報詳細</h1>
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">会員情報詳細画面</div>
+                    <div class="card-header">ユーザ情報詳細画面</div>
 
                     <div class="card-body">
                         <form id="delete-form" method="POST" action="{{ route('admin.users.destroy', $user->id) }}">
@@ -18,7 +18,7 @@
                             @method('delete')
 
                             <div class="row mb-3">
-                                <label for="id" class="col-md-4 col-form-label text-md-end">会員ID</label>
+                                <label for="id" class="col-md-4 col-form-label text-md-end">ユーザID</label>
                                 <div class="col-md-6">
                                     <p>{{ $user->id }}</p>
                                 </div>
@@ -81,4 +81,3 @@
         confirm('本当に削除しますか？') ? document.querySelector('#delete-form').submit() : ''
     }
 </script>
-
