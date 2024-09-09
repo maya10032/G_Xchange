@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
@@ -34,10 +35,26 @@ class UserController extends Controller
     /**
      * ユーザ詳細（削除）画面を表示（管理者）
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
+        // $user = User::findOrFail($id);
+        // $user = User::with(['orders', 'item'])->findOrFail($id);
+        // return view('admin.users.edit', compact('user'));
+        //odersテーブルのデータ取得、新しい順で表示
+        $orders = Order::where('user_id', $user->id)
+            ->with('item', 'category')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+            dd($orders);
+
+        // 小計合計の計算
+        // $ordersWithTax = $orders->map(function ($order) {
+            // 小計（税込み）を計算（Itemモデルで計算引き継ぎ）
+            // $order->subtotal = $order->item->tax_sales_prices * $order->count;
+            // return $order;
+        // });
+
+        return view('admin.users.edit', compact('orders', 'user'));
     }
 
     /**
@@ -71,11 +88,11 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id): RedirectResponse
     {
-            $user = User::findOrFail($id);
-            $user->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
 
-            $request->session()->flash('userdelete', 'ユーザ情報を削除しました');
-            return Redirect::route('admin.users.index')->with('status', 'profile-updated');
+        $request->session()->flash('userdelete', 'ユーザ情報を削除しました');
+        return Redirect::route('admin.users.index')->with('status', 'profile-updated');
     }
 
     protected function validator(array $data)

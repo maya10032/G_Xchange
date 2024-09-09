@@ -22,23 +22,6 @@
             </h2>
         </div>
     @else
-        <div class="container mb-2" style="width: 100%;">
-            <div class="d-flex justify-content-end mt-3">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2 border-secondary" style="width: 600px;" type="search"
-                        placeholder="会員ID、お名前、電話番号など" aria-label="Search">
-                    <button class="btn btn-secondary" style="width: 80px;" type="submit">{{ __('search') }}</button>
-                </form>
-                <div class="ms-3">
-                    <select class="form-select" aria-label="並び替え">
-                        <option selected>並び替え</option>
-                        <option value="1">新しい順</option>
-                        <option value="2">古い順</option>
-                        <option value="3">名前順</option>
-                    </select>
-                </div>
-            </div>
-        </div>
         <table class="table table-bordered table-striped task-table table-hover">
             <tr>
                 <th>会員ID</th>
