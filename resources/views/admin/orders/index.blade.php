@@ -42,6 +42,7 @@
                 <th>数量</th>
                 <th>販売価格</th>
                 <th>合計金額</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

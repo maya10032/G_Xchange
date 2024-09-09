@@ -21,13 +21,6 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
-        input::placeholder,
-        textarea::placeholder {
-            color: #EEEEEE;
-            /* ここでカラーコードを変更できます。 */
-            opacity: 1;
-            /* opacity プロパティを 1 に設定して、透明度をなくします。 */
-        }
 
         .table-custom {
             width: 100%;
@@ -62,13 +55,9 @@
         /* 管理者見出し */
         h2.admin {
             padding: 0.25em 0.5em;
-            /*上下 左右の余白*/
             color: #494949;
-            /*文字色*/
             background: transparent;
-            /*背景透明に*/
             border-left: solid 5px #7db4e6;
-            /*左線*/
         }
 
         /* 管理者ナビ */
@@ -218,23 +207,6 @@
                                 <li class="nav-item list-group-item">
                                     <a class="nav-link" href="{{ route('admin.profile.show') }}">
                                         {{ __('account') }}</a>
-                                </li>
-                                <li class="nav-item list-group-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::guard('admin')->user()->name }}
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('admin.logout') }}"
-                                            onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                            {{ __('admin_Logout') }}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
                                 </li>
                             @else
                                 <li class="nav-item">
