@@ -26,8 +26,7 @@
             <th>電話番号</th>
             <th>住所</th>
             <th>メールアドレス</th>
-            <th></th>
-            <th></th>
+            <th style="width: 290px;"></th>
         </tr>
         @foreach ($users as $user)
             <tr>
@@ -37,14 +36,19 @@
                 <td>{{ $user->address }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-secondary">
-                        <i class="fa fa-pencil-alt" aria-hidden="true"></i> 編集
-                    </a>
-                </td>
-                <td>
-                    <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary">
+                    <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary mx-2">
                         <i class="fa fa-search" aria-hidden="true"></i> 詳細
                     </a>
+                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-secondary mx-2">
+                        <i class="fa fa-pencil-alt" aria-hidden="true"></i> 編集
+                    </a>
+                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger mx-2" onclick="return confirm('本当に削除しますか？')">
+                            <i class="fa fa-trash" aria-hidden="true"></i> 削除
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach
