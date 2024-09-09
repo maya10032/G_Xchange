@@ -84,6 +84,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     // Route::post('items/confirm',    [ADMIN_ITEM_PATH, 'store'])->name('items.store');
     Route::get('items/{item}/show', [ADMIN_ITEM_PATH, 'show'])->name('items.show');
     Route::get('items/{item}/edit', [ADMIN_ITEM_PATH, 'edit'])->name('items.edit');
+    Route::put('items/{id}',        [ADMIN_ITEM_PATH, 'update'])->name('items.update');
+    Route::delete('/items/{item}',  [ADMIN_ITEM_PATH, 'destroy'])->name('items.destroy');
     // 受注管理表示
     Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}/show', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
@@ -98,6 +100,5 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::get('/profile/show',    [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/show',  [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'destroy'])->name('profile.destroy');
-
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

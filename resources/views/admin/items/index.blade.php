@@ -41,6 +41,7 @@
             <th>最大注文数</th>
             <th>商品画像</th>
             <th>販売価格</th>
+            <th>通常価格</th>
             <th>販売状況</th>
             <th></th>
         </tr>
@@ -54,8 +55,16 @@
                 <td><img src="{{ asset('storage/images/' . $item->images->first()->img_path) }}"
                         alt="{{ $item->item_name }}" style="width: 100px; height: 100px;"></td>
                 <td>{{ number_format($item->subtotal) }}円</td>
-                <td>{{ $item->state }}</td>
-                <td><a href="{{ route('admin.items.edit', ['item' => $item->id]) }}" class="btn btn-primary">編集</a></td>
+                <td>{{ number_format($item->regtotal) }}円</td>
+                <td class="{{ $item->state === '販売停止中' ? 'text-danger' : '' }}">{{ $item->state }}</td>
+                <td class="d-flex align-items-center" style="height: 120px;">
+                    <a href="{{ route('admin.items.edit', ['item' => $item->id]) }}" class="btn btn-secondary me-2">編集</a>
+                    <form action="{{ route('admin.items.destroy', ['item' => $item->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>
