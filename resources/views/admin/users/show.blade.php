@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
-@section('title', '会員情報変更')
+@section('title', 'ユーザ情報変更')
 
 @section('content')
-    <h1>会員情報変更</h1>
+    <h1>ユーザ情報変更</h1>
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">会員情報変更画面</div>
+                    <div class="card-header">ユーザ情報変更画面</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.users.update', $user->id) }}">
                             @csrf
                             @method('patch')
 
                             <div class="row mb-3">
-                                <label for="id" class="col-md-4 col-form-label text-md-end">会員ID</label>
+                                <label for="id" class="col-md-4 col-form-label text-md-end">ユーザID</label>
                                 <div class="col-md-6">
                                     <p>{{ $user->id }}</p>
                                 </div>

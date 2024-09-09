@@ -95,5 +95,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::patch('/users/{id}/update',  [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
     Route::delete('/users/{id}/destroy', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+    // 会員情報変更表示
+    Route::get('/profile',    [App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/show',    [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/show',  [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

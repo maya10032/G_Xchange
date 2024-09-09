@@ -184,6 +184,11 @@
                                     <a class="nav-link"
                                         href="{{ route('admin.users.index') }}">{{ __('user_Management') }}</a>
                                 </li>
+                                <li class="nav-item list-group-item">
+                                    <a class="nav-link"
+                                        href="{{ route('admin.profile.show') }}">
+                                        {{ __('account') }}</a>
+                                </li>
                                 <li class="nav-item list-group-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -214,13 +219,13 @@
                     </div>
                 </div>
             </nav>
-        @endauth
-        {{-- <main class="py-4 container"> --}}
-        <main class="container">
-            <div class="content p-4" style="flex-grow: 1;">
-                @yield('content')
-            </div>
-        </main>
+                @endauth
+                {{-- <main class="py-4 container"> --}}
+                    <main class="container">
+                        <div class="content p-4" style="flex-grow: 1;">
+                            @yield('content')
+                        </div>
+                    </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
