@@ -20,6 +20,18 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
+        .btn {
+            border-radius: 0.5rem;
+            /* 角を丸くする */
+            transition: opacity 0.3s ease;
+            /* ホバー時の変化をスムーズにする */
+        }
+
+        .btn:hover {
+            opacity: 0.7;
+            /* ホバー時に薄くする */
+        }
+
         /* 管理者見出し */
         h2.admin {
             padding: 0.25em 0.5em;
@@ -149,7 +161,7 @@
         <!-- サイドバー -->
         <div class="d-flex" style="min-height: 100vh;">
             <nav class="sidebar navbar navbar-expand-md navbar-light shadow-sm flex-column"
-                style="height: 90vh; position: sticky; top: 0;">
+                style="height: 95vh; position: sticky; top: 0;">
                 <div class="container">
                     <!-- サイドバーの内容 -->
                     <div class="collapse navbar-collapse show" id="navbarSupportedContent">

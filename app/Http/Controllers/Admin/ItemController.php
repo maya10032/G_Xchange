@@ -31,7 +31,8 @@ class ItemController extends Controller
     {
         $items = Item::with('category')->paginate(10); // itemsの全商品、カテゴリーを取得
         $itemsWithTax = $items->map(function ($item) {
-            $item->subtotal = $item->sales_price * (1 + $this->taxRate); // 税込み価格
+            $item->subtotal = $item->tax_sales_prices; // 税込み価格
+            $item->regtotal = $item->tax_regular_prices; // 税込み価格
             // is_active が 0 の場合は '販売停止中'
             if ($item->is_active === 0) {
                 $item->state = '販売停止中';
@@ -163,6 +164,84 @@ class ItemController extends Controller
     public function edit($id)
     {
         $item = Item::findOrFail($id);
-        return view('admin.items.cere', ['item' => $item]);
+        $categories = Category::all();
+        return view('admin.items.edit', [
+            'item' => $item,
+            'categories' => $categories
+        ]);
+    }
+
+    /**
+     * 商品内容更新処理
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     */
+    public function update(Request $request, $id)
+    {
+        // 商品情報を取得
+        $item = Item::findOrFail($id);
+        $validator = Validator::make($request->all(), $this->validator);
+        if ($validator->fails()) {
+            return redirect()->route('admin.items.edit', ['item' => $id])
+                ->withInput()
+                ->withErrors($validator);
+        }
+        // 商品情報の更新
+        $item->update($request->except(['files']));
+        // 画像の処理
+        if ($request->hasFile('files')) {
+            // 新しい画像を保存
+            $filePaths = [];
+            foreach ($request->file('files') as $image) {
+                $imgName = date('YmdHis') . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images', $imgName);
+                $filePaths[] = $imgName;
+            }
+            // 新しい画像レコードを作成し、関連付ける
+            foreach ($filePaths as $filePath) {
+                $image = Image::create(['img_path' => $filePath]);
+                $item->images()->attach($image->id);
+            }
+        }
+        // サムネイルの更新
+        if ($request->has('thumbnail')) {
+            $item->thumbnail = $request->input('thumbnail');
+            $item->save();
+        }
+        // 販売停止または販売開始の処理
+        if ($request->input('action') === 'stop') {
+            $item->is_active = false;
+            $item->save();
+            return redirect()->route('admin.items.index')->with('attention', '商品が販売停止にされました。');
+        } elseif ($request->input('action') === 'start') {
+            $item->is_active = true;
+            $item->save();
+            return redirect()->route('admin.items.index')->with('attention', '商品が販売開始されました。');
+        }
+        $request->session()->flash('attention', '商品が更新されました。');
+        // リダイレクト
+        return redirect()->route('admin.items.index');
+    }
+
+    /**
+     * カートの商品削除
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function destroy($id)
+    {
+        // 商品情報を取得
+        $item = Item::findOrFail($id);
+        $item->images()->delete(); // 画像関連を削除
+        foreach ($item->images as $image) {
+            Storage::delete('public/images/' . $image->img_path);
+        }
+        // 商品を削除
+        $item->delete();
+        // リダイレクト
+        return redirect()->route('admin.items.index')->with('attention', '商品が削除されました。');
     }
 }
