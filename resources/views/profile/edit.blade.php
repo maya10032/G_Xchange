@@ -112,7 +112,7 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-secondary text-light px-4 py-2 hover-effect">
+                                    <button type="submit" class="btn btn-danger text-light px-4 py-2 hover-effect">
                                         更新
                                     </button>
                                 </div>

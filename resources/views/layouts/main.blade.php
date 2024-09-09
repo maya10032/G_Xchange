@@ -23,167 +23,299 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
-        /* .gradation { */
-        /* background-image: url(images/aki_sale.jpg);
-            background-repeat: no-repeat; */
-        /* background-size: contain; */
-        /* background: linear-gradient(#000000 80%, #ffffff 100%); */
-        /* } */
+        .navbar {
+            position: relative;
+            z-index: 10;
+        }
 
-        /* body {
-            background: linear-gradient(#5a6268, 10%, #ffffff);
-        } */
+        .navbar-brand img {
+            max-height: 100%;
+            width: auto;
+            margin: 0;
+        }
+
+
+        .box {
+            width: 100%;
+            height: 2000px;
+            background: linear-gradient(180deg, #CD5C5C 0%, #EEEEEE 35%, #99FFFF 100%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+        }
+
+        .box div {
+            height: 120px;
+            width: 120px;
+            position: absolute;
+            top: 8%;
+            left: 8%;
+            animation: animate 5s linear infinite;
+            background: transparent;
+            border: solid 3px rgba(255, 255, 255, 0.8);
+            z-index: 999999;
+        }
+
+        .box div:nth-child(1) {
+            top: 18%;
+            left: 18%;
+            animation: animate 15s linear infinite;
+        }
+
+        .box div:nth-child(2) {
+            top: 27%;
+            left: 87%;
+            animation: animate 10s linear infinite;
+        }
+
+        .box div:nth-child(3) {
+            top: 80%;
+            left: 90%;
+            animation: animate 5s linear infinite;
+        }
+
+        .box div:nth-child(4) {
+            top: 60%;
+            left: 70%;
+            animation: animate 9s linear infinite;
+        }
+
+        .box div:nth-child(5) {
+            top: 88%;
+            left: 12%;
+            animation: animate 9s linear infinite;
+        }
+
+        .box div:nth-child(6) {
+            top: 70%;
+            left: 33%;
+            animation: animate 8s linear infinite;
+        }
+
+        .box div:nth-child(7) {
+            top: 33%;
+            left: 66%;
+            animation: animate 8s linear infinite;
+        }
+
+        .box div:nth-child(8) {
+            top: 70%;
+            left: 60%;
+            animation: animate 16s linear infinite;
+        }
+
+        .box div:nth-child(9) {
+            top: 26%;
+            left: 53%;
+            animation: animate 7s linear infinite;
+        }
+
+        .box div:nth-child(10) {
+            top: 45%;
+            left: 15%;
+            animation: animate 12s linear infinite;
+        }
+
+
+        @keyframes animate {
+            0% {
+                transform: scale(0) translateY(0) rotate(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.5) translateY(-90px) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
-
 </head>
 
 <body>
     <div id="app">
-        <div class="gradation">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}"
-                        style="display: flex; align-items: center; padding: 0;">
-                        <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}"
-                            style="max-height: 50px; margin: 0;">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
+            <div class="container">
+                <a class="navbar-brand fuwafuwa" href="{{ url('/') }}"
+                    style="display: flex; align-items: center; padding: 0;">
+                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto header-nav-custom">
-                            @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
-                                        <small>goods</small>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i> {{ __('contact') }}
-                                        <small>contact</small>
-                                    </a>
-                                </li>
-                                @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">
-                                            <i class="fa fa-sign-in me-1"></i>{{ __('Login') }}
-                                            <small>Login</small>
-                                        </a>
-                                    </li>
-                                @endif
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">
-                                            <i class="fa fa-user-plus me-1"></i>{{ __('Register') }}
-                                            <small>sign up</small>
-                                        </a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
-                                        <small>goods</small>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i>
-                                        {{ __('contact') }}
-                                        <small>contact</small>
-                                    </a>
-                                </li>
-                                <li class="nav-item success-list">
-                                    <a class="nav-link success-icon" href="{{ route('carts.index') }}">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        {{ __('cart') }}
-                                        <span class="badge bg-danger rounded-pill" style="vertical-align: top">14</span>
-                                        <small>cart</small>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-history"></i>
-                                        {{ __('order') }}
-                                        <small>history</small>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart"></i>
-                                        {{ __('like') }}
-                                        <span class="badge bg-danger rounded-pill" style="vertical-align: top">14</span>
-                                        <small>favorite</small>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <ul class="user-aicon me-auto header-nav-custom">
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                {{ Auth::user()->name }}
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                    {{ __('ja.Logout') }}
+                <div class="collapse navbar-collapse cactus-classical-serif-regular" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto header-nav-custom">
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
+                                    <small>goods</small>
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                @endguest
-            </nav>
-            <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-bs-theme="light">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i> {{ __('contact') }}
+                                    <small>contact</small>
+                                </a>
+                            </li>
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">
+                                        <i class="fa fa-sign-in me-1"></i>{{ __('Login') }}
+                                        <small>Login</small>
+                                    </a>
+                                </li>
+                            @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                        <i class="fa fa-user-plus me-1"></i>{{ __('Register') }}
+                                        <small>sign up</small>
+                                    </a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
+                                    <small>goods</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i>
+                                    {{ __('contact') }}
+                                    <small>contact</small>
+                                </a>
+                            </li>
+                            <li class="nav-item success-list">
+                                <a class="nav-link success-icon" href="{{ route('carts.index') }}">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    {{ __('cart') }}
+                                    @if ($cartCount > 0)
+                                        <span class="badge bg-danger rounded-pill"
+                                            style="vertical-align: top">{{ $cartCount }}</span>
+                                    @endif
+                                    <small>cart</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart"></i>
+                                    {{ __('like') }}
+                                    @if (isset($likeCount) && $likeCount > 0)
+                                        <span class="badge bg-danger rounded-pill"
+                                            style="vertical-align: top">{{ $likeCount }}</span>
+                                    @endif
+                                    <small>favorites</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-user-circle"></i>
+                                    {{ __('マイページ') }}
+                                    <small>My Page</small>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('images/aki_sale.jpg') }}" class="bd-placeholder-img card-img-top"
-                            style="object-fit: cover;" width="100%" height="400px" alt="Sample Image">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('images/recycling.jpg') }}" class="bd-placeholder-img card-img-top"
-                            style="object-fit: cover;" width="100%" height="400px" alt="Sample Image">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('images/green.jpg') }}" class="bd-placeholder-img card-img-top"
-                            style="object-fit: cover;" width="100%" height="400px" alt="Sample Image">
-                        <div class="container">
-                            <div class="carousel-caption text-start">
-                                <h1><strong>リサイクル素材で作られた商品を選ぶことは、<br>地球の未来を守る選択です。</strong></h1>
-                                <p><strong>これらの商品は、日常生活に取り入れやすく、環境への負荷を減らすことができます。<br>ぜひ、リサイクル素材を使用したエコアイテムで、おしゃれと地球への配慮を両立させましょう！</strong>
-                                </p>
-                            </div>
+                <ul class="user-aicon me-auto header-nav-custom cactus-classical-serif-regular">
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('ja.Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            @endguest
+        </nav>
+        <div id="myCarousel" class="carousel slide mb-1" data-bs-ride="carousel" data-bs-theme="light"
+            style="height: 280px;">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="d-flex">
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/sale1.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/recycling.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/7275965.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                <div class="carousel-item">
+                    <div class="d-flex">
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/sale2.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/4142852.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/mock1.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                    </div>
+                </div>
             </div>
-
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <main class="py-2">
+
+        <main>
+            <div class="box">
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+            </div>
             @yield('content')
         </main>
 

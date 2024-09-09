@@ -60,6 +60,7 @@
                                                 <form action="{{ route('carts.destroy', $cart->id) }}" method="post"
                                                     style="display: inline; margin-left: 5px;">
                                                     @csrf
+                                                    @method('DELETE')
                                                     <button type="submit" class="btn btn-link p-0 text-muted delete-link"
                                                         style="text-decoration: none; font-weight: normal;">{{ __('delete') }}</button>
                                                 </form>
@@ -79,7 +80,7 @@
                         <div class="card-body flex-grow-1">
                             <div class="d-flex text-body-secondary mb-2">
                                 <div class="me-3">
-                                    小計：{{ $carts->sum('count') }}個の商品
+                                    小計：{{ $cartCount }}個の商品
                                 </div>
                             </div>
                             <div class="d-flex text-body-secondary mb-2">

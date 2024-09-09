@@ -21,7 +21,7 @@
                     <div class="card shadow-sm hover-effect">
                         <img alt="ecommerce" class="object-cover object-center w-full h-full block"
                             src="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}" alt="サムネイル"
-                            style="width: 100%; height: 220px;">
+                            style="width: 100%; height: 220px;" onclick="window.location='{{ route('items.show', $item->id) }}'">
                         <div class="card-body" style="height: 150px;">
                             <h4 class="text-gray-900 title-font text-lg font-medium text-truncate"
                                 onclick="window.location='{{ route('items.show', $item->id) }}'">{{ $item->item_name }}</h4>
