@@ -21,15 +21,15 @@
                     placeholder="商品名、カテゴリなど" aria-label="Search" value="{{ old('search', $search ?? '') }}">
                 <button class="btn btn-secondary" style="width: 80px;" type="submit">{{ __('search') }}</button>
             </form>
-            <div class="ms-3">
-                <select class="form-select" aria-label="並び替え">
-                    <option selected>並び替え</option>
-                    <option value="1">価格が安い順</option>
-                    <option value="2">価格が高い順</option>
-                    <option value="3">新しい順</option>
-                    <option value="4">古い順</option>
-                </select>
-            </div>
+                <div class="ms-3">
+                    <select class="form-select" aria-label="並び替え" name="sort" onchange="this.form.submit()">
+                        <option value="" {{ request('sort') == '' ? 'selected' : '' }}>並び替え</option>
+                        <option value="1" {{ request('sort') == '1' ? 'selected' : '' }}>価格が安い順</option>
+                        <option value="2" {{ request('sort') == '2' ? 'selected' : '' }}>価格が高い順</option>
+                        <option value="3" {{ request('sort') == '3' ? 'selected' : '' }}>新しい順</option>
+                        <option value="4" {{ request('sort') == '4' ? 'selected' : '' }}>古い順</option>
+                    </select>
+                </div>
         </div>
     </div>
     @if (isset($query))
