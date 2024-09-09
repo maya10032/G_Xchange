@@ -21,6 +21,16 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
+        .topnav a {
+            text-decoration: none;
+            color: #000;
+            /* 通常の文字色 */
+        }
+
+        .topnav a:hover {
+            color: rgba(0, 0, 0, 0.5);
+            /* ホバー時に文字が薄くなる */
+        }
 
         .table-custom {
             width: 100%;

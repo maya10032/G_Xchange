@@ -3,7 +3,7 @@
 @section('title', 'カテゴリー新規作成')
 
 @section('content')
-    <topnav>
+    <topnav class="topnav">
         <ul>
             <li><a class="current" href="{{ url('admin/categories') }}">カテゴリー管理</a></li>
             <li><a class="current" href="{{ url('admin/categories/create') }}">カテゴリー新規作成</a></li>

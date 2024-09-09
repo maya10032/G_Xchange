@@ -38,7 +38,7 @@
         .box {
             width: 100%;
             height: 2000px;
-            background: linear-gradient(180deg, #CD5C5C 0%, #EEEEEE 35%, #99FFFF 100%);
+            /* background: linear-gradient(90deg, rgba(168, 202, 240, 1), rgba(233, 240, 250, 1)); */
             position: absolute;
             top: 0;
             left: 0;
@@ -53,14 +53,14 @@
             left: 8%;
             animation: animate 5s linear infinite;
             background: transparent;
-            border: solid 3px rgba(255, 255, 255, 0.8);
+            border: solid 3px #FF0000;
             z-index: 999999;
         }
 
         .box div:nth-child(1) {
             top: 18%;
             left: 18%;
-            animation: animate 15s linear infinite;
+            animation: animate 10s linear infinite;
         }
 
         .box div:nth-child(2) {
@@ -96,7 +96,7 @@
         .box div:nth-child(7) {
             top: 33%;
             left: 66%;
-            animation: animate 8s linear infinite;
+            animation: animate 2s linear infinite;
         }
 
         .box div:nth-child(8) {
@@ -115,6 +115,21 @@
             top: 45%;
             left: 15%;
             animation: animate 12s linear infinite;
+        }
+        .box div:nth-child(11) {
+            top: 45%;
+            left: 15%;
+            animation: animate 12s linear infinite;
+        }
+        .box div:nth-child(12) {
+            top: 25%;
+            left: 15%;
+            animation: animate 3s linear infinite;
+        }
+        .box div:nth-child(13) {
+            top: 80%;
+            left: 15%;
+            animation: animate 9s linear infinite;
         }
 
 
@@ -239,7 +254,7 @@
                 </ul>
             @endguest
         </nav>
-        <div id="myCarousel" class="carousel slide mb-1" data-bs-ride="carousel" data-bs-theme="light"
+        <div id="myCarousel" class="carousel slide mb-1 py-1" data-bs-ride="carousel" data-bs-theme="light"
             style="height: 280px;">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
@@ -253,15 +268,15 @@
                 <div class="carousel-item active">
                     <div class="d-flex">
                         <div class="carousel-item-box">
+                            <img src="{{ asset('images/banner_child.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                        <div class="carousel-item-box">
                             <img src="{{ asset('images/sale1.jpg') }}" class="d-block content-hover"
                                 alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/recycling.jpg') }}" class="d-block content-hover"
-                                alt="Sample Image">
-                        </div>
-                        <div class="carousel-item-box">
-                            <img src="{{ asset('images/7275965.jpg') }}" class="d-block content-hover"
+                            <img src="{{ asset('images/banner_click.jpg') }}" class="d-block content-hover"
                                 alt="Sample Image">
                         </div>
                     </div>
@@ -273,11 +288,27 @@
                                 alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/4142852.jpg') }}" class="d-block content-hover"
+                            <img src="{{ asset('images/2835419.jpg') }}" class="d-block content-hover"
                                 alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
                             <img src="{{ asset('images/mock1.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex">
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/recycle-background.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/recycling.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
+                        </div>
+                        <div class="carousel-item-box">
+                            <img src="{{ asset('images/47900.jpg') }}" class="d-block content-hover"
                                 alt="Sample Image">
                         </div>
                     </div>
@@ -315,6 +346,10 @@
                 </div>
                 <div>
                 </div>
+                <div>
+                </div>
+                <div>
+                </div>
             </div>
             @yield('content')
         </main>
@@ -322,20 +357,20 @@
         <div id="sec">
             <ul>
                 <li>
-                    <img src="{{ asset('images/banner_child.jpg') }}" style="object-fit: cover;" width="320px"
-                        height="150px" alt="Sample Image">
+                    <img src="{{ asset('images/5902585.jpg') }}" style="object-fit: cover;" width="340px"
+                        height="400px" alt="Sample Image">
                 </li>
                 <li>
-                    <img src="{{ asset('images/banner_sale.jpg') }}" style="object-fit: cover;" width="320px"
-                        height="150px" alt="Sample Image">
+                    <img src="{{ asset('images/4952087.jpg') }}" style="object-fit: cover;" width="340px"
+                        height="400px" alt="Sample Image">
                 </li>
                 <li>
-                    <img src="{{ asset('images/banner_click.jpg') }}" style="object-fit: cover;" width="320px"
-                        height="150px" alt="Sample Image">
+                    <img src="{{ asset('images/10595359.jpg') }}" style="object-fit: cover;" width="340px"
+                        height="400px" alt="Sample Image">
                 </li>
                 <li>
-                    <img src="{{ asset('images/creen.jpg') }}" style="object-fit: cover;" width="320px"
-                        height="150px" alt="Sample Image">
+                    <img src="{{ asset('images/close-up.jpg') }}" style="object-fit: cover;" width="340px"
+                        height="400px" alt="Sample Image">
                 </li>
             </ul>
         </div>
