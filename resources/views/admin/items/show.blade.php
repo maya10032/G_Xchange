@@ -3,7 +3,6 @@
 @section('title', '商品詳細')
 
 @section('content')
-
     <div class="form-group col-xs-12">
         <div class="input-group-text">カテゴリー</div>
         <input class="form-control bg-light" disabled value="{{ $item->category_id }}">

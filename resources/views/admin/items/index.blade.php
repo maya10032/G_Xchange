@@ -35,7 +35,8 @@
                     <td>商品画像</td>
                     <td>{{ number_format($item->subtotal) }}円</td>
                     <td>{{ $item->state }}</td>
-                    <td><a href="{{ route('admin.items.edit', ['item' => $item->id]) }}" class="btn btn-primary">編集</a></td>
+                    <td><a href="{{ route('admin.items.edit', ['item' => $item->id]) }}" class="btn btn-primary">編集</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
