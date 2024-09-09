@@ -3,7 +3,7 @@
 @section('title', 'ユーザ情報変更')
 
 @section('content')
-    <h1>ユーザ情報変更</h1>
+    <h2  class="py-2 admin">ユーザ情報変更</h2>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -18,7 +18,7 @@
                             <div class="row mb-3">
                                 <label for="id" class="col-md-4 col-form-label text-md-end">ユーザID</label>
                                 <div class="col-md-6">
-                                    <p>{{ $user->id }}</p>
+                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->id }}">
                                 </div>
                             </div>
 
@@ -85,15 +85,15 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary px-5">
                                         更新
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <p><a href="{{ url('admin/users/') }}">ユーザ一覧へ戻る</a></p>
                 </div>
+                <p class="text-center my-3"><a href="{{ url('admin/users/') }}">ユーザ一覧へ戻る</a></p>
             </div>
         </div>
     </div>

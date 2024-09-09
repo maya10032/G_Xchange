@@ -3,7 +3,7 @@
 @section('title', 'ユーザ管理一覧')
 
 @section('content')
-    <h2>ユーザ管理一覧画面</h2>
+    <h2 class="py-2 admin">ユーザ管理一覧画面</h2>
     @if (session('userupdate'))
         <div class="alert alert-info text-center fw-bold">
             {{ session('userupdate') }}
