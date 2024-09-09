@@ -11,7 +11,7 @@
     <h2 class="py-2 admin">確認画面</h2>
     <form action="{{ route('admin.items.store') }}" method="POST" novalidate>
         @csrf
-        <table class="table">
+        <table class="table table-bordered table-striped task-table table-hover">
             <tr>
                 <td>商品コード</td>
                 <td>{{ $input['item_code'] }}</td>
