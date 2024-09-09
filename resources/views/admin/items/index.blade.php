@@ -18,7 +18,7 @@
         <div class="d-flex justify-content-end mt-3">
             <form class="d-flex" role="search" method="GET" action="{{ route('admin.items.search') }}">
                 <input class="form-control me-2 border-secondary" style="width: 600px;" type="search" name="search"
-                    placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search" value="{{ old('search', $search ?? '') }}">
+                    placeholder="商品名、カテゴリなど" aria-label="Search" value="{{ old('search', $search ?? '') }}">
                 <button class="btn btn-secondary" style="width: 80px;" type="submit">{{ __('search') }}</button>
             </form>
             <div class="ms-3">

@@ -21,6 +21,14 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
+        input::placeholder,
+        textarea::placeholder {
+            color: #EEEEEE;
+            /* ここでカラーコードを変更できます。 */
+            opacity: 1;
+            /* opacity プロパティを 1 に設定して、透明度をなくします。 */
+        }
+
         .table-custom {
             width: 100%;
         }

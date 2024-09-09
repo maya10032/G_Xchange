@@ -12,7 +12,7 @@
     <div class="container">
         <form action="{{ route('admin.items.post') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <table>
+            <table class="table table-bordered table-striped task-table table-hover">
                 <tr>
                     <td>商品コード</td>
                     <td>
