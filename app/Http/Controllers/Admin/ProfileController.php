@@ -12,7 +12,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-    class ProfileController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display the asmin's profile form.
@@ -64,20 +64,17 @@ use Illuminate\Support\Facades\Hash;
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
 
-        $user = $request->user();
+        $admin = Auth::guard('admin')->user(); // adminsテーブルのユーザーを取得
 
-        Auth::logout();
+        Auth::guard('admin')->logout();
 
-        $user->delete();
+        $admin->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('admin.login');
+        return Redirect::to('admin/login');
     }
 
     protected function validator(array $data)
