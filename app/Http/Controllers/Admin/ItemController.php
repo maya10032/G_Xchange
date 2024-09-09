@@ -226,7 +226,7 @@ class ItemController extends Controller
     }
 
     /**
-     * カートの商品削除
+     * 商品削除
      *
      * @param Request $request
      * @return void
@@ -235,7 +235,7 @@ class ItemController extends Controller
     {
         // 商品情報を取得
         $item = Item::findOrFail($id);
-        $item->images()->delete(); // 画像関連を削除
+        $item->images()->delete();
         foreach ($item->images as $image) {
             Storage::delete('public/images/' . $image->img_path);
         }

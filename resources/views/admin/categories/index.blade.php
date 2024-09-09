@@ -17,7 +17,8 @@
     <div class="container mb-2" style="width: 100%;">
         <div class="d-flex justify-content-between align-items-center mt-3">
             <div>
-                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary" style="width: 400px; font-size: 1rem;">新規作成</a>
+                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary"
+                    style="width: 400px; font-size: 1rem;">新規作成</a>
             </div>
             <div class="d-flex">
                 <form class="d-flex me-3" role="search" method="GET" action="{{ route('admin.items.search') }}">
@@ -37,12 +38,12 @@
     </div>
     <table class="table table-bordered table-striped task-table table-hover">
         <tr>
-            <td>カテゴリーID</td>
-            <td>カテゴリー名</td>
-            <td>件数</td>
-            <td>作成日</td>
-            <td>更新日</td>
-            <td></td>
+            <th>カテゴリーID</th>
+            <th>カテゴリー名</th>
+            <th>件数</th>
+            <th>作成日</th>
+            <th>更新日</th>
+            <th></th>
         </tr>
         @foreach ($categories as $category)
             <tr>
@@ -52,18 +53,17 @@
                 <td>{{ $category->created_at }}</td>
                 <td>{{ $category->updated_at }}</td>
                 <td>
-                    {{-- <a href="{{ route('admin.items.edit', ['item' => $item->id]) }}">
-                        <i class="fas fa-pencil-alt icon-large" aria-hidden="true"></i>
-                    </a> --}}
-                </td>
-                <td>
-                    {{-- <form action="{{ route('admin.items.destroy', ['item' => $item->id]) }}" method="POST">
+                    <a href="{{ route('admin.categories.edit', ['id' => $category->id]) }}" class="btn btn-secondary">
+                        <i class="fa fa-pencil-alt" aria-hidden="true"></i> 編集
+                    </a>
+                    <form action="{{ route('admin.categories.destroy', ['id' => $category->id]) }}" method="POST"
+                        style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            <i class="fa fa-trash" aria-hidden="true"></i> 削除
                         </button>
-                    </form> --}}
+                    </form>
                 </td>
             </tr>
         @endforeach
