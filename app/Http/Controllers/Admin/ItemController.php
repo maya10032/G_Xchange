@@ -11,7 +11,6 @@ use Validator;
 
 class ItemController extends Controller
 {
-    private $taxRate = 0.1; // プロパティとして税率を定義
     private $validator = [
         'item_code'     => 'required|string|max:255',
         'item_name'     => 'required|string|max:255',

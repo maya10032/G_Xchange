@@ -53,7 +53,6 @@
                 </div>
             @else
                 @if ($item->is_active)
-                    @csrf
                     <div class="mb-3" style="font-size: 1.25rem;">
                         数量：<input disabled type="number" name="count" min="1" max="{{ $item->count_limit }}"
                             value="{{ old('count', 1) }}">
