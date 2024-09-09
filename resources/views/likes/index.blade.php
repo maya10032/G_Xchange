@@ -13,11 +13,6 @@
                 </h2>
             </div>
         @else
-            @if (session('likedelete'))
-                <div class="alert alert-info text-center fw-bold">
-                    {{ session('likedelete') }}
-                </div>
-            @endif
             @foreach ($items as $item)
                 <div class="col-md-max">
                     <div

@@ -10,7 +10,12 @@ class LikeController extends Controller
     public function index()
     {
         $items = \Auth::user()->likeItems()->orderBy('created_at', 'desc')->paginate(10);
-        return view('likes.index', ['items' => $items]);
+        $total_count = \Auth::user()->likeItems()->count();
+
+        return view('likes.index', [
+            'items' => $items,
+            'total_count' => $total_count,
+        ]);
     }
 
     public function store(Request $request)
@@ -23,7 +28,7 @@ class LikeController extends Controller
     public function destroy(Request $request)
     {
         \Auth::user()->likeItems()->detach($request->item_id);
-        $request->session()->flash('likedelete', 'お気に入りを削除しました');
+        $request->session();
         return back();
     }
 }

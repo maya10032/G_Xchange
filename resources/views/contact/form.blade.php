@@ -9,7 +9,7 @@
                 <div class="ms-auto" style="flex: 1;">
                     <div class="container">
                         <h1 class="title font-weight-light mt-2"><i class="fas fa-envelope"
-                                style="color: #f8a1a8; margin-right: 8px;"></i>お問い合わせ</h1>
+                                style="color: #3e4555; margin-right: 8px;"></i>お問い合わせ</h1>
                         <form method="post" action="{{ route('contact.post') }}" novalidate>
                             @csrf
                             <div class="row">
