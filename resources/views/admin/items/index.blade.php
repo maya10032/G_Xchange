@@ -18,7 +18,7 @@
         <div class="d-flex justify-content-end mt-3">
             <form class="d-flex" role="search" method="GET" action="{{ route('admin.items.search') }}">
                 <input class="form-control me-2 border-secondary" style="width: 600px;" type="search" name="search"
-                    placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search" value="{{ old('search', $search ?? '') }}">
+                    placeholder="商品名、カテゴリなど" aria-label="Search" value="{{ old('search', $search ?? '') }}">
                 <button class="btn btn-secondary" style="width: 80px;" type="submit">{{ __('search') }}</button>
             </form>
             <div class="ms-3">
@@ -41,10 +41,9 @@
             <th>商品名</th>
             <th>商品コード</th>
             <th>商品カテゴリー</th>
-            <th>最大注文数</th>
             <th>商品画像</th>
             <th>販売価格</th>
-            <th>通常価格</th>
+            <th style="color: red;">割引価格</th>
             <th>販売状況</th>
             <th></th>
             <th></th>
@@ -55,14 +54,15 @@
                 <td><a href="{{ route('admin.items.show', ['item' => $item->id]) }}">{{ $item->item_name }}</a></td>
                 <td>{{ $item->item_code }}</td>
                 <td>{{ $item->category->category_name }}</td>
-                <td>{{ $item->count_limit }}</td>
                 <td><img src="{{ asset('storage/images/' . $item->images->first()->img_path) }}"
                         alt="{{ $item->item_name }}" style="width: 100px; height: 100px;"></td>
                 <td>{{ number_format($item->subtotal) }}円</td>
-                <td>{{ number_format($item->regtotal) }}円</td>
+                <td style="color: red;">-{{ number_format($item->regtotal - $item->subtotal) }}円</td>
                 <td class="{{ $item->state === '販売停止中' ? 'text-danger' : '' }}">{{ $item->state }}</td>
                 <td>
-                    <a href="{{ route('admin.items.edit', ['item' => $item->id]) }}"><i class="fas fa-pencil-alt icon-large" aria-hidden="true"></i></a>
+                    <a href="{{ route('admin.items.edit', ['item' => $item->id]) }}" class="btn btn-secondary">
+                        <i class="fa fa-pencil-alt" aria-hidden="true"></i> 編集
+                    </a>
                 </td>
                 <td>
                     <form action="{{ route('admin.items.destroy', ['item' => $item->id]) }}" method="POST">
