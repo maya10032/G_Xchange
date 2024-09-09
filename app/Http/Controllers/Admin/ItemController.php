@@ -29,7 +29,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with('category')->get(); // itemsの全商品、カテゴリーを取得
+        $items = Item::with('category')->paginate(10); // itemsの全商品、カテゴリーを取得
         $itemsWithTax = $items->map(function ($item) {
             $item->subtotal = $item->sales_price * (1 + $this->taxRate); // 税込み価格
             // is_active が 0 の場合は '販売停止中'

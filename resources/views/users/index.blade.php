@@ -17,7 +17,7 @@
                         @csrf
                         @method('delete')
                         <input type="hidden" name="user_id">
-                        <button type="submit" class="btn bg-danger text-light px-5 py-2 mb-4 hover-effect">
+                        <button type="submit" class="btn bg-danger text-light px-5 py-2 mb-4 error">
                             退会する
                         </button>
                     </form>

@@ -28,7 +28,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0; height: 83px;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"
                     style="display: flex; align-items: center; padding: 0;">
@@ -41,7 +41,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse cactus-classical-serif-regular" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto header-nav-custom">
                         @guest
                             <li class="nav-item">
@@ -85,26 +85,34 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart"></i>
                                     {{ __('cart') }}
+                                    @if ($cartCount > 0)
+                                        <span class="badge bg-danger rounded-pill"
+                                            style="vertical-align: top">{{ $cartCount }}</span>
+                                    @endif
                                     <small>cart</small>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-history"></i>
-                                    {{ __('order') }}
-                                    <small>history</small>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart"></i>
                                     {{ __('like') }}
+                                    @if ($likeCount > 0)
+                                        <span class="badge bg-danger rounded-pill"
+                                            style="vertical-align: top">{{ $likeCount }}</span>
+                                    @endif
                                     <small>favorite</small>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('orders.index') }}"><i class="fa fa-user-circle"></i>
+                                    {{ __('マイページ') }}
+                                    <small>My Page</small>
                                 </a>
                             </li>
 
                         </ul>
                     </div>
                 </div>
-                <ul class="user-aicon me-auto header-nav-custom">
+                <ul class="user-aicon me-auto header-nav-custom cactus-classical-serif-regular">
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -126,7 +134,7 @@
             @endguest
         </nav>
         <nav class="py-1 container">
-            <ul class="nav nav-pills nav-pills-custom py-2 mb-2">
+            <ul class="nav nav-pills-custom py-2 mb-2">
                 <li class="nav-item border">
                     <a class="nav-link link-dark link-offset-2 {{ request()->routeIs('orders.index', 'orders.show') ? 'active' : '' }}"
                         href="{{ route('orders.index') }}">{{ __('order') }}</a>

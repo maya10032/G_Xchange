@@ -25,7 +25,9 @@ class CartController extends Controller
             return $carry + $cart->subtotal;
         }, 0);
 
-        return view('carts.index', compact('carts', 'total'));
+        $total_count = $carts->sum('count');
+
+        return view('carts.index', compact('carts', 'total', 'total_count'));
     }
 
     /**
@@ -88,7 +90,8 @@ class CartController extends Controller
         if ($cart) {
             // レコードを削除
             $cart->pivot->delete();
-            return redirect()->route('carts.index')->with('deleted', 'カートから商品を削除しました。');
+            return redirect()->route('carts.index');
         }
     }
+
 }

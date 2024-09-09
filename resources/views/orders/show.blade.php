@@ -3,7 +3,7 @@
 @section('title', '購入商品詳細')
 
 @section('content')
-    <h2 class="title--border">マイページ / 購入履歴 / 購入商品詳細</h2>
+    <h2 class="title--border">マイページ / 購入商品詳細</h2>
 
     <div class="d-flex">
         <p class="me-3">注文番号: {{ $order->id }}</p>
@@ -51,7 +51,7 @@
                     <td class="text-end">0円</td>
                 </tr>
                 <tr>
-                    <td>小計（税込）:</td>
+                    <td>小計:</td>
                     <td class="text-end">{{ number_format($subtotal) }}円</td>
                 </tr>
             </table>
