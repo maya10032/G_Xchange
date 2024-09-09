@@ -3,7 +3,7 @@
 @section('title', '受注管理一覧')
 
 @section('content')
-    <topnav>
+    <topnav class="topnav">
         <ul>
             <li><a class="current" href="{{ url('admin/orders') }}">受注管理</a></li>
         </ul>

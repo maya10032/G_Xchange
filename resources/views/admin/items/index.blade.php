@@ -3,7 +3,7 @@
 @section('title', '商品一覧画面')
 
 @section('content')
-    <topnav>
+    <topnav class="topnav">
         <ul>
             <li><a class="current" href="{{ url('admin/items') }}">商品一覧</a></li>
         </ul>

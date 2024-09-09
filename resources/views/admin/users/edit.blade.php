@@ -1,59 +1,69 @@
 @extends('layouts.admin')
 
-@section('title', 'ユーザ情報詳細')
+@section('title', 'ユーザ情報変更')
 
 @section('content')
-    <h2 class="py-2 admin">ユーザ情報詳細</h2>
-    {{-- @php
-    echo '<pre>'; // 表示を見やすく整形する
-    var_dump($user); // user変数を一覧表示する
-    echo '<pre>';
-  @endphp --}}
-    <table class="table table-bordered table-striped task-table table-hover">
-        <tr>
-            <th>注文番号</th>
-            <th>注文日</th>
-            <th>商品名</th>
-            <th>商品画像</th>
-            <th>数量</th>
-            <th>販売価格</th>
-            <th>合計金額</th>
-            <th></th>
-        </tr>
-        @foreach ($orders as $order)
-            <tr>
-                <td>{{ $order->id }}</td>
-                <td>{{ $order->created_at }}</td>
-                <td>
-                    @if ($order->item->is_active)
-                        {{ $order->item->item_name }}
-                    @else
-                        {{ $order->item->item_name }} <span class="text-danger">（販売停止中）</span>
-                    @endif
-                </td>
-                <td><img src="{{ asset('storage/images/' . $order->item->images->first()->img_path) }}"
-                        alt="{{ $order->item->item_name }}" style="width: 100px; height: 100px;"></td>
-                <td>{{ $order->count }}個</td>
-                <td>{{ number_format($order->item->tax_sales_prices) }}円</td>
-                <td>
-                    {{ number_format($order->subtotal) }}円</td>
-                <td><a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-primary me-2"><i class="fa fa-search"
-                            aria-hidden="true"></i> 詳細</td>
-            </tr>
-        @endforeach
-    </table>
-    <p class="text-center my-3"><a href="{{ url('admin/users/') }}">ユーザ一覧へ戻る</a></p>
+    <topnav class="topnav">
+        <ul>
+            <li><a class="current" href="{{ url('admin/users') }}">ユーザ管理</a></li>
+            <li><a class="current" href="{{ route('admin.users.edit', ['id' => $user->id]) }}">ユーザ情報変更</a></li>
+        </ul>
+    </topnav>
+    <h2 class="py-2 admin">ユーザ情報変更</h2>
+    <div class="container">
+        <form action="{{ route('admin.users.update', ['id' => $user->id]) }}" method="post">
+            @csrf
+            @method('PUT')
+            <table class="table table-bordered table-striped task-table table-hover">
+                <tr>
+                    <td>会員ID</td>
+                    <td>
+                        <input type="number" disabled name="item_code" class="form-control" value="{{ $user->id }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>お名前</td>
+                    <td><input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                            value="{{ old('name', $user->name) }}">
+                    </td>
+                    @error('name')
+                        <div class="invalid-feedback">
+                            @foreach ($errors->get('name') as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @enderror
+                </tr>
+                <tr>
+                    <td>電話番号</td>
+                    <td><input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                            value="{{ old('phone', $user->phone) }}"></td>
+                    </td>
+                    @error('phone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </tr>
+                <tr>
+                    <td>住所</td>
+                    <td><input type="text" name="address" class="form-control @error('address') is-invalid @enderror"
+                            value="{{ old('address', $user->address) }}">
+                    </td>
+                    @error('address')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </tr>
+                <tr>
+                    <td>メールアドレス</td>
+                    <td><input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
+                            value="{{ old('email', $user->email) }}"></td>
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </tr>
+            </table>
+            <div class="btn-group gap-3 mt-4">
+                <button type="submit" class="btn bg-primary text-light px-5 py-2 hover-effect"><span>更新</span></button>
+            </div>
+        </form>
     </div>
-    </div>
-    </div>
-
-    </form>
 @endsection
-
-<script>
-    // 削除確認用のダイアログ表示
-    const deleteuser = () => {
-        event.preventDefault()
-        confirm('本当に削除しますか？') ? document.querySelector('#delete-form').submit() : ''
-    }
-</script>

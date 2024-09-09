@@ -2,7 +2,7 @@
 
 @section('title', '商品新規登録')
 @section('content')
-    <topnav>
+    <topnav class="topnav">
         <ul>
             <li><a class="current" href="{{ url('admin/items') }}">商品一覧</a></li>
             <li><a class="current" href="{{ url('admin/items/create') }}">新規商品登録</a></li>

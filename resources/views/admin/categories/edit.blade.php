@@ -3,7 +3,7 @@
 @section('title', 'カテゴリー編集')
 
 @section('content')
-    <topnav>
+    <topnav class="topnav">
         <ul>
             <li><a class="current" href="{{ url('admin/categories') }}">カテゴリー管理</a></li>
             <li><a class="current" href="{{ route('admin.categories.edit', ['id' => $category->id]) }}">カテゴリー編集</a></li>

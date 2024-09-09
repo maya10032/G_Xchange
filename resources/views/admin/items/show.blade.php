@@ -3,7 +3,7 @@
 @section('title', '商品詳細')
 
 @section('content')
-    <topnav>
+    <topnav class="topnav">
         <ul>
             <li><a class="current" href="{{ url('admin/items') }}">商品一覧</a></li>
             <li><a class="current" href="{{ route('admin.items.show', ['item' => $item->id]) }}">商品詳細</a></li>
