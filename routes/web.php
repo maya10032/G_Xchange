@@ -40,21 +40,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/likes', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy'); // 削除
     // カートに追加
     Route::post('/purchase/{item}', [App\Http\Controllers\CartController::class, 'store'])->name('purchase.store');
-    // カート一覧表示
-    Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
-    // まとめて購入
-    Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
-    // カートの商品削除
-    Route::delete('/carts/{id}', [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
+    Route::get('/carts',            [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
+    Route::post('/orders',          [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+    Route::delete('/carts/{id}',    [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
     // 購入履歴表示（マイページ）
-    Route::get('/orders', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders',           [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}/show', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
     // 会員情報変更表示
     Route::get('/profile',    [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile',  [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
     // 退会
-    Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index'); // 退会画面表示
+    Route::get('/users',    [App\Http\Controllers\UserController::class, 'index'])->name('users.index'); // 退会画面表示
     Route::delete('/users', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy'); // ユーザ削除
 });
 
@@ -80,8 +77,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::post('items/create',     [ADMIN_ITEM_PATH, 'post'])->name('items.post');
     Route::get('items/confirm',     [ADMIN_ITEM_PATH, 'confirm'])->name('items.confirm');
     Route::post('items/store',      [ADMIN_ITEM_PATH, 'store'])->name('items.store');
-    // Route::get('items/confirm',     [ADMIN_ITEM_PATH, 'confirm'])->name('items.confirm');
-    // Route::post('items/confirm',    [ADMIN_ITEM_PATH, 'store'])->name('items.store');
     Route::get('items/{item}/show', [ADMIN_ITEM_PATH, 'show'])->name('items.show');
     Route::get('items/{item}/edit', [ADMIN_ITEM_PATH, 'edit'])->name('items.edit');
     Route::put('items/{id}',        [ADMIN_ITEM_PATH, 'update'])->name('items.update');
@@ -96,18 +91,18 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::delete('categories/{id}',    [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('categories.destroy');
 
     // 受注管理表示
-    Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders',           [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}/show', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
     // ユーザ管理表示
-    Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
-    Route::get('/users/{id}/show', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
-    Route::patch('/users/{id}/update',  [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
-    Route::get('/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
-    Route::delete('/users/{id}/destroy', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users',             [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}/show',   [App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{id}/edit',   [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}/update', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}',     [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
     // 会員情報変更表示
-    Route::get('/profile',    [App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/profile/show',    [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile/show',  [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile',        [App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/show',   [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/show', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile',     [App\Http\Controllers\Admin\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

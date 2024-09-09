@@ -2,7 +2,7 @@
 
 @section('title', '登録内容確認')
 @section('content')
-    <topnav>
+    <topnav class="topnav">
         <ul>
             <li><a class="current" href="{{ url('admin/items/create') }}">新規商品登録</a></li>
             <li><a class="current" href="{{ url('admin/items/confirm') }}">確認画面</a></li>

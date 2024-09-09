@@ -3,7 +3,7 @@
 @section('title', 'カテゴリー管理')
 
 @section('content')
-    <topnav>
+    <topnav class="topnav">
         <ul>
             <li><a class="current" href="{{ url('admin/categories') }}">カテゴリー管理</a></li>
         </ul>
@@ -44,6 +44,7 @@
             <th>作成日</th>
             <th>更新日</th>
             <th></th>
+            <th></th>
         </tr>
         @foreach ($categories as $category)
             <tr>
@@ -56,6 +57,8 @@
                     <a href="{{ route('admin.categories.edit', ['id' => $category->id]) }}" class="btn btn-secondary">
                         <i class="fa fa-pencil-alt" aria-hidden="true"></i> 編集
                     </a>
+                </td>
+                <td>
                     <form action="{{ route('admin.categories.destroy', ['id' => $category->id]) }}" method="POST"
                         style="display: inline;">
                         @csrf

@@ -21,12 +21,15 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
-        input::placeholder,
-        textarea::placeholder {
-            color: #EEEEEE;
-            /* ここでカラーコードを変更できます。 */
-            opacity: 1;
-            /* opacity プロパティを 1 に設定して、透明度をなくします。 */
+        .topnav a {
+            text-decoration: none;
+            color: #000;
+            /* 通常の文字色 */
+        }
+
+        .topnav a:hover {
+            color: rgba(0, 0, 0, 0.5);
+            /* ホバー時に文字が薄くなる */
         }
 
         .table-custom {
@@ -62,13 +65,9 @@
         /* 管理者見出し */
         h2.admin {
             padding: 0.25em 0.5em;
-            /*上下 左右の余白*/
             color: #494949;
-            /*文字色*/
             background: transparent;
-            /*背景透明に*/
             border-left: solid 5px #7db4e6;
-            /*左線*/
         }
 
         /* 管理者ナビ */

@@ -133,6 +133,7 @@
                 </ul>
             @endguest
         </nav>
+
         <nav class="py-1 container">
             <ul class="nav nav-pills-custom py-2 mb-2">
                 <li class="nav-item border">
