@@ -30,7 +30,7 @@
                     aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}" style="display: flex; align-items: center; padding: 0;">
+                <a class="navbar-brand" href="{{ url('/admin/items') }}" style="display: flex; align-items: center; padding: 0;">
                     <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}"
                         style="max-height: 50px; margin: 0;">
                 </a>
