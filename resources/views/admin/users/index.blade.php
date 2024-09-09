@@ -3,7 +3,7 @@
 @section('title', 'ユーザ管理一覧')
 
 @section('content')
-    <h2>ユーザ管理一覧画面</h2>
+    <h2 class="py-2 admin">ユーザ管理一覧画面</h2>
     @if (session('userupdate'))
     <div class="alert alert-info text-center fw-bold">
         {{ session('userupdate') }}
@@ -59,8 +59,12 @@
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->address }}</td>
                         <td>{{ $user->email }}</td>
-                        <td><button><a href="{{ route('admin.users.show', $user->id) }}">編集</button></td>
-                        <td><button><a href="{{ route('admin.users.edit', $user->id) }}">詳細</button></td>
+                        <td><button type="submit" class="btn btn-primary text-light hover-effect">
+                            <a href="{{ route('admin.users.show', $user->id) }}" class="flex ml-2 text-white py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-decoration-none">
+                                編集</button></td>
+                        <td><button type="submit" class="btn btn-secondary text-light hover-effect">
+                            <a href="{{ route('admin.users.edit', $user->id) }}" class="flex ml-2 text-white py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-decoration-none">
+                                詳細</button></td>
                     </tr>
                 @endforeach
             </tbody>

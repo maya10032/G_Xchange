@@ -2,15 +2,12 @@
 
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-        <h2>アカウント情報変更</h2>
+        <h2 class="py-2 admin">アカウント情報変更</h2>
+        <div class="container">
         <div class="row justify-content-center">
-            <div class="py-2">
-                <div class="card" style="min-height: calc(80vh - 80px);">
-                    {{-- @if (session('update'))
-                        <div class="alert alert-info text-center fw-bold">
-                            {{ session('update') }}
-                        </div>
-                    @endif --}}
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">アカウント情報変更画面</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.profile.update') }}">
                             @csrf
@@ -53,15 +50,13 @@
                             <div class="row mb-3">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-end"></label>
-                                <div class="col-md-6">
-                                    <label><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    <label class="text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                         アカウント情報を変更するには現在のパスワードを入力してください</label>
                                         @if (session('ConfirmPassword'))
                                         <div class="text-danger fw-bold mt-3">
                                             ※{{ session('ConfirmPassword') }}
                                         </div>
                                     @endif
-                                </div>
                             </div>
                                 <div class="row mb-3">
                                 <label for="password"
@@ -82,8 +77,13 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-danger text-light px-4 py-2 hover-effect">
+                                    <button type="submit" class="btn btn-primary text-light px-4 py-2 hover-effect">
                                         更新
+                                    </button>
+                                    <button type="submit" class="btn btn-secondary text-light px-4 py-2 hover-effect">
+                                        <a href="{{ route('admin.profile.show') }}"
+                                        class="flex ml-2 text-white py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-decoration-none"
+                                        >キャンセル</a>
                                     </button>
                                 </div>
                             </div>

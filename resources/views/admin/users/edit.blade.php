@@ -3,7 +3,7 @@
 @section('title', 'ユーザ情報詳細')
 
 @section('content')
-    <h1>ユーザ情報詳細</h1>
+    <h2 class="py-2 admin">ユーザ情報詳細</h2>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -20,7 +20,7 @@
                             <div class="row mb-3">
                                 <label for="id" class="col-md-4 col-form-label text-md-end">ユーザID</label>
                                 <div class="col-md-6">
-                                    <p>{{ $user->id }}</p>
+                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->id }}">
                                 </div>
                             </div>
 
@@ -28,7 +28,7 @@
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
                                 <div class="col-md-6">
-                                    <p>{{ $user->name }}</p>
+                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->name }}">
                                 </div>
                             </div>
 
@@ -36,7 +36,7 @@
                                 <label for="phone"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
                                 <div class="col-md-6">
-                                    <p>{{ $user->phone }}</p>
+                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->phone }}">
                                 </div>
                             </div>
 
@@ -44,7 +44,7 @@
                                 <label for="address"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
                                 <div class="col-md-6">
-                                    <p>{{ $user->address }}</p>
+                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->address }}">
                                 </div>
                             </div>
 
@@ -52,21 +52,21 @@
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
                                 <div class="col-md-6">
-                                    <p>{{ $user->email }}</p>
+                                    <input type="text" readonly class="form-control-plaintext" value="{{ $user->email }}">
                                 </div>
                             </div>
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" onclick="deleteuser()" class="btn btn-primary" name="action" value="destroy">
+                                    <button type="submit" onclick="deleteuser()" class="btn btn-danger px-5" name="action" value="destroy">
                                         削除
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <p><a href="{{ url('admin/users/') }}">ユーザ一覧へ戻る</a></p>
                 </div>
+                <p class="text-center my-3"><a href="{{ url('admin/users/') }}">ユーザ一覧へ戻る</a></p>
             </div>
         </div>
     </div>
