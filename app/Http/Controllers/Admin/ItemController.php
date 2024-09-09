@@ -28,6 +28,15 @@ class ItemController extends Controller
      */
     public function index()
     {
+        // 検索機能
+        $articles = Item::orderBy('created_at', 'desc')->where(function ($query) {
+            if ($search = request('search')) {
+                //whereのLIKEであいまい検索、orWhereでいずれかにマッチする検索
+                $query->where('id', 'LIKE', "%{$search}%")->orWhere('item_code', 'LIKE', "%{$search}%")->orWhere('category_name', 'LIKE', "%{$search}%")
+                ->orWhere('subtotal', 'LIKE', "%{$search}%")->orWhere('state', 'LIKE', "%{$search}%");
+            }
+        });
+
         $items = Item::with('category')->paginate(10); // itemsの全商品、カテゴリーを取得
         $itemsWithTax = $items->map(function ($item) {
             $item->subtotal = $item->tax_sales_prices; // 税込み価格
