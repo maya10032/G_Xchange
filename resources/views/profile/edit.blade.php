@@ -85,15 +85,21 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3 text-center">
-                                <div class="col-12">
-                                    <label  class="col-4 text-md-end mx-auto">アカウント情報を変更するには現在のパスワードを入力してください</label>
-                                    @if (session('ConfirmPassword'))
-                                        <div class="alert alert-info text-center fw-bold">
-                                            {{ session('ConfirmPassword') }}
+
+                            <div class="row mb-3">
+                                <label for="email"
+                                    class="col-md-4 col-form-label text-md-end"></label>
+                                <div class="col-md-6">
+                                    <label><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                        アカウント情報を変更するには現在のパスワードを入力してください</label>
+                                        @if (session('ConfirmPassword'))
+                                        <div class="text-danger fw-bold mt-3">
+                                            ※{{ session('ConfirmPassword') }}
                                         </div>
                                     @endif
                                 </div>
+                            </div>
+                                <div class="row mb-3">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 

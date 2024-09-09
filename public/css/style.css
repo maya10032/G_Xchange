@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 cheat {
     color: red;
     color: #3e4555;
@@ -242,7 +241,6 @@ footer .nav-link:hover {
 
 .card-body {
     height: 220px;
-    margin:auto;
 }
 
 .card-body h4 {
