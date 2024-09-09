@@ -44,6 +44,7 @@
             <th>作成日</th>
             <th>更新日</th>
             <th></th>
+            <th></th>
         </tr>
         @foreach ($categories as $category)
             <tr>
@@ -56,6 +57,8 @@
                     <a href="{{ route('admin.categories.edit', ['id' => $category->id]) }}" class="btn btn-secondary">
                         <i class="fa fa-pencil-alt" aria-hidden="true"></i> 編集
                     </a>
+                </td>
+                <td>
                     <form action="{{ route('admin.categories.destroy', ['id' => $category->id]) }}" method="POST"
                         style="display: inline;">
                         @csrf
