@@ -7,34 +7,20 @@
         <div class="d-flex">
             <h2 class="fw-bold title--border">商品一覧</h2>
             <div class="container" style="width: 50%;">
-                <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2 border-secondary" type="search" placeholder="商品名、カテゴリ、ブランドなど"
-                        aria-label="Search">
+                <form class="d-flex mt-3" role="search" method="GET" action="{{ route('items.search') }}">
+                    <input class="form-control me-2 border-secondary" type="search" name="search"
+                        placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search" value="{{ old('search', $query ?? '') }}">
                     <button class="btn btn-secondary btn-secondary" style="width: 80px;" type="submit"><i
                             class="fa fa-search" aria-hidden="true"></i> {{ __('search') }}</button>
                 </form>
             </div>
         </div>
-        {{-- <div class="container mb-2" style="width: 100%;">
-            <div class="d-flex justify-content-end mt-3">
-                <form class="d-flex" role="search" method="GET" action="{{ route('admin.items.search') }}">
-                    <input class="form-control me-2 border-secondary" style="width: 600px;" type="search" name="search"
-                        placeholder="商品名、カテゴリなど" aria-label="Search" value="{{ old('search', $search ?? '') }}">
-                    <button class="btn btn-secondary" style="width: 80px;" type="submit">{{ __('search') }}</button>
-                </form>
-                <div class="ms-3">
-                    <select class="form-select" aria-label="並び替え">
-                        <option selected>並び替え</option>
-                        <option value="1">価格が安い順</option>
-                        <option value="2">価格が高い順</option>
-                        <option value="3">新しい順</option>
-                        <option value="4">古い順</option>
-                    </select>
-                </div>
-            </div>
-        </div> --}}
         @if (isset($query))
-            <h3>検索結果: "{{ $query }}"</h3>
+            @if ($items->isEmpty())
+                <h3>検索結果: {{ $query }} に該当する商品はありませんでした。</h3>
+            @else
+                <h3>検索結果: ”{{ $query }}”</h3>
+            @endif
         @endif
         <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3">
             @foreach ($items as $item)

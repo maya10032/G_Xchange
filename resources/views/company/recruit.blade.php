@@ -9,7 +9,7 @@
         <div class="contents">
             <h3 class="slide-in">Jobs</h3>
             <div class="row row-cols-1 row-cols-md-4 g-4 d-flex">
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0" style="width: 18rem;">
                         <a href="#" class="image_link">
                             <img src="{{ asset('images/recruit_career.jpg') }}" alt="キャリア採用">
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0" style="width: 18rem;">
                         <a href="#" class="image_link">
                             <img src="{{ asset('images/recruit_newgraduates.jpg') }}" alt="新卒採用">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0" style="width: 18rem;">
                         <a href="#" class="image_link">
                             <img src="{{ asset('images/recruit_global.jpg') }}" alt="グローバル">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0" style="width: 18rem;">
                         <a href="#" class="image_link">
                             <img src="{{ asset('images/recruit_disabledpeople.jpg') }}" alt="障がい者雇用">
@@ -76,7 +76,7 @@
         <div class="contents">
             <h3 class="slide-in">Member</h3>
             <div class="row row-cols-1 row-cols-md-4 g-4 d-flex">
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/20.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/10.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/07.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/09.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/11.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/14.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/16.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/02.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
