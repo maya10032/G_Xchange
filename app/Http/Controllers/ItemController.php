@@ -79,4 +79,18 @@ class ItemController extends Controller
         // ビューに $item と $count を渡す
         return view('items.purchase', compact('item', 'count'));
     }
+
+    /**
+     * 検索機能
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $items = Item::where('item_name', 'LIKE', "%{$query}%")
+            ->paginate(10);
+        return view('items.index', compact('items', 'query'));
+    }
 }

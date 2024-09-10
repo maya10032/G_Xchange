@@ -14,6 +14,7 @@ Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
 // Route::get('/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
 Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
+Route::get('/search',     [ItemController::class, 'search'])->name('items.search');
 // Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
 const CONTACT_PATH = App\Http\Controllers\ContactsController::class;
 // お問い合わせページ

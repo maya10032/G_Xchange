@@ -912,7 +912,7 @@ li {
 /* .col {
 } */
 
-.col img:hover {
+.col2 img:hover {
     overflow: hidden;
     transform: scale(1.3);
     transition: 0.3s;
