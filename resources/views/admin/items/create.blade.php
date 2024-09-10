@@ -47,10 +47,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>数量</td>
+                    <td>最大注文数</td>
                     <td><input type="text" name="count_limit"
                             class="form-control @error('count_limit') is-invalid @enderror"
-                            value="{{ old('count_limit') }}" placeholder="一度に購入できる数量を入力してください" style="width: 500px;">
+                            value="{{ old('count_limit') }}" placeholder="一度に注文できる数量を入力してください" style="width: 500px;">
                         @error('count_limit')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

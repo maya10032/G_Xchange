@@ -17,7 +17,7 @@
                 <tr>
                     <td>カテゴリーID</td>
                     <td>
-                        <input type="text" class="form-control" name="item_code" value="{{ $nextId }}">
+                        <input type="text" disabled class="form-control" name="item_code" value="{{ $nextId }}">
                         <p>※割り当てられる予定のID番号を表示しています。</p>
                     </td>
                 </tr>
@@ -27,10 +27,10 @@
                         <input type="text" name="category_name"
                             class="form-control @error('category_name') is-invalid @enderror"
                             value="{{ old('category_name', $category->category_name ?? '') }}">
+                        @error('category_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </td>
-                    @error('category_name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </tr>
             </table>
             <div class="col-lg-9 d-flex justify-content-end align-items-center mt-4">

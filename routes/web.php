@@ -103,6 +103,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::get('/users/{id}/edit',   [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}/update', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}',     [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/search',      [App\Http\Controllers\Admin\UserController::class, 'search'])->name('users.search');
     // 会員情報変更表示
     Route::get('/profile',        [App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/show',   [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');

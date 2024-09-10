@@ -24,7 +24,11 @@
         </div>
     </div>
     @if (isset($query))
-        <h3>検索結果: "{{ $query }}"</h3>
+        @if ($orders->isEmpty())
+            <h3>検索結果: {{ $query }} に該当する商品はありませんでした。</h3>
+        @else
+            <h3>検索結果: ”{{ $query }}”</h3>
+        @endif
     @endif
     <table class="table table-bordered table-striped task-table table-hover">
         <tr>

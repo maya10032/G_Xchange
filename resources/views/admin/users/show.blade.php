@@ -10,7 +10,7 @@
         </ul>
     </topnav>
     <h2 class="py-2 admin">ユーザ情報詳細</h2>
-    <h4 class="py-2"><i class="fa fa-user" aria-hidden="true"></i> {{ $user->name }}様のご注文履歴です。</h4>
+    <h4 class="py-2"><i class="fa fa-user" aria-hidden="true"></i> {{ $user->name }} 様のご注文履歴です。</h4>
     @if (count($orders) == 0)
         <div class="d-flex align-items-center justify-content-center w-100" style="height: 100%;">
             <h2 class="text-center text-3xl text-gray-600 mb-1">
@@ -20,13 +20,13 @@
     @else
         <table class="table table-bordered table-striped task-table table-hover">
             <tr>
-                <th>注文番号</th>
-                <th>注文日</th>
-                <th>商品名</th>
+                <th>@sortablelink('id', '注文番号')</th>
+                <th>@sortablelink('created_at', '注文日')</th>
+                <th>@sortablelink('item_name', '商品名')</th>
                 <th>商品画像</th>
-                <th>販売価格</th>
-                <th>数量</th>
-                <th>合計金額</th>
+                <th>@sortablelink('sales_price', '販売価格')</th>
+                <th>@sortablelink('count', '数量')</th>
+                <th>@sortablelink('subtotal', '合計金額')</th>
             </tr>
             @foreach ($orders as $order)
                 <tr>

@@ -25,7 +25,6 @@ class OrderController extends Controller
             'count',
             'item.sales_price',
             'user.name',
-            'created_at'
         ];
 
         // デフォルトはordersテーブル
