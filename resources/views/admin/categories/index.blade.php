@@ -28,11 +28,11 @@
                 <a href="{{ route('admin.categories.create') }}" class="btn btn-primary"
                     style="width: 400px; font-size: 1rem;">新規作成</a>
             </div>
-            <div class="d-flex">
-                <form class="d-flex me-3" role="search" method="GET" action="{{ route('admin.categories.search') }}">
-                    <input class="form-control me-2 border-secondary" style="width: 500px;" type="search" name="search"
+            <div class="d-flex justify-content-end mt-3">
+                <form class="d-flex" role="search" method="GET" action="{{ route('admin.categories.search') }}">
+                    <input class="form-control me-2 border-secondary" style="width: 600px;" type="search" name="search"
                         placeholder="カテゴリー名など" aria-label="Search" value="{{ old('search', $search ?? '') }}">
-                    <button class="btn btn-primary" style="width: 80px;" type="submit">{{ __('search') }}</button>
+                    <button class="btn btn-dark" style="width: 80px;" type="submit">{{ __('search') }}</button>
                 </form>
             </div>
         </div>

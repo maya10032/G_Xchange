@@ -96,6 +96,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     // 受注管理表示
     Route::get('/orders',           [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}/show', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/search',    [App\Http\Controllers\Admin\OrderController::class, 'search'])->name('orders.search');
     // ユーザ管理表示
     Route::get('/users',             [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('/users/{id}/show',   [App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
