@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Order extends Model
 {
     use HasFactory;
+    use Sortable;
+
+    protected $sortable = ['id', 'created_at', 'item_name', 'count', 'item.sales_price', 'user.name', 'created_at'];
 
     protected $fillable = [
         'user_id',

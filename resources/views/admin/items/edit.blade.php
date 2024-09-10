@@ -13,7 +13,7 @@
         <form action="{{ route('admin.items.update', ['id' => $item->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <table>
+            <table class="table table-bordered table-striped task-table table-hover">
                 <tr>
                     <td>商品コード</td>
                     <td>

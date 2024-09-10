@@ -31,7 +31,7 @@ class ItemController extends Controller
         $sort = $request->get('sort', 'id');
         $direction = $request->get('direction', 'asc');
 
-        $items = Item::with('category')->sortable([$sort => $direction])->paginate(10); // itemsの全商品、カテゴリーを取得
+        $items = Item::with('category')->sortable($sort, $direction)->paginate(10); // itemsの全商品、カテゴリーを取得
         $itemsWithTax = $items->map(function ($item) {
             $item->subtotal = $item->tax_sales_prices; // 税込み価格
             $item->regtotal = $item->tax_regular_prices; // 税込み価格
@@ -258,7 +258,6 @@ class ItemController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('search');
-
         $items = Item::where('item_name', 'LIKE', "%{$query}%")
             ->orWhere('item_code', 'LIKE', "%{$query}%")
             ->orWhereHas('category', function ($q) use ($query) {
@@ -271,7 +270,6 @@ class ItemController extends Controller
             $item->state = $item->is_active === 0 ? '販売停止中' : '販売中';
             return $item;
         });
-
         return view('admin.items.index', compact('items', 'itemsWithTax', 'query'));
     }
 }

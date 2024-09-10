@@ -102,10 +102,8 @@ class CategoryController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('search');
-
-        $categories = Category::where('category_name', 'LIKE', '%{$query}%')
-            ->where('created_at', 'LIKE', '%{$query}%')
-            ->paginate(10);
+        $categories = Category::where('category_name', 'LIKE', "%{$query}%")
+        ->paginate(10);
 
         return view('admin.categories.index', compact('categories', 'query'));
     }
