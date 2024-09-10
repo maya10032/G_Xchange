@@ -27,14 +27,14 @@
                     <td><input type="text" name="category_name"
                             class="form-control @error('category_name') is-invalid @enderror"
                             value="{{ old('category_name', $category->category_name) }}">
+                        @error('category_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </td>
-                    @error('category_name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </tr>
             </table>
             <div class="col-lg-9 d-flex justify-content-end align-items-center mt-4">
-                <button type="submit" class="btn bg-danger text-light px-5 py-2 hover-effect">
+                <button type="submit" class="btn bg-primary text-light px-5 py-2 hover-effect">
                     <span>更新</span>
                 </button>
             </div>

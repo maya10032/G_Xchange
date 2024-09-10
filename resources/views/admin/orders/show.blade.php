@@ -10,15 +10,15 @@
         </ul>
     </topnav>
     <h2 class="py-2 admin">受注商品詳細</h2>
-    <div class="d-flex">
+    <div class="d-flex" style="font-size: 1.2em;">
         <p class="me-3">注文番号: {{ $order->id }}</p>
         <p class="me-3">注文日: {{ $order->created_at }}</p>
     </div>
     <h3 class="p-3 mb-2 bg-body-secondary">配送情報</h3>
-    <div class="p-5 my-4 border-bottom border-top border-secondary-subtle">
+    <div class="p-2 my-2 border-bottom border-top border-secondary-subtle" style="font-size: 1.2em;">
         <div class="form-group col-xs-12">
             <div class="input-group">
-                <div class="mb-2 me-3" style="max-height: 465px;">
+                <div class="mb-1 me-3" style="max-height: 465px;">
                     <img src="{{ asset('storage/images/' . $order->item->images[$order->item->thumbnail]->img_path) }}"
                         alt="Thumbnail" class="img-fluid rounded"
                         style="width: 265px; height: 265px; object-fit: cover; max-height: 465px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
@@ -33,19 +33,31 @@
             </div>
         </div>
     </div>
-    <div class="px-5 mb-5">
-        <p>名前: {{ $order->user->name }}</p>
-        <p>電話番号: {{ $order->user->phone }}</p>
-        <p>メール: {{ $order->user->email }}</p>
-        <p>住所: {{ $order->user->address }}</p>
-    </div>
+    <table class="table table-borderless w-25" style="font-size: 1.2em;">
+        <tr>
+            <td>名前：</td>
+            <td class="text-start">{{ $order->user->name }}</td>
+        </tr>
+        <tr>
+            <td>電話番号：</td>
+            <td class="text-start">{{ $order->user->phone }}</td>
+        </tr>
+        <tr>
+            <td>メール：</td>
+            <td class="text-start">{{ $order->user->email }}</td>
+        </tr>
+        <tr>
+            <td>住所：</td>
+            <td class="text-start">{{ $order->user->address }}</td>
+        </tr>
+    </table>
     <h3 class="p-3 mb-2 bg-body-secondary">お支払い金額</h3>
     <div class="my-2 border-bottom border-secondary-subtle">
-        <div class="px-5 d-flex justify-content-between align-items-end">
-            <table class="table table-borderless w-25">
+        <div class="px-4 d-flex justify-content-between align-items-end">
+            <table class="table table-borderless w-25" style="font-size: 1.2em;">
                 <tr>
                     <td>数量:</td>
-                    <td class="text-end">{{ $order->count }}</td>
+                    <td class="text-end">{{ $order->count }}個</td>
                 </tr>
                 <tr>
                     <td>送料:</td>
@@ -60,8 +72,9 @@
                     <td class="text-end">{{ number_format($subtotal) }}円</td>
                 </tr>
             </table>
-            <p class="text-end me-5 mb-0">合計（税込）:
+            <p class="text-end me-5 mb-0" style="font-size: 2rem;">合計：
                 <span class="text-danger fw-bold" style="font-size: 2.75rem;">{{ number_format($subtotal) }}円</span>
+                <span class="text-danger fw-bold" style="font-size: 2rem;">(税込)</span>
             </p>
         </div>
     </div>

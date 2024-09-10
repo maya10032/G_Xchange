@@ -89,22 +89,27 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::delete('/items/{item}',  [ADMIN_ITEM_PATH, 'destroy'])->name('items.destroy');
     Route::get('/items/search',     [ADMIN_ITEM_PATH, 'search'])->name('items.search');
     // カテゴリー
-    Route::get('/categories',           [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
-    Route::get('/categories/create',    [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
-    Route::post('/categories',          [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('categories.store');
-    Route::get('categories/{id}/edit',  [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit');
-    Route::put('categories/{id}',       [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('categories.update');
-    Route::delete('categories/{id}',    [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('/categories',          [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories',          [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories',          [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create',   [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories',         [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('categories.store');
+    Route::get('categories/{id}/edit', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('categories/{id}',      [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('categories/{id}',   [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('/categories/search',   [App\Http\Controllers\Admin\CategoryController::class, 'search'])->name('categories.search');
 
     // 受注管理表示
     Route::get('/orders',           [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}/show', [App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/search',    [App\Http\Controllers\Admin\OrderController::class, 'search'])->name('orders.search');
     // ユーザ管理表示
     Route::get('/users',             [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('/users/{id}/show',   [App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
     Route::get('/users/{id}/edit',   [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}/update', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}',     [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/search',      [App\Http\Controllers\Admin\UserController::class, 'search'])->name('users.search');
     // 会員情報変更表示
     Route::get('/profile',        [App\Http\Controllers\Admin\ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/show',   [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');

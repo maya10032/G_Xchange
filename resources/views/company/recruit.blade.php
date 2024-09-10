@@ -80,7 +80,7 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/20.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">代表取締役 猫田 たま</p>
+                            <p class="card-text text-center">CEO 猫田 たま</p>
                         </div>
                     </div>
                 </div>

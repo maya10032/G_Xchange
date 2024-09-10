@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::withCount('items')->paginate(10);
+        $categories = Category::withCount('items')->sortable()->paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $category->category_name = $validated['category_name'];
         $category->save();
         // 成功時のリダイレクト
-        return redirect()->route('admin.categories.index')->with('attention', 'カテゴリーが作成されました。');
+        return redirect()->route('admin.categories.index')->with('create', 'カテゴリーが作成されました。');
     }
 
     /**
@@ -80,7 +80,7 @@ class CategoryController extends Controller
         $category->category_name = $validated['category_name'];
         $category->save();
         // 成功時のリダイレクト
-        return redirect()->route('admin.categories.index')->with('attention', 'カテゴリーが正常に更新されました。');
+        return redirect()->route('admin.categories.index')->with('success', 'カテゴリーが正常に更新されました。');
     }
 
     /**
@@ -96,6 +96,15 @@ class CategoryController extends Controller
         // カテゴリーを削除
         $category->delete();
         // リダイレクト
-        return redirect()->route('admin.categories.index')->with('attention', '商品が削除されました。');
+        return redirect()->route('admin.categories.index')->with('delete', '商品が削除されました。');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $categories = Category::where('category_name', 'LIKE', "%{$query}%")
+        ->paginate(10);
+
+        return view('admin.categories.index', compact('categories', 'query'));
     }
 }

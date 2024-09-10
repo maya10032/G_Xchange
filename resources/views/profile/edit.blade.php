@@ -7,7 +7,7 @@
             <div class="py-2">
                 <div class="card" style="min-height: calc(80vh - 80px);">
                     @if (session('update'))
-                        <div class="alert alert-info text-center fw-bold">
+                        <div class="alert-blue-line mb-2" style="font-size: 1.25rem;">
                             {{ session('update') }}
                         </div>
                     @endif

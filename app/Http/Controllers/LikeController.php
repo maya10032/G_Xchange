@@ -28,7 +28,7 @@ class LikeController extends Controller
     public function destroy(Request $request)
     {
         \Auth::user()->likeItems()->detach($request->item_id);
-        $request->session();
+        $request->session()->flash('likedelete', 'お気に入りを解除しました');
         return back();
     }
 }

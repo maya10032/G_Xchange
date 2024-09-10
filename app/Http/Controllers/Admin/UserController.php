@@ -13,21 +13,28 @@ class UserController extends Controller
     /**
      * ユーザ一覧を表示
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(10); // 全ユーザを取得
+        $sort = $request->get('sort', 'id');
+        $direction = $request->get('direction', 'asc');
+
+        $users = User::orderBy($sort, $direction)->paginate(10);
         return view('admin.users.index', compact('users'));
     }
 
     /**
      * ユーザ詳細画面を表示
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $orders = Order::where('user_id', $user->id)
-            ->with('item', 'category')
-            ->orderBy('created_at', 'DESC')
+        $sort = $request->get('sort', 'created_at');
+        $direction = $request->get('direction', 'DESC');
+
+        $orders = Order::select('orders.*', 'items.item_name', 'items.sales_price')
+            ->join('items', 'orders.item_id', '=', 'items.id')
+            ->where('orders.user_id', $user->id)
+            ->orderBy($sort, $direction)
             ->paginate(10);
 
         // 小計合計の計算
@@ -62,15 +69,22 @@ class UserController extends Controller
         ];
         // バリデーション実行
         $validated = $request->validate($rules);
+        $isUpdated = false;
         foreach ($validated as $key => $value) {
             if ($user->$key !== $value) {
                 $user->$key = $value;
+                $isUpdated = true;
             }
         }
         // ユーザ情報を更新
-        $user->save();
-        // 更新完了メッセージ
-        $request->session()->flash('userupdate', 'ユーザ情報を更新しました');
+        if ($isUpdated) {
+            $user->save();
+            // 更新完了メッセージ
+            $request->session()->flash('userupdate', 'ユーザ情報を更新しました');
+        } else {
+            // 更新がない場合のメッセージ
+            $request->session()->flash('userupdate', '変更はありませんでした');
+        }
         // ユーザ一覧へリダイレクト
         return Redirect::route('admin.users.index');
     }
@@ -83,7 +97,22 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        $request->session()->flash('userdelete', 'ユーザ情報を削除しました');
-        return Redirect::route('admin.users.index')->with('status', 'profile-updated');
+        return Redirect::route('admin.users.index')->with('userdelete', 'ユーザ情報を削除しました');
+    }
+
+    /**
+     * 検索機能
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $users = User::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('phone', 'LIKE', "%{$query}%")
+            ->paginate(10);
+
+        return view('admin.users.index', compact('users', 'query'));
     }
 }
