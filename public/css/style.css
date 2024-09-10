@@ -835,21 +835,24 @@ li {
     margin-bottom: 100px;
 }
 
-.slide-in {
+.mocchiri {
     font-size: 56px;
     margin: 10px 0;
     font-weight: bold;
-    animation: slideIn 1s ease-out;
+    animation: mocchiri 3s infinite;
 }
-
-@keyframes slideIn {
+@keyframes mocchiri {
     0% {
-        transform: translateX(-100%);
-        opacity: 0;
+        transform: scale(1, 1);
+    }
+    20% {
+        transform: scale(1, 0.8);
+    }
+    95% {
+        transform: scale(1, 1);
     }
     100% {
-        transform: translateX(0);
-        opacity: 1;
+        transform: scale(1, 1);
     }
 }
 
@@ -908,14 +911,48 @@ li {
     border-radius: 30px;
 }
 
-/* Benefits */
-/* .col {
-} */
+.autoplay-slider {
+    display: flex;
+    width: 100%;
+    width: min-content;
+    animation: 20s linear infinite sliderAnimation;
+}
 
-.col img:hover {
-    overflow: hidden;
-    transform: scale(1.3);
-    transition: 0.3s;
+.box_slide {
+    height: 200px;
+    width: 400px;
+    margin: 20px;
+    position: relative;
+}
+
+@keyframes sliderAnimation {
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.box_row {
+    display: -ms-grid;
+    -ms-grid-columns: min-content;
+}
+
+/* Member */
+.member_img:hover {
+    animation: shake 2s infinite;
+    transform: rotate(20deg);
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(20deg);
+    }
+    50% {
+        transform: rotate(-20deg);
+    }
+
+    100% {
+        transform: rotate(20deg);
+    }
 }
 
 .letter {
