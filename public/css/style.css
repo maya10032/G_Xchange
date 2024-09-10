@@ -11,9 +11,6 @@ cheat {
     color: #d2b48c;
 }
 
-
-
-
 /*  */
 
 .fuwafuwa {
@@ -677,7 +674,6 @@ li {
     border-radius: 40px;
 }
 
-
 .selector {
     border-radius: 0;
 }
@@ -688,6 +684,86 @@ li {
     margin: 1rem 0;
     border-left: 8px solid #5a6268;
 }
+
+/* 採用情報 */
+.contents {
+    margin-bottom: 100px;
+}
+
+.slide-in {
+    font-size: 56px;
+    margin:10px 0;
+    font-weight: bold;
+    animation: slideIn 1s ease-out;
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+/* Jobs */
+.image_link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+}
+.image_link img {
+    display: block;
+    width: 100%;
+    transition: 0.3s;
+}
+.image_link:before {
+    content: "READ MORE";
+    display: block;
+    color: #fff;
+    line-height: 48px;
+    width: 180px;
+    border: solid 1px #fff;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -1em;
+    margin-left: -90px;
+    opacity: 0;
+    z-index: 3;
+    transition: 0.3s;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+}
+.image_link:hover img {
+    filter: blur(5px);
+}
+.image_link:hover:before {
+    opacity: 1;
+    margin-top: -0.5em;
+}
+
+/* Benefits */
+.box-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #3e4555;
+}
+
+.box3-2 {
+    padding: 2em;
+    margin: 1rem;
+    width: 30%;
+    background-color: #fff;
+    box-shadow: 0 0 6px 1px #f5c6cb, 0 0 6px 1px #f5c6cb inset;
+    border-radius: 30px;
+}
+
+
 
 .letter {
     background-color: white;
