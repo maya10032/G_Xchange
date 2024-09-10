@@ -182,7 +182,8 @@ return [
         'images'           => '画像',
         'thumbnail'        => 'サムネイル',
         'item_id'          => '商品ID',
-        'count'            => '数量'
+        'count'            => '数量',
+        'category_name'    => 'カテゴリー名'
     ],
 
 ];

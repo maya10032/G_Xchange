@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Kyslik\ColumnSortable\Sortable;
 
 class UserController extends Controller
 {
+    use Sortable;
+
+    protected $sortable = ['id', 'name', 'phone', 'address', 'email'];
+
     public function index()
     {
         $collection = User::all();

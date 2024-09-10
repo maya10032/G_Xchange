@@ -19,19 +19,35 @@
             {{ session('userdelete') }}
         </div>
     @endif
+    <div class="container mb-2" style="width: 100%;">
+        <div class="d-flex justify-content-end mt-3">
+            <form class="d-flex" role="search" method="GET" action="{{ route('admin.users.search') }}">
+                <input class="form-control me-2 border-secondary" style="width: 600px;" type="search" name="search"
+                    placeholder="お名前、電話番号など" aria-label="Search" value="{{ old('search', $search ?? '') }}">
+                <button class="btn btn-dark" style="width: 80px;" type="submit">{{ __('search') }}</button>
+            </form>
+        </div>
+    </div>
+    @if (isset($query))
+        @if ($users->isEmpty())
+            <h3>検索結果: {{ $query }} に該当する商品はありませんでした。</h3>
+        @else
+            <h3>検索結果: ”{{ $query }}”</h3>
+        @endif
+    @endif
     <table class="table table-bordered table-striped task-table table-hover">
         <tr>
-            <th>会員ID</th>
-            <th>お名前</th>
-            <th>電話番号</th>
-            <th>住所</th>
-            <th>メールアドレス</th>
+            <th>@sortablelink('id', '会員ID')</th>
+            <th>@sortablelink('name', 'お名前')</th>
+            <th>@sortablelink('phone', '電話番号')</th>
+            <th>@sortablelink('address', '住所')</th>
+            <th>@sortablelink('email', 'メールアドレス')</th>
             <th style="width: 290px;"></th>
         </tr>
         @foreach ($users as $user)
             <tr>
                 <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}　様</td>
+                <td>{{ $user->name }}</td>
                 <td>{{ $user->phone }}</td>
                 <td>{{ $user->address }}</td>
                 <td>{{ $user->email }}</td>
