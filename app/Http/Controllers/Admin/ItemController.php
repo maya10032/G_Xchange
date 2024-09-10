@@ -26,43 +26,9 @@ class ItemController extends Controller
     /**
      * 商品一覧を表示（管理者）
      */
-    public function index(Request $request)
+    public function index()
     {
-        // 検索機能
-        $query = Item::query()
-        ->with('images', 'category');
-        // if ($search = request('search')) {
-        //     // $query->where('id', 'LIKE', "%{$search}%")
-        //     //     ->orWhere('item_code', 'LIKE', "%{$search}%")
-        //     //     ->orWhereHas('category', function ($q) use ($search) {
-        //     //         $q->where('category_name', 'LIKE', "%{$search}%");
-        //     //     })
-        //     //     ->orWhere('subtotal', 'LIKE', "%{$search}%")
-        //     //     ->orWhere('state', 'LIKE', "%{$search}%");
-        // }
-
-        // 並び替えのオプションに基づくソート処理
-        // $sortOption = $request->input('sort'); // 並び替えオプションを取得
-        // if ($sortOption) {
-        //     switch ($sortOption) {
-        //         case '1':
-        //             $query->orderBy('sales_price', 'asc'); // 価格が安い順
-        //             break;
-        //         case '2':
-        //             $query->orderBy('sales_price', 'desc'); // 価格が高い順
-        //             break;
-        //         case '3':
-        //             $query->orderBy('created_at', 'desc'); // 新しい順
-        //             break;
-        //         case '4':
-        //             $query->orderBy('created_at', 'asc'); // 古い順
-        //             break;
-        //     }
-        // }
-
-        // ページネーションの適用
-        $items = $query->with('category')->paginate(10);
-
+        $items = Item::with('category')->paginate(10); // itemsの全商品、カテゴリーを取得
         $itemsWithTax = $items->map(function ($item) {
             $item->subtotal = $item->tax_sales_prices; // 税込み価格
             $item->regtotal = $item->tax_regular_prices; // 税込み価格

@@ -23,7 +23,8 @@ Route::get('/contact/confirm',  [CONTACT_PATH, 'confirm'])->name('contact.confir
 Route::post('/contact/confirm', [CONTACT_PATH, 'send'])->name('contact.send');
 Route::get('/contact/done',     [CONTACT_PATH, 'done'])->name('contact.done');
 
-Route::get('/company/companyprofile', [UserController::class, 'index'])->name('user.index');
+Route::get('/company/companyprofile', [App\Http\Controllers\CompanyController::class, 'profile'])->name('company.profile');
+Route::get('/company/recruit', [App\Http\Controllers\CompanyController::class, 'recruit'])->name('company.recruit');
 
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {

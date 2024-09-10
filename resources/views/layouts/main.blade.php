@@ -385,7 +385,7 @@
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="" class="text-white hover-effect">採用情報</a>
+                            <a href="{{ url('/company/recruit') }}" class="text-white hover-effect">採用情報</a>
                         </div>
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
