@@ -80,7 +80,8 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/20.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">CEO 猫田 たま</p>
+                            <p class="card-text text-center">CEO</p>
+                            <p class="card-text text-center">猫田 たま</p>
                         </div>
                     </div>
                 </div>
@@ -88,7 +89,8 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/10.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">代表取締役 猫田 たま</p>
+                            <p class="card-text text-center">Work QA</p>
+                            <p class="card-text text-center">人鳥 まる</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +98,8 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/07.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">代表取締役 猫田 たま</p>
+                            <p class="card-text text-center">Design System</p>
+                            <p class="card-text text-center">猿島 えがお</p>
                         </div>
                     </div>
                 </div>
@@ -104,7 +107,8 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/09.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">代表取締役 猫田 たま</p>
+                            <p class="card-text text-center">AML/CFT</p>
+                            <p class="card-text text-center">小熊猫 たつ</p>
                         </div>
                     </div>
                 </div>
@@ -112,7 +116,8 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/11.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">代表取締役 猫田 たま</p>
+                            <p class="card-text text-center">Accounting Products</p>
+                            <p class="card-text text-center">犬山 ぽち</p>
                         </div>
                     </div>
                 </div>
@@ -120,7 +125,8 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/14.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">代表取締役 猫田 たま</p>
+                            <p class="card-text text-center">Cross Border</p>
+                            <p class="card-text text-center">海狸 きらり</p>
                         </div>
                     </div>
                 </div>
@@ -128,7 +134,8 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/16.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">代表取締役 猫田 たま</p>
+                            <p class="card-text text-center">Fintech BizLegal & Governance</p>
+                            <p class="card-text text-center">家鴨 きいろ</p>
                         </div>
                     </div>
                 </div>
@@ -136,7 +143,8 @@
                     <div class="card border-0 m-3" style="width: 18rem;">
                         <img src="{{ asset('images/02.jpg') }}" class="card-img-top rounded-circle" alt="...">
                         <div class="card-body" style="height: 50px">
-                            <p class="card-text text-center">代表取締役 猫田 たま</p>
+                            <p class="card-text text-center">Mass Marketing</p>
+                            <p class="card-text text-center">豚川 しろ</p>
                         </div>
                     </div>
                 </div>
