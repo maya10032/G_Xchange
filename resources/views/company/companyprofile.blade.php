@@ -52,7 +52,7 @@
             <table class="table table-striped">
                 <tr>
                     <th>2018年9月</th>
-                    <td>グリーンテック株式会社を設立</td>
+                    <td>ABEテック株式会社を設立</td>
                 </tr>
                 <tr>
                     <th>2019年3月</th>
