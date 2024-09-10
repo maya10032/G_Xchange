@@ -22,8 +22,14 @@ Route::post('/contact',         [CONTACT_PATH, 'post'])->name('contact.post');
 Route::get('/contact/confirm',  [CONTACT_PATH, 'confirm'])->name('contact.confirm');
 Route::post('/contact/confirm', [CONTACT_PATH, 'send'])->name('contact.send');
 Route::get('/contact/done',     [CONTACT_PATH, 'done'])->name('contact.done');
-
-Route::get('/company/companyprofile', [UserController::class, 'index'])->name('user.index');
+//フッター
+Route::get('/company/companyprofile', [App\Http\Controllers\CompanyController::class, 'profile'])->name('company.profile');
+Route::get('/company/recruit', [App\Http\Controllers\CompanyController::class, 'recruit'])->name('company.recruit');
+Route::get('/company/service', [App\Http\Controllers\CompanyController::class, 'service'])->name('company.service');
+Route::get('/company/privacy', [App\Http\Controllers\CompanyController::class, 'privacy'])->name('company.privacy');
+Route::get('/company/transaction', [App\Http\Controllers\CompanyController::class, 'transaction'])->name('company.transaction');
+Route::get('/company/funding', [App\Http\Controllers\CompanyController::class, 'funding'])->name('company.funding');
+Route::get('/company/law', [App\Http\Controllers\CompanyController::class, 'law'])->name('company.law');
 
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {

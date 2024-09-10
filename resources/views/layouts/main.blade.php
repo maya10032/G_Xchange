@@ -389,32 +389,32 @@
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="" class="text-white hover-effect">採用情報</a>
+                            <a href="{{ url('/company/recruit') }}" class="text-white hover-effect">採用情報</a>
                         </div>
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="" class="text-white hover-effect">利用規約</a>
+                            <a href="{{ url('/company/service') }}" class="text-white hover-effect">利用規約</a>
                         </div>
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="" class="text-white hover-effect">プライバシー規約</a>
+                            <a href="{{ url('/company/privacy') }}" class="text-white hover-effect">プライバシー規約</a>
                         </div>
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="" class="text-white hover-effect">特定商取引法に基づく表示</a>
+                            <a href="{{ url('/company/transaction') }}" class="text-white hover-effect">特定商取引法に基づく表示</a>
                         </div>
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="" class="text-white hover-effect">資金決済法に基づく表示</a>
+                            <a href="{{ url('/company/funding') }}" class="text-white hover-effect">資金決済法に基づく表示</a>
                         </div>
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="" class="text-white hover-effect">法令順守と犯罪抑止のために</a>
+                            <a href="{{ url('/company/law') }}" class="text-white hover-effect">法令順守と犯罪抑止のために</a>
                         </div>
                     </div>
                 </div>

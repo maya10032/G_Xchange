@@ -74,7 +74,7 @@
             @endif
             <p class="mt-3">
                 <a class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                    href="{{ url('admin/items/') }}">商品一覧へ戻る</a>
+                    href="{{ route('admin.items.index') }}">商品一覧へ戻る</a>
             </p>
         </div>
     </div>
