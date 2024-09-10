@@ -1,65 +1,54 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
-        <h2 class="py-2 admin">アカウント情報</h2>
+    <topnav class="topnav">
+        <ul>
+            <li><a class="current" href="{{ url('admin/profile') }}">アカウント情報</a></li>
+        </ul>
+    </topnav>
+    <h2 class="py-2 admin">アカウント情報</h2>
+    @if (session('update'))
+        <div class="alert alert-info text-center fw-bold">
+            {{ session('update') }}
+        </div>
+    @endif
+    <div class="d-flex">
         <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">アカウント情報画面</div>
-                    @if (session('update'))
-                        <div class="alert alert-info text-center fw-bold">
-                            {{ session('update') }}
+            <form>
+                @csrf
+                @method('PATCH')
+                <div class="row py-3">
+                    <div class="row mb-1" style="font-size: 1.1em">
+                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}：</label>
+                        <div class="col-md-6">
+                            <input type="text" readonly class="form-control-plaintext" value="{{ $admin->name }}">
                         </div>
-                    @endif
-                    <div class="card-body">
-                        @csrf
-                        @method('PATCH')
+                    </div>
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-                            <div class="col-md-6">
-                                <input type="text" readonly class="form-control-plaintext" value="{{ $admin->name }}">
-                            </div>
+                    <div class="row mb-3" style="font-size: 1.1em">
+                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}：</label>
+                        <div class="col-md-6">
+                            <input type="text" readonly class="form-control-plaintext" value="{{ $admin->email }}">
                         </div>
-
-                        <div class="row mb-3">
-                            <label for="email"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-                            <div class="col-md-6">
-                                <input type="text" readonly class="form-control-plaintext" value="{{ $admin->email }}">
-                            </div>
-                        </div>
-
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary text-light px-4 py-2 hover-effect">
-                                    <a href="{{ route('admin.profile.edit') }}"
-                                        class="flex ml-2 text-white py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-decoration-none">変更</a>
+                    </div>
+                    <div class="p-4">
+                        <div class="col-md-4 container offset-md-3 d-flex justify-content-end gap-4">
+                            <a href="{{ route('admin.profile.update') }}"
+                                class="btn btn-primary text-white px-4 py-2 hover-effect text-decoration-none">
+                                アカウント情報を変更画面へ
+                            </a>
+                            <form action="{{ route('admin.profile.destroy') }}" method="POST" class="d-inline ms-4">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-delete text-light px-4 py-2 hover-effect"
+                                    onclick="return confirm('本当に削除しますか？')">
+                                    退会
                                 </button>
-                                <button type="submit" class="btn btn-danger text-light px-4 py-2 hover-effect">
-                                    <a href="" onclick="deleteAdmin()"
-                                        class="flex ml-2 text-white py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-decoration-none">
-                                        退会</a>
-                                </button>
-                                <form action="{{ route('admin.profile.destroy') }}" method="post" id="delete-form">
-                                    @csrf
-                                    @method('delete')
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    @endsection
-    <script>
-        // 削除確認用のダイアログ表示
-        const deleteAdmin = () => {
-            //リンクが自動でサーバにリクエストをかけてページ更新するのを停止している
-            event.preventDefault()
-            confirm('本当に退会してもよろしいですか？') ? document.querySelector('#delete-form').submit() : ''
-        }
-    </script>
+    </div>
+@endsection
