@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function index(Item $item)
     {
         //odersテーブルのデータ取得、新しい順で表示
-        $orders = Order::with('item')
+        $orders = Order::with('item', 'user')
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 

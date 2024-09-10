@@ -19,7 +19,7 @@
             <form class="d-flex" role="search">
                 <input class="form-control me-2 border-secondary" style="width: 600px;" type="search"
                     placeholder="商品名、カテゴリなど" aria-label="Search">
-                <button class="btn btn-secondary" style="width: 80px;" type="submit">{{ __('search') }}</button>
+                <button class="btn btn-dark" style="width: 80px;" type="submit">{{ __('search') }}</button>
             </form>
             <div class="ms-3">
                 <select class="form-select" aria-label="並び替え">
@@ -60,7 +60,7 @@
                     <td>{{ number_format($order->item->tax_sales_prices) }}円</td>
                     <td>
                         {{ number_format($order->subtotal) }}円</td>
-                    <td><a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-primary me-2"><i
+                    <td><a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-detail me-2"><i
                                 class="fa fa-search" aria-hidden="true"></i> 詳細</td>
                 </tr>
             @endforeach

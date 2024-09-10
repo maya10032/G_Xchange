@@ -116,16 +116,19 @@
             left: 15%;
             animation: animate 12s linear infinite;
         }
+
         .box div:nth-child(11) {
             top: 45%;
             left: 15%;
             animation: animate 12s linear infinite;
         }
+
         .box div:nth-child(12) {
             top: 25%;
             left: 15%;
             animation: animate 3s linear infinite;
         }
+
         .box div:nth-child(13) {
             top: 80%;
             left: 15%;
@@ -166,12 +169,12 @@
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
-                                    <small>goods</small>
+                                    <small>Goods</small>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i> {{ __('contact') }}
-                                    <small>contact</small>
+                                    <small>Contact</small>
                                 </a>
                             </li>
                             @if (Route::has('login'))
@@ -192,25 +195,26 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i> {{ __('item_list') }}
-                                    <small>goods</small>
+                                <a class="nav-link" href="/"><i class="fa fa-wpforms"></i>
+                                    {{ __('item_list') }}
+                                    <small>Goods</small>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i>
                                     {{ __('contact') }}
-                                    <small>contact</small>
+                                    <small>Contact</small>
                                 </a>
                             </li>
                             <li class="nav-item success-list">
                                 <a class="nav-link success-icon" href="{{ route('carts.index') }}">
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <i class="fa fa-shopping-cart fa-lg"></i>
                                     {{ __('cart') }}
                                     @if ($cartCount > 0)
                                         <span class="badge bg-danger rounded-pill"
                                             style="vertical-align: top">{{ $cartCount }}</span>
                                     @endif
-                                    <small>cart</small>
+                                    <small>Cart</small>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -220,7 +224,7 @@
                                         <span class="badge bg-danger rounded-pill"
                                             style="vertical-align: top">{{ $likeCount }}</span>
                                     @endif
-                                    <small>favorites</small>
+                                    <small>Favorites</small>
                                 </a>
                             </li>
                             <li class="nav-item">

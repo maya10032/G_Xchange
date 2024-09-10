@@ -10,7 +10,7 @@
     </topnav>
     <h2 class="py-2 admin">新規商品登録</h2>
     <div class="container">
-        <form action="{{ route('admin.items.post') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.items.post') }}" method="post" enctype="multipart/form-data" novalidate>
             @csrf
             <table class="table table-bordered table-striped task-table table-hover">
                 <tr>
@@ -27,14 +27,10 @@
                     <td>商品名</td>
                     <td><input type="text" name="item_name" class="form-control @error('item_name') is-invalid @enderror"
                             value="{{ old('item_name') }}" placeholder="商品名を入力してください">
+                        @error('item_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </td>
-                    @error('files.*')
-                        <div class="invalid-feedback">
-                            @foreach ($errors->get('files.*') as $error)
-                                <p>{{ $error }}</p>
-                            @endforeach
-                        </div>
-                    @enderror
                 </tr>
                 <tr>
                     <td>カテゴリー</td>
@@ -42,7 +38,8 @@
                         <select name="category_id" id="category_id"
                             class="form-control @error('category_id') is-invalid @enderror">
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id') == $category->id ? 'selected' : '' }}>
                                     {{ $category->category_name }}
                                 </option>
                             @endforeach
@@ -51,21 +48,23 @@
                 </tr>
                 <tr>
                     <td>数量</td>
-                    <td><input type="text" name="count_limit" class="form-control @error('count_limit') is-invalid @enderror"
+                    <td><input type="text" name="count_limit"
+                            class="form-control @error('count_limit') is-invalid @enderror"
                             value="{{ old('count_limit') }}" placeholder="一度に購入できる数量を入力してください" style="width: 500px;">
+                        @error('count_limit')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </td>
-                    @error('count_limit')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </tr>
                 <tr>
                     <td>販売価格</td>
-                    <td><input type="text" name="sales_price" class="form-control @error('sales_price') is-invalid @enderror"
+                    <td><input type="text" name="sales_price"
+                            class="form-control @error('sales_price') is-invalid @enderror"
                             value="{{ old('sales_price') }}" placeholder="割引時の価格を入力してください">
+                        @error('sales_price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </td>
-                    @error('sales_price')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </tr>
                 <tr>
                     <td>通常価格</td>
@@ -121,8 +120,7 @@
             </table>
             {{-- <input type="submit" value="内容確認"> --}}
             <div class="col-lg-12 d-flex align-items-center mt-4">
-                <button type="submit"
-                    class="btn bg-danger text-light px-5 py-2 hover-effect"><span>内容確認</span></button>
+                <button type="submit" class="btn bg-primary text-light px-5 py-2 hover-effect"><span>内容確認</span></button>
             </div>
         </form>
     </div>

@@ -5,15 +5,15 @@
 @section('content')
     <div class="py-5 container sticky-top" style="min-height: calc(180vh - 180px);">
         @if (session('likeadd'))
-            <div class="alert alert-success text-center fw-bold" style="font-size: 1.25rem;">
+            <div class="alert-blue-line mb-2" style="font-size: 1.25rem;">
                 {{ session('likeadd') }}
             </div>
         @elseif (session('likedelete'))
-            <div class="alert alert-info text-center fw-bold" style="font-size: 1.25rem;">
+            <div class="alert-red-line mb-2" style="font-size: 1.25rem;">
                 {{ session('likedelete') }}
             </div>
         @elseif (session('cartadd'))
-            <div class="alert alert-info text-center fw-bold" style="font-size: 1.25rem;">
+            <div class="alert-green-line mb-2" style="font-size: 1.25rem;">
                 {{ session('cartadd') }}
             </div>
         @endif
@@ -42,7 +42,8 @@
                 </div>
             </div>
             <div class="ms-auto" style="flex: 1; font-size: 1.25rem;">
-                <p class="mb-2"><small class="text-muted"><i class="fa fa-tag" aria-hidden="true"></i> {{ $item->category->category_name }}</small></p>
+                <p class="mb-2"><small class="text-muted"><i class="fa fa-tag" aria-hidden="true"></i>
+                        {{ $item->category->category_name }}</small></p>
                 <h3 class="mb-3" style="font-size: 1.75rem; word-break: break-word;">{{ $item->item_name }}</h3>
                 @if ($item->regular_price === $item->sales_price)
                     <p class="mb-3">{{ number_format($salesPriceWithTax) }}円（税込）送料無料</p>
@@ -97,6 +98,23 @@
                                 </div>
                             </form>
                         @endif
+                        <ul class="shareList">
+                            <li class="shareList-item">
+                                <a class="icon icon-twitter" href="#" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="shareList-item">
+                                <a class="icon icon-facebook" href="#" title="Facebook">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="shareList-item">
+                                <a class="icon icon-pocket" href="#" title="Pocket">
+                                    <i class="fab fa-get-pocket"></i>
+                                </a>
+                            </li>
+                        </ul>
                     @else
                         <h3 class="text-danger mt-4" style="font-size: 1.75rem;">現在販売していません</h3>
                     @endif
@@ -124,7 +142,8 @@
                                 <h4 class="card-title" style="font-size: 1rem;">{{ $randomItem->item_name }}</h4>
                                 <p class="card-text">{{ number_format($randomItem->tax_sales_prices) }}円（税込）</p>
                                 <p class="text-truncate">{{ $randomItem->message }}</p>
-                                <a href="{{ route('items.show', $randomItem->id) }}" class="btn btn-secondary text-light hover-effect">詳細を見る</a>
+                                <a href="{{ route('items.show', $randomItem->id) }}"
+                                    class="btn btn-secondary text-light hover-effect">詳細を見る</a>
                             </div>
                         </div>
                     </div>

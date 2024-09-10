@@ -8,17 +8,17 @@
             <li><a class="current" href="{{ url('admin/users') }}">ユーザ管理</a></li>
         </ul>
     </topnav>
+    <h2 class="py-2 admin">ユーザ管理</h2>
     @if (session('userupdate'))
-        <div class="alert alert-info text-center fw-bold">
+        <div class="alert-green-line mb-2" style="font-size: 1.25rem;">
             {{ session('userupdate') }}
         </div>
     @endif
     @if (session('userdelete'))
-        <div class="alert alert-info text-center fw-bold">
+        <div class="alert-red-line mb-2" style="font-size: 1.25rem;">
             {{ session('userdelete') }}
         </div>
     @endif
-    <h2 class="py-2 admin">ユーザ管理</h2>
     <table class="table table-bordered table-striped task-table table-hover">
         <tr>
             <th>会員ID</th>
@@ -36,16 +36,16 @@
                 <td>{{ $user->address }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary mx-2">
+                    <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-detail mx-2">
                         <i class="fa fa-search" aria-hidden="true"></i> 詳細
                     </a>
-                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-secondary mx-2">
+                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-edit mx-2">
                         <i class="fa fa-pencil-alt" aria-hidden="true"></i> 編集
                     </a>
                     <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger mx-2" onclick="return confirm('本当に削除しますか？')">
+                        <button type="submit" class="btn btn-delete mx-2" onclick="return confirm('本当に削除しますか？')">
                             <i class="fa fa-trash" aria-hidden="true"></i> 削除
                         </button>
                     </form>
