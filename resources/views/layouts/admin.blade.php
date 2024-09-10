@@ -21,6 +21,124 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
+        .item-name-cell {
+            max-width: 200px;
+            white-space: normal;
+        }
+
+        /* ソートテーブルヘッダー */
+        th a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        th a:hover {
+            color: #007bff;
+        }
+
+        /* 詳細ボタン */
+        .btn-detail {
+            background-color: #B0C4DE;
+            color: #333;
+            border: 1px solid #666666;
+        }
+
+        .btn-detail:hover {
+            background-color: #666666;
+        }
+
+        /* 編集ボタン */
+        .btn-edit {
+            background-color: #999999;
+            color: #444444;
+            border: 1px solid #666666;
+        }
+
+        .btn-edit:hover {
+            background-color: #666666;
+        }
+
+        /* 削除ボタン */
+        .btn-delete {
+            background-color: #555555;
+            color: #EEEEEE;
+            border: 1px solid #666666;
+        }
+
+        .btn-delete:hover {
+            background-color: #666666;
+        }
+
+
+        .alert-blue-line {
+            position: relative;
+            padding: 0.8em 2.8em;
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+        }
+
+        .alert-blue-line>* {
+            margin: 0;
+        }
+
+        .alert-blue-line::before {
+            position: absolute;
+            inset: 10px 0 0 15px;
+            content: "\f05a";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.4em;
+            color: #2196f3;
+            width: 30px;
+            height: 30px;
+        }
+
+        .alert-green-line {
+            position: relative;
+            padding: 0.8em 2.8em;
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+        }
+
+        .alert-green-line>* {
+            margin: 0;
+        }
+
+        .alert-green-line::before {
+            position: absolute;
+            inset: 10px 0 0 15px;
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.4em;
+            color: #4caf50;
+            width: 30px;
+            height: 30px;
+        }
+
+        .alert-red-line {
+            position: relative;
+            padding: 0.8em 2.8em;
+            background: #ffebee;
+            border-left: 5px solid #f44336;
+        }
+
+        .alert-red-line>* {
+            margin: 0;
+        }
+
+        .alert-red-line::before {
+            position: absolute;
+            inset: 10px 0 0 15px;
+            content: "\f06a";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.4em;
+            color: #f44336;
+            width: 30px;
+            height: 30px;
+        }
+
         .topnav a {
             text-decoration: none;
             color: #000;
@@ -140,7 +258,7 @@
     <div id="app">
         <!-- ヘッダーナビ -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container" style="padding-left: 8px;">
                 <button class="navbar-toggler mx-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

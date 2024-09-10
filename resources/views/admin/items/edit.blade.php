@@ -146,13 +146,13 @@
             </table>
             {{-- <input type="submit" value="内容確認"> --}}
             <div class="btn-group gap-3 mt-4">
-                <button type="submit" class="btn bg-secondary text-light px-5 py-2 hover-effect"><span>更新</span></button>
+                <button type="submit" class="btn bg-primary text-light px-5 py-2 hover-effect"><span>更新</span></button>
                 @if ($item->is_active)
                     <button type="submit" name="action" value="stop"
-                        class="btn bg-danger text-light px-5 py-2 hover-effect"><span>販売停止にする</span></button>
+                        class="btn btn-delete text-light px-5 py-2 hover-effect"><span>販売停止にする</span></button>
                 @else
                     <button type="submit" name="action" value="start"
-                        class="btn bg-success text-light px-5 py-2 hover-effect"><span>販売開始する</span></button>
+                        class="btn btn-edit text-light px-5 py-2 hover-effect"><span>販売開始する</span></button>
                 @endif
             </div>
         </form>

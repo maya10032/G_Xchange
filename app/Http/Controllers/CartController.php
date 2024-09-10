@@ -90,7 +90,8 @@ class CartController extends Controller
         if ($cart) {
             // レコードを削除
             $cart->pivot->delete();
-            return redirect()->route('carts.index');
+
+            return redirect()->route('carts.index')->with('cartdelete', 'カートの商品を削除しました');;
         }
     }
 

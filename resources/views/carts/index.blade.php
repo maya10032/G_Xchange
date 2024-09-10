@@ -4,6 +4,11 @@
 
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
+        @if (session('cartdelete'))
+            <div class="alert-red-line mb-2" style="font-size: 1.25rem;">
+                {{ session('cartdelete') }}
+            </div>
+        @endif
         <h2 class="title--border">マイページ / カート一覧</h2>
         @if ($carts->isEmpty())
             <p>カートに商品がありません。</p>

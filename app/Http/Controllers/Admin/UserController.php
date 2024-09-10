@@ -83,7 +83,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        $request->session()->flash('userdelete', 'ユーザ情報を削除しました');
-        return Redirect::route('admin.users.index')->with('status', 'profile-updated');
+        return Redirect::route('admin.users.index')->with('userdelete', 'ユーザ情報を削除しました');
     }
 }

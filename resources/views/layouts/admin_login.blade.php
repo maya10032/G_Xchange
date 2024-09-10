@@ -24,7 +24,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container" style="padding: 0">
                 <button class="navbar-toggler mx-3" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
@@ -66,8 +66,8 @@
             </div>
         </nav>
 
-        <main class="py-4 container">
-            <div class="content p-4" style="flex-grow: 1;">
+        <main>
+            <div class="content py-4" style="flex-grow: 1;">
                 @yield('content')
             </div>
         </main>
