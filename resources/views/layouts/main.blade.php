@@ -380,6 +380,9 @@
         </div>
 
         <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
+            <div id="navBackToTop">
+                <a href="#top" class="navFooterBackToTopText text-light hover-effect" style="text-decoration: none;">トップへ戻る</a>
+            </div>
             <div class="container" style="width: 1200px;">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex text-body-secondary mb-">
@@ -404,7 +407,8 @@
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="{{ url('/company/transaction') }}" class="text-white hover-effect">特定商取引法に基づく表示</a>
+                            <a href="{{ url('/company/transaction') }}"
+                                class="text-white hover-effect">特定商取引法に基づく表示</a>
                         </div>
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
