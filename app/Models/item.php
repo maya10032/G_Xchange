@@ -8,8 +8,7 @@ use Kyslik\ColumnSortable\Sortable;
 
 class Item extends Model
 {
-    use HasFactory;
-    use Sortable;
+    use HasFactory,Sortable;
 
     protected $sortable = ['id', 'item_name', 'item_code', 'is_active', 'sales_price', 'created_at', 'updated_at', 'category_name', 'discount_price'];
 
@@ -27,7 +26,7 @@ class Item extends Model
         'regular_price',
         'message',
         'is_active',
-        'humbnail',
+        'thumbnail',
         'created_at'
     ];
 
