@@ -37,7 +37,7 @@
 
         .box {
             width: 100%;
-            height: 2300px;
+            height: 2020px;
             background: linear-gradient(200deg, #EEEEEE 50%, #777777 100%);
             position: absolute;
             top: 0;
@@ -328,7 +328,7 @@
             </button>
         </div>
 
-        <main>
+        <main style="padding-top: 10px;">
             <div class="box">
                 <div>
                 </div>

@@ -22,7 +22,7 @@
                 <h3>検索結果: ”{{ $query }}”</h3>
             @endif
         @endif
-        <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3">
+        <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3 mb-5">
             @foreach ($items as $item)
                 <div class="col">
                     <div class="card shadow-sm hover-effect">
@@ -59,19 +59,19 @@
             @endforeach
         </div>
 
-
-        <h2 class="fw-bold title--border">閲覧履歴</h2>
+        <h2 class="fw-bold title--border">注目されている商品</h2>
         <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3">
             @foreach ($viewItems as $viewItem)
                 <div class="col">
                     <div class="card shadow-sm hover-effect">
                         <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                            src="{{ asset('storage/images/' . $viewItem->images[$viewItem->thumbnail]->img_path) }}" alt="サムネイル"
-                            style="width: 100%; height: 220px;"
+                            src="{{ asset('storage/images/' . $viewItem->images[$viewItem->thumbnail]->img_path) }}"
+                            alt="サムネイル" style="width: 100%; height: 220px;"
                             onclick="window.location='{{ route('items.show', $viewItem->id) }}'">
                         <div class="card-body" style="height: 150px;">
                             <h4 class="text-gray-900 title-font text-lg font-medium text-truncate"
-                                onclick="window.location='{{ route('items.show', $viewItem->id) }}'">{{ $viewItem->item_name }}</h4>
+                                onclick="window.location='{{ route('items.show', $viewItem->id) }}'">
+                                {{ $viewItem->item_name }}</h4>
                             <p class="card-text text-truncate">{{ $viewItem->message }}
                             </p>
                             <div class="d-flex justify-content-between align-items-center">
@@ -79,7 +79,6 @@
                                     @if ($viewItem->tax_regular_prices === $viewItem->tax_sales_prices)
                                         <p>{{ number_format($viewItem->tax_sales_prices) }}円（税込）送料無料</p>
                                     @else
-                                        {{-- 割引中の表示 --}}
                                         <p class="h5" style="margin: 0; line-height: 1.2;">
                                             <del>{{ number_format($viewItem->tax_regular_prices) }}円</del>
                                             <span class="badge bg-danger ms-2"
@@ -97,9 +96,6 @@
                 </div>
             @endforeach
         </div>
-
-
-
         <div class="d-flex justify-content-center my-2">
             {{ $items->links('pagination::default') }}
         </div>

@@ -54,12 +54,10 @@ class ItemController extends Controller
             ->get();
 
         $user = $request->user();
-        // if (auth()->user()) {
             ItemsView::create([
                 'item_id' => $item->id,
                 'user_id' => $user?->id
             ]);
-        // }
 
         return view('items.show', compact('item', 'randomItems'));
     }
