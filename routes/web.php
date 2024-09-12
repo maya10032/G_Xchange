@@ -13,11 +13,11 @@ Auth::routes();
 // ユーザ・会員
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
-Route::get('items', function () {
+Route::get('items/{item}/show', function () {
     $users = DB::table('users')->get();
     return $users;
 });
-Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
+// Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
 Route::get('/search',     [ItemController::class, 'search'])->name('items.search');
 // お問い合わせページ
 Route::get('/contact',          [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
