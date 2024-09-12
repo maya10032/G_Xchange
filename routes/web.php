@@ -34,6 +34,8 @@ Route::get('/company/law', [App\Http\Controllers\CompanyController::class, 'law'
 
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
+    Route::get('payment',  [App\Http\Controllers\PaymentController::class, 'index'])->name('payment');
+    Route::post('payment', [App\Http\Controllers\PaymentController::class, 'payment']);
     // 購入内容確認画面表示
     Route::get('/purchase/{item}',  [App\Http\Controllers\ItemController::class, 'purchase'])->name('items.purchase');
     // 購入確認画面へのPOSTリクエストで数量引き継ぎ
