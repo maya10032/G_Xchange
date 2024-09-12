@@ -80,23 +80,16 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </tr>
-                <tr>
-                    <th></th>
-                    <th>
-                        <div id="preview"></div>
-                    </th>
-                </tr>
-                <tr>
-                    <td>現在の商品画像</td>
-                    <td style="min-height:20vh"
-                        class="flex md:flex-nowrap flex-wrap justify-center items-center md:justify-start">
-                        <div class="image-preview">
-                            @foreach ($item->images as $image)
-                                <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="{{ $item->item_name }}"
-                                    style="width: 100px; height: 100px; margin-right: 10px;">
-                            @endforeach
-                        </div>
-                    </td>
+                <td>現在の商品画像</td>
+                <td style="min-height:20vh"
+                    class="flex md:flex-nowrap flex-wrap justify-center items-center md:justify-start">
+                    <div class="image-preview">
+                        @foreach ($item->images as $image)
+                            <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="{{ $item->item_name }}"
+                                style="width: 100px; height: 100px; margin-right: 10px;">
+                        @endforeach
+                    </div>
+                </td>
                 </tr>
                 <tr>
                     <td>現在のサムネイル</td>
@@ -107,6 +100,13 @@
                         @endif
                     </td>
                 </tr>
+                <tr>
+                    <td>選択中の画像</td>
+                    <td>
+                        <div id="preview"></div>
+                    </td>
+                </tr>
+                <tr>
                 <tr>
                     <td>商品画像（最大４枚）</td>
                     <td style="min-height:20vh"

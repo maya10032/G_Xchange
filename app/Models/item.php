@@ -63,4 +63,9 @@ class Item extends Model
         return round($this->regular_price * (1 + $taxRate));
         // $item->tax_regular_pricesでとれるようになる
     }
+
+    public function items_views()
+    {
+        return $this->hasMany(ItemsView::class);
+    }
 }

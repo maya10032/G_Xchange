@@ -47,13 +47,6 @@ class ProfileController extends Controller
             return back();
             return redirect()->back()->with('say', '現在のパスワードが間違っています。');
         }
-
-        // if ($admin->isDirty('name')) {
-        //     $admin->name_verified_at = null;
-        // } elseif ($admin->isDirty('email')) {
-        //     $admin->email_verified_at = null;
-        // }
-
         $admin->save();
         $request->session()->flash('update', '保存しました');
         return Redirect::route('admin.profile.show')->with('status', 'profile-updated');

@@ -37,8 +37,8 @@
 
         .box {
             width: 100%;
-            height: 2000px;
-            /* background: linear-gradient(90deg, rgba(168, 202, 240, 1), rgba(233, 240, 250, 1)); */
+            height: 2300px;
+            background: linear-gradient(200deg, #EEEEEE 50%, #777777 100%);
             position: absolute;
             top: 0;
             left: 0;
@@ -233,30 +233,30 @@
                                     <small>My Page</small>
                                 </a>
                             </li>
-
-                        </ul>
-                    </div>
+                            <ul class="user-aicon me-auto header-nav-custom cactus-classical-serif-regular" style="align-items: center; padding-left: 5px;;">
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('ja.Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        @endguest
+                    </ul>
                 </div>
-                <ul class="user-aicon me-auto header-nav-custom cactus-classical-serif-regular">
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            {{ Auth::user()->name }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                {{ __('ja.Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            @endguest
+            </div>
         </nav>
         <div id="myCarousel" class="carousel slide mb-1 py-1" data-bs-ride="carousel" data-bs-theme="light"
             style="height: 280px;">
@@ -380,6 +380,10 @@
         </div>
 
         <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
+            <div id="navBackToTop">
+                <a href="#top" class="navFooterBackToTopText text-light hover-effect"
+                    style="text-decoration: none;">トップへ戻る</a>
+            </div>
             <div class="container" style="width: 1200px;">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex text-body-secondary mb-">
@@ -404,7 +408,8 @@
                     </div>
                     <div class="d-flex text-body-secondary mb-2">
                         <div class="me-1 text-white text-center py-3">
-                            <a href="{{ url('/company/transaction') }}" class="text-white hover-effect">特定商取引法に基づく表示</a>
+                            <a href="{{ url('/company/transaction') }}"
+                                class="text-white hover-effect">特定商取引法に基づく表示</a>
                         </div>
                     </div>
                     <div class="d-flex text-body-secondary mb-2">

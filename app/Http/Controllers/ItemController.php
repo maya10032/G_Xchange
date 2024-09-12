@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\ItemsView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -27,7 +28,15 @@ class ItemController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate(20);
         // ->get();
-        return view('items.index', compact('items'));
+
+        $viewItems = Item::where('is_active', true)
+            ->with('images', 'category')
+            ->withCount('items_views')
+            ->orderBy('items_views_count', 'DESC')
+            ->take(5)
+            ->get();
+
+        return view('items.index', compact('items', 'viewItems'));
     }
 
     /**
@@ -35,7 +44,7 @@ class ItemController extends Controller
      *
      * @return void
      */
-    public function show(Item $item)
+    public function show(Item $item, Request $request)
     {
         // 同じカテゴリーの他の商品をランダムで4件取得、現在の商品は除外
         $randomItems = Item::where('category_id', $item->category_id)
@@ -43,6 +52,15 @@ class ItemController extends Controller
             ->inRandomOrder()
             ->take(4)
             ->get();
+
+        $user = $request->user();
+        // if (auth()->user()) {
+            ItemsView::create([
+                'item_id' => $item->id,
+                'user_id' => $user?->id
+            ]);
+        // }
+
         return view('items.show', compact('item', 'randomItems'));
     }
 
@@ -78,5 +96,34 @@ class ItemController extends Controller
         $count = $request->input('count'); // リクエストから数量を取得
         // ビューに $item と $count を渡す
         return view('items.purchase', compact('item', 'count'));
+    }
+
+    /**
+     * 検索機能
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $items = Item::where('item_name', 'LIKE', "%{$query}%")
+            ->paginate(10);
+        return view('items.index', compact('items', 'query'));
+    }
+
+
+    public function view(string $id, Request $request)
+    {
+        $itemview = Items::find($id);
+
+        $user = $request->user();
+
+        Items::create([
+            'item_id' => $id,
+            'user_id' => $user?->id
+        ]);
+
+        return view('items.index', compact('itemview'));
     }
 }

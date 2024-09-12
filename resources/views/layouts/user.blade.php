@@ -25,16 +25,28 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    <style>
+        .navbar {
+            position: relative;
+            z-index: 10;
+        }
+
+        .navbar-brand img {
+            max-height: 100%;
+            width: auto;
+            margin: 0;
+        }
+    </style>
+
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0; height: 83px;">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}"
+                <a class="navbar-brand fuwafuwa" href="{{ url('/') }}"
                     style="display: flex; align-items: center; padding: 0;">
-                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}"
-                        style="max-height: 50px; margin: 0;">
+                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -52,7 +64,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i> {{ __('contact') }}
-                                    <small>contact</small>
+                                    <small>Contact</small>
                                 </a>
                             </li>
                             @if (Route::has('login'))
@@ -84,8 +96,9 @@
                                     <small>Contact</small>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('carts.index') }}"><i class="fa fa-shopping-cart fa-lg"></i>
+                            <li class="nav-item success-list">
+                                <a class="nav-link success-icon" href="{{ route('carts.index') }}">
+                                    <i class="fa fa-shopping-cart fa-lg"></i>
                                     {{ __('cart') }}
                                     @if ($cartCount > 0)
                                         <span class="badge bg-danger rounded-pill"
@@ -97,11 +110,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('likes.index') }}"><i class="fa fa-heart"></i>
                                     {{ __('like') }}
-                                    @if ($likeCount > 0)
+                                    @if (isset($likeCount) && $likeCount > 0)
                                         <span class="badge bg-danger rounded-pill"
                                             style="vertical-align: top">{{ $likeCount }}</span>
                                     @endif
-                                    <small>Favorite</small>
+                                    <small>Favorites</small>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -110,30 +123,31 @@
                                     <small>My Page</small>
                                 </a>
                             </li>
-
-                        </ul>
-                    </div>
+                            <ul class="user-aicon me-auto header-nav-custom cactus-classical-serif-regular"
+                                style="align-items: center; padding-left: 5px;;">
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('ja.Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        @endguest
+                    </ul>
                 </div>
-                <ul class="user-aicon me-auto header-nav-custom cactus-classical-serif-regular">
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            {{ Auth::user()->name }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                {{ __('ja.Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            @endguest
+            </div>
         </nav>
 
         <nav class="py-1 container">
