@@ -18,6 +18,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'phone',
+        'address',
         'email',
         'password',
     ];
@@ -41,7 +43,48 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
     }
+
+    /**
+     * お気に入り
+     */
+    public function likeItems()
+    {
+        return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
+    }
+
+    public function isLike($item_id)
+    {
+        return $this->likeItems()->where('items.id', $item_id)->exists();
+    }
+
+    /**
+     * 購入履歴
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
+
+    /**
+     * カート
+     */
+    public function cartItems()
+    {
+        // withPivotメソッドを使って、countカラムを取得
+        return $this->belongsToMany(Item::class, 'carts')->withPivot('count')->withTimestamps();
+    }
+
+    public function isCart($item_id)
+    {
+        return $this->cartItems()->where('items.id', $item_id)->exists();
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
 }
