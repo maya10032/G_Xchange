@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
-Route::get('/test-db', function () {
+Route::get('/', function () {
     $users = DB::table('users')->get();
     return $users;
 });
