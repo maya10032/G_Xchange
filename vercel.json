@@ -1,7 +1,4 @@
 {
-    "regions": [
-        "hnd1"
-    ],
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.6.2"
@@ -11,15 +8,6 @@
         {
             "src": "/(.*)",
             "dest": "api/index.php"
-        }
-    ],
-    "builds": [
-        {
-            "src": "public/**/*",
-            "use": "@vercel/static",
-            "config": {
-                "distDir": "public"
-            }
         }
     ],
     "env": {
