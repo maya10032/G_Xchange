@@ -12,17 +12,14 @@ Auth::routes();
 // ユーザ・会員
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
-// Route::get('/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
 Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
 Route::get('/search',     [ItemController::class, 'search'])->name('items.search');
-// Route::get('/items/show/{item}', [App\Http\Controllers\ItemController::class, 'show'])->name('items.show');
-const CONTACT_PATH = App\Http\Controllers\ContactsController::class;
 // お問い合わせページ
-Route::get('/contact',          [CONTACT_PATH, 'show'])->name('contact.show');
-Route::post('/contact',         [CONTACT_PATH, 'post'])->name('contact.post');
-Route::get('/contact/confirm',  [CONTACT_PATH, 'confirm'])->name('contact.confirm');
-Route::post('/contact/confirm', [CONTACT_PATH, 'send'])->name('contact.send');
-Route::get('/contact/done',     [CONTACT_PATH, 'done'])->name('contact.done');
+Route::get('/contact',          [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
+Route::post('/contact',         [App\Http\Controllers\ContactsController::class, 'post'])->name('contact.post');
+Route::get('/contact/confirm',  [App\Http\Controllers\ContactsController::class, 'confirm'])->name('contact.confirm');
+Route::post('/contact/confirm', [App\Http\Controllers\ContactsController::class, 'send'])->name('contact.send');
+Route::get('/contact/done',     [App\Http\Controllers\ContactsController::class, 'done'])->name('contact.done');
 //フッター
 Route::get('/company/companyprofile', [App\Http\Controllers\CompanyController::class, 'profile'])->name('company.profile');
 Route::get('/company/recruit', [App\Http\Controllers\CompanyController::class, 'recruit'])->name('company.recruit');
@@ -73,24 +70,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('register', [RegisterController::class, 'register']);
 });
 
-const ADMIN_ITEM_PATH = App\Http\Controllers\Admin\ItemController::class;
-
 // 管理者ログイン画面
 Route::get('/admin', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login']);
 // 管理者ログイン後のみアクセス可
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
     // 管理者側（商品一覧）
-    Route::get('items',             [ADMIN_ITEM_PATH, 'index'])->name('items.index');
-    Route::post('items',            [ADMIN_ITEM_PATH, 'store'])->name('items.store');
-    Route::get('items/create',      [ADMIN_ITEM_PATH, 'create'])->name('items.create');
-    Route::post('items/create',     [ADMIN_ITEM_PATH, 'post'])->name('items.post');
-    Route::get('items/confirm',     [ADMIN_ITEM_PATH, 'confirm'])->name('items.confirm');
-    Route::post('items/store',      [ADMIN_ITEM_PATH, 'store'])->name('items.store');
-    Route::get('items/{item}/show', [ADMIN_ITEM_PATH, 'show'])->name('items.show');
-    Route::get('items/{item}/edit', [ADMIN_ITEM_PATH, 'edit'])->name('items.edit');
-    Route::put('items/{id}',        [ADMIN_ITEM_PATH, 'update'])->name('items.update');
-    Route::delete('/items/{item}',  [ADMIN_ITEM_PATH, 'destroy'])->name('items.destroy');
-    Route::get('/items/search',     [ADMIN_ITEM_PATH, 'search'])->name('items.search');
+    Route::get('items',             [App\Http\Controllers\Admin\Auth\LoginController::class, 'index'])->name('items.index');
+    Route::post('items',            [App\Http\Controllers\Admin\Auth\LoginController::class, 'store'])->name('items.store');
+    Route::get('items/create',      [App\Http\Controllers\Admin\Auth\LoginController::class, 'create'])->name('items.create');
+    Route::post('items/create',     [App\Http\Controllers\Admin\Auth\LoginController::class, 'post'])->name('items.post');
+    Route::get('items/confirm',     [App\Http\Controllers\Admin\Auth\LoginController::class, 'confirm'])->name('items.confirm');
+    Route::post('items/store',      [App\Http\Controllers\Admin\Auth\LoginController::class, 'store'])->name('items.store');
+    Route::get('items/{item}/show', [App\Http\Controllers\Admin\Auth\LoginController::class, 'show'])->name('items.show');
+    Route::get('items/{item}/edit', [App\Http\Controllers\Admin\Auth\LoginController::class, 'edit'])->name('items.edit');
+    Route::put('items/{id}',        [App\Http\Controllers\Admin\Auth\LoginController::class, 'update'])->name('items.update');
+    Route::delete('/items/{item}',  [App\Http\Controllers\Admin\Auth\LoginController::class, 'destroy'])->name('items.destroy');
+    Route::get('/items/search',     [App\Http\Controllers\Admin\Auth\LoginController::class, 'search'])->name('items.search');
     // カテゴリー
     Route::get('/categories',          [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
     Route::get('/categories',          [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
@@ -119,4 +114,3 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::patch('/profile/show', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile',     [App\Http\Controllers\Admin\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
