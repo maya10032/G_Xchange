@@ -5,9 +5,9 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.0",
         "kyslik/column-sortable": "^6.6",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
         "payjp/payjp-php": "*"
