@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
+Route::get('/test-db', function () {
+    $users = DB::table('users')->get();
+    return $users;
+});
+
 // ユーザ・会員
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
