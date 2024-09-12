@@ -13,7 +13,7 @@ Auth::routes();
 // ユーザ・会員
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
-Route::get('items/{item}/show', function () {
+Route::get('/', function () {
     $users = DB::table('users')->get();
     return $users;
 });
