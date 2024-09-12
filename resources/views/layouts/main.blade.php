@@ -37,7 +37,7 @@
 
         .box {
             width: 100%;
-            height: 2000px;
+            height: 2300px;
             background: linear-gradient(200deg, #EEEEEE 50%, #777777 100%);
             position: absolute;
             top: 0;
