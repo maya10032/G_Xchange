@@ -22,7 +22,7 @@
                 <h3>検索結果: ”{{ $query }}”</h3>
             @endif
         @endif
-        <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3 mb-5">
+        <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3 mb-4">
             @foreach ($items as $item)
                 <div class="col">
                     <div class="card shadow-sm hover-effect">
@@ -96,7 +96,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="d-flex justify-content-center my-2">
+        <div class="d-flex justify-content-center" style="padding-top: 30px;">
             {{ $items->links('pagination::default') }}
         </div>
     </div>
