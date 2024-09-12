@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
-Route::get('/', function () {
-    $users = DB::table('users')->get();
-    return $users;
-});
 
 // ユーザ・会員
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
+Route::get('items', function () {
+    $users = DB::table('users')->get();
+    return $users;
+});
 Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
 Route::get('/search',     [ItemController::class, 'search'])->name('items.search');
 // お問い合わせページ
