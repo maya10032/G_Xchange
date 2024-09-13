@@ -7,7 +7,7 @@
         <img src="{{ asset('images/お問い合わせ完了.jpg') }}" class="bd-placeholder-img card-img-top " style="object-fit: cover;"
             width="100%" height="400px" alt="Sample Image">
         <div class="carousel-caption text-start" style="top: 60px;">
-            <h1><strong>お問い合わせありがとうございました。</strong></h1>
+            <h1><strong>お問い合わせありがとうございます。</strong></h1>
         </div>
     </div>
     <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
