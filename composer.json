@@ -10,7 +10,8 @@
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
-        "payjp/payjp-php": "*"
+        "payjp/payjp-php": "*",
+        "stripe/stripe-php": "^15.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",

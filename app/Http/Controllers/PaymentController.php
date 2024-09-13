@@ -6,15 +6,9 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function index()
+    public function create()
     {
-        return view('payment');
+        return view('payment.create');
     }
 
-    public function payment(Request $request)
-    {
-        // 試しにデバッグしてみる
-        dd($request->all());
-    }
-    
 }

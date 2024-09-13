@@ -46,6 +46,27 @@ class OrderController extends Controller
         return view('orders.show', compact('order', 'subtotal'));
     }
 
+    // public function create()
+    // {
+    //     return view('orders.create');
+    // }
+
+    // public function pay(StorePaymentRequest $request)
+    // {
+    //     \Stripe\Stripe::setApiKey(config('stripe.stripe_secret_key'));
+
+    //     try {
+    //         \Stripe\Charge::create([
+    //             'source' => $request->stripeToken,
+    //             'amount' => 1000,
+    //             'currency' => 'jpy',
+    //         ]);
+    //     } catch (Exception $e) {
+    //         return back()->with('flash_alert', '決済に失敗しました！('. $e->getMessage() . ')');
+    //     }
+    //     return redirect()->route('orders.store');
+    // }
+
     /**
      * 購入ボタン押下後、ordersテーブルに登録
      *

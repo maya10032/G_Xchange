@@ -131,45 +131,36 @@ class ItemController extends Controller
     /**
      * 商品情報・画像をテーブルに追加
      **/
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        // 商品情報を取得
-        $item = Item::findOrFail($id);
-        $validator = Validator::make($request->all(), $this->validator);
-        if ($validator->fails()) {
-            return redirect()->route('admin.items.edit', ['item' => $id])
-                ->withInput()
-                ->withErrors($validator);
+        // セッションから値を取り出す
+        $input = $request->session()->get("form_input");
+        //戻るボタンが押された時
+        if ($request->input('action') === 'back') {
+            return redirect()->route("admin.items.create")
+                ->withInput($input);
         }
-        // 商品情報の更新
-        $item->update($request->except(['files']));
-        // 画像の処理
-        if ($request->hasFile('files')) {
-            // 既存の画像を削除
-            foreach ($item->images as $image) {
-                Storage::delete('public/images/' . $image->img_path);
-                $image->delete();
-            }
-            // 新しい画像を保存
-            $filePaths = [];
-            foreach ($request->file('files') as $image) {
-                $imgName = date('YmdHis') . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('public/images', $imgName);
-                $filePaths[] = $imgName;
-            }
-            foreach ($filePaths as $filePath) {
-                $newImage = Image::create(['img_path' => $filePath]);
-                $item->images()->attach($newImage->id);
+        // 不正なアクセス
+        if (!$input) {
+            return redirect()->route("admin.items.create");
+        }
+        // items テーブルにアイテムを作成
+        $item = Item::create($input);
+        // 画像のファイルパスを使用して画像レコードを作成
+        if (isset($input['file_paths'])) {
+            foreach ($input['file_paths'] as $filePath) {
+                $image = Image::create(['img_path' => $filePath]);
+                $item->images()->attach($image->id);
             }
         }
-        // サムネイルの更新
-        if ($request->has('thumbnail')) {
-            $item->thumbnail = $request->input('thumbnail');
+        // サムネイルの設定
+        if (isset($input['thumbnail'])) {
+            $item->thumbnail = $input['thumbnail'];
             $item->save();
         }
-        $request->session()->flash('success', '商品が登録されました。');
-        // リダイレクト
-        return redirect()->route('admin.items.index');
+        // セッションをクリア
+        $request->session()->forget("form_input");
+        return redirect()->route('admin.items.index')->with('create', '新しい商品を登録しました。');
     }
 
     /**
@@ -180,7 +171,7 @@ class ItemController extends Controller
         $item = Item::findOrFail($id);
         $categories = Category::all();
         return view('admin.items.edit', [
-            'item' => $item,
+            'item'       => $item,
             'categories' => $categories
         ]);
     }
