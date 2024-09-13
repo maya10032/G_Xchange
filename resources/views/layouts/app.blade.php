@@ -43,7 +43,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
             <div class="container">
-                <a class="navbar-brand fuwafuwa" href="{{ url('/') }}"
+                <a class="navbar-brand fuwafuwa2" href="{{ url('/') }}"
                     style="display: flex; align-items: center; padding: 0;">
                     <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}">
                 </a>

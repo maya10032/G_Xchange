@@ -12,7 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->trustProxies(at: '*');
         $middleware->redirectGuestsTo(function(Request $request) {
             if (request()->routeIs('admin.*')) {
                 return $request->expectsJson() ? null : route('admin.login');

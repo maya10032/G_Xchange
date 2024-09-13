@@ -27,7 +27,6 @@ class ItemController extends Controller
             ->with('images', 'category')
             ->orderBy('created_at', 'DESC')
             ->paginate(20);
-        // ->get();
 
         $viewItems = Item::where('is_active', true)
             ->with('images', 'category')
@@ -54,10 +53,10 @@ class ItemController extends Controller
             ->get();
 
         $user = $request->user();
-            ItemsView::create([
-                'item_id' => $item->id,
-                'user_id' => $user?->id
-            ]);
+        ItemsView::create([
+            'item_id' => $item->id,
+            'user_id' => $user?->id
+        ]);
 
         return view('items.show', compact('item', 'randomItems'));
     }
@@ -107,7 +106,15 @@ class ItemController extends Controller
         $query = $request->input('search');
         $items = Item::where('item_name', 'LIKE', "%{$query}%")
             ->paginate(10);
-        return view('items.index', compact('items', 'query'));
+
+        $viewItems = Item::where('is_active', true)
+            ->with('images', 'category')
+            ->withCount('items_views')
+            ->orderBy('items_views_count', 'DESC')
+            ->take(5)
+            ->get();
+
+        return view('items.index', compact('items', 'query', 'viewItems'));
     }
 
 
