@@ -18,7 +18,6 @@ return new class extends Migration
             $table->bigInteger('item_id')->unsigned()->index();
             $table->timestamps();
 
-            //ユーザや書籍側で削除すると、このテーブルで紐付いたレコードも同期して削除される
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
 

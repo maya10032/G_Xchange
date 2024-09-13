@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('sales_price')->index();
             $table->integer('regular_price')->index();
             $table->text('message');
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

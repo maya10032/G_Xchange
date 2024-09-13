@@ -14,8 +14,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
 Route::get('/', function () {
-    $users = DB::table('users')->get();
-    return $users;
+    
 });
 // Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
 Route::get('/search',     [ItemController::class, 'search'])->name('items.search');
