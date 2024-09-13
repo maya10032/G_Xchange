@@ -25,8 +25,10 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <link href="http://g-xchange-ep0qln9hb-kawais-projects-0f8de189.vercel.app/css/app.css" rel="stylesheet">
-<link rel="stylesheet" href="http://g-xchange-ep0qln9hb-kawais-projects-0f8de189.vercel.app/build/assets/app-D-sv12UV.css">
-<script type="module" src="http://g-xchange-ep0qln9hb-kawais-projects-0f8de189.vercel.app/build/assets/app-CG1jIupM.js"></script>
+    <link rel="stylesheet"
+        href="http://g-xchange-ep0qln9hb-kawais-projects-0f8de189.vercel.app/build/assets/app-D-sv12UV.css">
+    <script type="module" src="http://g-xchange-ep0qln9hb-kawais-projects-0f8de189.vercel.app/build/assets/app-CG1jIupM.js">
+    </script>
 
     <style>
         .navbar {
