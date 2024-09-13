@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 Auth::routes();
 
 
-// ユーザ・会員
 Route::get('/', function () {
     return view('welcome');
 });
