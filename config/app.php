@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://g-xchange-qtse4w8vc-kawais-projects-0f8de189.vercel.app'),
 
     /*
     |--------------------------------------------------------------------------
