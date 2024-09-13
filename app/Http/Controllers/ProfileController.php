@@ -11,7 +11,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-    class ProfileController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
@@ -38,15 +38,31 @@ use Illuminate\Support\Facades\Hash;
             return redirect()->back()->with('say', '現在のパスワードが間違っています。');
         }
 
-        if ($request->user()->isDirty('name')) {
-            $request->user()->name_verified_at = null;
-        } elseif ($request->user()->isDirty('phone')) {
-            $request->user()->phone_verified_at = null;
-        } elseif ($request->user()->isDirty('address')) {
-            $request->user()->address_verified_at = null;
-        } elseif ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // if ($request->user()->isDirty('name')) {
+        //     $request->user()->name_verified_at = null;
+        // } elseif ($request->user()->isDirty('phone')) {
+        //     $request->user()->phone_verified_at = null;
+        // } elseif ($request->user()->isDirty('address')) {
+        //     $request->user()->address_verified_at = null;
+        // } elseif ($request->user()->isDirty('email')) {
+        //     $request->user()->email_verified_at = null;
+        // }
+
+        $validator = Validator::make($request->all(), [
+            'name'     => ['required', 'string', 'max:50'],
+            'phone'    => ['required', 'numeric', 'digits_between:10,11'],
+            'address'  => ['required', 'string', 'max:200'],
+            'email'    => ['required', 'string', 'email',],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
         }
+
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->email = $request->email;
 
         $request->user()->save();
         $request->session()->flash('update', '保存しました');
@@ -78,7 +94,7 @@ use Illuminate\Support\Facades\Hash;
     {
         return Validator::make($data, [
             'name'     => ['required', 'string', 'max:50'],
-            'phone'    => ['required', 'integer', 'min:11'],
+            'phone'    => ['required', 'numeric', 'digits_between:10,11'],
             'address'  => ['required', 'string', 'max:200'],
             'email'    => ['required', 'string', 'email', 'max:50', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
