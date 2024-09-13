@@ -19,11 +19,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet"
-        href="https://g-xchange-qoj34f6ax-kawais-projects-0f8de189.vercel.app/build/assets/app-CG1jIupM.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Scripts -->
-    <script src="https://g-xchange-qoj34f6ax-kawais-projects-0f8de189.vercel.app/build/assets/app-CG1jIupM.js"></script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
         .navbar {
@@ -46,8 +45,7 @@
             <div class="container">
                 <a class="navbar-brand fuwafuwa2" href="{{ url('/') }}"
                     style="display: flex; align-items: center; padding: 0;">
-                    <img src="https://g-xchange-qoj34f6ax-kawais-projects-0f8de189.vercel.app/images/logo2.png"
-                        alt="Logo">
+                    <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -124,8 +122,7 @@
                                     <small>My Page</small>
                                 </a>
                             </li>
-                            <ul class="user-aicon me-auto header-nav-custom cactus-classical-serif-regular"
-                                style="align-items: center; padding-left: 5px;;">
+                            <ul class="user-aicon me-auto header-nav-custom cactus-classical-serif-regular" style="align-items: center; padding-left: 5px;;">
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
