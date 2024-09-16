@@ -8,12 +8,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 Auth::routes();
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // ユーザ・会員
-// Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
+Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
 // Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
 Route::get('/search',     [ItemController::class, 'search'])->name('items.search');
@@ -35,9 +32,9 @@ Route::get('/company/law', [App\Http\Controllers\CompanyController::class, 'law'
 // ユーザログイン後のみアクセス可
 Route::middleware('auth')->group(function () {
     // 購入内容確認画面表示
-    Route::get('/purchase/{item}',  [App\Http\Controllers\ItemController::class, 'purchase'])->name('items.purchase');
+    // Route::get('/purchase/{item}',  [App\Http\Controllers\ItemController::class, 'purchase'])->name('items.purchase');
     // 購入確認画面へのPOSTリクエストで数量引き継ぎ
-    Route::post('/purchase/{item}', [App\Http\Controllers\ItemController::class, 'purchaseConfirm'])->name('items.purchaseConfirm');
+    // Route::post('/purchase/{item}', [App\Http\Controllers\ItemController::class, 'purchaseConfirm'])->name('items.purchaseConfirm');
     // 注文
     // Route::post('/orders/create',   [App\Http\Controllers\OrderController::class, 'create'])->name('orders.create');
     Route::post('/orders',         [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
@@ -49,7 +46,7 @@ Route::middleware('auth')->group(function () {
     // カートに追加
     Route::post('/purchase/{item}', [App\Http\Controllers\CartController::class, 'store'])->name('purchase.store');
     Route::get('/carts',            [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
-    Route::post('/orders',          [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
+    Route::post('/carts',           [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
     Route::delete('/carts/{id}',    [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
     // 購入履歴表示（マイページ）
     Route::get('/orders',           [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');

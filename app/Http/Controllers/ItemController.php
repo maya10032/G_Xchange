@@ -71,29 +71,29 @@ class ItemController extends Controller
         return view('create');
     }
 
-    /**
-     * 購入確認画面の表示
-     */
-    public function purchase(Item $item)
-    {
-        // 購入内容確認画面を表示する処理
-        return view('items.purchase', compact('item', 'randomItems'));
-    }
+    // /**
+    //  * 購入確認画面の表示
+    //  */
+    // public function purchase(Item $item)
+    // {
+    //     // 購入内容確認画面を表示する処理
+    //     return view('items.purchase', compact('item', 'randomItems'));
+    // }
 
-    /**
-     * 購入数を引き継ぎ、確認画面を表示
-     *
-     * @param Request $request
-     * @param Item $item
-     * @return void
-     */
-    public function purchaseConfirm(Request $request, Item $item)
-    {
-        // リクエストから 'count' の値を取得
-        $count = $request->input('count'); // リクエストから数量を取得
-        // ビューに $item と $count を渡す
-        return view('items.purchase', compact('item', 'count'));
-    }
+    // /**
+    //  * 購入数を引き継ぎ、確認画面を表示
+    //  *
+    //  * @param Request $request
+    //  * @param Item $item
+    //  * @return void
+    //  */
+    // public function purchaseConfirm(Request $request, Item $item)
+    // {
+    //     // リクエストから 'count' の値を取得
+    //     $count = $request->input('count'); // リクエストから数量を取得
+    //     // ビューに $item と $count を渡す
+    //     return view('items.purchase', compact('item', 'count'));
+    // }
 
     /**
      * 検索機能

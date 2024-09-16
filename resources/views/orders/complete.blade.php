@@ -16,5 +16,4 @@
             <a href="{{ url('/') }}" style="color: inherit; text-decoration: none;">商品一覧へ戻る</a>
         </button>
     </div>
-    </div>
 @endsection

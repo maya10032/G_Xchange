@@ -17,6 +17,15 @@
                 {{ session('cartadd') }}
             </div>
         @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="d-flex">
             <div class="d-flex flex-column me-2 mb-0 reduce-margin" style="flex: 1.1;">
                 {{-- サムネイルとその他の画像を横並びにするためにd-flexを使用 --}}
@@ -46,7 +55,7 @@
                         {{ $item->category->category_name }}</small></p>
                 <h3 class="mb-3" style="font-size: 1.75rem; word-break: break-word;">{{ $item->item_name }}</h3>
                 @if ($item->regular_price === $item->sales_price)
-                    <p class="mb-3">{{ number_format($salesPriceWithTax) }}円（税込）送料無料</p>
+                    <p class="mb-3">{{ number_format($item->tax_sales_prices) }}円（税込）送料無料</p>
                 @else
                     <strike class="d-block mb-3" style="font-size: 1.5rem;">{{ number_format($item->tax_regular_prices) }}円
                         <span class="badge bg-danger ms-2" style="position: relative; top: -5px;">SALE</span>
@@ -60,24 +69,33 @@
                     </div>
                 @else
                     @if ($item->is_active)
-                        <form action="{{ url('/purchase', $item->id) }}" method="POST" novalidate>
+                        <form action="{{ route('carts.store') }}" method="POST" novalidate>
                             @csrf
                             <div class="mb-3" style="font-size: 1.25rem;">
-                                数量：<input type="number" name="count" min="1" max="{{ $item->count_limit }}"
-                                    value="{{ old('count', 1) }}">
-                                <small>　（一度に購入できるのは{{ $item->count_limit }}個までです。）</small>
+                                数量：
+                                <input type="number" id="item-quantity" name="count" min="1"
+                                    max="{{ $item->count_limit }}" value="{{ old('count', 1) }}" required>
+                                <small> （一度に購入できるのは{{ $item->count_limit }}個までです。）</small>
                                 @foreach ($errors->all() as $error)
                                     <p class="h4 text-danger fw-bold m-3">※{{ $error }}</p>
                                 @endforeach
                             </div>
                             <div class="d-grid gap-1 col-6 align-items-center">
-                                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                <input type="hidden" name="item_id" value="{{ $item->id }}" required>
                                 <button type="submit" name="action" value="cart" class="btn btn-secondary mb-2"
                                     style="font-size: 1.25rem;">カートに追加</button>
-                                <button type="submit" name="action" value="purchase" class="btn btn-danger mb-2"
-                                    style="font-size: 1.25rem;">購入ページへ</button>
+                            </div>
+                            <div class="d-grid gap-1 col-6 align-items-center">
+                                <button type="button" class="btn btn-danger open-payment-modal" style="font-size: 1.25rem;"
+                                    data-item-id="{{ $item->id }}" data-item-name="{{ $item->item_name }}"
+                                    data-item-thumbnail="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}"
+                                    data-item-quantity="{{ old('count', 1) }}"
+                                    data-item-price="{{ $item->tax_sales_prices }}">
+                                    購入する
+                                </button>
                             </div>
                         </form>
+
                         @if (Auth::user()->isLike($item->id))
                             <form action="{{ route('likes.destroy') }}" method="post" class="mt-2">
                                 @csrf
@@ -148,6 +166,58 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </div>
+    {{-- モーダル --}}
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">カード情報入力</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5><span class="text-danger fw-bold">※内容をご確認の上、支払うボタンを押してください。</span></h5>
+                    <div>
+                        <img id="modal-item-thumbnail" src="" alt="サムネイル" class="img-fluid"
+                            style="width: 200px; height: 200px;">
+                    </div>
+                    <p class="mb-0">商品名: <span id="modal-item-name"></span></p>
+                    <p class="mb-0">数量: <span id="modal-item-quantity"></span></p>
+                    <p class="mb-0">小計: <span id="modal-item-price"></span></p>
+                    <p class="mb-0">手数料: ￥0</p>
+                    <p class="mb-0">送料: ￥0</p>
+                    <p class="mb-3 text-danger fw-bold">合計: <span id="modal-item-total"></span></p>
+                    <form id="card-form" action="{{ route('orders.store') }}" method="POST">
+                        @csrf
+                        {{-- カード情報を入力するフォーム --}}
+                        <div class="card-row justify-content-center" style="margin-left: 0">
+                            <span class="visa"></span>
+                            <span class="mastercard"></span>
+                            <span class="amex"></span>
+                            <span class="discover"></span>
+                        </div>
+                        <div id="card-errors" class="text-danger" role="alert"></div>
+                        <div>
+                            <label for="card_number"><i class="fa fa-id-card-o"></i> カード番号</label>
+                            <div id="card-number" class="form-control mb-2"></div>
+                        </div>
+                        <div>
+                            <label for="card_expiry"><i class="fa fa-calendar-check-o"></i> 有効期限</label>
+                            <div id="card-expiry" class="form-control mb-2"></div>
+                        </div>
+                        <div>
+                            <label for="card_cvc"><i class="fa fa-lock"></i> セキュリティコード</label>
+                            <div id="card-cvc" class="form-control mb-3"></div>
+                        </div>
+                        <input type="hidden" id="modal-item-id" name="item_id">
+                        <input type="hidden" id="modal-item-count" name="count">
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">支払う</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

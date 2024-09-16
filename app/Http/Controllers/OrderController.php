@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Item;
+use App\Models\Order;
+use App\Models\Cart;
+use Stripe\Stripe;
+use Stripe\Charge;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -46,26 +49,6 @@ class OrderController extends Controller
         return view('orders.show', compact('order', 'subtotal'));
     }
 
-    // public function create()
-    // {
-    //     return view('orders.create');
-    // }
-
-    // public function pay(StorePaymentRequest $request)
-    // {
-    //     \Stripe\Stripe::setApiKey(config('stripe.stripe_secret_key'));
-
-    //     try {
-    //         \Stripe\Charge::create([
-    //             'source' => $request->stripeToken,
-    //             'amount' => 1000,
-    //             'currency' => 'jpy',
-    //         ]);
-    //     } catch (Exception $e) {
-    //         return back()->with('flash_alert', '決済に失敗しました！('. $e->getMessage() . ')');
-    //     }
-    //     return redirect()->route('orders.store');
-    // }
 
     /**
      * 購入ボタン押下後、ordersテーブルに登録
@@ -75,39 +58,55 @@ class OrderController extends Controller
      */
     public function store(Request $request, Item $item)
     {
-        $action = $request->input('action');
-        if ($action === 'allbuy') {
-            $user = Auth::user();
-            $cartItems = $user->cartItems;
-            foreach ($cartItems as $cartItem) {
-                Order::create([
-                    'user_id' => $user->id,
-                    'item_id' => $cartItem->id,
-                    'count'   => $cartItem->pivot->count, // カートの数量を使用（中間テーブルのフィールドにアクセス）
-                ]);
-            }
+        // バリデーションを追加
+        $request->validate([
+            'item_id' => 'required|exists:items,id',
+            'count'   => 'required|integer|min:1',
+            'stripeToken' => 'required',
+        ]);
 
-            // カートを空にする
-            $user->cartItems()->detach();
+        // 商品情報の取得
+        $item = Item::find($request->item_id);
+        $quantity = $request->count;
+        $totalPrice = $request->count * $item->tax_sales_prices;
 
-            // 注文完了画面にリダイレクト
-            return redirect()->route('orders.complete');
-        } else {
-            // バリデーションを追加
-            $request->validate([
-                'item_id' => 'required|exists:items,id',
-                'count'   => 'required|integer|min:1',
+        // if ($totalPrice < 1) {
+        //     return back()->withErrors('金額が不正です。');
+        // }
+
+        try {
+            // StripeのAPIキーを設定
+            \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+
+            $charge = \Stripe\Charge::create([
+                'amount' => $totalPrice,
+                'currency' => 'jpy',
+                'description' => $item->item_name,
+                'source' => $request->stripeToken,
+                'metadata' => [
+                    'item_id' => $item->id,
+                    'count' => $request->count,
+                    'user_id' => auth()->id(),
+                ],
             ]);
 
+            // 注文を作成
             $order = new Order;
-            $order->user_id = Auth::id();
+            $order->user_id = auth()->id();
             $order->item_id = $request->item_id;
-            $order->count   = $request->count;
+            $order->count = $request->count;
             $order->save();
+
             // 注文完了画面にリダイレクト
             return redirect()->route('orders.complete');
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            return back()->withErrors(['message' => '決済エラー: ' . $e->getMessage()]);
+        } catch (\Exception $e) {
+            return back()->withErrors(['message' => 'エラーが発生しました: ' . $e->getMessage()]);
         }
     }
+
+
 
     /**
      * 注文完了画面を表示

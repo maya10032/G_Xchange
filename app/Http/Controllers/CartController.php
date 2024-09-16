@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    // protected $taxRate = 0.1; // プロパティとして税率を定義
-
     public function index()
     {
         //cartsテーブルのデータ取得
@@ -31,14 +29,14 @@ class CartController extends Controller
     }
 
     /**
-     * 同じ
+     * カートに商品追加
      */
     public function store(Request $request, Item $item)
     {
         // バリデーション
         $request->validate([
             'item_id' => 'required|exists:items,id',
-            'count'   => 'required|integer|min:1|max:' . $item->count_limit,
+            'count'   => 'required|integer|min:1',
         ]);
 
         $action = $request->input('action');
