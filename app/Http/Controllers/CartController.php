@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Cart;
+use App\Models\Order;
+use Stripe\Stripe;
+use Stripe\Charge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,10 +25,10 @@ class CartController extends Controller
             $cart->subtotal = $cart->item->tax_sales_prices * $cart->count;
             return $carry + $cart->subtotal;
         }, 0);
-
+        $user = auth()->user();
         $total_count = $carts->sum('count');
 
-        return view('carts.index', compact('carts', 'total', 'total_count'));
+        return view('carts.index', compact('carts', 'total', 'total_count', 'user'));
     }
 
     /**
@@ -93,4 +96,43 @@ class CartController extends Controller
         }
     }
 
+    public function checkout(Request $request)
+    {
+        // カート内の商品情報を取得
+        $items = $request->input('items');
+
+        // 合計金額の計算
+        $totalAmount = collect($items)->map(function ($item) {
+            $itemModel = Item::find($item['item_id']);
+            return $itemModel ? $itemModel->tax_sales_prices * $item['count'] : 0;
+        })->sum();
+
+        try {
+            \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+
+            $charge = \Stripe\Charge::create([
+                'amount' => $totalAmount,
+                'currency' => 'jpy',
+                'source' => $request->input('stripeToken'),
+                'description' => 'カート内の商品',
+            ]);
+
+            // 注文を作成
+            foreach ($items as $item) {
+                $order = new Order;
+                $order->user_id = auth()->id();
+                $order->item_id = $item['item_id'];
+                $order->count = $item['count'];
+                $order->save();
+            }
+
+            // カートを空にする
+            Cart::where('user_id', auth()->id())->delete();
+
+            return redirect()->route('orders.complete')->with('success', '決済が完了しました。');
+        } catch (\Exception $e) {
+            \Log::error('Stripe Error: ' . $e->getMessage());
+            return redirect()->route('carts.index')->with('error', '決済処理に失敗しました。');
+        }
+    }
 }

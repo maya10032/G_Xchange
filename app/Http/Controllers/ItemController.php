@@ -58,7 +58,7 @@ class ItemController extends Controller
             'user_id' => $user?->id
         ]);
 
-        return view('items.show', compact('item', 'randomItems'));
+        return view('items.show', compact('item', 'randomItems', 'user'));
     }
 
     /**

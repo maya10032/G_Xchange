@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/purchase/{item}', [App\Http\Controllers\CartController::class, 'store'])->name('purchase.store');
     Route::get('/carts',            [App\Http\Controllers\CartController::class, 'index'])->name('carts.index');
     Route::post('/carts',           [App\Http\Controllers\CartController::class, 'store'])->name('carts.store');
+    Route::post('/carts/checkout',  [App\Http\Controllers\CartController::class, 'checkout'])->name('carts.checkout');
     Route::delete('/carts/{id}',    [App\Http\Controllers\CartController::class, 'destroy'])->name('carts.destroy');
     // 購入履歴表示（マイページ）
     Route::get('/orders',           [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');

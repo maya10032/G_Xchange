@@ -7,7 +7,8 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import './image';
-import './Stripe';
+// import './Stripe';
+// import './checkout';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin

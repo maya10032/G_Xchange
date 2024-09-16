@@ -26,7 +26,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
-        .navbar {
+                .navbar {
             position: relative;
             z-index: 10;
         }
@@ -37,7 +37,9 @@
             margin: 0;
         }
     </style>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -174,9 +176,8 @@
                 </li>
             </ul>
         </nav>
-        <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
+        <main>
             @yield('content')
-
         </main>
     </div>
 
