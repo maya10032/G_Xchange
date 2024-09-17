@@ -14,6 +14,7 @@ Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
 // Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
 Route::get('/search',     [ItemController::class, 'search'])->name('items.search');
+Route::get('/category/{id}', [App\Http\Controllers\ItemController::class, 'filterCategory'])->name('items.filterCategory');
 // お問い合わせページ
 Route::get('/contact',          [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
 Route::post('/contact',         [App\Http\Controllers\ContactsController::class, 'post'])->name('contact.post');
@@ -75,17 +76,18 @@ Route::get('/admin', [App\Http\Controllers\Admin\Auth\LoginController::class, 'l
 // 管理者ログイン後のみアクセス可
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
     // 管理者側（商品一覧）
-    Route::get('items',             [App\Http\Controllers\Admin\ItemController::class, 'index'])->name('items.index');
-    Route::post('items',            [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('items.store');
-    Route::get('items/create',      [App\Http\Controllers\Admin\ItemController::class, 'create'])->name('items.create');
-    Route::post('items/create',     [App\Http\Controllers\Admin\ItemController::class, 'post'])->name('items.post');
-    Route::get('items/confirm',     [App\Http\Controllers\Admin\ItemController::class, 'confirm'])->name('items.confirm');
-    Route::post('items/store',      [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('items.store');
-    Route::get('items/{item}/show', [App\Http\Controllers\Admin\ItemController::class, 'show'])->name('items.show');
-    Route::get('items/{item}/edit', [App\Http\Controllers\Admin\ItemController::class, 'edit'])->name('items.edit');
-    Route::put('items/{id}',        [App\Http\Controllers\Admin\ItemController::class, 'update'])->name('items.update');
-    Route::delete('/items/{item}',  [App\Http\Controllers\Admin\ItemController::class, 'destroy'])->name('items.destroy');
-    Route::get('/items/search',     [App\Http\Controllers\Admin\ItemController::class, 'search'])->name('items.search');
+    Route::get('items',                [App\Http\Controllers\Admin\ItemController::class, 'index'])->name('items.index');
+    Route::post('items',               [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('items.store');
+    Route::get('items/create',         [App\Http\Controllers\Admin\ItemController::class, 'create'])->name('items.create');
+    Route::post('items/create',        [App\Http\Controllers\Admin\ItemController::class, 'post'])->name('items.post');
+    Route::get('items/confirm',        [App\Http\Controllers\Admin\ItemController::class, 'confirm'])->name('items.confirm');
+    Route::post('items/store',         [App\Http\Controllers\Admin\ItemController::class, 'store'])->name('items.store');
+    Route::get('items/{item}/show',    [App\Http\Controllers\Admin\ItemController::class, 'show'])->name('items.show');
+    Route::get('items/{item}/edit',    [App\Http\Controllers\Admin\ItemController::class, 'edit'])->name('items.edit');
+    Route::put('items/{id}',           [App\Http\Controllers\Admin\ItemController::class, 'update'])->name('items.update');
+    Route::delete('/items/{item}',     [App\Http\Controllers\Admin\ItemController::class, 'destroy'])->name('items.destroy');
+    Route::get('/items/search',        [App\Http\Controllers\Admin\ItemController::class, 'search'])->name('items.search');
+
     // カテゴリー
     Route::get('/categories',          [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
     Route::get('/categories',          [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');

@@ -3,6 +3,33 @@
 @section('title', '商品一覧')
 
 @section('content')
+    <nav class="subheader navbar navbar-expand-md shadow-sm" style="padding: 0;">
+        <div class="container">
+            <div class="collapse navbar-collapse cactus-classical-serif-regular" id="">
+                <ul class="navbar-nav d-flex align-items-center w-100">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link"
+                            href="{{ url('/') }}">すべて</a>
+                    </li>
+                    @foreach ($categories as $category)
+                        <li class="nav-item mx-2">
+                            <a class="nav-link"
+                                href="{{ route('items.filterCategory', $category->id) }}">{{ $category->category_name }}</a>
+                        </li>
+                    @endforeach
+                    <li class="d-flex flex-grow-1">
+                        <form class="d-flex w-100" role="search" method="GET" action="{{ route('items.search') }}"
+                            style="max-width: 700px;">
+                            <input class="form-control border-light" type="search" name="search"
+                                placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search" value="{{ old('search', $query ?? '') }}">
+                            <button class="btn btn-danger" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+                                {{ __('search') }}</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="wrapper">
         <div class="box">
             <div>
@@ -30,7 +57,7 @@
             <div>
             </div>
         </div>
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-theme="light">
+        <div id="myCarousel" class="carousel slide pt-1" data-bs-ride="carousel" data-bs-theme="light">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
                     aria-current="true"></button>
@@ -41,13 +68,15 @@
                 <div class="carousel-item active">
                     <div class="d-flex">
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/banner_child.jpg') }}" class="d-block content-hover" alt="Sample Image">
+                            <img src="{{ asset('images/banner_child.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
                             <img src="{{ asset('images/sale1.jpg') }}" class="d-block content-hover" alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/banner_click.jpg') }}" class="d-block content-hover" alt="Sample Image">
+                            <img src="{{ asset('images/banner_click.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
                         </div>
                     </div>
                 </div>
@@ -71,7 +100,8 @@
                                 alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/recycling.jpg') }}" class="d-block content-hover" alt="Sample Image">
+                            <img src="{{ asset('images/recycling.jpg') }}" class="d-block content-hover"
+                                alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
                             <img src="{{ asset('images/47900.jpg') }}" class="d-block content-hover" alt="Sample Image">
@@ -91,20 +121,27 @@
         <div class="py-2 container">
             <div class="d-flex">
                 <h2 class="fw-bold title--border">商品一覧</h2>
-                <div class="container" style="width: 50%;">
+                {{-- <div class="container" style="width: 50%;">
                     <form class="d-flex mt-3" role="search" method="GET" action="{{ route('items.search') }}">
                         <input class="form-control me-2 border-secondary" type="search" name="search"
                             placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search" value="{{ old('search', $query ?? '') }}">
                         <button class="btn btn-secondary btn-secondary" style="width: 80px;" type="submit"><i
                                 class="fa fa-search" aria-hidden="true"></i> {{ __('search') }}</button>
                     </form>
-                </div>
+                </div> --}}
             </div>
             @if (isset($query))
                 @if ($items->isEmpty())
                     <h3>検索結果: {{ $query }} に該当する商品はありませんでした。</h3>
                 @else
                     <h3>検索結果: ”{{ $query }}”</h3>
+                @endif
+            @endif
+            @if (isset($selectedCategory))
+                @if ($items->isEmpty())
+                    <h3>絞り込み結果: {{ $selectedCategory->category_name }} に該当する商品はありませんでした。</h3>
+                @else
+                    <h3>絞り込み結果: ”{{ $selectedCategory->category_name }}”</h3>
                 @endif
             @endif
             <div class="row row-cols- row-cols-sm-2 row-cols-md-5 g-3 mb-4">
@@ -117,7 +154,8 @@
                                 onclick="window.location='{{ route('items.show', $item->id) }}'">
                             <div class="card-body" style="height: 150px;">
                                 <h4 class="text-gray-900 title-font text-lg font-medium text-truncate"
-                                    onclick="window.location='{{ route('items.show', $item->id) }}'">{{ $item->item_name }}
+                                    onclick="window.location='{{ route('items.show', $item->id) }}'">
+                                    {{ $item->item_name }}
                                 </h4>
                                 <p class="card-text text-truncate">{{ $item->message }}
                                 </p>
@@ -169,7 +207,8 @@
                                                 <span class="badge bg-danger ms-2"
                                                     style="position: relative; top: -5px;">SALE</span>
                                             </p>
-                                            <p class="h5 text-danger fw-bold">{{ number_format($viewItem->tax_sales_prices) }}
+                                            <p class="h5 text-danger fw-bold">
+                                                {{ number_format($viewItem->tax_sales_prices) }}
                                                 円（税込）送料無料
                                             </p>
                                         @endif

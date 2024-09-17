@@ -13,7 +13,7 @@ use Validator;
 class ItemController extends Controller
 {
 
-    protected $taxRate = 0.1; // プロパティとして税率を定義
+    // protected $taxRate = 0.1; // プロパティとして税率を定義
 
     /**
      * 一覧ページ作成
@@ -26,7 +26,9 @@ class ItemController extends Controller
         $items = Item::where('is_active', true)
             ->with('images', 'category')
             ->orderBy('created_at', 'DESC')
-            ->paginate(20);
+            ->paginate(30);
+
+        $categories = Category::limit(5)->get();
 
         $viewItems = Item::where('is_active', true)
             ->with('images', 'category')
@@ -35,7 +37,7 @@ class ItemController extends Controller
             ->take(5)
             ->get();
 
-        return view('items.index', compact('items', 'viewItems'));
+        return view('items.index', compact('items', 'viewItems', 'categories'));
     }
 
     /**
@@ -114,10 +116,18 @@ class ItemController extends Controller
             ->take(5)
             ->get();
 
-        return view('items.index', compact('items', 'query', 'viewItems'));
+        $categories = Category::limit(5)->get();
+
+        return view('items.index', compact('items', 'query', 'viewItems', 'categories'));
     }
 
-
+    /**
+     * 閲覧数多い順５件表示
+     *
+     * @param string $id
+     * @param Request $request
+     * @return void
+     */
     public function view(string $id, Request $request)
     {
         $itemview = Items::find($id);
@@ -131,4 +141,50 @@ class ItemController extends Controller
 
         return view('items.index', compact('itemview'));
     }
+
+    /**
+     * カテゴリーごとに表示
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function filterCategory($id)
+    {
+        $items = Item::where('category_id', $id)->paginate(15);
+        $viewItems = Item::where('is_active', true)
+            ->with('images', 'category')
+            ->withCount('items_views')
+            ->orderBy('items_views_count', 'DESC')
+            ->take(5)
+            ->get();
+        $categories = Category::limit(5)->get();
+        $selectedCategory = Category::find($id);
+
+        return view('items.index', compact('items', 'viewItems', 'categories', 'selectedCategory'));
+    }
+
+    // /**
+    //  * 高い順に並び替え
+    //  *
+    //  * @return void
+    //  */
+    // public function highPrice()
+    // {
+    //     // 販売中がtrueの商品だけ表示
+    //     $items = Item::where('is_active', true)
+    //         ->with('images', 'category')
+    //         ->orderBy('sales_price', 'DESC')
+    //         ->paginate(30);
+
+    //     $categories = Category::limit(5)->get();
+
+    //     $viewItems = Item::where('is_active', true)
+    //         ->with('images', 'category')
+    //         ->withCount('items_views')
+    //         ->orderBy('items_views_count', 'DESC')
+    //         ->take(5)
+    //         ->get();
+
+    //     return view('items.index', compact('items', 'viewItems', 'categories'));
+    // }
 }

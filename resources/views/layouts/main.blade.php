@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -39,7 +39,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0; position: relative; z-index: 1030;">
             <div class="container">
                 <a class="navbar-brand fuwafuwa" href="{{ url('/') }}"
                     style="display: flex; align-items: center; padding: 0;">
@@ -126,9 +126,9 @@
                                     <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->name }}さん
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown" style="position: absolute; top: 100%; right: 0; z-index: 1050;">
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -147,11 +147,10 @@
             </div>
         </nav>
 
-        <main style="padding-top: 10px;">
-
+        <main>
             @yield('content')
         </main>
-        <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
+        <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 180px;">
             <div id="navBackToTop">
                 <a href="#top" class="navFooterBackToTopText text-light hover-effect"
                     style="text-decoration: none;">トップへ戻る</a>

@@ -131,7 +131,7 @@
                                     <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->name }}さん
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -181,7 +181,7 @@
         </main>
     </div>
 
-    <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
+    <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 180px;">
         <div class="container" style="width: 1200px;">
             <div class="d-flex justify-content-between">
                 <div class="d-flex text-body-secondary mb-">
