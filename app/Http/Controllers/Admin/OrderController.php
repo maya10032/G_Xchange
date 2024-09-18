@@ -71,6 +71,9 @@ class OrderController extends Controller
             ->whereHas('item', function ($q) use ($query) {
                 $q->where('item_name', 'LIKE', "%{$query}%");
             })
+            ->orwhereHas('user', function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            })
             ->paginate(10);
         $ordersWithTax = $orders->map(function ($order) {
             $order->subtotal = $order->item->tax_sales_prices;

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', '商品一覧画面')
+@section('title', '商品管理画面')
 
 @section('content')
     <topnav class="topnav">
@@ -8,7 +8,7 @@
             <li><a class="current" href="{{ url('admin/items') }}">商品一覧</a></li>
         </ul>
     </topnav>
-    <h2 class="py-2 admin">商品一覧ページ</h2>
+    <h2 class="py-2 admin">商品一覧</h2>
     @if (session('create'))
         <div class="alert-blue-line mb-2" style="font-size: 1.25rem;">
             {{ session('create') }}
@@ -57,7 +57,7 @@
                 <td>{{ $item->id }}</td>
                 <td class="item-name-cell"><a
                         href="{{ route('admin.items.show', ['item' => $item->id]) }}">{{ $item->item_name }}</a></td>
-                <td><img src="{{ asset('storage/images/' . $item->images->first()->img_path) }}"
+                <td><img src="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}"
                         alt="{{ $item->item_name }}" style="width: 100px; height: 100px;"></td>
                 <td>{{ $item->item_code }}</td>
                 <td>{{ $item->category->category_name }}</td>

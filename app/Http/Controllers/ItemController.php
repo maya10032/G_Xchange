@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Image;
-use App\Models\ItemsView;
+use App\Models\ItemView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -32,8 +32,8 @@ class ItemController extends Controller
 
         $viewItems = Item::where('is_active', true)
             ->with('images', 'category')
-            ->withCount('items_views')
-            ->orderBy('items_views_count', 'DESC')
+            ->withCount('item_views')
+            ->orderBy('item_views_count', 'DESC')
             ->take(5)
             ->get();
 
@@ -55,7 +55,7 @@ class ItemController extends Controller
             ->get();
 
         $user = $request->user();
-        ItemsView::create([
+        ItemView::create([
             'item_id' => $item->id,
             'user_id' => $user?->id
         ]);
@@ -107,7 +107,7 @@ class ItemController extends Controller
     {
         $query = $request->input('search');
         $items = Item::where('item_name', 'LIKE', "%{$query}%")
-            ->paginate(10);
+            ->paginate(30);
 
         $viewItems = Item::where('is_active', true)
             ->with('images', 'category')
@@ -121,26 +121,26 @@ class ItemController extends Controller
         return view('items.index', compact('items', 'query', 'viewItems', 'categories'));
     }
 
-    /**
-     * 閲覧数多い順５件表示
-     *
-     * @param string $id
-     * @param Request $request
-     * @return void
-     */
-    public function view(string $id, Request $request)
-    {
-        $itemview = Items::find($id);
+    // /**
+    //  * 閲覧数多い順５件表示
+    //  *
+    //  * @param string $id
+    //  * @param Request $request
+    //  * @return void
+    //  */
+    // public function view(string $id, Request $request)
+    // {
+    //     $itemview = Items::find($id);
 
-        $user = $request->user();
+    //     $user = $request->user();
 
-        Items::create([
-            'item_id' => $id,
-            'user_id' => $user?->id
-        ]);
+    //     Items::create([
+    //         'item_id' => $id,
+    //         'user_id' => $user?->id
+    //     ]);
 
-        return view('items.index', compact('itemview'));
-    }
+    //     return view('items.index', compact('itemview'));
+    // }
 
     /**
      * カテゴリーごとに表示

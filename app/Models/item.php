@@ -63,8 +63,8 @@ class Item extends Model
         // $item->tax_regular_pricesでとれるようになる
     }
 
-    public function items_views()
+    public function item_views()
     {
-        return $this->hasMany(ItemsView::class);
+        return $this->hasMany(ItemView::class);
     }
 }

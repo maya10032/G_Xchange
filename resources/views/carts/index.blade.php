@@ -172,7 +172,7 @@
                         @endforeach
                         <div class="text-end">
                             <div id="card-element"></div>
-                            <button type="submit" class="btn btn-primary w-100">支払う</button>
+                            <button type="submit" class="btn btn-danger w-100">支払う</button>
                         </div>
                     </form>
                 </div>

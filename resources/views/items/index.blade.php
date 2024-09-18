@@ -8,8 +8,7 @@
             <div class="collapse navbar-collapse cactus-classical-serif-regular" id="">
                 <ul class="navbar-nav d-flex align-items-center w-100">
                     <li class="nav-item mx-2">
-                        <a class="nav-link"
-                            href="{{ url('/') }}">すべて</a>
+                        <a class="nav-link" href="{{ url('/') }}">すべて</a>
                     </li>
                     @foreach ($categories as $category)
                         <li class="nav-item mx-2">
@@ -162,7 +161,8 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="position-absolute bottom-0 start-0 m-2">
                                         @if ($item->tax_regular_prices === $item->tax_sales_prices)
-                                            <p>{{ number_format($item->tax_sales_prices) }}円（税込）送料無料</p>
+                                            <p class="h5 fw-bold">
+                                                {{ number_format($item->tax_sales_prices) }}円（税込）送料無料</p>
                                         @else
                                             {{-- 割引中の表示 --}}
                                             <p class="h5" style="margin: 0; line-height: 1.2;">

@@ -231,7 +231,7 @@
                             <input type="hidden" id="modal-item-id" name="item_id">
                             <input type="hidden" id="modal-item-count" name="count">
                             <div class="text-end">
-                                <button type="submit" class="btn btn-primary w-100">支払う</button>
+                                <button type="submit" class="btn btn-danger w-100">支払う</button>
                             </div>
                         </form>
                     </div>

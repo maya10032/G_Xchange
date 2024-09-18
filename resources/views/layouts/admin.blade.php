@@ -314,7 +314,7 @@
                                 <li class="nav-item list-group-item">
                                     <div class="list-group">
                                         <a class="nav-link"
-                                            href="{{ route('admin.items.index') }}">{{ __('item_list') }}</a>
+                                            href="{{ route('admin.items.index') }}">商品管理</a>
                                     </div>
                                 </li>
                                 <li class="nav-item list-group-item">
