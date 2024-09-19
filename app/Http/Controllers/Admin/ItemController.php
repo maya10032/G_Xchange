@@ -29,10 +29,14 @@ class ItemController extends Controller
      */
     public function index(Request $request)
     {
-        $sort = $request->get('sort', 'id');
+        $sort = $request->get('sort', 'created_at');
         $direction = $request->get('direction', 'asc');
 
-        $items = Item::with('category')->sortable($sort, $direction)->paginate(10); // itemsの全商品、カテゴリーを取得
+        $items = Item::with('category')
+            ->sortable($sort, $direction)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10); // itemsの全商品、カテゴリーを取得
+
         $itemsWithTax = $items->map(function ($item) {
             $item->subtotal = $item->tax_sales_prices; // 税込み価格
             $item->regtotal = $item->tax_regular_prices; // 税込み価格

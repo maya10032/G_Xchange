@@ -108,7 +108,7 @@
                 </tr>
                 <tr>
                 <tr>
-                    <td>商品画像（最大４枚）</td>
+                    <td>商品画像（最大３枚）</td>
                     <td style="min-height:20vh"
                         class="flex md:flex-nowrap flex-wrap justify-center items-center md:justify-start">
                         <input type="file" name="files[]" id="image" multiple
@@ -126,7 +126,7 @@
                     <td>サムネイル</td>
                     <td>
                         <select name="thumbnail" id="thumbnail" class="form-control">
-                            @foreach (range(0, 3) as $index)
+                            @foreach (range(0, 2) as $index)
                                 <option value="{{ $index }}" {{ $item->thumbnail == $index ? 'selected' : '' }}>
                                     画像{{ $index + 1 }}
                                 </option>
@@ -144,7 +144,6 @@
                     </td>
                 </tr>
             </table>
-            {{-- <input type="submit" value="内容確認"> --}}
             <div class="btn-group gap-3 mt-4">
                 <button type="submit" class="btn bg-primary text-light px-5 py-2 hover-effect"><span>更新</span></button>
                 @if ($item->is_active)

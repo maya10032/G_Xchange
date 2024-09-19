@@ -3,7 +3,7 @@
 @section('title', '商品詳細')
 
 @section('content')
-    <div class="py-4 container sticky-top" style="min-height: calc(180vh - 180px);">
+    <div class="py-4 container sticky-top" style="min-height: calc(280vh - 280px);">
         @if (session('likeadd'))
             <div class="alert-blue-line mb-2" style="font-size: 1.25rem;">
                 {{ session('likeadd') }}
@@ -33,26 +33,27 @@
                     {{-- サムネイル画像 --}}
                     <div class="mb-2 me-3">
                         <img src="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}"
-                            alt="Thumbnail" class="img-fluid rounded"
+                            alt="Thumbnail" class="img-fluid rounded" id="bigimg"
                             style="width: 460px; height: 460px; object-fit: cover; box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);">
                     </div>
                     {{-- その他の3つの画像を縦一列に配置 --}}
                     <div class="d-flex flex-column">
                         @foreach ($item->images as $index => $image)
-                            @if ($index !== $item->thumbnail)
-                                <div class="mb-2">
-                                    <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="Image"
-                                        class="img-fluid rounded"
-                                        style="width: 148px; height: 148px; object-fit: cover; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
-                                </div>
-                            @endif
+                            {{-- @if ($index !== $item->thumbnail) --}}
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="Image"
+                                    class="img-fluid rounded thumb"
+                                    data-image="{{ asset('storage/images/' . $image->img_path) }}"
+                                    style="width: 148px; height: 148px; object-fit: cover; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                            </div>
+                            {{-- @endif --}}
                         @endforeach
                     </div>
                 </div>
             </div>
             <div class="ms-auto" style="flex: 1; font-size: 1.25rem;">
-                <p class="mb-2"><small class="text-muted"><i class="fa fa-tag" aria-hidden="true"></i>
-                        {{ $item->category->category_name }}</small></p>
+                <h4 class="mb-2"><small class="text-muted"><i class="fa fa-tag" aria-hidden="true"></i>
+                        {{ $item->category->category_name }}</small></h4>
                 <h3 class="mb-3" style="font-size: 1.75rem; word-break: break-word;">{{ $item->item_name }}</h3>
                 @if ($item->regular_price === $item->sales_price)
                     <p class="mb-3">{{ number_format($item->tax_sales_prices) }}円（税込）送料無料</p>
@@ -148,7 +149,8 @@
             <p>{{ $item->message }}</p>
         </div>
         <div class="mt-5">
-            <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-tags" aria-hidden="true"></i> 同じカテゴリーの商品</h3>
+            <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-tags" aria-hidden="true"></i>
+                同じカテゴリーの商品（{{ $item->category->category_name }}）</h3>
             <div class="row">
                 @foreach ($randomItems as $randomItem)
                     <div class="col-md-3">
@@ -157,6 +159,7 @@
                                 alt="{{ $randomItem->item_name }}" class="card-img-top"
                                 style="height: 200px; width: auto; object-fit: cover;">
                             <div class="card-body">
+                                <p class="card-text">{{ $randomItem->category->category_name }}</p>
                                 <h4 class="text-gray-900 title-font text-lg font-medium text-truncate-multiline"
                                     onclick="window.location='{{ route('items.show', $item->id) }}'">
                                     {{ $randomItem->item_name }}</h4>
@@ -243,6 +246,17 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        const thumbs = document.querySelectorAll('.thumb');
+        //cssセレクタの '.thub'を取得して定数thumbsに代入
+        // itemはimg要素、indexは配列番号
+        thumbs.forEach(function(item, index) {
+            console.log(thumbs); // 一旦コンソールで値が格納されているか確認→あった
+            // 画像clickでイベント発生
+            item.onclick = function() {
+                document.getElementById('bigimg').src = this.dataset.image;
+            }
+        });
+        // console.log('abc');
         const stripe = Stripe(
             "pk_test_51PySDEDA2YxCl5ELgjZzT5q1XzLn0Bwpc8lOKo7vUyISHdHQm9QAlHYAxvIcXNMsXIgOexnZv5RM53zFzmZ1XIm500Aap1mQ6Y"
         ); // Stripeの公開可能キー
@@ -334,7 +348,6 @@
                 const itemId = this.getAttribute("data-item-id");
                 const itemName = this.getAttribute("data-item-name");
                 const itemThumbnail = this.getAttribute("data-item-thumbnail");
-                // const itemQuantity = this.getAttribute("data-item-quantity");
                 const itemPrice = this.getAttribute("data-item-price");
                 const itemQuantity = document.getElementById("item-quantity").value;
                 // 数量と単価から合計金額を計算
@@ -352,7 +365,7 @@
 
                 // 単価と合計金額をフォーマットして表示
                 document.getElementById("modal-item-price").textContent = formatPrice(
-                itemPrice);
+                    itemPrice);
                 document.getElementById("modal-item-total").textContent = formatPrice(
                     totalPrice);
                 document.getElementById("modal-item-count").value = itemQuantity;
@@ -364,5 +377,7 @@
                 paymentModal.show();
             });
         });
+
+
     });
 </script>

@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}">
+                        <form method="POST" action="{{ route('profile.update') }}" novalidate>
                             @csrf
                             @method('PATCH')
                             <div class="row mb-3">

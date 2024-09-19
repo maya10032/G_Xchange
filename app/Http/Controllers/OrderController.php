@@ -70,10 +70,6 @@ class OrderController extends Controller
         $quantity = $request->count;
         $totalPrice = $request->count * $item->tax_sales_prices;
 
-        // if ($totalPrice < 1) {
-        //     return back()->withErrors('金額が不正です。');
-        // }
-
         try {
             // StripeのAPIキーを設定
             \Stripe\Stripe::setApiKey(config('services.stripe.secret'));

@@ -26,7 +26,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
-                .navbar {
+        .navbar {
             position: relative;
             z-index: 10;
         }
@@ -182,7 +182,11 @@
     </div>
 
     <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 180px;">
-        <div class="container" style="width: 1200px;">
+        <div id="navBackToTop">
+            <a href="#top" class="navFooterBackToTopText text-light hover-effect"
+                style="text-decoration: none;">トップへ戻る</a>
+        </div>
+        <div class="container" style="width: 100%;">
             <div class="d-flex justify-content-between">
                 <div class="d-flex text-body-secondary mb-">
                     <div class="me-1 text-white text-center py-3">

@@ -24,13 +24,13 @@
                 {{-- その他の3つの画像を縦一列に配置 --}}
                 <div class="d-flex flex-column">
                     @foreach ($item->images as $index => $image)
-                        @if ($index !== $item->thumbnail)
-                            <div class="mb-2">
-                                <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="Image"
-                                    class="img-fluid rounded"
-                                    style="width: 148px; height: 148px; object-fit: cover; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
-                            </div>
-                        @endif
+                        {{-- @if ($index !== $item->thumbnail) --}}
+                        <div class="mb-2">
+                            <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="Image"
+                                class="img-fluid rounded"
+                                style="width: 148px; height: 148px; object-fit: cover; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                        </div>
+                        {{-- @endif --}}
                     @endforeach
                 </div>
             </div>

@@ -37,24 +37,6 @@
             </div>
             <div>
             </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
         </div>
         <div id="myCarousel" class="carousel slide pt-1" data-bs-ride="carousel" data-bs-theme="light">
             <div class="carousel-indicators">
@@ -82,10 +64,10 @@
                 <div class="carousel-item">
                     <div class="d-flex">
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/sale2.jpg') }}" class="d-block content-hover" alt="Sample Image">
+                            <img src="{{ asset('images/49116.jpg') }}" class="d-block content-hover" alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/2835419.jpg') }}" class="d-block content-hover" alt="Sample Image">
+                            <img src="{{ asset('images/9564129.jpg') }}" class="d-block content-hover" alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
                             <img src="{{ asset('images/mock1.jpg') }}" class="d-block content-hover" alt="Sample Image">
@@ -95,7 +77,7 @@
                 <div class="carousel-item">
                     <div class="d-flex">
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/recycle-background.jpg') }}" class="d-block content-hover"
+                            <img src="{{ asset('images/green-recycle-symbol-surrounded-with-waste-items.jpg') }}" class="d-block content-hover"
                                 alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
@@ -120,14 +102,6 @@
         <div class="py-2 container">
             <div class="d-flex">
                 <h2 class="fw-bold title--border">商品一覧</h2>
-                {{-- <div class="container" style="width: 50%;">
-                    <form class="d-flex mt-3" role="search" method="GET" action="{{ route('items.search') }}">
-                        <input class="form-control me-2 border-secondary" type="search" name="search"
-                            placeholder="商品名、カテゴリ、ブランドなど" aria-label="Search" value="{{ old('search', $query ?? '') }}">
-                        <button class="btn btn-secondary btn-secondary" style="width: 80px;" type="submit"><i
-                                class="fa fa-search" aria-hidden="true"></i> {{ __('search') }}</button>
-                    </form>
-                </div> --}}
             </div>
             @if (isset($query))
                 @if ($items->isEmpty())
@@ -228,19 +202,19 @@
     <div id="sec">
         <ul>
             <li>
-                <img src="{{ asset('images/5902585.jpg') }}" style="object-fit: cover;" width="340px" height="400px"
+                <img src="{{ asset('images/47900.jpg') }}" style="object-fit: cover;" width="340px" height="300px"
                     alt="Sample Image">
             </li>
             <li>
-                <img src="{{ asset('images/4952087.jpg') }}" style="object-fit: cover;" width="340px" height="400px"
+                <img src="{{ asset('images/green.jpg') }}" style="object-fit: cover;" width="340px" height="300px"
                     alt="Sample Image">
             </li>
             <li>
-                <img src="{{ asset('images/10595359.jpg') }}" style="object-fit: cover;" width="340px" height="400px"
+                <img src="{{ asset('images/2.jpg') }}" style="object-fit: cover;" width="340px" height="300px"
                     alt="Sample Image">
             </li>
             <li>
-                <img src="{{ asset('images/close-up.jpg') }}" style="object-fit: cover;" width="340px" height="400px"
+                <img src="{{ asset('images/banner_click.jpg') }}" style="object-fit: cover;" width="340px" height="300px"
                     alt="Sample Image">
             </li>
         </ul>
