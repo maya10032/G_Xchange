@@ -15,7 +15,7 @@ class ContactsController extends Controller
     // 簡易的な文字数制限のみの判定処理
     private $validator = [
         'name'  => 'required|string|max:10',
-        'email' => 'required|string|max:50',
+        'email' => 'required|string|email|max:50',
         'radio' => 'required|string|max:100',
         'body'  => 'required|string|max:255'
     ];

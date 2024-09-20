@@ -1,5 +1,7 @@
 @extends('layouts.user')
 
+@section('title', '会員情報変更')
+
 @section('content')
     <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
         <h2 class="title--border">マイページ / 会員情報変更</h2>
@@ -12,7 +14,7 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}">
+                        <form method="POST" action="{{ route('profile.update') }}" novalidate>
                             @csrf
                             @method('PATCH')
                             <div class="row mb-3">
@@ -90,7 +92,7 @@
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-end"></label>
                                 <div class="col-md-6">
-                                    <label><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                    <label class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                         アカウント情報を変更するには現在のパスワードを入力してください</label>
                                         @if (session('ConfirmPassword'))
                                         <div class="text-danger fw-bold mt-3">

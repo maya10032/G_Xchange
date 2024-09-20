@@ -24,13 +24,13 @@
                 {{-- その他の3つの画像を縦一列に配置 --}}
                 <div class="d-flex flex-column">
                     @foreach ($item->images as $index => $image)
-                        @if ($index !== $item->thumbnail)
-                            <div class="mb-2">
-                                <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="Image"
-                                    class="img-fluid rounded"
-                                    style="width: 148px; height: 148px; object-fit: cover; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
-                            </div>
-                        @endif
+                        {{-- @if ($index !== $item->thumbnail) --}}
+                        <div class="mb-2">
+                            <img src="{{ asset('storage/images/' . $image->img_path) }}" alt="Image"
+                                class="img-fluid rounded"
+                                style="width: 148px; height: 148px; object-fit: cover; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                        </div>
+                        {{-- @endif --}}
                     @endforeach
                 </div>
             </div>
@@ -40,7 +40,7 @@
                     {{ $item->category->category_name }}</small></p>
             <h3 class="mb-3" style="font-size: 1.75rem; word-break: break-word;">{{ $item->item_name }}</h3>
             @if ($item->regular_price === $item->sales_price)
-                <p class="mb-3">{{ number_format($salesPriceWithTax) }}円（税込）送料無料</p>
+                <p class="mb-3">{{ number_format($item->tax_sales_prices) }}円（税込）送料無料</p>
             @else
                 <strike class="d-block mb-3" style="font-size: 1.5rem;">{{ number_format($item->tax_regular_prices) }}円
                     <span class="badge bg-danger ms-2" style="position: relative; top: -5px;">SALE</span>

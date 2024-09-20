@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 reader.onload = function (e) {
                     const img = document.createElement("img");
                     img.src               = e.target.result; // プレビュー表示用
-                    img.style.width       = "100px"; // プレビュー画像のサイズ
-                    img.style.height      = "100px"; // プレビュー画像のサイズ
-                    img.style.marginRight = "10px"; // 画像の間隔
+                    img.style.width       = "100px";
+                    img.style.height      = "100px";
+                    img.style.marginRight = "10px";
                     preview.appendChild(img);
                 };
 

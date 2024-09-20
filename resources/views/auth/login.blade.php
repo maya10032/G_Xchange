@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="py-3 container sticky-top" style="min-height: calc(100vh - 100px);">
+<div class="py-3 container sticky-top" style="min-height: calc(150vh - 150px);">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

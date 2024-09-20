@@ -10,6 +10,8 @@
                     <div class="container">
                         <h1 class="title font-weight-light mt-2"><i class="fas fa-envelope"
                                 style="color: #3e4555; margin-right: 8px;"></i>お問い合わせ</h1>
+                                <p style="margin: 0">以下フォームよりお気軽にお問い合わせください。</p>
+                                <p>お問い合わせ内容の確認後、担当者よりご連絡させていただきます。</p>
                         <form method="post" action="{{ route('contact.post') }}" novalidate>
                             @csrf
                             <div class="row">

@@ -40,9 +40,9 @@
                     <div class="form-group row mt-3">
                         <label for="phone" class="col-sm-3 col-form-label ">電話番号：</label>
                         <div class="col-sm-9">
-                            <input id="phone" class="form-control text-black @error('name') is-invalid @enderror"
-                                type="text" name="phone" value="{{ old('name', $user->phone) }}">
-                            @error('name')
+                            <input id="phone" class="form-control text-black @error('phone') is-invalid @enderror"
+                                type="text" name="phone" value="{{ old('phone', $user->phone) }}">
+                            @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -52,9 +52,9 @@
                     <div class="form-group row mt-3">
                         <label for="address" class="col-sm-3 col-form-label ">住所：</label>
                         <div class="col-sm-9">
-                            <input id="address" class="form-control text-black @error('name') is-invalid @enderror"
-                                type="text" name="address" value="{{ old('name', $user->address) }}">
-                            @error('name')
+                            <input id="address" class="form-control text-black @error('address') is-invalid @enderror"
+                                type="text" name="address" value="{{ old('address', $user->address) }}">
+                            @error('address')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

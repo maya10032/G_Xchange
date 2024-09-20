@@ -274,7 +274,7 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::guard('admin')->user()->name }}
+                                {{ Auth::guard('admin')->user()->name }}さん
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}"
@@ -314,7 +314,7 @@
                                 <li class="nav-item list-group-item">
                                     <div class="list-group">
                                         <a class="nav-link"
-                                            href="{{ route('admin.items.index') }}">{{ __('item_list') }}</a>
+                                            href="{{ route('admin.items.index') }}">商品管理</a>
                                     </div>
                                 </li>
                                 <li class="nav-item list-group-item">

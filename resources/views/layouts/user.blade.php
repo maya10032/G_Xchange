@@ -37,14 +37,16 @@
             margin: 0;
         }
     </style>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="padding: 0;">
             <div class="container">
-                <a class="navbar-brand fuwafuwa" href="{{ url('/') }}"
+                <a class="navbar-brand fuwafuwa2" href="{{ url('/') }}"
                     style="display: flex; align-items: center; padding: 0;">
                     <img src="{{ asset('images/logo2.png') }}" alt="{{ config('app.name', 'Laravel') }}">
                 </a>
@@ -129,7 +131,7 @@
                                     <a id="navbarDropdown" class="dropdown-toggle user-link" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <i class="fa fa-user" aria-hidden="true"></i>
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->name }}さん
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end ms-auto" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -174,14 +176,17 @@
                 </li>
             </ul>
         </nav>
-        <main class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
+        <main>
             @yield('content')
-
         </main>
     </div>
 
-    <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 150px;">
-        <div class="container" style="width: 1200px;">
+    <footer class="footer-policy shadow-sm  expand-mdz text-gray-600 mt-auto text-center" style="height: 180px;">
+        <div id="navBackToTop">
+            <a href="#top" class="navFooterBackToTopText text-light hover-effect"
+                style="text-decoration: none;">トップへ戻る</a>
+        </div>
+        <div class="container" style="width: 100%;">
             <div class="d-flex justify-content-between">
                 <div class="d-flex text-body-secondary mb-">
                     <div class="me-1 text-white text-center py-3">

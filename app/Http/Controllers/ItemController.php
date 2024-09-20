@@ -5,16 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Image;
-use App\Models\ItemsView;
+use App\Models\ItemView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class ItemController extends Controller
 {
-
-    protected $taxRate = 0.1; // プロパティとして税率を定義
-
     /**
      * 一覧ページ作成
      *
@@ -26,17 +23,18 @@ class ItemController extends Controller
         $items = Item::where('is_active', true)
             ->with('images', 'category')
             ->orderBy('created_at', 'DESC')
-            ->paginate(20);
-        // ->get();
+            ->paginate(30);
+
+        $categories = Category::limit(5)->get();
 
         $viewItems = Item::where('is_active', true)
             ->with('images', 'category')
-            ->withCount('items_views')
-            ->orderBy('items_views_count', 'DESC')
+            ->withCount('item_views')
+            ->orderBy('item_views_count', 'DESC')
             ->take(5)
             ->get();
 
-        return view('items.index', compact('items', 'viewItems'));
+        return view('items.index', compact('items', 'viewItems', 'categories'));
     }
 
     /**
@@ -54,12 +52,12 @@ class ItemController extends Controller
             ->get();
 
         $user = $request->user();
-            ItemsView::create([
-                'item_id' => $item->id,
-                'user_id' => $user?->id
-            ]);
+        ItemView::create([
+            'item_id' => $item->id,
+            'user_id' => $user?->id
+        ]);
 
-        return view('items.show', compact('item', 'randomItems'));
+        return view('items.show', compact('item', 'randomItems', 'user'));
     }
 
     /**
@@ -73,30 +71,6 @@ class ItemController extends Controller
     }
 
     /**
-     * 購入確認画面の表示
-     */
-    public function purchase(Item $item)
-    {
-        // 購入内容確認画面を表示する処理
-        return view('items.purchase', compact('item', 'randomItems'));
-    }
-
-    /**
-     * 購入数を引き継ぎ、確認画面を表示
-     *
-     * @param Request $request
-     * @param Item $item
-     * @return void
-     */
-    public function purchaseConfirm(Request $request, Item $item)
-    {
-        // リクエストから 'count' の値を取得
-        $count = $request->input('count'); // リクエストから数量を取得
-        // ビューに $item と $count を渡す
-        return view('items.purchase', compact('item', 'count'));
-    }
-
-    /**
      * 検索機能
      *
      * @param Request $request
@@ -106,22 +80,58 @@ class ItemController extends Controller
     {
         $query = $request->input('search');
         $items = Item::where('item_name', 'LIKE', "%{$query}%")
-            ->paginate(10);
-        return view('items.index', compact('items', 'query'));
+            ->paginate(30);
+
+        $viewItems = Item::where('is_active', true)
+            ->with('images', 'category')
+            ->withCount('item_views')
+            ->orderBy('item_views_count', 'DESC')
+            ->take(5)
+            ->get();
+
+        $categories = Category::limit(5)->get();
+
+        return view('items.index', compact('items', 'query', 'viewItems', 'categories'));
     }
 
-
-    public function view(string $id, Request $request)
+    /**
+     * カテゴリーごとに表示
+     *
+     * @return void
+     */
+    public function filterCategory($id)
     {
-        $itemview = Items::find($id);
+        $items = Item::where('category_id', $id)->paginate(15);
+        $viewItems = Item::where('is_active', true)
+            ->with('images', 'category')
+            ->withCount('item_views')
+            ->orderBy('item_views_count', 'DESC')
+            ->take(5)
+            ->get();
+        $categories = Category::limit(5)->get();
+        $selectedCategory = Category::find($id);
 
-        $user = $request->user();
-
-        Items::create([
-            'item_id' => $id,
-            'user_id' => $user?->id
-        ]);
-
-        return view('items.index', compact('itemview'));
+        return view('items.index', compact('items', 'viewItems', 'categories', 'selectedCategory'));
     }
+
+    /**
+     * カテゴリーごとに表示
+     *
+     * @return void
+     */
+    public function saleItem($id)
+    {
+        $items = Item::where('category_id', $id)->paginate(15);
+        $viewItems = Item::where('is_active', true)
+            ->with('images', 'category')
+            ->withCount('item_views')
+            ->orderBy('item_views_count', 'DESC')
+            ->take(5)
+            ->get();
+        $categories = Category::limit(5)->get();
+        $selectedCategory = Category::find($id);
+
+        return view('items.index', compact('items', 'viewItems', 'categories', 'selectedCategory'));
+    }
+
 }

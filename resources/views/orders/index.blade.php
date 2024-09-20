@@ -3,7 +3,7 @@
 @section('title', '購入履歴一覧')
 
 @section('content')
-    <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px);">
+    <div class="py-1 container sticky-top" style="min-height: calc(100vh - 100px); width: ">
         <h2 class="title--border">マイページ / 購入履歴</h2>
         {{-- 購入履歴が空だったら --}}
         @if (count($orders) == 0)
