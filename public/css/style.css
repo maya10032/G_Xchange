@@ -11,6 +11,11 @@ cheat {
     color: #d2b48c;
 }
 
+.star {
+    font-size: 300%;
+    color: #a09a9a;
+}
+
 .subheader {
     background-color: #696969;
     height: 45px;
@@ -21,7 +26,6 @@ cheat {
     display: flex;
     align-items: center;
 }
-
 
 .subheader form {
     width: 100%;

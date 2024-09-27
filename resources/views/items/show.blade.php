@@ -3,7 +3,7 @@
 @section('title', '商品詳細')
 
 @section('content')
-    <div class="py-4 container sticky-top" style="min-height: calc(280vh - 280px);">
+    <div class="py-4 container sticky-top" style="min-height: calc(300vh - 300px);">
         @if (session('likeadd'))
             <div class="alert-blue-line mb-2" style="font-size: 1.25rem;">
                 {{ session('likeadd') }}
@@ -15,6 +15,10 @@
         @elseif (session('cartadd'))
             <div class="alert-green-line mb-2" style="font-size: 1.25rem;">
                 {{ session('cartadd') }}
+            </div>
+        @elseif (session('reviewadd'))
+            <div class="alert-blue-line mb-2" style="font-size: 1.25rem;">
+                {{ session('reviewadd') }}
             </div>
         @endif
         @if ($errors->any())
@@ -173,7 +177,96 @@
                 @endforeach
             </div>
         </div>
+        <div class="d-flex mt-5">
+            <div class="d-flex flex-column me-5 mb-0 reduce-margin" style="flex: 0.4; font-size: 1.25rem;">
+                <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-comments"></i>
+                    この商品のレビュー評価</h3>
+                <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星5つ</span>
+                <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星4つ</span>
+                <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星3つ</span>
+                <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星2つ</span>
+                <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd mb-3" aria-hidden="true">星1つ</span>
+                {{-- <a href="{{ route('items.reviewCreate', $item->id) }}"
+                    class="btn btn-danger text-light hover-effect">レビューを書く</a> --}}
+                <button type="button" class="btn btn-danger open-review-modal" style="font-size: 1rem;"
+                    data-reviewitem-id="{{ $item->id }}" data-reviewitem-name="{{ $item->item_name }}"
+                    data-reviewitem-thumbnail="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}">
+                    レビューを書く
+                </button>
+                <p style="font-size: 1rem;">他のお客様にも意見を伝えましょう</p>
+            </div>
+            <div class="ms-auto" style="flex: 1;">
+                <h4 class="mb-3">
+                    上位のレビュー、対象国：日本</h4>
+                @foreach ($itemReviews as $itemReview)
+                    <h5 class="p-0 mb-1"><i class="fa fa-user-circle" aria-hidden="true"></i>
+                        {{ $itemReview->user->name }}</h5>
+                    <p class="p-0 mb-1"><strong>{{ $itemReview->title }}</strong></p>
+                    <p class="p-0 mb-1 text-secondary">{{ $itemReview->created_at->format('Y年m月d日') }}にレビュー済み</p>
+                    <p class="p-0 mb-1">{{ $itemReview->comment }}</p>
+                    <p class="p-0 mb-1 text-secondary">〇人のお客様が参考になったと考えております</p>
+                    <a href="" class="text-decoration-none">参考になった</a>
+                @endforeach
+            </div>
+        </div>
     </div>
+    {{-- レビューモーダル --}}
+    @if (auth()->user())
+        <div class="modal fade container" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 600px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reviewModalLabel">この商品のレビューを書く</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3 w-auto">
+                            <img id="modal-reviewitem-thumbnail" src="" alt="サムネイル" class="img-fluid p-0"
+                                style="width: 100px; height: 100px; margin-left: 12px;">
+                            <div class="col-md-6">
+                                <span id="modal-reviewitem-name"></span>
+                            </div>
+                        </div>
+                        <form name="reviewform" action="{{ route('items.review') }}" method="POST" novalidate>
+                            @csrf
+                            <div id="review-errors" class="text-danger" role="alert"></div>
+                            <label for="star">総合評価</label>
+                            <div id="star">
+                                <span class="star" name="star" id="star" value="1">★</span>
+                                <span class="star" name="star" id="star" value="2">★</span>
+                                <span class="star" name="star" id="star" value="3">★</span>
+                                <span class="star" name="star" id="star" value="4">★</span>
+                                <span class="star" name="star" id="star" value="5">★</span>
+                            </div>
+                            <div class="mb-2">
+                                <label for="title">レビュータイトル</label>
+                                <input id="title" type="text"
+                                    class="form-control @error('title') is-invalid @enderror" name="title"
+                                    value="{{ old('title') }}" required autocomplete="title" autofocus
+                                    placeholder="もっとも伝えたいポイントは何ですか？">
+                                @error('title')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="comment">レビュー内容</label>
+                                <textarea id="comment" rows="8" class="form-control text-black @error('comment') is-invalid @enderror"
+                                    rows="3" name="comment" placeholder="気に入ったこと、気に入らなかったとこは何ですか？この製品をどのように使いましたか？">{{ old('comment', isset($input->comment) ? $input->comment : '') }}</textarea>
+                                @error('comment')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <input type="hidden" id="modal-reviewitem-id" name="item_id">
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-danger w-100">投稿する</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     @if (auth()->user())
         {{-- 決済モーダル --}}
         <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel"
@@ -244,7 +337,13 @@
     @endif
 @endsection
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
+    var stars = document.getElementsByClassName("star");
+    var clicked = false; //未クリック クリックするまでは色変化おきる
     document.addEventListener("DOMContentLoaded", function() {
         const thumbs = document.querySelectorAll('.thumb');
         //cssセレクタの '.thub'を取得して定数thumbsに代入
@@ -257,6 +356,98 @@
             }
         });
         // console.log('abc');
+        // レビュー星↓
+        const stars = document.getElementsByClassName('star');
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].addEventListener(
+                "mouseover",
+                () => {
+                    if (!clicked) { //クリックが一度もされていないとき
+                        for (let j = 0; j <= i; j++) { //星1から上にカーソルがある星まで
+                            stars[j].style.color = "#f0da61"; //黄色に
+                        }
+                    }
+                },
+                false
+            );
+
+            stars[i].addEventListener(
+                "mouseout",
+                () => {
+                    if (!clicked) { //クリックが一度もされていないとき
+                        for (let j = 0; j < stars.length; j++) {
+                            stars[j].style.color = "#a09a9a"; //グレーに
+                        }
+                    }
+                },
+                false
+            );
+
+            stars[i].addEventListener(
+                "click",
+                () => {
+                    clicked = true; //クリック済
+                    for (let j = 0; j <= i; j++) {
+                        stars[j].style.color = "#f0da61";
+                    }
+                    for (let j = i + 1; j < stars.length; j++) {
+                        stars[j].style.color = "#a09a9a";
+                    }
+                },
+                false
+            );
+        }
+        // 非同期通信で情報をサーバーサイドに送信する
+        data.append('star', index);
+        fetch('abcde', {
+                method: 'post',
+                body: data
+            }).then()
+            .catch();
+
+        // モーダル表示時に情報を設定する関数↓↓↓
+        function showReviewModal(
+            reviewitemId,
+            reviewitemName,
+            reviewitemThumbnail,
+        ) {
+            // 商品名の設定
+            document.getElementById("modal-reviewitem-name").innerText = reviewitemName;
+
+            // 商品サムネイルの設定
+            document.getElementById("modal-reviewitem-thumbnail").src = reviewitemThumbnail;
+
+            // 商品IDと数量のhiddenフィールドに値を設定
+            document.getElementById("modal-reviewitem-id").value = reviewitemId;
+            // モーダルを表示
+            const reviewModal = new bootstrap.Modal(
+                document.getElementById("reviewModal")
+            );
+            reviewModal.show();
+        }
+
+        // レビューモーダルを表示する
+        document.querySelectorAll(".open-review-modal").forEach((button) => {
+            button.addEventListener("click", function() {
+                const reviewitemId = this.getAttribute("data-reviewitem-id");
+                const reviewitemName = this.getAttribute("data-reviewitem-name");
+                const reviewitemThumbnail = this.getAttribute("data-reviewitem-thumbnail");
+
+                // モーダルにデータをセット
+                document.getElementById("modal-reviewitem-id").value = reviewitemId;
+                document.getElementById("modal-reviewitem-name").textContent = reviewitemName;
+                document.getElementById("modal-reviewitem-thumbnail").src = reviewitemThumbnail;
+
+                // モーダル表示
+                const reviewModal = new bootstrap.Modal(
+                    document.getElementById("reviewModal")
+                );
+                reviewModal.show();
+            });
+        });
+
+        // ここまでがレビューモーダル↑↑↑
+
         const stripe = Stripe(
             "pk_test_51PySDEDA2YxCl5ELgjZzT5q1XzLn0Bwpc8lOKo7vUyISHdHQm9QAlHYAxvIcXNMsXIgOexnZv5RM53zFzmZ1XIm500Aap1mQ6Y"
         ); // Stripeの公開可能キー
@@ -342,7 +533,7 @@
             paymentModal.show();
         }
 
-        // 商品情報を取得し、モーダルを表示する例
+        // 商品情報を取得し、モーダルを表示する
         document.querySelectorAll(".open-payment-modal").forEach((button) => {
             button.addEventListener("click", function() {
                 const itemId = this.getAttribute("data-item-id");
@@ -364,10 +555,12 @@
                     totalPrice;
 
                 // 単価と合計金額をフォーマットして表示
-                document.getElementById("modal-item-price").textContent = formatPrice(
-                    itemPrice);
-                document.getElementById("modal-item-total").textContent = formatPrice(
-                    totalPrice);
+                document.getElementById("modal-item-price").textContent =
+                    formatPrice(
+                        itemPrice);
+                document.getElementById("modal-item-total").textContent =
+                    formatPrice(
+                        totalPrice);
                 document.getElementById("modal-item-count").value = itemQuantity;
 
                 // モーダル表示

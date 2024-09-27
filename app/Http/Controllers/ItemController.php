@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Category;
+use App\Models\ItemReview;
 use App\Models\Image;
 use App\Models\ItemView;
 use Illuminate\Http\Request;
@@ -50,6 +51,9 @@ class ItemController extends Controller
             ->inRandomOrder()
             ->take(4)
             ->get();
+        $itemReviews = ItemReview::where('item_id', $item->id)
+            ->with('user')
+            ->get();
 
         $user = $request->user();
         ItemView::create([
@@ -57,7 +61,7 @@ class ItemController extends Controller
             'user_id' => $user?->id
         ]);
 
-        return view('items.show', compact('item', 'randomItems', 'user'));
+        return view('items.show', compact('item', 'randomItems', 'user', 'itemReviews'));
     }
 
     /**
@@ -134,4 +138,29 @@ class ItemController extends Controller
         return view('items.index', compact('items', 'viewItems', 'categories', 'selectedCategory'));
     }
 
+    public function review(Request $request, Item $item)
+    {
+        // バリデーションを追加
+        $request->validate([
+            'item_id' => 'required|exists:items,id',
+            'star'   => 'required|min:1',
+            'title'   => 'string|max:255',
+            'comment' => 'required|nullable|string',
+        ]);
+        dd($request);
+        // 商品情報の取得
+        $item = Item::find($request->item_id);
+        $user = auth()->user();
+
+        // 注文を作成
+        $item_review = new ItemReview;
+        $item_review->item_id = $request->item_id;
+        $item_review->user_id = $user;
+        $item_review->star    = $request->star;
+        $item_review->title   = $request->title;
+        $item_review->comment = $request->comment;
+        $item_review->save();
+        $request->session()->flash('reviewadd', 'レビューを投稿しました');
+        return back();
+    }
 }

@@ -13,8 +13,11 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
 Route::resource('items', App\Http\Controllers\ItemController::class);
 // Route::get('items/{item}/show', [ItemController::class, 'show'])->name('items.show'); // 一般ユーザー用商品詳細
-Route::get('/search',     [ItemController::class, 'search'])->name('items.search');
+// Route::get('/list',          [ItemController::class, 'list'])->name('items.list');
+// Route::post('/review',       [ItemController::class, 'review'])->name('items.review');
+Route::get('/search',        [ItemController::class, 'search'])->name('items.search');
 Route::get('/category/{id}', [App\Http\Controllers\ItemController::class, 'filterCategory'])->name('items.filterCategory');
+
 // お問い合わせページ
 Route::get('/contact',          [App\Http\Controllers\ContactsController::class, 'show'])->name('contact.show');
 Route::post('/contact',         [App\Http\Controllers\ContactsController::class, 'post'])->name('contact.post');
@@ -38,6 +41,7 @@ Route::middleware('auth')->group(function () {
     // Route::post('/purchase/{item}', [App\Http\Controllers\ItemController::class, 'purchaseConfirm'])->name('items.purchaseConfirm');
     // 注文
     // Route::post('/orders/create',   [App\Http\Controllers\OrderController::class, 'create'])->name('orders.create');
+    Route::post('/items',   [App\Http\Controllers\ItemController::class, 'review'])->name('items.review');
     Route::post('/orders',         [App\Http\Controllers\OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/complete', [App\Http\Controllers\OrderController::class, 'complete'])->name('orders.complete');
     // お気に入り
