@@ -186,8 +186,6 @@
                 <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星3つ</span>
                 <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星2つ</span>
                 <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd mb-3" aria-hidden="true">星1つ</span>
-                {{-- <a href="{{ route('items.reviewCreate', $item->id) }}"
-                    class="btn btn-danger text-light hover-effect">レビューを書く</a> --}}
                 <button type="button" class="btn btn-danger open-review-modal" style="font-size: 1rem;"
                     data-reviewitem-id="{{ $item->id }}" data-reviewitem-name="{{ $item->item_name }}"
                     data-reviewitem-thumbnail="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}">
@@ -232,12 +230,17 @@
                             @csrf
                             <div id="review-errors" class="text-danger" role="alert"></div>
                             <label for="star">総合評価</label>
-                            <div id="star">
-                                <span class="star" name="star" id="star" value="1">★</span>
-                                <span class="star" name="star" id="star" value="2">★</span>
-                                <span class="star" name="star" id="star" value="3">★</span>
-                                <span class="star" name="star" id="star" value="4">★</span>
-                                <span class="star" name="star" id="star" value="5">★</span>
+                            <div class="rate-form">
+                                <input id="star5" type="radio" name="radio" value="5">
+                                <label for="star5">★</label>
+                                <input id="star4" type="radio" name="radio" value="4">
+                                <label for="star4">★</label>
+                                <input id="star3" type="radio" name="radio" value="3">
+                                <label for="star3">★</label>
+                                <input id="star2" type="radio" name="radio" value="2">
+                                <label for="star2">★</label>
+                                <input id="star1" type="radio" name="radio" value="1" checked>
+                                <label for="star1">★</label>
                             </div>
                             <div class="mb-2">
                                 <label for="title">レビュータイトル</label>
@@ -342,8 +345,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    var stars = document.getElementsByClassName("star");
-    var clicked = false; //未クリック クリックするまでは色変化おきる
     document.addEventListener("DOMContentLoaded", function() {
         const thumbs = document.querySelectorAll('.thumb');
         //cssセレクタの '.thub'を取得して定数thumbsに代入
@@ -357,53 +358,20 @@
         });
         // console.log('abc');
         // レビュー星↓
-        const stars = document.getElementsByClassName('star');
-        for (let i = 0; i < stars.length; i++) {
-            stars[i].addEventListener(
-                "mouseover",
-                () => {
-                    if (!clicked) { //クリックが一度もされていないとき
-                        for (let j = 0; j <= i; j++) { //星1から上にカーソルがある星まで
-                            stars[j].style.color = "#f0da61"; //黄色に
-                        }
-                    }
-                },
-                false
-            );
+        const stars = document.querySelectorAll('.star');
 
-            stars[i].addEventListener(
-                "mouseout",
-                () => {
-                    if (!clicked) { //クリックが一度もされていないとき
-                        for (let j = 0; j < stars.length; j++) {
-                            stars[j].style.color = "#a09a9a"; //グレーに
-                        }
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                stars.forEach((s, i) => {
+                    if (i <= index) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
                     }
-                },
-                false
-            );
+                });
+            });
+        });
 
-            stars[i].addEventListener(
-                "click",
-                () => {
-                    clicked = true; //クリック済
-                    for (let j = 0; j <= i; j++) {
-                        stars[j].style.color = "#f0da61";
-                    }
-                    for (let j = i + 1; j < stars.length; j++) {
-                        stars[j].style.color = "#a09a9a";
-                    }
-                },
-                false
-            );
-        }
-        // 非同期通信で情報をサーバーサイドに送信する
-        data.append('star', index);
-        fetch('abcde', {
-                method: 'post',
-                body: data
-            }).then()
-            .catch();
 
         // モーダル表示時に情報を設定する関数↓↓↓
         function showReviewModal(

@@ -143,11 +143,11 @@ class ItemController extends Controller
         // バリデーションを追加
         $request->validate([
             'item_id' => 'required|exists:items,id',
-            'star'   => 'required|min:1',
+            'radio'    => 'required',
             'title'   => 'string|max:255',
             'comment' => 'required|nullable|string',
         ]);
-        dd($request);
+        // dd($request);
         // 商品情報の取得
         $item = Item::find($request->item_id);
         $user = auth()->user();
@@ -155,8 +155,8 @@ class ItemController extends Controller
         // 注文を作成
         $item_review = new ItemReview;
         $item_review->item_id = $request->item_id;
-        $item_review->user_id = $user;
-        $item_review->star    = $request->star;
+        $item_review->user_id = $user->id;
+        $item_review->star    = $request->radio;
         $item_review->title   = $request->title;
         $item_review->comment = $request->comment;
         $item_review->save();
