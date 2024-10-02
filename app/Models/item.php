@@ -71,7 +71,7 @@ class Item extends Model
     // レビューテーブル
     public function reviews() {
 
-        return $this->hasMany(ItemReview::class, 'item_id', 'id');
+        return $this->hasMany(ItemReview::class);
 
     }
 }

@@ -54,7 +54,17 @@ class ItemController extends Controller
         $itemReviews = ItemReview::where('item_id', $item->id)
             ->with('user')
             ->get();
-
+        // 平均評価の計算
+        // $averating = $itemReviews->map(function ($itemReview) {
+        //     $stars = $itemReview->star;
+        //     // dd($stars);
+        //     $total = 0;
+        //     for ($i = 0; $i < count($stars); $i++) {
+        //         $total += $i;
+        //     }
+        //     $itemReview->rating = $total / $i;
+        //     return $itemReview;
+        // });
         $user = $request->user();
         ItemView::create([
             'item_id' => $item->id,

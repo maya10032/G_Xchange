@@ -181,28 +181,48 @@
             <div class="d-flex flex-column me-5 mb-0 reduce-margin" style="flex: 0.4; font-size: 1.25rem;">
                 <h3 class="mb-3" style="font-size: 1.75rem;"><i class="fa fa-comments"></i>
                     この商品のレビュー評価</h3>
+                <span class="a-icon-alt">
+                    <p class="result-rating-rate m-0">
+                        {{-- @foreach ($averating as $itemReview)
+                            </span><span class="num">{{$recommend_product->avg}}</span>
+                            <span class="star5_rating" data-rate="{{ $itemReview->rating }}"
+                                style="font-size: 1.6rem;"></span>
+                        @endforeach --}}
+                    </p>
+                </span>
                 <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星5つ</span>
                 <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星4つ</span>
                 <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星3つ</span>
                 <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd" aria-hidden="true">星2つ</span>
                 <span class="_cr-ratings-histogram_style_histogram-column-space__RKUAd mb-3" aria-hidden="true">星1つ</span>
-                <button type="button" class="btn btn-danger open-review-modal" style="font-size: 1rem;"
-                    data-reviewitem-id="{{ $item->id }}" data-reviewitem-name="{{ $item->item_name }}"
-                    data-reviewitem-thumbnail="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}">
-                    レビューを書く
-                </button>
-                <p style="font-size: 1rem;">他のお客様にも意見を伝えましょう</p>
+                @if (auth()->user())
+                    <button type="button" class="btn btn-danger open-review-modal" style="font-size: 1rem;"
+                        data-reviewitem-id="{{ $item->id }}" data-reviewitem-name="{{ $item->item_name }}"
+                        data-reviewitem-thumbnail="{{ asset('storage/images/' . $item->images[$item->thumbnail]->img_path) }}">
+                        レビューを書く
+                    </button>
+                    <p style="font-size: 1rem;">他のお客様にも意見を伝えましょう</p>
+                @else
+                    <p style="font-size: 1rem;">レビューを投稿するにはログインしてください</p>
+                @endif
             </div>
             <div class="ms-auto" style="flex: 1;">
-                <h4 class="mb-3">
-                    上位のレビュー、対象国：日本</h4>
+                <h4 class="mb-4">
+                    <strong>上位のレビュー、対象国：日本</strong>
+                </h4>
                 @foreach ($itemReviews as $itemReview)
-                    <h5 class="p-0 mb-1"><i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <h5 class="p-0 mb-0"><i class="fa fa-user-circle" aria-hidden="true"></i>
                         {{ $itemReview->user->name }}</h5>
-                    <p class="p-0 mb-1"><strong>{{ $itemReview->title }}</strong></p>
+                    <span class="a-icon-alt">
+                        <p class="result-rating-rate m-0">
+                            <span class="star5_rating" data-rate="{{ $itemReview->star }}"
+                                style="font-size: 1.6rem;"></span>
+                            <span><strong> {{ $itemReview->title }}</strong></span>
+                        </p>
+                    </span>
                     <p class="p-0 mb-1 text-secondary">{{ $itemReview->created_at->format('Y年m月d日') }}にレビュー済み</p>
                     <p class="p-0 mb-1">{{ $itemReview->comment }}</p>
-                    <p class="p-0 mb-1 text-secondary">〇人のお客様が参考になったと考えております</p>
+                    <p class="p-0 mb-1 text-secondary" style="font-size: 0.8rem">〇人のお客様が参考になったと考えております</p>
                     <a href="" class="text-decoration-none">参考になった</a>
                 @endforeach
             </div>

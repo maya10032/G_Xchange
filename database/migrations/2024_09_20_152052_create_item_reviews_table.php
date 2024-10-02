@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('item_id')->default(0)->comment('商品ID');
             $table->unsignedBigInteger('user_id')->default(0)->comment('ユーザーID');
-            $table->integer('stars')->default(0)->comment('星');
+            $table->string('star')->default(1)->comment('星');
             $table->text('comment')->comment('コメント');
             $table->timestamps();
 
-            $table->foreign('item_id')->references('id')->on('items');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unique(['item_id', 'user_id']);
         });
     }
