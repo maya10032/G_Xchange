@@ -16,8 +16,6 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned()->index();
             $table->bigInteger('item_id')->unsigned()->index();
             $table->integer('count');
-            $table->integer('price');
-            $table->integer('totalprice');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

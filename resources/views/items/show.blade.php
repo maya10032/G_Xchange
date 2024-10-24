@@ -3,7 +3,7 @@
 @section('title', '商品詳細')
 
 @section('content')
-    <div class="py-4 container sticky-top" style="min-height: calc(280vh - 280px);">
+    <div class="py-4 container sticky-top" style="min-height: calc(240vh - 240px);">
         @if (session('likeadd'))
             <div class="alert-blue-line mb-2" style="font-size: 1.25rem;">
                 {{ session('likeadd') }}
