@@ -19,7 +19,7 @@ WORKDIR /var/www
 COPY . .
 
 # Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest C:\ProgramData\ComposerSetup/bin/composer C:\ProgramData\ComposerSetup/bin/composer
 
 # Install Laravel dependencies
 RUN composer install --no-interaction --prefer-dist
