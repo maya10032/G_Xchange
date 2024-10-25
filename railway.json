@@ -1,9 +1,6 @@
 {
     "build": {
-        "builder": "php",
-        "install": ["composer install --no-dev --optimize-autoloader"]
-    },
-    "start": {
+        "install": "composer install --no-dev --optimize-autoloader",
         "command": "php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
     }
 }
