@@ -2,11 +2,11 @@
     "build": {
         "env": {
             "DB_CONNECTION": "mysql",
-            "DB_HOST": "127.0.0.1",
+            "DB_HOST": "mysql.railway.internal",
             "DB_PORT": "3306",
-            "DB_DATABASE": "g_xchange",
+            "DB_DATABASE": "railway",
             "DB_USERNAME": "root",
-            "DB_PASSWORD": ""
+            "DB_PASSWORD": "jSQIilosJPJbQIgftNcdPCwMLkJcneWw"
         },
         "install": ["composer install --no-dev --optimize-autoloader"]
     },
