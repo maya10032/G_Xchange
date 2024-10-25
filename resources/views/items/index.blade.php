@@ -43,20 +43,20 @@
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
                     aria-current="true"></button>
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                {{-- <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> --}}
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="d-flex">
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/banner_child.jpg') }}" class="d-block content-hover"
+                            <img src="{{ asset('images/green-recycle-symbol-surrounded-with-waste-items.jpg') }}" class="d-block content-hover"
                                 alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/sale1.jpg') }}" class="d-block content-hover" alt="Sample Image">
+                            <img src="{{ asset('images/recycling.jpg') }}" class="d-block content-hover" alt="Sample Image">
                         </div>
                         <div class="carousel-item-box">
-                            <img src="{{ asset('images/banner_click.jpg') }}" class="d-block content-hover"
+                            <img src="{{ asset('images/47900.jpg') }}" class="d-block content-hover"
                                 alt="Sample Image">
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
+                {{-- <div class="carousel-item">
                     <div class="d-flex">
                         <div class="carousel-item-box">
                             <img src="{{ asset('images/green-recycle-symbol-surrounded-with-waste-items.jpg') }}" class="d-block content-hover"
@@ -88,7 +88,7 @@
                             <img src="{{ asset('images/47900.jpg') }}" class="d-block content-hover" alt="Sample Image">
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -220,4 +220,3 @@
         </ul>
     </div>
 @endsection
-
