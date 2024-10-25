@@ -1,5 +1,6 @@
 {
     "build": {
+        "dockerfile": false,
         "install": ["composer install --no-dev --optimize-autoloader"]
     },
     "start": {
