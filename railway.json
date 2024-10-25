@@ -1,6 +1,6 @@
 {
     "build": {
-        "dockerfile": false,
+        "builder": "php",
         "install": ["composer install --no-dev --optimize-autoloader"]
     },
     "start": {

@@ -36,7 +36,6 @@ class ItemController extends Controller
             ->sortable($sort, $direction)
             ->orderBy('created_at', 'DESC')
             ->paginate(10); // itemsの全商品、カテゴリーを取得
-
         $itemsWithTax = $items->map(function ($item) {
             $item->subtotal = $item->tax_sales_prices; // 税込み価格
             $item->regtotal = $item->tax_regular_prices; // 税込み価格
@@ -106,7 +105,7 @@ class ItemController extends Controller
         // セッションに保存
         $request->session()->put("form_input", $input);
         // 確認画面にリダイレクト
-        return redirect()->route("admin.items.confirm");;
+        return redirect()->route("admin.items.confirm");
     }
 
     /**
