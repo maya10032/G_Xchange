@@ -1,14 +1,16 @@
 # ベースイメージ
 FROM php:8.2-fpm
 
-# 必要なPHP拡張をインストール（apt-getのインタラクティブモードを無効化）
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# DNS設定（GoogleのDNSを使用）
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
+# 必要なPHP拡張をインストール
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
     libzip-dev \
     zip \
     unzip \
-    && docker-php-ext-install zip pdo pdo_mysql mbstring \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-install zip pdo pdo_mysql mbstring
 
 # Composerをインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
