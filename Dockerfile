@@ -17,8 +17,8 @@ COPY . /var/www
 # 作業ディレクトリ
 WORKDIR /var/www
 
-# Composer依存関係をインストール
-RUN composer install --no-dev --optimize-autoloader
+# Composer依存関係をインストール（メモリ制限を解除）
+RUN php -d memory_limit=-1 /usr/bin/composer install --no-dev --optimize-autoloader
 
 # パーミッションを設定
 RUN chown -R www-data:www-data /var/www
