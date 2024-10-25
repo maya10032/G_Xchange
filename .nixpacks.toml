@@ -1,5 +1,5 @@
 [phases.setup]
-command = "nix-env -iA nixpkgs.php81"  # PHP 8.1を指定
+command = "nix-env -iA nixpkgs.php82"  # PHP 8.1を指定
 
 [phases.build]
 command = "composer install --no-dev --optimize-autoloader"
