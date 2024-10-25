@@ -1,21 +1,30 @@
 # ベースイメージ
 FROM php:8.2-fpm
 
+# 必要なPHP拡張をインストール
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    zip \
+    unzip \
+    && docker-php-ext-install zip pdo pdo_mysql mbstring
+
 # Composerをインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# アプリケーションディレクトリをコピー
+# アプリケーションファイルをコピー
 COPY . /var/www
 
-# Composerの依存関係をインストール
+# 作業ディレクトリ
 WORKDIR /var/www
+
+# Composer依存関係をインストール
 RUN composer install --no-dev --optimize-autoloader
 
-# 権限を設定
+# パーミッションを設定
 RUN chown -R www-data:www-data /var/www
 
-# Laravelのポートを公開
+# ポートを公開
 EXPOSE 8000
 
-# アプリケーションの起動コマンド
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# アプリケーション起動
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=${PORT}"]
