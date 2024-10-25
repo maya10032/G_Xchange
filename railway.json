@@ -8,6 +8,7 @@
             "DB_USERNAME": "root",
             "DB_PASSWORD": "jSQIilosJPJbQIgftNcdPCwMLkJcneWw"
         },
+        "nix": false,
         "install": ["composer install --no-dev --optimize-autoloader"]
     },
     "start": {
