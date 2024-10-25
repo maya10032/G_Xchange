@@ -221,4 +221,3 @@
     </div>
 @endsection
 
-{{ Debugbar::log($items->toArray()) }}
