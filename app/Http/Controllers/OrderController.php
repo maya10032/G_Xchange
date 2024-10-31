@@ -49,7 +49,6 @@ class OrderController extends Controller
         return view('orders.show', compact('order', 'subtotal'));
     }
 
-
     /**
      * 購入ボタン押下後、ordersテーブルに登録
      *
@@ -101,8 +100,6 @@ class OrderController extends Controller
             return back()->withErrors(['message' => 'エラーが発生しました: ' . $e->getMessage()]);
         }
     }
-
-
 
     /**
      * 注文完了画面を表示
